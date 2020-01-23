@@ -1,0 +1,33 @@
+<?php include VIEW . 'header.phtml' ?>
+<!--Slider-->
+
+<div class="col-xs-12">
+    <?php
+    if (array_key_exists('news', $this->view_data)) {
+
+        foreach ($this->view_data['news'] as $new) { ?>
+
+            <div class="media">
+                <img src="<?php echo $new["logo"]; ?>" class="align-self-start mr-3" style="width:250px">
+                <div class="media-body">
+                    <h6> <?php echo $new["title"]; ?> </h6>
+                    <p>  <?php echo $new["introduction"]; ?> </p>
+                    <a href="/news/readMore/<?php echo $new["id"]; ?>"> عرض المزيد.. </a>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+        <?php }
+    } ?>
+
+</div>
+
+
+
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+
+<?php include VIEW . 'footer.phtml' ?>

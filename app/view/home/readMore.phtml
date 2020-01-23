@@ -1,0 +1,38 @@
+<?php include VIEW . 'header.phtml' ?>
+<!--Slider-->
+
+<div class="col-xs-12">
+    <?php
+    if (array_key_exists('news', $this->view_data)) { ?>
+        <div class="card" style="width:70% ; margin-right: 15%">
+            <div class="card-body">
+                <h5 class="card-title text-center"><?php echo $this->view_data['news']["title"]; ?> </h5>
+            </div>
+            <img class="card-img-top"src="<?php echo $this->view_data['news']["logo"]; ?>"  alt="Card image">
+            <div class="card-body">
+
+                <p class="card-text"><?php echo $this->view_data['news']["editor"]; ?> </p>
+                <a href="/" class="btn btn-primary"> رجوع</a>
+            </div>
+        </div>
+
+
+        <div class="clearfix"></div>
+
+
+    <?php } ?>
+
+
+
+</div>
+
+
+<div class="container main">
+
+</div>
+</div>
+</div>
+</div>
+<div class="clearfix"></div>
+
+<?php include VIEW . 'footer.phtml' ?>

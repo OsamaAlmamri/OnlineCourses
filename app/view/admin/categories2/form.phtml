@@ -1,0 +1,169 @@
+<?php if (array_key_exists('category', $this->view_data)) { ?>
+<input type="hidden" name="_id" value="<?php echo($this->view_data['category']['id'])?>">
+<input type="hidden" name="_updates" value="<?php echo($this->view_data['category']['_updates'])?>">
+<?php }?>
+
+
+<div class=" col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+
+            <h2><i class="fa fa-bars"></i>الاقسام
+
+
+            </h2>
+
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="x_content">
+            <div class="col-xs-3">
+                <!-- required for floating -->
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs tabs-left">
+                    <li class="active"><a href="#data" data-toggle="tab">البيانات</a></li>
+
+                    <li><a href="#setting" data-toggle="tab">الاعدادات </a></li>
+                </ul>
+            </div>
+            <div class="col-xs-9">
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="data">
+
+                        <div class="form-group">
+                            <label for="name_ar">الاسم باللغة العربية </label>
+                            <input class="form-control" id="name_ar" placeholder="الاسم باللغة العربية   "
+                                   name="name_ar"
+                                   value="<?php if (array_key_exists('category', $this->view_data)) echo($this->view_data['category']['name_ar']); else   echo ''; ?>"
+                                   type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name_en">الاسم باللغة الانجليزية </label>
+                            <input class="form-control" id="name_en" placeholder="الاسم باللغة الانجليزية   "
+                                   value="<?php if (array_key_exists('category', $this->view_data)) echo($this->view_data['category']['name_en']); else   echo ''; ?>"
+                                   name="name_en" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="section_count"> عدد الاقسام بالصفحة </label>
+                            <input class="form-control" min="1" max="3" id="section_count" placeholder="عدد الاقسام "
+                                   value="<?php if (array_key_exists('category', $this->view_data)) echo($this->view_data['category']['section_count']); else   echo ''; ?>"
+
+                                   name="section_count" type="number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newsCount"> عدد الاخبار بالصفحة الواحدة </label>
+                            <input class="form-control" min="2" id="newsCount"
+                                   value="<?php if (array_key_exists('category', $this->view_data)) echo($this->view_data['category']['newsCount']); else   echo ''; ?>"
+
+                                   placeholder="عدد الاخبار بالصفحة الواحدة " name="newsCount" type="number">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="sort"> ترتيبة ضمن الاقسام </label>
+                            <input class="form-control" id="sort" placeholder="ترتيبة ضمن  الاقسام " name="sort"
+                                   value="<?php if (array_key_exists('category', $this->view_data)) echo($this->view_data['category']['sort']); else   echo ''; ?>"
+
+                                   type="number">
+                        </div>
+
+
+                    </div>
+
+                    <div class="tab-pane" id="setting">
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="">
+                                    <label>
+                                        <input type="checkbox" name="isMain" class="js-switch"
+                                        <?php if (array_key_exists('category', $this->view_data)) if ($this->view_data['category']['isMain'] == 1) echo 'checked'; ?>
+
+                                        />
+                                        يعرض في الاقسام الرئيسية
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="">
+                                    <label>
+                                        <input type="checkbox" name="status" class="js-switch"
+                                        <?php if (array_key_exists('category', $this->view_data)) if ($this->view_data['category']['status'] == 1) echo 'checked'; ?>
+
+                                        />
+                                        مفعل
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="">
+                                    <label>
+                                        <input type="checkbox" name="liveNews"
+                                               class="js-switch"
+                                        <?php if (array_key_exists('category', $this->view_data)) if ($this->view_data['category']['liveNews'] == 1) echo 'checked'; ?>
+
+                                        />
+                                        يعرض الشريط الاخباري
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-9 col-sm-9 col-xs-12">
+                                <div class="">
+                                    <label>
+                                        <input type="checkbox" name="hasSlides"
+                                               class="js-switch"
+                                        <?php if (array_key_exists('category', $this->view_data)) if ($this->view_data['category']['hasSlides'] == 1) echo 'checked'; ?>
+
+
+                                        />
+                                        يعرض السلايدات المتحركة فية
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-10">
+                            <label for="parent"> القسم الاب لهذا القسم </label>
+                            <input type="text" name="parent" placeholder="القسم الاب  " id="input-parent"
+                                   class="form-control"/>
+                            <div id="parent" class="well well-sm" style="height: 50px; overflow: auto;">
+                                <?php if (array_key_exists('category', $this->view_data)) {?>
+
+                                <div id="parent<?php echo $this->view_data['category']['id'];?>"><i
+                                            class="fa fa-minus-circle"></i>
+                                    <?php echo Helper::getCategoryName($this->view_data['category']['parent']); ?>
+                                    <input type="hidden" name="parent"
+                                           value="<?php echo $this->view_data['category']['parent'];?>"/>
+                                </div>
+
+                                <?php } ?>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+    </div>
+</div>
+</div>
+
+
+

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../Admin/images/logo2.png">
+    <title><?php echo(isset($this->pageTitle) ? $this->pageTitle : 'page n'); ?> </title>
+    <style type="text/css">
+        #marquee {
+            font-size: 18pt;
+            color: #001cff;
+            border-style: ridge;
+            border-color: #E3BE13;
+            background-color: #78ecff;
+        }
+
+        #marquee a {
+            margin: 0 10px 0 10px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="/design/site/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/design/site/css/login.css">
+    <link rel="stylesheet" href="/design/site/fontawesome/css/all.css">
+
+
+    <script src="/design/site/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/design/site/js/popper.min.js"></script>
+    <script src="/design/site/js/bootstrap.bundle.min.js"></script>
+    <!--    <script src="vendors/jquery/dist/jquery.min.js"></script>-->
+
+</head>
+<body>
+
+
+<div id='up'></div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin:24px 0;">
+    <a class="navbar-brand" href="/">هدهد سباء</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navb">
+        <ul class="navbar-nav mr-auto">
+            <?php if (Helper::isAdmin()) { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/index"> لوحة التحكم</a>
+                <?php } ?>
+                <!---->
+                <!--                --><?php //foreach (Helper::getMainMenu('main') as $item) { ?>
+                <!--                --><?php //if (Helper::countChild($item['id']) > 0) { ?>
+                <!--            <li class="nav-item dropdown">-->
+                <!--                <a class="nav-link dropdown-toggle" data-toggle="dropdown"-->
+                <!--                   href="">--><?php //echo $item['name_ar'] ?><!--</a>-->
+                <!--                <div class="dropdown-menu">-->
+                <!--                    <a class="dropdown-item" href="/news/page/-->
+                <?php //echo $item['id'] ?><!--">الكل</a>-->
+                <!--                    --><?php //foreach (Helper::returnChild($item['id']) as $sub_item) { ?>
+                <!--                        <a class="dropdown-item"-->
+                <!--                           href="/news/page/--><?php //echo $sub_item['id'] ?><!--"> -->
+                <?php //echo $sub_item['name_ar'] ?><!-- </a>-->
+                <!--                    --><?php //} ?>
+                <!--                </div>-->
+                <!--            </li>-->
+                <!--        --><?php //} else { ?>
+                <!---->
+                <!--            <li class="nav-item">-->
+                <!--                <a class="nav-link" href="/news/page/--><?php //echo $item['id'] ?><!--"> -->
+                <?php //echo $item['name_ar'] ?><!--</a>-->
+                <!---->
+                <!--                --><?php //}
+                //                }
+                //                if (Helper::countAlsoMenu() > 0) {
+                //                ?>
+                <!---->
+                <!--            <li class="nav-item dropdown">-->
+                <!--                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">المزيد</a>-->
+                <!--                <div class="dropdown-menu">-->
+                <!--                    --><?php //foreach (Helper::getMainMenu('moreMenu') as $moreItem) { ?>
+                <!--                        <a class="dropdown-item"-->
+                <!--                           href="/news/page/--><?php //echo $moreItem['id'] ?><!--">-->
+                <?php //echo $moreItem['name_ar'] ?><!--</a>-->
+                <!--                    --><?php //} ?>
+                <!--                </div>-->
+                <!--            </li>-->
+
+                <!--        --><?php //}
+                if (Session::logged() > 0) { ?>
+            <li class="nav-item">
+                <a class="nav-link " href="/home/logout"> تسجيل الخروج </a>
+            </li>
+        <?php } else { ?>
+            <li class="nav-item">
+                <a class="nav-link " href="/home/login">تسجيل الدخول </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="/home/register">انشاء حساب </a>
+            </li>
+
+        <?php } ?>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-success my-2 my-sm-0" type="button">Search</button>
+        </form>
+    </div>
+</nav>
+
+
+<!-- /header -->
+
+<?php include VIEW . 'messages.phtml' ?>
+<div class="container-fluid" style="margin-top:30px">
+
+    <div class="row">
+

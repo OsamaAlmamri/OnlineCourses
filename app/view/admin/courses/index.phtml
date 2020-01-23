@@ -1,0 +1,124 @@
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
+<div class="content">
+    <h2 class="text-center"><i class="fa fa-list"></i> Courses Manage</h2>
+    <div class="row fa-pull-right">
+        <div class="col-8">
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                        id="dashboard_daterangepicker">
+                    <i class="	fas fa-bullseye"></i> sorting data by
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Day</a>
+                    <a class="dropdown-item" href="#">Week</a>
+                    <a class="dropdown-item" href="#">Month</a>
+                    <a class="dropdown-item" href="#">Range</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4"><a href="/admin/categories/create" class="btn btn-primary "><i class="fa fa-plus"> </i> Add</a>
+    </div>
+    <table id="example1" class="table table-bordered table-striped">
+        <thead class="thead-dark font-size-18">
+        <tr>
+            <td>Course Title</td>
+            <td>Course Description</td>
+            <td>Course Image</td>
+            <td>Course Price</td>
+            <td>Course</td>
+            <td>Student Target</td>
+            <td>Course Goals</td>
+            <td>Categories Name</td>
+            <td>Course status</td>
+            <td>Course Date</td>
+            <td>Course visibility</td>
+
+            <th>Control</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php if (array_key_exists('courses', $this->view_data)) {
+            foreach ($this->view_data['courses'] as $course) { ?>
+
+                <tr>
+                    <td><?php echo $course['name'] ?></td>
+                    <td><?php echo Helper::getCategoryName($course['parent']) ?></td>
+                    <td><?php echo ($course['status'] == '1') ? 'مفعل' : 'معطل' ?></td>
+                    <td>
+                        <a href="Categories.php?do=edit"><i class="fa fa-edit"></i></a>
+                        <a href="Categories.php?do=delete"><i class="fa fa-trash-restore"></i></a>
+                        <a href="/admin/categories/delete/<?php echo $course['id'] ?>"
+                           onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
+                                    class="fa fa-trash"></i></a>
+                        <a href="Categories.php?do=activate"><i class="fa fa-check"> </i></a>
+                        <a href="Categories.php?do=updates"><i class="fa fa-history"> </i></a>
+                    </td>
+
+                    <?php if ($this->view_data['deleted'] == false) { ?>
+                        <td><?php echo $course['section_count'] ?></td>
+                        <td><?php echo $course['sort'] ?></td>
+
+                        <td class="text-center">
+                            <a href="/admin/categories/edit/<?php echo $course['id'] ?>"
+                               class="btn btn-primary"><i
+                                        class="fa fa-pencil"></i></a>
+                        </td>
+
+                    <?php } else { ?>
+                        <th>{{getUserName( $course['deleted_by'] )?></th>
+                        <td><?php echo $course['deleted_at'] ?></td>
+
+
+                        <td class="text-center">
+                            <a href="{{  route('admin.categories.restore',encrypt( $course['']id)) }}"
+                               class="btn btn-primary"><i
+                                        class="fa fa-arrow-up"></i></a>
+                        </td>
+
+                    <?php } ?>
+
+
+                    <td class="text-center">
+                        <a href="/admin/categories/delete/<?php echo $course['id'] ?>"
+                           onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
+                                    class="fa fa-trash"></i></a>
+                    </td>
+
+
+                </tr>
+            <?php }
+        } ?>
+    </table>
+</div>
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
+<script>
+
+
+    $(function () {
+        $('#example1').DataTable({
+            language: {url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Arabic.json"},
+            dom: "Blfrtip",
+            buttons: [{extend: "copy", text: "نسخ", className: "btn-sm"}, {
+                extend: "csv",
+                text: "ملف CSV",
+                className: "btn-sm"
+            }, {extend: "excel", text: "اکسل", className: "btn-sm"}, {
+                extend: "pdfHtml5",
+                text: "ملف PDF",
+                className: "btn-sm"
+            }, {extend: "print", text: "طباعة", className: "btn-sm"}],
+            responsive: !0
+        });
+    });
+</script>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+
+
+
+

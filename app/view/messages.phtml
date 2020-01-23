@@ -1,0 +1,36 @@
+<?php
+$message = Message::getMessage('main');
+if ($message != '') {
+    switch ($message['type']) {
+        case 'success': ?>
+
+            <div class="alert alert-success alert-dismissible text-center btn-block mt-2">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="icon fas fa-check mr-2"></i> <?php echo $message['value'] ?>
+            </div>
+            <?php
+            break;
+        case 'danger':
+            ?>
+
+            <div class="alert alert-danger alert-dismissible text-center btn-block mt-2">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="icon fas fa-check mr-2"></i> <?php echo $message['value'] ?>
+            </div>
+            <?php
+            break;
+        case 'warning':
+            ?>
+            <div class="alert alert-warning alert-dismissible text-center btn-block mt-2">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <i class="icon fas fa-check mr-2"></i> <?php echo $message['value'] ?>
+            </div>
+            <?php break;
+    }
+} ?>
+
+
+<?php //var_dump(Message::getMessage('main')); ?>
+<?php //var_dump(Message::getMessage('errors'));
+//Helper::old('user_name');
+?>

@@ -1,0 +1,164 @@
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+
+<link href="/design/admin/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+
+<!-- Select2 -->
+<link href="/design/admin/select2/dist/css/select2.min.css" rel="stylesheet">
+<!-- Switchery -->
+<link href="/design/admin/switchery/dist/switchery.min.css" rel="stylesheet">
+<!-- starrr -->
+<link href="/design/admin/starrr/dist/starrr.css" rel="stylesheet">
+<link rel="stylesheet" href="/design/admin/jquery-ui/jquery-ui.css">
+
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterHead.phtml' ?>
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item  active">
+                        <?php if (array_key_exists('category', $this->view_data)) echo 'تعديل'; else   echo 'اضافة'; ?>
+
+                    </li>
+
+                    <li class="breadcrumb-item "><a href="{{ route('admin.categories.index') }}"> الاقسام</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">لوحة التحكم </a></li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+
+<div class="d-flex justify-content-end mb-2">
+    <button form="form_add" class="btn btn-primary"><i class="fa fa-save"></i></button>
+</div>
+
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <?php if (array_key_exists('category', $this->view_data)) echo 'تعديل القسم'; else   echo 'اضافة قسم جديد'; ?>
+
+                </h3>
+
+            </div>
+            <!-- /.card-header -->
+
+
+            <?php if (array_key_exists('category', $this->view_data))  { ?>
+            <form role="form" id="form_add" method="post" action="/admin/categories/update">
+                <?php } else { ?>
+                <form role="form" id="form_add" method="post" action="/admin/categories/store">
+                    <?php } ?>
+
+                    <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'categories2' . DIRECTORY_SEPARATOR . 'form.phtml' ?>
+
+                </form>
+
+
+        </div>
+
+    </div>
+    <!--/.col (left) -->
+</div>
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.blade.php' ?>
+
+<script src="/design/admin/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="/design/admin/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="/design/admin/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="/design/admin/parsleyjs/dist/parsley.min.js"></script>
+<script src="/design/admin/parsleyjs/dist/i18n/fa.js"></script>
+<!-- Autosize -->
+<script src="/design/admin/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="/design/admin/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="/design/admin/starrr/dist/starrr.js"></script>
+
+<script src="/design/admin/jquery-ui/jquery-ui.js"></script>
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterFooter.blade.php' ?>
+
+<script type="text/javascript">
+
+    function reader(div, input) {
+        $(document).on('change', '#' + input, function () {
+            if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+            {
+                var data = $(this)[0].files; //this file data
+                $('#' + div).html('');
+                $.each(data, function (index, file) { //loop though each file
+                    if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
+                        var fRead = new FileReader(); //new filereader
+                        fRead.onload = (function (file) { //trigger function on successful read
+                            return function (e) {
+                                var img = $('<img/>').addClass('thumb').attr('src', e.target.result); //create image element
+                                $('#' + div).append(img); //append image to output element
+                            };
+                        })(file);
+                        fRead.readAsDataURL(file); //URL representing the file's data.
+                    }
+                });
+            } else {
+                alert("Your browser doesn't support File API!"); //if File API is absent
+            }
+        })
+
+
+    }
+
+    reader('userImage-thumb', 'userImage');
+
+
+    $('input[name=\'parent\']').autocomplete({
+        'source': function (request, response) {
+            $.ajax({
+                url: '/admin/categories2/fetchParentCategory',
+                dataType: 'json',
+                method: 'post',
+                data: 'filter_name=' + encodeURIComponent(request['term']),
+                success: function (json) {
+                    console.log(json);
+                    response($.map(json, function (item) {
+                        return {
+                            label: item['name_ar'],
+                            value: item['id']
+                        }
+                    }));
+                }, error: function (err) {
+                    console.log(err);
+                }
+            });
+        },
+        'select': function (item, ui) {
+            item = ui.item;
+            $('input[name=\'parent\']').val('');
+
+            $('#parent' + item['value']).remove();
+            $('#parent').html('');
+            $('#parent').append('<div id="parent' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="parent" value="' + item['value'] + '" /></div>');
+        }
+    });
+
+    $('#parent').delegate('.fa-minus-circle', 'click', function () {
+        $(this).parent().remove();
+    });
+
+
+</script>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+
+

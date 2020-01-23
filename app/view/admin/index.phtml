@@ -1,0 +1,202 @@
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
+<?php //include VIEW . 'messages.phtml' ?>
+
+<div class="content">
+    <div class="content-header">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="page-title"><i class=""></i>Control Panel</h3>
+                <div class="d-inline-block align-items-center">
+
+                </div>
+            </div>
+            <div class="right-title w-170">
+					<span class="subheader_daterange font-weight-600" id="dashboard_daterangepicker">
+						<span class="subheader_daterange-label">
+							<span class="subheader_daterange-title">Today:</span>
+							<span class="subheader_daterange-date text-info">Jan 18</span>
+						</span>
+						<a href="#" class="btn btn-sm btn-info">
+							<i class="fa fa-angle-down "></i>
+						</a>
+					</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-4 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-uppercase">EMPLOYEES</h6>
+                    <div class="flexcard mt-2">
+                        <span class=" font-size-50 ">85,987</span>
+                        <span class="ion ion-person text-danger font-size-40 fa-pull-right"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xl-4 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-uppercase">EMPLOYEES</h6>
+                    <div class="flexcard mt-2">
+                        <span class=" font-size-50">85,987</span>
+                        <span class="ion ion-email text-primary  font-size-40 fa-pull-right"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col -->
+        <div class="col-xl-4 col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h6 class="text-uppercase">EMPLOYEES</h6>
+                    <div class="flexcard mt-2">
+                        <span class=" font-size-50">85,987</span>
+                        <span class="ion ion-document-text text-warning font-size-40 fa-pull-right"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col -->
+    </div>
+    <div class="row">
+
+        <div class="col-xl-8">
+            <div class="card">
+                <div class="card-body analytics-info">
+                    <h4 class="card-title">Stacked Bar Chart</h4>
+                    <div id="basic-bar" style="height:400px;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Recent Buyers</h4>
+                </div>
+                <div class="card-body px-1">
+                    <div id="recent-buyers" class="media-list">
+                        <a href="#" class="media xs-media p-5">
+                            <div class="media-left pr-1">
+							  <span class="avatar avatar-lg">
+								<img class="media-object rounded-circle" src="/image/avatar/1.jpg"
+                                     alt="Generic placeholder image" width="50">
+								<i></i>
+							  </span>
+                            </div>
+                            <div class="media-body w-100">
+                                <h6 class="list-group-item-heading">Kristopher Candy
+                                    <span class="float-right pt-1">$1,021</span>
+                                </h6>
+                                <p class="list-group-item-text mt-5 mb-0">
+                                    <span class="badge badge-primary">Electronics</span>
+                                    <span class="badge badge-warning ml-1">Decor</span>
+                                </p>
+                            </div>
+                        </a>
+                        <a href="#" class="media xs-media p-5">
+                            <div class="media-left pr-1">
+							  <span class="avatar avatar-lg">
+								<img class="media-object rounded-circle" src="/image/avatar/1.jpg"
+                                     alt="Generic placeholder image" width="50">
+								<i></i>
+							  </span>
+                            </div>
+                            <div class="media-body w-100">
+                                <h6 class="list-group-item-heading">Lawrence Fowler
+                                    <span class="float-right pt-1">$2,021</span>
+                                </h6>
+                                <p class="list-group-item-text mt-5 mb-0">
+                                    <span class="badge badge-danger">Appliances</span>
+                                </p>
+                            </div>
+                        </a>
+                        <a href="#" class="media xs-media p-5">
+                            <div class="media-left pr-1">
+							  <span class="avatar avatar-lg">
+								<img class="media-object rounded-circle" src="/image/avatar/1.jpg"
+                                     alt="Generic placeholder image" width="50">
+								<i></i>
+							  </span>
+                            </div>
+                            <div class="media-body w-100">
+                                <h6 class="list-group-item-heading">Linda Olson
+                                    <span class="float-right pt-1">$1,112</span>
+                                </h6>
+                                <p class="list-group-item-text mt-5 mb-0">
+                                    <span class="badge badge-primary">Electronics</span>
+                                    <span class="badge badge-success ml-1">Office</span>
+                                </p>
+                            </div>
+                        </a>
+                        <a href="#" class="media xs-media p-5">
+                            <div class="media-left pr-1">
+							  <span class="avatar avatar-lg">
+								<img class="media-object rounded-circle" src="/image/avatar/1.jpg"
+                                     alt="Generic placeholder image" width="50">
+								<i></i>
+							  </span>
+                            </div>
+                            <div class="media-body w-100">
+                                <h6 class="list-group-item-heading">Linda Olson
+                                    <span class="float-right pt-1">$1,112</span>
+                                </h6>
+                                <p class="list-group-item-text mt-5 mb-0">
+                                    <span class="badge badge-primary">Electronics</span>
+                                    <span class="badge badge-success ml-1">Office</span>
+                                </p>
+                            </div>
+                        </a>
+                        <a href="#" class="media xs-media p-5">
+                            <div class="media-left pr-1">
+							  <span class="avatar avatar-lg">
+								<img class="media-object rounded-circle" src="/image/avatar/1.jpg"
+                                     alt="Generic placeholder image" width="50">
+								<i></i>
+							  </span>
+                            </div>
+                            <div class="media-body w-100">
+                                <h6 class="list-group-item-heading">Linda Olson
+                                    <span class="float-right pt-1">$1,112</span>
+                                </h6>
+                                <p class="list-group-item-text mt-5 mb-0">
+                                    <span class="badge badge-primary">Electronics</span>
+                                    <span class="badge badge-success ml-1">Office</span>
+                                </p>
+                            </div>
+                        </a><a href="#" class="media xs-media p-5">
+                            <div class="media-left pr-1">
+							  <span class="avatar avatar-lg">
+								<img class="media-object rounded-circle" src="/image/avatar/1.jpg"
+                                     alt="Generic placeholder image" width="50">
+								<i></i>
+							  </span>
+                            </div>
+                            <div class="media-body w-100">
+                                <h6 class="list-group-item-heading">Linda Olson
+                                    <span class="float-right pt-1">$1,112</span>
+                                </h6>
+                                <p class="list-group-item-text mt-5 mb-0">
+                                    <span class="badge badge-primary">Electronics</span>
+                                    <span class="badge badge-success ml-1">Office</span>
+                                </p>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+
+
