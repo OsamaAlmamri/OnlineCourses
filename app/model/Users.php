@@ -15,9 +15,12 @@ class Users
     }
 
 // return all row of table of users
-    public function all()
+    public function all($type)
     {
-        return $this->db->query("select * from users");
+
+        return $this->db->query("select *  from(( profiles  INNER JOIN users ON profiles.user_id = users.user_id)
+        INNER JOIN user_role ON users.user_id = user_role.user_id) WHERE role_id =$type ");
+
     }
 
 //add new row to users table
@@ -54,6 +57,15 @@ class Users
     public function activeUser(array $aData)
     {
         $oStmt = $this->db->preparation('update  users set user_status =1 where user_email=:email  and user_activation_key=:code');
+        return $oStmt->execute($aData);
+
+    }
+
+
+    public function activeByAdmin(array $aData)
+    {
+//        return var_dump($aData);
+        $oStmt = $this->db->preparation('update  users set user_status =:user_status where user_id=:user_id');
         return $oStmt->execute($aData);
 
     }

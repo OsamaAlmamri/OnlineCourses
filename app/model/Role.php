@@ -30,8 +30,6 @@ class Role
 
     public function getRoleByName($name)
     {
-
-
         $id = $this->db->fetchOne("select role_id from roles WHERE role_name  like '%" . $name . "%' ");
         return ($id['role_id']);
     }

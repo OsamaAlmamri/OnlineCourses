@@ -24,15 +24,15 @@
     <table id="example1" class="table table-bordered table-striped">
         <thead class="thead-dark font-size-18">
         <tr>
+            <th> Name</th>
             <th>Email</th>
-            <th>User Full Name</th>
             <th>User Display Name</th>
             <th>User Image</th>
             <th>User Phone</th>
-            <th>User Gender</th>
-            <th>User Qualification</th>
             <th>Registration Date</th>
-            <th>Control</th>
+            <th> Status</th>
+            <th>update</th>
+            <th>delete</th>
 
         </tr>
         </thead>
@@ -42,29 +42,28 @@
             foreach ($this->view_data['universities'] as $university) { ?>
 
                 <tr>
-                    <td><?php echo $university['name'] ?></td>
-                    <td><?php echo Helper::getCategoryName($university['parent']) ?></td>
-                    <td><?php echo ($university['status'] == '1') ? 'مفعل' : 'معطل' ?></td>
+                    <td><?php echo $university['user_name'] ?></td>
+                    <td><?php echo $university['user_email'] ?></td>
+                    <td><?php echo $university['user_full_name'] ?></td>
+                    <td><?php echo $university['user_image'] ?></td>
+                    <td><?php echo $university['user_phone'] ?></td>
+                    <td><?php echo $university['user_register_date'] ?></td>
                     <td>
-                        <a href="Categories.php?do=edit"><i class="fa fa-edit"></i></a>
-                        <a href="Categories.php?do=delete"><i class="fa fa-trash-restore"></i></a>
-                        <a href="/admin/universities/delete/<?php echo $university['id'] ?>"
-                           onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
-                                    class="fa fa-trash"></i></a>
-                        <a href="Categories.php?do=activate"><i class="fa fa-check"> </i></a>
-                        <a href="Categories.php?do=updates"><i class="fa fa-history"> </i></a>
+                        <button data-user-id="<?php echo $university['user_id'] ?>"
+                                data-status="<?php echo $university['user_status'] ?>"
+                                class="btn btn-success btn_active"><?php echo ($university['user_status'] == '1') ? 'Active' : 'Deny' ?> </button>
                     </td>
 
+
                     <?php if ($this->view_data['deleted'] == false) { ?>
-                        <td><?php echo $university['section_count'] ?></td>
-                        <td><?php echo $university['sort'] ?></td>
+                        <td><a href="Categories.php?do=edit" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
 
-                        <td class="text-center">
-                            <a href="/admin/universities/edit/<?php echo $university['id'] ?>"
-                               class="btn btn-primary"><i
-                                        class="fa fa-pencil"></i></a>
+                        <td>
+                            <a href="/admin/universities/delete/<?php echo $university['id'] ?>"
+                               onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
+                                        class="fa fa-trash"></i></a>
+
                         </td>
-
                     <?php } else { ?>
                         <th>{{getUserName( $university['deleted_by'] )?></th>
                         <td><?php echo $university['deleted_at'] ?></td>
@@ -79,13 +78,6 @@
                     <?php } ?>
 
 
-                    <td class="text-center">
-                        <a href="/admin/universities/delete/<?php echo $university['id'] ?>"
-                           onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
-                                    class="fa fa-trash"></i></a>
-                    </td>
-
-
                 </tr>
             <?php }
         } ?>
@@ -95,6 +87,37 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
 <script>
+
+    $(document).on('click', '.btn_active', function () {
+
+        var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&user_id=' + encodeURIComponent($(this).attr('data-user-id'));
+        var url = '/admin/universities/active';
+        var _this = $(this);
+
+        $.ajax({
+            url: url,//   var url=$('#news').attr('action');
+            method: 'POST',
+            dataType: 'json',// data type that i want to return
+            data: data,// var form=$('#news').serialize();
+            success: function (data) {
+                if (data == 1) {
+                    _this.text("Active");
+                    _this.attr("data-status",data);
+
+
+                } else {
+                    _this.text("Deny");
+                    _this.attr("data-status",data);
+                }
+            }
+
+            ,
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        });
+        return (false);
+    })
 
 
     $(function () {

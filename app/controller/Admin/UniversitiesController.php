@@ -19,11 +19,24 @@ class UniversitiesController extends Controller
     {
         Helper::viewAdminFile();
 
-        $category = $this->model('Category');
-//        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'universities' . DIRECTORY_SEPARATOR . 'index', ['universities' => [], 'deleted' => false]);
+        $role = $this->model('Role');
+        $role_id = ($role->getRoleByName('university'));
+        $users = $this->model('Users');
+//        return var_dump( $users->all($role_id));
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'universities' . DIRECTORY_SEPARATOR . 'index', ['universities' => $users->all($role_id), 'deleted' => false]);
         $this->view->pageTitle = 'universities';
         $this->view->render();
+    }
+
+    public function active()
+    {
+        $data = array(
+            ':user_id' => htmlentities($_REQUEST['user_id']),
+            ':user_status' => htmlentities(($_REQUEST['status'] == 1) ? 0 : 1),
+        );
+        $user = $this->model('Users');
+        $status = ($user->activeByAdmin($data));
+        echo ($_REQUEST['status'] == 1) ? 0 : 1;
     }
 
     public function create()
