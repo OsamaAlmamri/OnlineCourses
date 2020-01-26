@@ -109,6 +109,15 @@ class Helper
         return;
     }
 
+
+    public static function back($url, $message, $status)
+    {
+        Message::setMessage('main', $message, $status);
+        header("Location: " . $url);
+
+        return;
+    }
+
     public static function backToLogin($message, $status)
     {
         $homeController = new homeController();
@@ -190,16 +199,16 @@ class Helper
         return '/' . $folder . 'default.png';
     }
 
-//    public static function getCategoryName($id)
-//    {
-//
-//        $cat_name = DB::init()->query("SELECT *  FROM categories2 WHERE id = $id ");
-//        if (!empty($cat_name)) {
-//            return $cat_name[0]['name_ar'];
-//        }
-//
-//    }
-//
+    public static function getCategoryName($id)
+    {
+
+        $cat_name = DB::init()->query("SELECT *  FROM categories WHERE category_id = $id ");
+        if (!empty($cat_name)) {
+            return $cat_name[0]['category_name'];
+        }
+
+    }
+
 
 }
 

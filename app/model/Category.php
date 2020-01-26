@@ -15,9 +15,12 @@ class Category
     }
 
 //
-    public function all()
+    public function all($parent = '')
     {
-        return $this->db->query("select * from categories2");
+        $sql = "select * from categories";
+        if ($parent != '')
+            $sql = "select * from categories where category_parents like '%" . $parent . "%'";
+        return $this->db->query($sql);
     }
 
 //
@@ -32,7 +35,7 @@ class Category
 
         $likeVar = "%" . $aData . "%";
 
-        $oStmt = $this->db->preparation('SELECT id ,name_ar FROM categories2 WHERE name_ar LIKE  ?  and isMain=1 and parent=0');
+        $oStmt = $this->db->preparation('SELECT category_id ,category_name FROM categories WHERE category_name  LIKE  and category_name  LIKE  ?  ');
         $oStmt->execute(array(0 => $likeVar));
         return $oStmt->fetchAll();
 
@@ -42,11 +45,10 @@ class Category
     public function add(array $aData)
     {
 
-        $oStmt = $this->db->preparation('INSERT INTO categories2 (  name_ar, name_en, parent, liveNews, newsCount, section_count, isMain, hasSlides, sort, status,
-                                                    created_by, updates, created_at, updated_at)
-                                                  VALUES (  :name_ar, :name_en, :parent, :liveNews, :newsCount, :section_count, 
-                                                  :isMain, :hasSlides, :sort, :status,:created_by, :updates, :created_at, :updated_at)');
-        return $oStmt->execute($aData);
+        $oStmt = $this->db->preparation('INSERT INTO categories (  category_name, category_description, category_parents)
+                                                  VALUES (  :category_name, :category_description, :category_parents)');
+        $oStmt->execute($aData);
+        return $this->db->lastInsertId();
 
     }
 
@@ -78,6 +80,20 @@ class Category
 
     }
 
+    public function activeByAdmin(array $aData)
+    {
+//        return var_dump($aData);
+        $oStmt = $this->db->preparation('update  categories set category_status =:category_status where category_id=:category_id');
+        return $oStmt->execute($aData);
+
+    }
+    public function visibility(array $aData)
+    {
+//        return var_dump($aData);
+        $oStmt = $this->db->preparation('update  categories set category_visibility =:category_visibility where category_id=:category_id');
+        return $oStmt->execute($aData);
+
+    }
 
 }
 

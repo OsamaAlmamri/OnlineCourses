@@ -49,7 +49,7 @@
                     <td><?php echo $university['user_phone'] ?></td>
                     <td><?php echo $university['user_register_date'] ?></td>
                     <td>
-                        <button data-user-id="<?php echo $university['user_id'] ?>"
+                        <button data-id="<?php echo $university['user_id'] ?>"
                                 data-status="<?php echo $university['user_status'] ?>"
                                 class="btn btn-success btn_active"><?php echo ($university['user_status'] == '1') ? 'Active' : 'Deny' ?> </button>
                     </td>
@@ -86,39 +86,10 @@
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
+
 <script>
-
-    $(document).on('click', '.btn_active', function () {
-
-        var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&user_id=' + encodeURIComponent($(this).attr('data-user-id'));
-        var url = '/admin/universities/active';
-        var _this = $(this);
-
-        $.ajax({
-            url: url,//   var url=$('#news').attr('action');
-            method: 'POST',
-            dataType: 'json',// data type that i want to return
-            data: data,// var form=$('#news').serialize();
-            success: function (data) {
-                if (data == 1) {
-                    _this.text("Active");
-                    _this.attr("data-status",data);
-
-
-                } else {
-                    _this.text("Deny");
-                    _this.attr("data-status",data);
-                }
-            }
-
-            ,
-            error: function (xhr, status, error) {
-                alert(xhr.responseText);
-            }
-        });
-        return (false);
-    })
-
+    Active('universities') ;
 
     $(function () {
         $('#example1').DataTable({

@@ -18,13 +18,45 @@ class CategoriesController extends Controller
     public function index()
     {
         Helper::viewAdminFile();
-
-
         $category = $this->model('Category');
-//        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => [], 'deleted' => false]);
-        $this->view->pageTitle = 'الاصناف';
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
+        $this->view->pageTitle = 'Category';
         $this->view->render();
+    }
+
+
+    public function active()
+    {
+        $data = array(
+            ':category_id' => htmlentities($_REQUEST['data_id']),
+            ':category_status' => htmlentities(($_REQUEST['status'] == 1) ? 0 : 1),
+        );
+        $user = $this->model('Category');
+        $status = ($user->activeByAdmin($data));
+        echo ($_REQUEST['status'] == 1) ? 0 : 1;
+    }
+
+
+    public function visibility()
+    {
+        $data = array(
+            ':category_id' => htmlentities($_REQUEST['data_id']),
+            ':category_visibility' => htmlentities(($_REQUEST['visibility'] == 1) ? 0 : 1),
+        );
+        $user = $this->model('Category');
+        $status = ($user->visibility($data));
+        echo ($_REQUEST['visibility'] == 1) ? 0 : 1;
+    }
+
+    public function fetchSubCategories()
+    {
+        $category = $this->model('Category');
+        $options = '<option value="0"> --</option>';
+        foreach ($category->all($_REQUEST['category_parents']) as $cat) {
+            $options .= '<option value=' . $cat['category_id'] . '>' . $cat['category_name'] . '</oprion>';
+        }
+        echo($options);
+
     }
 
     public function create()
@@ -33,49 +65,11 @@ class CategoriesController extends Controller
         Helper::viewAdminFile();
 
         $category = $this->model('Category');
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['MainCategories' => $category->all('0')]);
         $this->view->pageTitle = 'الاصناف';
         $this->view->render();
     }
 
-
-    public function edit($id)
-    {
-
-        Helper::viewAdminFile();
-
-        $CatModel = $this->model('Category');
-        $category = $CatModel->find($id)[0];
-//        return var_dump($news);
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'create', ['category' => $category, 'type' => 'update']);
-
-//        $this->view('admin' . DIRECTORY_SEPARATOR . 'news' . DIRECTORY_SEPARATOR . 'create', ['news' => $news]);
-        $this->view->pageTitle = 'الاصناف';
-        $this->view->render();
-    }
-
-    public function delete($id)
-    {
-        Helper::viewAdminFile();
-        $this->model('Category');
-        $c = $this->model->delete($id);
-
-
-        if ($c == 'hasChild') {
-            Message::setMessage('msgState', 0);
-            Message::setMessage('main', ' لا زال هناك اقسام فرعية  تحت هذا القسم ');
-
-        } else {
-
-            Message::setMessage('msgState', 1);
-            Message::setMessage('main', 'تم حذف القسم بنجاح');
-        }
-
-        $category = $this->model;
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-        $this->view->pageTitle = 'الاصناف';
-        $this->view->render();
-    }
 
     public function fetchParentCategory()
     {
@@ -93,48 +87,39 @@ class CategoriesController extends Controller
 
     public function store()
     {
+        $category_parents = 0;
+        if ($_REQUEST['sub_category_parents'] != 0)
+            $category_parents = $_REQUEST['sub_category_parents'];
 
-        // check if there submit
+//        return var_dump($category_parents);
+
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $validate = Validation::required(['', 'name_ar', 'name_en', 'section_count', 'newsCount', 'sort']);
-            if ($validate['status'] == 1) {
-                $cate = array(
-                    ':name_ar' => htmlentities($_REQUEST['name_ar']),
-                    ':name_en' => htmlentities($_REQUEST['name_en']),
-                    ':parent' => htmlentities($_REQUEST['parent'] != null ? $_REQUEST['parent'] : 0),
-                    ':section_count' => htmlentities($_REQUEST['section_count']),
-                    ':newsCount' => htmlentities($_REQUEST['newsCount']),
-                    ':isMain' =>  (isset($_REQUEST['isMain'])== 'on' ? 1 : 0),
-                    ':liveNews' =>  (isset($_REQUEST['liveNews']) == 'on' ? 1 : 0),
-                    ':hasSlides' =>  (isset($_REQUEST['hasSlides'])== 'on' ? 1 : 0),
-                    ':sort' => htmlentities($_REQUEST['sort']),
-                    ':status' =>  (isset($_REQUEST['status']) ? 1 : 0),
-                    ':created_by' => Session::logged(),
-                    ':updates' => '',
-                    ':created_at' => time(),
-                    ':updated_at' => time(),
+//            $validate = \Validation::required(['', 'password', 'email', 'username']); //sure that first element in array most be null
+            $validate = \Validation::validate([
+                'category_name' => array(['required' => 'required']),
+                'category_description' => array(['required' => 'required']),
+
+
+            ]);
+            if (count($validate) == 0) {
+                $category = array(
+                    ':category_parents' => $category_parents,
+                    ':category_description' => htmlentities($_REQUEST['category_description']),
+                    ':category_name' => htmlentities($_REQUEST['category_name']),
                 );
-
-                if ($this->model == "Category")
-                    $category = $this->model;
-                else
-                    $category = $this->model('Category');
-
-
-
-                if ($category->add($cate)) {
-                    Message::setMessage('msgState', 1);
-                    Message::setMessage('main', 'تم اضافة القسم بنجاح');
-
+                $this->model('Category');
+                $id = $this->model->add($category);
+                if ($id) {
+                    Helper::back('/admin/categories/index', 'add successfully', 'success');
+                    return;
                 }
+            } else {
+                Helper::back('/admin/categories/index', 'error in required input', 'danger');
+                return;
             }
-
-
         }
 
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-        $this->view->pageTitle = 'الاصناف';
-        $this->view->render();
+
     }
 
     public function update()

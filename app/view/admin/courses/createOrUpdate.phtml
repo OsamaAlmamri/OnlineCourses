@@ -12,54 +12,76 @@
 
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-
 <div class="content">
-    <h2 class="text-center"><i class="fa fa-book-reader"></i> Courses Add</h2>
-    <form action="#" method="post">
+    <?php include VIEW . 'messages.phtml' ?>
+    <h2 class="text-center"><i class="fa  fa-list"></i> Categories Add</h2>
+    <form action="/admin/categories/store" method="post">
         <div class="form-group">
-            <label for="course_title">Course Title:</label>
-            <input type="text" class="form-control" id="course_title" name="course_title">
+            <label for="course_title">Category Name:</label>
+            <input type="text" class="form-control" id="course_title" name="category_id">
         </div>
         <div class="form-group">
-            <label for="course__description">Course Description:</label>
-            <input type="text" class="form-control" id="course__description" name="course__description">
+            <label for="course__description">Category Description:</label>
+            <input type="text" class="form-control" id="course__description" name="category_description">
+        </div>
+
+
+        <div class="form-group">
+            <label for="main_category_parents">Main Category(Major):</label>
+
+            <select class="select2" id="main_category_parents" name="main_category_parents[]"
+                    data-placeholder="Major" style="width: 100%;">
+                <option value="non" disabled selected> select Main Category</option>
+                <?php if (array_key_exists('MainCategories', $this->view_data)) {
+                    foreach ($this->view_data['MainCategories'] as $category) { ?>
+
+                        <option value="<?php echo $category['category_id'] ?>"> <?php echo $category['category_name'] ?> </option>
+
+                    <?php }
+                } ?>
+
+            </select>
+        </div>
+
+
+        <div class="form-group">
+            <label for="sub_category">Sub Main Category(Field): </label>
+
+            <select id="sub_category" class="select2" name="sub_category_parents[]"
+                    data-placeholder="Field" style="width: 100%;">
+                <option value="non" disabled selected> select Sub Category</option>
+
+
+            </select>
         </div>
 
         <div class="form-group">
-            <label for="courses_image">Course Image:</label>
-            <div class="custom-file">
+            <label for="sub_sub_category">Sub Sub Category(Subject): </label>
 
-                <input type="file" class="custom-file-input" name="courses_image" id="courses_image">
-                <label class="custom-file-label" for="courses_image">Choose file</label>
-            </div>
+            <select class="select2" id="sub_sub_category" name="category_parents[]" multiple
+                    data-placeholder="Subject" style="width: 100%;">
+            </select>
         </div>
+
         <div class="form-group">
-            <label for="course_price">Course Price:</label>
-            <input type="number" class="form-control" id="course_price" name="course_price">
-        </div>
-        <div class="form-group">
-            <label for="course_requirements">Course Requirements:</label>
-            <textarea id="course_requirements" name="course_requirements">
-                    </textarea>
-        </div>
-        <div class="form-group">
-            <label for="course_students_target">Student Target:</label>
-            <textarea class="form-control" id="course_students_target" name="course_students_target">
+            <label for="category_description">Category Description:</label>
+            <textarea class="form-control" id="category_description" name="category_description">
                 </textarea>
         </div>
-        <div class="form-group">
-            <label for="course_goals">Course Goals:</label>
-            <textarea class="form-control" id="course_goals" name="course_goals">
-                </textarea>
-        </div>
-        <label for="course_visibility">Course Visibility:</label>
-        <div class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" id="course_visibility" name="course_visibility"
-                   value="yes">
-            <label class="custom-control-label" for="customRadio">yes</label><br>
-            <input type="radio" class="custom-control-input" id="course_visibility" name="course_visibility" value="no">
-            <label class="custom-control-label" for="customRadio">no</label>
-        </div>
+
+
+        <!---->
+        <!--        <label for="category_visibility">Category Visibility:</label>-->
+        <!--        <div class="custom-control custom-radio">-->
+        <!--            <input type="radio" class="custom-control-input" id="course_visibility" name="category_visibility"-->
+        <!--                   value="yes">-->
+        <!--            <label class="custom-control-label" for="category_visibility">yes</label><br>-->
+        <!--            <input type="radio" class="custom-control-input" id="course_visibility" name="category_visibility"-->
+        <!--                   value="no">-->
+        <!--            <label class="custom-control-label" for="category_visibility">no</label>-->
+        <!--        </div>-->
+        <!--        -->
+
 
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -102,9 +124,32 @@
 <script>
 
 
+    fetchCategories('#main_category_parents', '#sub_category');
+    fetchCategories('#sub_category', '#sub_sub_category');
+
+    function fetchCategories(input, select) {
+
+        $(document).on('change', input, function () {
+            var data = 'category_parents=' + encodeURIComponent($(this).val());
+            var url = '/admin/Categories/fetchSubCategories';
+            $.ajax({
+                url: url,//   var url=$('#news').attr('action');
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: data,// var form=$('#news').serialize();
+                success: function (data) {
+                    $(select).html(data);
+
+                }, error:
+                    function (xhr, status, error) {
+                        $(select).html(xhr.responseText);
+                    }
+            });
+            return (false);
+        });
+    }
+
     $(document).on('change', '#logo', function () {
-
-
         if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
         {
             var data = $(this)[0].files; //this file data

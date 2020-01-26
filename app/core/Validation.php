@@ -26,7 +26,7 @@ class Validation
     {
         $errors = [];
         foreach ($validation[0] as $typeValidate => $data) {
-            $formData = $_REQUEST[$fildName];
+            $formData = @$_REQUEST[$fildName];
             switch ($typeValidate) {
                 case 'required':
                     if (strlen($formData) < 1)
@@ -52,8 +52,12 @@ class Validation
                     if ($_REQUEST[$data] != $formData)
                         $errors[$fildName][$typeValidate] = 'password not equall';
                     break;
+                case 'select':
+                    if (!isset($_REQUEST[$fildName]))
+                        $errors[$fildName][$typeValidate] = 'must be select 1 at less';
+                    break;
                 case 'unique':
-                    if (Helper::uniqueFild(array('table' => $data[0], 'input' => $data[1], 'data' => $_REQUEST[$fildName],'id' => isset($data[2])?$data[2]:'0' )))
+                    if (Helper::uniqueFild(array('table' => $data[0], 'input' => $data[1], 'data' => $_REQUEST[$fildName], 'id' => isset($data[2]) ? $data[2] : '0')))
 //                        var_dump(Helper::uniqueFild(array('table' => $data[0], 'input' => $data[1], 'data' => $_REQUEST[$fildName])));
                         $errors[$fildName][$typeValidate] = ' this ' . $fildName . ' is not allowed to used';
                     break;

@@ -13,83 +13,49 @@
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 <div class="content">
+    <?php include VIEW . 'messages.phtml' ?>
     <h2 class="text-center"><i class="fa  fa-list"></i> Categories Add</h2>
-    <form action="#" method="post">
+    <form action="/admin/categories/store" method="post">
         <div class="form-group">
             <label for="course_title">Category Name:</label>
-            <input type="text" class="form-control" id="course_title" name="course_title">
+            <input type="text" class="form-control" id="course_title" name="category_name">
         </div>
         <div class="form-group">
             <label for="course__description">Category Description:</label>
-            <input type="text" class="form-control" id="course__description" name="course__description">
+            <input type="text" class="form-control" id="course__description" name="category_description">
         </div>
 
 
-
         <div class="form-group">
-            <label for="category_parents">Main Category(Major):</label>
+            <label for="main_category_parents">Main Category(Major):</label>
 
-            <select class="select2" name="category_parents[]" multiple="multiple"
+            <select class="select2" id="main_category_parents" name="main_category_parents"
                     data-placeholder="Major" style="width: 100%;">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="0"  selected> select Main Category</option>
+                <?php if (array_key_exists('MainCategories', $this->view_data)) {
+                    foreach ($this->view_data['MainCategories'] as $category) { ?>
 
+                        <option value="<?php echo $category['category_id'] ?>"> <?php echo $category['category_name'] ?> </option>
+
+                    <?php }
+                } ?>
 
             </select>
         </div>
 
 
         <div class="form-group">
-            <label for="sub_category_parents">Sub Main Category(Field): </label>
+            <label for="sub_category">Sub Main Category(Field): </label>
 
-            <select class="select2" name="sub_category_parents[]" multiple="multiple"
+            <select id="sub_category" class="select2" name="sub_category_parents"
                     data-placeholder="Field" style="width: 100%;">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="0"  selected> select Sub Category</option>
 
 
             </select>
         </div>
 
 
-
-        <!--        <div class="form-group">-->
-        <!--            <label for="exampleInputFile">الاقسام </label>-->
-        <!---->
-        <!--            <select class="select2 @error('categories2')  is-invalid @enderror" name="categories[]" multiple="multiple"-->
-        <!--                    data-placeholder="التصنيفات" style="width: 100%;">-->
-        <!--                --><?php //foreach(Helper::getCategories() as $category){ ?>
-        <!--                    <option value="--><?php //echo $category['id']; ?><!--"-->
-        <!--                        -->
-        <?php // if (array_key_exists('news', $this->view_data) and in_array($category['id'], json_decode($this->view_data['news']['categories2']))) echo 'selected';?><!-- >-->
-        <?php //echo $category['name_ar']; ?><!-- </option>-->
-        <!---->
-        <!--                --><?php //} ?>
-        <!---->
-        <!---->
-        <!--            </select>-->
-        <!--        </div>-->
-
-        <div class="form-group">
-            <label for="sub_sub_category">Sub Sub Category(Subject): </label>
-
-            <select class="select2" name="sub_sub_category[]" multiple="multiple"
-                    data-placeholder="Subject" style="width: 100%;">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-
-
-            </select>
-        </div>
 
         <div class="form-group">
             <label for="category_description">Category Description:</label>
@@ -98,16 +64,19 @@
         </div>
 
 
+        <!---->
+        <!--        <label for="category_visibility">Category Visibility:</label>-->
+        <!--        <div class="custom-control custom-radio">-->
+        <!--            <input type="radio" class="custom-control-input" id="course_visibility" name="category_visibility"-->
+        <!--                   value="yes">-->
+        <!--            <label class="custom-control-label" for="category_visibility">yes</label><br>-->
+        <!--            <input type="radio" class="custom-control-input" id="course_visibility" name="category_visibility"-->
+        <!--                   value="no">-->
+        <!--            <label class="custom-control-label" for="category_visibility">no</label>-->
+        <!--        </div>-->
+        <!--        -->
 
-        <label for="category_visibility">Category Visibility:</label>
-        <div class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" id="course_visibility" name="category_visibility"
-                   value="yes">
-            <label class="custom-control-label" for="category_visibility">yes</label><br>
-            <input type="radio" class="custom-control-input" id="course_visibility" name="category_visibility"
-                   value="no">
-            <label class="custom-control-label" for="category_visibility">no</label>
-        </div>
+
         <button type="submit" name="submit" class="btn btn-primary">Submit</button>
     </form>
     <br>
@@ -149,31 +118,32 @@
 <script>
 
 
-    $(document).on('change', '#logo', function () {
+    fetchCategories('#main_category_parents', '#sub_category');
+    fetchCategories('#sub_category', '#sub_sub_category');
 
+    function fetchCategories(input, select) {
 
-        if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
-        {
-            var data = $(this)[0].files; //this file data
-            $('#logo_image').html('');
-            $.each(data, function (index, file) { //loop though each file
-                if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
-                    var fRead = new FileReader(); //new filereader
-                    fRead.onload = (function (file) { //trigger function on successful read
-                        return function (e) {
-                            var img = $('<img/>').addClass('thumb').attr('src', e.target.result); //create image element
-                            $('#logo_image').append(img); //append image to output element
-                        };
-                    })(file);
-                    fRead.readAsDataURL(file); //URL representing the file's data.
-                }
+        $(document).on('change', input, function () {
+            var data = 'category_parents=' + encodeURIComponent($(this).val());
+            var url = '/admin/Categories/fetchSubCategories';
+            $.ajax({
+                url: url,//   var url=$('#news').attr('action');
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: data,// var form=$('#news').serialize();
+                success: function (data) {
+                    $(select).html(data);
+
+                }, error:
+                    function (xhr, status, error) {
+                        $(select).html(xhr.responseText);
+                    }
             });
-        } else {
-            alert("Your browser doesn't support File API!"); //if File API is absent
-        }
-    });
+            return (false);
+        });
+    }
 
-    CKEDITOR.replace('editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
+
 </script>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
 

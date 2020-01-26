@@ -64,6 +64,7 @@ class Model
     {
         return $this->pdoObject->quote($str);
     }
+
     public function preparation($str)
     {
         $stmt = $this->pdoObject->prepare($str);
@@ -73,6 +74,9 @@ class Model
     public function lastInsertId()
     {
         $stmt = $this->pdoObject->lastInsertId();
+
         return $stmt;
+
     }
+
 }
