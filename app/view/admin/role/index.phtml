@@ -45,17 +45,17 @@
 
                     <td>
                         <a class="active" data-id="<?php echo $role['role_id'] ?>"
-                                data-status="<?php echo $role['role_status'] ?>"
-                                ><?php echo ($role['role_status'] == '1') ? '<i class="fas fa-check"></i>' : '<i class="fa fa-window-close"></i>' ?> </a>
+                           data-status="<?php echo $role['role_status'] ?>"
+                        ><?php echo ($role['role_status'] == '1') ? '<i class=\'ion ion-close\'></i>' : '<i class=\'fas fa-check\'></i>' ?> </a>
                     </td>
 
 
                     <?php if ($this->view_data['deleted'] == false) { ?>
-                        <td><a href="Categories.php?do=edit" ><i class="fa fa-edit"></i></a>
+                        <td><a href="Categories.php?do=edit"><i class="fa fa-edit"></i></a>
 
 
                             <a href="/admin/universities/delete/<?php echo $role['id'] ?>"
-                               onclick="return confirm('هل أنت متأكد من الحذف');" ><i
+                               onclick="return confirm('هل أنت متأكد من الحذف');"><i
                                         class="fa fa-trash-restore"></i></a>
 
                         </td>

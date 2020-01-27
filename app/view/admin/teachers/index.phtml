@@ -54,7 +54,7 @@
                     <td>
                         <button data-id="<?php echo $teacher['user_id'] ?>"
                                 data-status="<?php echo $teacher['user_status'] ?>"
-                                class="btn btn-success btn_active"><?php echo ($teacher['user_status'] == '1') ? 'Active' : 'Deny' ?> </button>
+                                class="btn btn-success active"><?php echo ($teacher['user_status'] == '1') ? '<i class=\'ion ion-close\'></i>' : '<i class=\'fas fa-check\'></i>' ?> </button>
                     </td>
 
 
