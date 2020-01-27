@@ -218,7 +218,7 @@
 
 </div>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
-
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'readImageFile.phtml' ?>
 
 <script>
     $('#role_name').on('change', function () {
@@ -235,29 +235,6 @@
         }
     });
 
-    function readFile(input, dev) {
-        $(document).on('change', input, function () {
-            if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
-            {
-                var data = $(this)[0].files; //this file data
-                $(dev).html('');
-                $.each(data, function (index, file) { //loop though each file
-                    if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
-                        var fRead = new FileReader(); //new filereader
-                        fRead.onload = (function (file) { //trigger function on successful read
-                            return function (e) {
-                                var img = $('<img/>').addClass('thumb').attr('src', e.target.result); //create image element
-                                $(dev).append(img); //append image to output element
-                            };
-                        })(file);
-                        fRead.readAsDataURL(file); //URL representing the file's data.
-                    }
-                });
-            } else {
-                alert("Your browser doesn't support File API!"); //if File API is absent
-            }
-        });
-    }
 
     readFile('#user_image', '#user_image_dev');
     readFile('#document', '#university_document_dev');
