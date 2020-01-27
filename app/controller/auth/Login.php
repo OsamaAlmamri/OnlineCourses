@@ -50,8 +50,10 @@ class Login extends Controller
                         Helper::backToLogin('حسابك غير مفعل حاليا', 'warning');
                     return;
                 } else {
+//                    return var_dump($user);
                     $session_data = array(
                         'user_id' => $user['user_id'],
+                        'user' => $user,
                         'user_name' => $user['user_name'],
                         'role_id' => $this->model->roleName($user['user_id'])['user_role_id'],
                         'role_name' => $this->model->roleName($user['user_id'])['role_name']);

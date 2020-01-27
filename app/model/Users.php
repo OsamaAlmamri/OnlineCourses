@@ -26,7 +26,7 @@ class Users
     public function UniversityTeacher($type, $university_id)
     {
 
-        return $this->db->query("select *  from(( profiles  INNER JOIN users ON profiles.user_id = users.user_id)
+        return $this->db->query("select *  from (( profiles  INNER JOIN users ON profiles.user_id = users.user_id)
         INNER JOIN user_role ON users.user_id = user_role.user_id) WHERE role_id =$type and university_id=$university_id");
 
     }
@@ -45,7 +45,9 @@ class Users
     // find user by ID
     public function Login(array $aData)
     {
-        $oStmt = $this->db->preparation('SELECT * FROM users WHERE user_name =:username AND user_password =:password ');
+        $oStmt = $this->db->preparation('select *  from (( profiles  INNER JOIN users ON profiles.user_id = users.user_id)
+        INNER JOIN user_role ON users.user_id = user_role.user_id) WHERE user_name =:username AND user_password =:password');
+//        $oStmt = $this->db->preparation('SELECT * FROM users WHERE user_name =:username AND user_password =:password ');
         $oStmt->execute($aData);
         return $oStmt->fetch();
     }
