@@ -147,7 +147,7 @@ function _runBrowserifyBundle(bundler, dest) {
 function browserifyBundler() {
   // Our browserify bundle is made up of our unit tests, which
   // should individually load up pieces of our application.
-  // We also include the browserify setup file.
+  // We also includes the browserify setup file.
   const testFiles = glob.sync('./test/unit/**/*.js');
   const allFiles = ['./test/setup/browserify.js'].concat(testFiles);
 

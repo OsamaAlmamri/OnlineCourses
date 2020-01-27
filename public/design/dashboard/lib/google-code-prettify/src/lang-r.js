@@ -18,7 +18,7 @@
  * Registers a language handler for S, S-plus, and R source code.
  *
  *
- * To use, include prettify.js and this file in your HTML page.
+ * To use, includes prettify.js and this file in your HTML page.
  * Then put your code in an HTML tag like
  *      <pre class="prettyprint lang-r"> code </pre>
  *

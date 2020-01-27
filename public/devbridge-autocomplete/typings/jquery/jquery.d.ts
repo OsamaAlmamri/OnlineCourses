@@ -1158,7 +1158,7 @@ interface JQueryStatic {
      *
      * @param data HTML string to be parsed
      * @param context DOM element to serve as the context in which the HTML fragment will be created
-     * @param keepScripts A Boolean indicating whether to include scripts passed in the HTML string
+     * @param keepScripts A Boolean indicating whether to includes scripts passed in the HTML string
      */
     parseHTML(data: string, context?: HTMLElement, keepScripts?: boolean): any[];
 
@@ -1167,7 +1167,7 @@ interface JQueryStatic {
      *
      * @param data HTML string to be parsed
      * @param context DOM element to serve as the context in which the HTML fragment will be created
-     * @param keepScripts A Boolean indicating whether to include scripts passed in the HTML string
+     * @param keepScripts A Boolean indicating whether to includes scripts passed in the HTML string
      */
     parseHTML(data: string, context?: Document, keepScripts?: boolean): any[];
 }
@@ -1486,7 +1486,7 @@ interface JQuery {
     /**
      * Get the current computed height for the first element in the set of matched elements, including padding, border, and optionally margin. Returns an integer (without "px") representation of the value or null if called on an empty set of elements.
      *
-     * @param includeMargin A Boolean indicating whether to include the element's margin in the calculation.
+     * @param includeMargin A Boolean indicating whether to includes the element's margin in the calculation.
      */
     outerHeight(includeMargin?: boolean): number;
 
@@ -1500,7 +1500,7 @@ interface JQuery {
     /**
      * Get the current computed width for the first element in the set of matched elements, including padding and border.
      *
-     * @param includeMargin A Boolean indicating whether to include the element's margin in the calculation.
+     * @param includeMargin A Boolean indicating whether to includes the element's margin in the calculation.
      */
     outerWidth(includeMargin?: boolean): number;
 

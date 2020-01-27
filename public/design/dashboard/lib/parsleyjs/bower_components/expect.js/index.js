@@ -466,8 +466,8 @@
     // Form
     str = (len > 1 ? 'keys ' : 'key ') + str;
 
-    // Have / include
-    str = (!this.flags.only ? 'include ' : 'only have ') + str;
+    // Have / includes
+    str = (!this.flags.only ? 'includes ' : 'only have ') + str;
 
     // Assertion
     this.assert(

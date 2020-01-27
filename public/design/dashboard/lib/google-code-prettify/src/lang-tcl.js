@@ -19,13 +19,13 @@
  * Registers a language handler for TCL
  *
  *
- * To use, include prettify.js and this file in your HTML page.
+ * To use, includes prettify.js and this file in your HTML page.
  * Then put your code in an HTML tag like
  *      <pre class="prettyprint lang-tcl">proc foo {} {puts bar}</pre>
  *
  * I copy-pasted lang-lisp.js, so this is probably not 100% accurate.
  * I used http://wiki.tcl.tk/1019 for the keywords, but tried to only
- * include as keywords that had more impact on the program flow
+ * includes as keywords that had more impact on the program flow
  * rather than providing convenience. For example, I included 'if'
  * since that provides branching, but left off 'open' since that is more
  * like a proc. Add more if it makes sense.

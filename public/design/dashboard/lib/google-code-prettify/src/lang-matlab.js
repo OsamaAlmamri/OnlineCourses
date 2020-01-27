@@ -22,7 +22,7 @@
  * @fileoverview
  * Registers a language handler for MATLAB.
  *
- * To use, include prettify.js and this file in your HTML page.
+ * To use, includes prettify.js and this file in your HTML page.
  * Then put your code inside an HTML tag like
  *     <pre class="prettyprint lang-matlab">
  *     </pre>

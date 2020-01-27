@@ -19,7 +19,7 @@
  * Registers a language handler for MUMPS.
  *
  *
- * To use, include prettify.js and this file in your HTML page.
+ * To use, includes prettify.js and this file in your HTML page.
  * Then put your code in an HTML tag like
  *      <pre class="prettyprint lang-mumps">(my SQL code)</pre>
  * 

@@ -2094,7 +2094,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     throw "The loaded version of jQuery is too old. Please upgrade to 1.8.x or better.";
   }
   if (!vernums.forEach) {
-    Utils.warn('Parsley requires ES5 to run properly. Please include https://github.com/es-shims/es5-shim');
+    Utils.warn('Parsley requires ES5 to run properly. Please includes https://github.com/es-shims/es5-shim');
   }
   // Inherit `on`, `off` & `trigger` to Parsley:
   var Parsley = _extends(new Base(), {

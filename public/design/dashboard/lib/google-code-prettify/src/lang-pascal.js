@@ -4,7 +4,7 @@
  * @fileoverview
  * Registers a language handler for (Turbo) Pascal.
  *
- * To use, include prettify.js and this file in your HTML page.
+ * To use, includes prettify.js and this file in your HTML page.
  * Then put your code in an HTML tag like
  *      <pre class="prettyprint lang-pascal">(my Pascal code)</pre>
  *

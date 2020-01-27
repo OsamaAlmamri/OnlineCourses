@@ -18,7 +18,7 @@
  * @fileoverview
  * Registers a language handler for XQuery.
  *
- * To use, include prettify.js and this file in your HTML page.
+ * To use, includes prettify.js and this file in your HTML page.
  * Then put your code in an HTML tag like
  *      <pre class="prettyprint lang-xq"></pre>
  *

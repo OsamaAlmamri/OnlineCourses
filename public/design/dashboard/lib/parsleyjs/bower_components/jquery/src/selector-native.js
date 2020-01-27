@@ -136,7 +136,7 @@ jQuery.extend({
 		} else if ( nodeType === 3 || nodeType === 4 ) {
 			return elem.nodeValue;
 		}
-		// Do not include comment or processing instruction nodes
+		// Do not includes comment or processing instruction nodes
 
 		return ret;
 	},

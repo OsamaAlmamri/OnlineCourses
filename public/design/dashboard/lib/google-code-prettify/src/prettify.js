@@ -27,7 +27,7 @@
  * Smalltalk, Lisp-like, or CAML-like languages without an explicit lang class.
  * <p>
  * Usage: <ol>
- * <li> include this source file in an html page via
+ * <li> includes this source file in an html page via
  *   {@code <script type="text/javascript" src="/path/to/prettify.js"></script>}
  * <li> define style rules.  See the example page for examples.
  * <li> mark the {@code <pre>} and {@code <code>} tags in your source with
@@ -375,7 +375,7 @@ var prettyPrint;
     function allowAnywhereFoldCaseAndRenumberGroups(regex) {
       // Split into character sets, escape sequences, punctuation strings
       // like ('(', '(?:', ')', '^'), and runs of characters that do not
-      // include any of the above.
+      // includes any of the above.
       var parts = regex.source.match(
           new RegExp(
               '(?:'
@@ -838,7 +838,7 @@ var prettyPrint;
               [PR_COMMENT, /^#(?:(?:define|e(?:l|nd)if|else|error|ifn?def|include|line|pragma|undef|warning)\b|[^\r\n]*)/,
                null, '#']);
         }
-        // #include <stdio.h>
+        // #includes <stdio.h>
         fallthroughStylePatterns.push(
             [PR_STRING,
              /^<(?:(?:(?:\.\.\/)*|\/?)(?:[\w-]+(?:\/[\w-]+)+)?[\w-]+\.h(?:h|pp|\+\+)?|[a-z]\w*)>/,
@@ -931,12 +931,12 @@ var prettyPrint;
       // to recognize both bash/python style comments and C
       // preprocessor directives.
 
-      // This definition of punctuation does not include # in the list of
+      // This definition of punctuation does not includes # in the list of
       // follow-on exclusions, so # will not be broken before if preceeded
       // by a punctuation character.  We could try to exclude # after
       // [|&;<>] but that doesn't seem to cause many major problems.
       // If that does turn out to be a problem, we should change the below
-      // when hc is truthy to include # in the run of punctuation characters
+      // when hc is truthy to includes # in the run of punctuation characters
       // only when not followint [|&;<>].
       '^.[^\\s\\w.$@\'"`/\\\\]*';
     if (options['regexLiterals']) {
