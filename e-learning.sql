@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 26 يناير 2020 الساعة 13:56
+-- Generation Time: 27 يناير 2020 الساعة 14:14
 -- إصدار الخادم: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -45,15 +45,17 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_description`, `category_parents`, `category_status`, `category_visibility`, `category_date`, `category_updates`) VALUES
 (1, 'IT', 'it', '0', 1, 1, '2020-01-28 00:00:00', '2'),
-(2, 'Helath', 'Helath', '0', 1, 0, '0000-00-00 00:00:00', NULL),
+(2, 'Helath', 'Helath', '0', 0, 0, '0000-00-00 00:00:00', NULL),
 (3, 'web', '', '1', 1, 1, '0000-00-00 00:00:00', NULL),
-(4, 'Android', '', '1', 1, 1, '0000-00-00 00:00:00', NULL),
-(5, 'DataMining', '', '1', 1, 1, '0000-00-00 00:00:00', NULL),
-(6, 'iugu', '', '2', 1, 1, '0000-00-00 00:00:00', NULL),
-(7, 'php', '', 'level3_3', 1, 1, '0000-00-00 00:00:00', NULL),
-(8, 'paython', '', 'level3_3', 1, 1, '0000-00-00 00:00:00', NULL),
-(9, 'flutter', '', 'level3_4', 1, 1, '0000-00-00 00:00:00', NULL),
-(10, 'java', '', 'level3_4', 1, 1, '0000-00-00 00:00:00', NULL);
+(4, 'Android', '', '1', 1, 0, '0000-00-00 00:00:00', NULL),
+(5, 'DataMining', '', '1', 0, 1, '0000-00-00 00:00:00', NULL),
+(6, 'iugu', '', '2', 1, 0, '0000-00-00 00:00:00', NULL),
+(7, 'php', '', '3', 1, 1, '0000-00-00 00:00:00', NULL),
+(8, 'paython', '', '3', 1, 1, '0000-00-00 00:00:00', NULL),
+(9, 'flutter', '', '4', 0, 1, '0000-00-00 00:00:00', NULL),
+(10, 'java', '', '4', 1, 1, '0000-00-00 00:00:00', NULL),
+(48, 'network', '                ', '1', 0, 1, '0000-00-00 00:00:00', NULL),
+(49, 'CNNA', '                ', '48', 0, 0, '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -211,7 +213,12 @@ INSERT INTO `profiles` (`profile_id`, `user_id`, `user_full_name`, `user_image`,
 (6, 30, '147147 oih dd ', '/images/users/profiles/1579783172echarts (25).png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (7, 31, '147147 oih dd ', '/images/users/profiles/default.png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (8, 32, 'iy kbjkj vdshl', '/images/users/profiles/1579783653echarts (25).png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
-(9, 1, 'osama mohammed', '', '', '773569041', 'male', '', '2020-01-20 00:00:00', NULL);
+(9, 1, 'osama mohammed', '', '', '773569041', 'male', '', '2020-01-20 00:00:00', NULL),
+(10, 33, 'osama mohammed ahmed ', '/images/users/profiles/1580057196_20191006_020221.JPG', '4.jpg', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
+(11, 34, '147147 oih dd ', '/images/users/profiles/1580126520git.PNG', NULL, '54545256', 'male', '1', '0000-00-00 00:00:00', NULL),
+(12, 35, 'osama mohammed ', '/images/users/profiles/15801266654.jpg', '', '785', 'male', '1', '0000-00-00 00:00:00', NULL),
+(13, 36, 'osama mohammed ahmed ali', '/images/users/profiles/15801268924.jpg', '', '661918890', 'male', '1', '0000-00-00 00:00:00', NULL),
+(14, 37, 'p jn uhi ', '/images/users/profiles/15801270074.jpg', '/images/universities/document/default.png', '8', 'male', '1', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -233,7 +240,8 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`role_id`, `role_name`, `role_description`, `role_status`) VALUES
 (1, 'admin', 'admins', 1),
 (2, 'university', 'university', 1),
-(3, 'student', 'students', 1);
+(3, 'student', 'students', 1),
+(4, 'teacher', 'ijgomvjco', 1);
 
 -- --------------------------------------------------------
 
@@ -243,6 +251,7 @@ INSERT INTO `roles` (`role_id`, `role_name`, `role_description`, `role_status`) 
 
 CREATE TABLE `users` (
   `user_id` int(255) NOT NULL,
+  `university_id` int(11) DEFAULT 0,
   `user_email` varchar(255) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `user_password` text NOT NULL,
@@ -254,13 +263,18 @@ CREATE TABLE `users` (
 -- إرجاع أو استيراد بيانات الجدول `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_email`, `user_name`, `user_password`, `user_activation_key`, `user_status`) VALUES
-(1, 'straw4hat@gmail.com', 'sam', '28707e14e88523777d295deaad67407b', '123', 1),
-(5, 'ali2@gmail.com', 'ali2', '28707e14e88523777d295deaad67407b', '123', 0),
-(29, 'mmmkkkmm@f.ff', '123123', 'e8836edf9ff4213a9f3c4588a116db21', '6025', 0),
-(30, 'll@e.s', 'njkj njikn hjbkj', 'e8836edf9ff4213a9f3c4588a116db21', '3496', 0),
-(31, 'll@e.sll', 'njkj njikn hjbkj jhiiu', 'e8836edf9ff4213a9f3c4588a116db21', '2375', 1),
-(32, 'kkll@e.sll', 'njkj njikn hjmmmm', 'e8836edf9ff4213a9f3c4588a116db21', '4702', 0);
+INSERT INTO `users` (`user_id`, `university_id`, `user_email`, `user_name`, `user_password`, `user_activation_key`, `user_status`) VALUES
+(1, 0, 'straw4hat@gmail.com', 'sam', '28707e14e88523777d295deaad67407b', '123', 1),
+(5, 0, 'ali2@gmail.com', 'ali2', '28707e14e88523777d295deaad67407b', '123', 1),
+(29, 0, 'mmmkkkmm@f.ff', 'ali', '28707e14e88523777d295deaad67407b', '6025', 1),
+(30, 0, 'll@e.s', 'njkj njikn hjbkj', 'e8836edf9ff4213a9f3c4588a116db21', '3496', 0),
+(31, 0, 'll@e.sll', 'njkj njikn hjbkj jhiiu', 'e8836edf9ff4213a9f3c4588a116db21', '2375', 1),
+(32, 0, 'kkll@e.sll', 'njkj njikn hjmmmm', 'e8836edf9ff4213a9f3c4588a116db21', '4702', 0),
+(33, 1, 'straw4ha2t@gmail.com', 'osama5', '4855d34ff1b1fb69203b7de9e33de8a1', '2438', 0),
+(34, 1, 'straw44xhat@gmail.com', 't1', 'e8836edf9ff4213a9f3c4588a116db21', '6488', 0),
+(35, 1, '1@1.d', 't2', 'e8836edf9ff4213a9f3c4588a116db21', '1449', 0),
+(36, 1, 'straw4hnjhlat@gmail.com', 't4', 'e8836edf9ff4213a9f3c4588a116db21', '3264', 0),
+(37, NULL, 'osama1287@gmail.com', 'hiuh uhgou okop', 'e8836edf9ff4213a9f3c4588a116db21', '2071', 0);
 
 -- --------------------------------------------------------
 
@@ -293,12 +307,15 @@ CREATE TABLE `user_role` (
 --
 
 INSERT INTO `user_role` (`user_role_id`, `user_id`, `role_id`, `extra_permissions`) VALUES
-(1, 1, 1, ''),
-(4, 29, 3, ''),
+(1, 1, 2, ''),
+(4, 29, 2, ''),
 (5, 30, 3, ''),
 (6, 31, 2, ''),
 (7, 32, 3, ''),
-(8, 5, 2, '');
+(8, 5, 2, ''),
+(10, 33, 2, ''),
+(11, 36, 4, ''),
+(12, 37, 3, '');
 
 --
 -- Indexes for dumped tables
@@ -385,7 +402,8 @@ ALTER TABLE `roles`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `user_email` (`user_email`),
-  ADD UNIQUE KEY `user_name` (`user_name`);
+  ADD UNIQUE KEY `user_name` (`user_name`),
+  ADD KEY `university_id` (`university_id`);
 
 --
 -- Indexes for table `users_courses`
@@ -409,7 +427,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -451,25 +469,25 @@ ALTER TABLE `permission_role`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- قيود الجداول المحفوظة
@@ -519,6 +537,12 @@ ALTER TABLE `permission_role`
 --
 ALTER TABLE `profiles`
   ADD CONSTRAINT `user_profile` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
+
+--
+-- القيود للجدول `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`university_id`) REFERENCES `users` (`user_id`);
 
 --
 -- القيود للجدول `users_courses`
