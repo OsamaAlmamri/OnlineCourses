@@ -33,6 +33,22 @@ class Role
         $id = $this->db->fetchOne("select role_id from roles WHERE role_name  like '%" . $name . "%' ");
         return ($id['role_id']);
     }
+    public function activeRoleByAdmin(array $aData)
+    {
+//        return var_dump($aData);
+        $oStmt = $this->db->preparation('update  roles set role_status =:role_status where role_id=:role_id');
+        return $oStmt->execute($aData);
+
+    }
+    public function add(array $aData)
+    {
+
+        $oStmt = $this->db->preparation('INSERT INTO roles (role_name,role_description,role_status )
+                                                  VALUES (:role_name , :role_description, 1)');
+        $oStmt->execute($aData);
+        return $this->db->lastInsertId();
+
+    }
 
 }
 

@@ -76,7 +76,7 @@
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <a href="role.php"><i class="fa fa-user-cog icon"></i> <label class="hrefLabel">Roles</label></a>
+                        <a href="/admin/role/index"><i class="fa fa-user-cog icon"></i> <label class="hrefLabel">Roles</label></a>
                         <a href="permision.php"><i class="fa fa-cogs icon"></i> <label class="hrefLabel">Permision</label></a>
 
                      </div>
@@ -85,8 +85,8 @@
             </div>
         </div>
 
-        <a href="courses.php"><i class="fa fa-book-reader iconi"></i> <label class="hrefLabel">Courses</label></a>
-        <a href="categories.php"><i class="fa fa-list iconi"></i> <label class="hrefLabel">Categories</label></a>
+        <a href="/admin/courses/index""><i class="fa fa-book-reader iconi"></i> <label class="hrefLabel">Courses</label></a>
+        <a href="/admin/categories/index"><i class="fa fa-list iconi"></i> <label class="hrefLabel">Categories</label></a>
 
     </div>
 </div>

@@ -12,10 +12,10 @@
 
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-
 <div class="content">
+    <?php include VIEW . 'messages.phtml' ?>
     <h2 class="text-center"><i class="fa fa fa-user-cog" style="color:#ec3901"></i> Roles Accounts Edit</h2>
-    <form action="#" method="post"  enctype="multipart/form-data">
+    <form action="/admin/role/store" method="post">
         <div class="row">
             <div class="col-md-12">
                 <label for="role_name">Role Name:</label>
@@ -31,8 +31,9 @@
             </div>
         </div>
 
-    </form>
 
+    </form>
+    <br>
 
 </div>
 
@@ -71,31 +72,32 @@
 <script>
 
 
-    $(document).on('change', '#logo', function () {
+    fetchCategories('#main_category_parents', '#sub_category');
+    fetchCategories('#sub_category', '#sub_sub_category');
 
+    function fetchCategories(input, select) {
 
-        if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
-        {
-            var data = $(this)[0].files; //this file data
-            $('#logo_image').html('');
-            $.each(data, function (index, file) { //loop though each file
-                if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
-                    var fRead = new FileReader(); //new filereader
-                    fRead.onload = (function (file) { //trigger function on successful read
-                        return function (e) {
-                            var img = $('<img/>').addClass('thumb').attr('src', e.target.result); //create image element
-                            $('#logo_image').append(img); //append image to output element
-                        };
-                    })(file);
-                    fRead.readAsDataURL(file); //URL representing the file's data.
-                }
+        $(document).on('change', input, function () {
+            var data = 'category_parents=' + encodeURIComponent($(this).val());
+            var url = '/admin/Categories/fetchSubCategories';
+            $.ajax({
+                url: url,//   var url=$('#news').attr('action');
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: data,// var form=$('#news').serialize();
+                success: function (data) {
+                    $(select).html(data);
+
+                }, error:
+                    function (xhr, status, error) {
+                        $(select).html(xhr.responseText);
+                    }
             });
-        } else {
-            alert("Your browser doesn't support File API!"); //if File API is absent
-        }
-    });
+            return (false);
+        });
+    }
 
-    CKEDITOR.replace('editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
+
 </script>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
 

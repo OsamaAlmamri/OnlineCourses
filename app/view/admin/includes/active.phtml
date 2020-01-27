@@ -1,6 +1,6 @@
 <script>
     function Active(controller) {
-        $(document).on('click', '.btn_active', function () {
+        $(document).on('click', '.active', function () {
             var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&data_id=' + encodeURIComponent($(this).attr('data-id'));
             var url = '/admin/' + controller + '/active';
             var _this = $(this);
@@ -11,10 +11,10 @@
                 data: data,// var form=$('#news').serialize();
                 success: function (data) {
                     if (data == 1) {
-                        _this.text("Active");
+                        _this.html("<i class='fas fa-check'></i>");
                         _this.attr("data-status", data);
                     } else {
-                        _this.text("Deny");
+                        _this.html("<i class='ion ion-close'></i>");
                         _this.attr("data-status", data);
                     }
                 },
