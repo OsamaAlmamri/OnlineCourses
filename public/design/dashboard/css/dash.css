@@ -2,7 +2,6 @@
 body {
     margin: 0;
     font-family: "Lato", sans-serif;
-    background-color: #e1e1e175;
 
 
 }
@@ -60,6 +59,63 @@ body {
 
     text-decoration: none;
 }
+.navbar-dark .navbar-nav .show > .nav-link:hover{
+    background-color: #ec3901;
+}
+.navbar-nav > .nav-item > .nav-link:hover {
+    background-color: #ec3901;
+    border-radius: 8px 38px;
+
+}
+.navbar-nav > .nav-item > .nav-link:focus {
+    background-color: #ec3901;
+}
+.dropdown-item:hover {
+    background-color: #ec3901;
+}
+@media (min-width: 768px) {
+    .navbar-nav > .nav-item {
+        float: left;
+        position: relative;
+        left: 14px;
+        /* margin-left: 27px; */
+    }
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(254, 254, 254);
+}
+.badge-light{
+    background-color: #ec3901;
+    color: white;
+    border-radius: 60%;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #ec3901;
+    border-color: #ec3901;
+}
+
+.btn-primary:focus, .btn-primary.focus {
+    box-shadow: 0 0 0 0.2rem #FFB200;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+    color: #fff;
+    background-color: #ec3901;
+    border-color: #ec3901
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
+.show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #ec3901;
+    border-color: #ec3901;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem #FFB200;
+}
 
 .sidebar a.active {
     background-color: #4CAF50;
@@ -67,7 +123,7 @@ body {
 }
 
 .sidebar a:hover:not(.active) {
-    background-color: #555;
+    background-color: #ec3901 ;
     color: white;
 }
 .hrefLabel{
@@ -103,7 +159,7 @@ body {
 /*end icon style*/
 /*start button style*/
 .btn-primary {
-    background-color: #4d557a;
+    background-color: #ec3901;
     margin-bottom: 14px;
     border-color: #4d557a;
 
@@ -156,15 +212,25 @@ label {
 .tab {
     overflow: hidden;
 
-    background-color: #f1f1f1;
     float: left;
 }
 
 /* Style the buttons inside the tab */
 .content1{
-    width: 100%;
+
     margin: 105px auto;
-    margin-left: 15%;
+    margin-left: 21%;
+}
+
+
+@media (min-width: 992px) {
+    .justify-content-lg-center {
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+        position: relative;
+        left: -137px;
+
+    }
 }
 .tab button {
     background-color: inherit;
@@ -180,7 +246,7 @@ label {
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    background-color: #ddd;
+    background-color: #ec3901;
 }
 
 /* Create an active/current tablink class */
