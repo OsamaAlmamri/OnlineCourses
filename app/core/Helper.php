@@ -65,7 +65,7 @@ class Helper
 
     public static function isAdmin()
     {
-        if (isset($_SESSION['role_name']) and $_SESSION['role_name'] == 'admin')
+        if (isset($_SESSION['role_name']) and ($_SESSION['role_name'] == 'admin' or $_SESSION['role_name'] == 'university'))
             return true;
         else
             return false;

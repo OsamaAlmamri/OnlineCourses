@@ -1,9 +1,4 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
-<style>
-    .thumb {
-        width: 200px;
-    }
-</style>
 
 <div class="content1">
     <?php include VIEW . 'messages.phtml' ?>
@@ -90,7 +85,7 @@
                                     </div>
                                     <div id="user_image_dev">
                                         <?php if (array_key_exists('news', $this->view_data)) { ?>
-                                            <img src="<?php echo($this->view_data['news']['logo']); ?>"
+                                            <img src="<?php echo($this->view_data['user']['user_image']); ?>"
                                                  width="100px">
 
                                         <?php } ?>
@@ -138,8 +133,8 @@
 
                                         </div>
                                         <div id="university_document_dev">
-                                            <?php if (array_key_exists('news', $this->view_data)) { ?>
-                                                <img src="<?php echo($this->view_data['news']['logo']); ?>"
+                                            <?php if (array_key_exists('user', $this->view_data)) { ?>
+                                                <img src="<?php echo($this->view_data['user']['user_image']); ?>"
                                                      width="100px">
 
                                             <?php } ?>

@@ -23,16 +23,20 @@ class Users
 
     }
 
+    public function UniversityTeacher($type, $university_id)
+    {
+
+        return $this->db->query("select *  from(( profiles  INNER JOIN users ON profiles.user_id = users.user_id)
+        INNER JOIN user_role ON users.user_id = user_role.user_id) WHERE role_id =$type and university_id=$university_id");
+
+    }
+
 //add new row to users table
     public function add(array $aData)
     {
-//return var_dump($aData);   ':user_email' => htmlentities($this->email),
-//                    ':user_name' => htmlentities($this->user_name),
-//                    ':user_password' => \Hashing::init($this->password),
-//                    ':user_activation_key' => $this->generateCode(),
-//                    ':user_status' => $status,
-        $oStmt = $this->db->preparation('INSERT INTO users ( user_email, user_name, user_password, user_activation_key, user_status)
-                                                  VALUES ( :user_email, :user_name, :user_password,:user_activation_key ,:user_status)');
+
+        $oStmt = $this->db->preparation('INSERT INTO users ( user_email,university_id, user_name, user_password, user_activation_key, user_status)
+                                                  VALUES ( :user_email,:university_id ,:user_name, :user_password,:user_activation_key ,:user_status)');
         $oStmt->execute($aData);
         return $this->db->lastInsertId();
 

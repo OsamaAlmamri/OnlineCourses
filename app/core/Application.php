@@ -45,14 +45,14 @@ class Application
             $url = explode('/', $request);
             $this->namespace = (isset($url[0]) and ($url[0] == 'admin' or $url[0] == 'teacher' or $url[0] == 'university')) ? $url[0] : 'site';
             if ($this->namespace == 'site') {
+
                 $this->controller = isset($url[0]) ? $url[0] . 'Controller' : 'homeController';
+//                                                if (isset($url[0]) and ($url[0] == 'login' or $url[0] == 'logout' or $url[0] == 'register' or $url[0] == 'singUp' or $url[0] == 'index')) {
+
                 $this->action = isset($url[1]) ? $url[1] : 'index';
                 unset($url[0], $url[1]);
             } else {
                 if (isset($url[1]) and ($url[1] == 'login' or $url[1] == 'logout' or $url[1] == 'register' or $url[1] == 'singUp' or $url[1] == 'index')) {
-
-
-
                     $this->controller = isset($url[0]) ? $url[0] . 'Controller' : 'adminController';
                     $this->action = $url[1];
                     return ;

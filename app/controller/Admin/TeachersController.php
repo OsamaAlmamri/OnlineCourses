@@ -19,9 +19,17 @@ class TeachersController extends Controller
     {
         Helper::viewAdminFile();
 
-        $category = $this->model('Category');
+
+        $this->model('Role');
+        $role_id = $this->model->getRoleByName('teacher');
+        $teachers = $this->model('Users');
+        if ($_SESSION['role_name'] == 'university')
+            $Allteachers = $teachers->UniversityTeacher($role_id, Session::logged());
+        else
+            $Allteachers = $teachers->all($role_id);
+
 //        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'teachers' . DIRECTORY_SEPARATOR . 'index', ['teachers' => [], 'deleted' => false]);
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'teachers' . DIRECTORY_SEPARATOR . 'index', ['teachers' => $Allteachers, 'deleted' => false]);
         $this->view->pageTitle = 'teachers';
         $this->view->render();
     }

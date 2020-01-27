@@ -85,8 +85,8 @@
             </div>
         </div>
 
-        <a href="courses.php"><i class="fa fa-book-reader iconi"></i> <label class="hrefLabel">Courses</label></a>
-        <a href="categories.php"><i class="fa fa-list iconi"></i> <label class="hrefLabel">Categories</label></a>
+        <a href="/admin/courses/index"><i class="fa fa-book-reader iconi"></i> <label class="hrefLabel">Courses</label></a>
+        <a href="/admin/categories/index"><i class="fa fa-list iconi"></i> <label class="hrefLabel">Categories</label></a>
 
     </div>
 </div>

@@ -2,6 +2,7 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 <div class="content">
+    <?php include VIEW . 'messages.phtml' ?>
     <h2 class="text-center"><i class="fa fa-list"></i> Teachers Manage</h2>
     <div class="row fa-pull-right">
         <div class="col-8">
@@ -25,15 +26,16 @@
     <table id="example1" class="table table-bordered table-striped">
         <thead class="thead-dark font-size-18">
         <tr>
+            <th> Name</th>
             <th>Email</th>
-            <th>User Full Name</th>
             <th>User Display Name</th>
             <th>User Image</th>
             <th>User Phone</th>
-            <th>User Gender</th>
-            <th>User Qualification</th>
             <th>Registration Date</th>
-            <th>Control</th>
+            <th> Status</th>
+            <th>update</th>
+            <th>delete</th>
+
 
         </tr>
         </thead>
@@ -43,48 +45,40 @@
             foreach ($this->view_data['teachers'] as $teacher) { ?>
 
                 <tr>
-                    <td><?php echo $teacher['name'] ?></td>
-                    <td><?php echo Helper::getCategoryName($teacher['parent']) ?></td>
-                    <td><?php echo ($teacher['status'] == '1') ? 'مفعل' : 'معطل' ?></td>
+                    <td><?php echo $teacher['user_name'] ?></td>
+                    <td><?php echo $teacher['user_email'] ?></td>
+                    <td><?php echo $teacher['user_full_name'] ?></td>
+                    <td><?php echo $teacher['user_image'] ?></td>
+                    <td><?php echo $teacher['user_phone'] ?></td>
+                    <td><?php echo $teacher['user_register_date'] ?></td>
                     <td>
-                        <a href="Categories.php?do=edit"><i class="fa fa-edit"></i></a>
-                        <a href="Categories.php?do=delete"><i class="fa fa-trash-restore"></i></a>
-                        <a href="/admin/teachers/delete/<?php echo $teacher['id'] ?>"
-                           onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
-                                    class="fa fa-trash"></i></a>
-                        <a href="Categories.php?do=activate"><i class="fa fa-check"> </i></a>
-                        <a href="Categories.php?do=updates"><i class="fa fa-history"> </i></a>
+                        <button data-id="<?php echo $teacher['user_id'] ?>"
+                                data-status="<?php echo $teacher['user_status'] ?>"
+                                class="btn btn-success btn_active"><?php echo ($teacher['user_status'] == '1') ? 'Active' : 'Deny' ?> </button>
                     </td>
 
+
                     <?php if ($this->view_data['deleted'] == false) { ?>
-                        <td><?php echo $teacher['section_count'] ?></td>
-                        <td><?php echo $teacher['sort'] ?></td>
+                        <td><a href="Categories.php?do=edit" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
 
-                        <td class="text-center">
-                            <a href="/admin/teachers/edit/<?php echo $teacher['id'] ?>"
-                               class="btn btn-primary"><i
-                                        class="fa fa-pencil"></i></a>
+                        <td>
+                            <a href="/admin/universities/delete/<?php echo $teacher['id'] ?>"
+                               onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
+                                        class="fa fa-trash"></i></a>
+
                         </td>
-
                     <?php } else { ?>
                         <th>{{getUserName( $teacher['deleted_by'] )?></th>
                         <td><?php echo $teacher['deleted_at'] ?></td>
 
 
                         <td class="text-center">
-                            <a href="{{  route('admin.teachers.restore',encrypt( $teacher['']id)) }}"
+                            <a href="{{  route('admin.universities.restore',encrypt( $teacher['']id)) }}"
                                class="btn btn-primary"><i
                                         class="fa fa-arrow-up"></i></a>
                         </td>
 
                     <?php } ?>
-
-
-                    <td class="text-center">
-                        <a href="/admin/teachers/delete/<?php echo $teacher['id'] ?>"
-                           onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
-                                    class="fa fa-trash"></i></a>
-                    </td>
 
 
                 </tr>

@@ -19,10 +19,11 @@ class Register extends Controller
     private $user_gender;
     private $status;
     private $role_name;
+    private $university_id;
 
     private $code;
 
-    function __construct($userData = '', $status = 0, $role = 'student')
+    function __construct($userData = '', $status = 0, $role = 'student', $university_id = 0)
     {
 
         if ($userData != '') {
@@ -32,9 +33,11 @@ class Register extends Controller
             $this->password = $userData["user_password"];
             $this->user_phone = $userData["user_phone"];
             $this->user_gender = $userData["user_gender"];
-            $this->role_name = $userData["role_name"];
+            $this->role_name = isset($userData["role_name"]) ? $userData["role_name"] : $role;
             $this->user_qualification = isset($userData["user_qualification"]) ?: '';
             $this->status = $status;
+
+
         }
     }
 
@@ -52,9 +55,7 @@ class Register extends Controller
     {
 
 
-//INSERT INTO `users` (`user_id`, `user_email`, `user_name`, `user_password`, `user_activation_key`, `user_status`) VALUES (NULL, 'straw4lllhat@gmail.com', 'alik', '1', '23', '0');
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//            $validate = \Validation::required(['', 'password', 'email', 'username']); //sure that first element in array most be null
             $validate = \Validation::validate([
                 'user_password' => array(['required' => 'required', 'min' => '6', 'confirmed' => 'password_confirmation']),
                 'user_email' => array(['required' => 'required', 'unique' => array('users', 'user_email')]),
@@ -65,6 +66,7 @@ class Register extends Controller
                 $user = array(
                     ':user_email' => htmlentities($this->email),
                     ':user_name' => htmlentities($this->user_name),
+                    ':university_id' => ($this->role_name == 'teacher' and $_SESSION['role_name'] == 'university') ? \Session::logged() : $this->university_id,
                     ':user_password' => \Hashing::init($this->password),
                     ':user_activation_key' => $this->generateCode(),
                     ':user_status' => $status,
@@ -72,19 +74,30 @@ class Register extends Controller
                 $this->model('Users');
                 $id = $this->model->add($user);
                 if ($id) {
-                    $this->sendEmail();
+                    if ($this->role_name != "teacher")
+                        $this->sendEmail();
                     $this->addUserProfile($id);
                     $this->addUserRole($id);
-
-                    Helper::backToLogin('see your email to confirm your account', 'success');
+                    if ($this->role_name != "teacher")
+                        Helper::backToLogin('see your email to confirm your account', 'success');
+                    else
+                        Helper::back('/admin/teachers/index', 'teacher add successfully', 'success');
                     return;
                 }
             } else {
-                Helper::backToRegister($validate, 'error');
+                if ($this->role_name != "teacher")
+                    Helper::backToRegister($validate, 'error');
+                else
+                    Helper::back('/admin/teachers/create', 'there is error', 'warning');
+
                 return;
             }
         }
-        Helper::backToLogin(' ', 1);
+        if ($this->role_name != "teacher")
+            Helper::backToLogin(' ', 1);
+        else
+            Helper::back('/admin/teachers/create', 'there is error', 'warning');
+
         return;
 
     }
@@ -93,7 +106,7 @@ class Register extends Controller
     private function addUserProfile($id)
     {
 
-
+        $document = '';
         if (isset($_FILES['user_image']['name']))
             $logo = Helper::saveImage('user_image', 'images/users/profiles/');
         if (isset($_FILES['document']['name']))
@@ -114,10 +127,7 @@ class Register extends Controller
 
     private function addUserRole($user_id)
     {
-
-
         $this->model('Role');
-
         $role = array(
             ':user_id' => $user_id,
             ':role_id' => $this->model->getRoleByName($this->role_name),

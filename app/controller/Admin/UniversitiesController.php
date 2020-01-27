@@ -5,11 +5,10 @@
  */
 namespace Admin;
 
+use auth\Register;
 use Controller;
 use Helper;
 use Message;
-use Session;
-use Validation;
 
 class UniversitiesController extends Controller
 {
@@ -64,6 +63,14 @@ class UniversitiesController extends Controller
 //        $this->view('admin' . DIRECTORY_SEPARATOR . 'news' . DIRECTORY_SEPARATOR . 'create', ['news' => $news]);
         $this->view->pageTitle = 'الاصناف';
         $this->view->render();
+    }
+
+    public function addTeacher()
+    {
+//        return var_dump($_REQUEST);
+        $auth = new Register($_REQUEST,1,'teacher');
+        $auth->signUp('teacher', 0);
+
     }
 
     public function delete($id)
