@@ -19,6 +19,7 @@
     <h2 class="text-center"><i class="fa fa-chalkboard-teacher"></i> Teacher Accounts Add</h2>
     <form action="/admin/universities/addTeacher" method="post" enctype="multipart/form-data">
         <input type="hidden" name="addTeacher" value="true">
+
         <div class="row">
 
 
@@ -29,6 +30,7 @@
                        name="user_email">
                 <?php echo Message::getInputErrorMessage('user_email') ?>
                 <label for="user_password">Password:</label>
+
                 <input type="password" class="form-control" placeholder="Enter password"
                        id="user_password" name="user_password">
                 <?php echo Message::getInputErrorMessage('user_password') ?>
@@ -143,4 +145,3 @@
 
 </script>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
-
