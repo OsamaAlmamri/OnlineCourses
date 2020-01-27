@@ -32,7 +32,7 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `category_description` text NOT NULL,
-  `category_parents` text DEFAULT '0',
+  `category_parents` text,
   `category_status` int(10) NOT NULL,
   `category_visibility` int(10) NOT NULL,
   `category_date` datetime NOT NULL,
