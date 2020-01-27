@@ -43,7 +43,7 @@ class Application
         $request = trim($_SERVER['REQUEST_URI'], '/');
         if (!empty($request)) {
             $url = explode('/', $request);
-            $this->namespace = (isset($url[0]) and ($url[0] == 'admin' or $url[0] == 'teacher' or $url[0] == 'university' or $url[0] == 'Role')) ? $url[0] : 'site';
+            $this->namespace = (isset($url[0]) and ($url[0] == 'admin' or $url[0] == 'teacher' or $url[0] == 'university' )) ? $url[0] : 'site';
             if ($this->namespace == 'site') {
                 $this->controller = isset($url[0]) ? $url[0] . 'Controller' : 'homeController';
                 $this->action = isset($url[1]) ? $url[1] : 'index';
