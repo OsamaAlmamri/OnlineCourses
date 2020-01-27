@@ -1,0 +1,103 @@
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+
+<link href="/design/dashboard/lib/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+
+<!-- Select2 -->
+<link href="/design/dashboard/lib/select2/dist/css/select2.min.css" rel="stylesheet">
+<!-- Switchery -->
+<link href="/design/dashboard/lib/switchery/dist/switchery.min.css" rel="stylesheet">
+<!-- starrr -->
+<link href="/design/dashboard/lib/starrr/dist/starrr.css" rel="stylesheet">
+<link rel="stylesheet" href="/design/dashboard/lib/jquery-ui/jquery-ui.css">
+
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
+<div class="content">
+    <?php include VIEW . 'messages.phtml' ?>
+    <h2 class="text-center"><i class="fa fa fa-user-cog" style="color:#ec3901"></i> Roles Accounts Edit</h2>
+    <form action="/admin/role/store" method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <label for="role_name">Role Name:</label>
+                <input type="text" class="form-control" placeholder="Enter Role Name" id="role_name" name="role_name">
+                <label for="role_description">Role Description:</label>
+                <textarea class="form-control" placeholder="Enter Role Description" id="role_description" name="role_description">
+                    </textarea>
+            </div>
+
+            <br>
+            <div class="col-md-12">
+                <br> <input type="submit" class="btn btn-primary btn-block" name="submit">
+            </div>
+        </div>
+
+
+    </form>
+    <br>
+
+</div>
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
+<script src="/design/dashboard/lib/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="/design/dashboard/lib/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="/design/dashboard/lib/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="/design/dashboard/lib/parsleyjs/dist/parsley.min.js"></script>
+<script src="/design/dashboard/lib/parsleyjs/dist/i18n/ar.js"></script>
+<!-- Autosize -->
+<script src="/design/dashboard/lib/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="/design/dashboard/lib/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="/design/dashboard/lib/starrr/dist/starrr.js"></script>
+
+<script src="/design/dashboard/lib/jquery-ui/jquery-ui.js"></script>
+
+<script>
+
+    $(function () {
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2').select2()
+    })
+</script>
+<script>
+
+
+    fetchCategories('#main_category_parents', '#sub_category');
+    fetchCategories('#sub_category', '#sub_sub_category');
+
+    function fetchCategories(input, select) {
+
+        $(document).on('change', input, function () {
+            var data = 'category_parents=' + encodeURIComponent($(this).val());
+            var url = '/admin/Categories/fetchSubCategories';
+            $.ajax({
+                url: url,//   var url=$('#news').attr('action');
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: data,// var form=$('#news').serialize();
+                success: function (data) {
+                    $(select).html(data);
+
+                }, error:
+                    function (xhr, status, error) {
+                        $(select).html(xhr.responseText);
+                    }
+            });
+            return (false);
+        });
+    }
+
+
+</script>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+

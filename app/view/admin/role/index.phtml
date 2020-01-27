@@ -1,0 +1,133 @@
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
+
+<div class="content">
+    <h2 class="text-center"><i class="fa fa fa-user-cog" style="color:#ec3901"></i> Roles Accounts Manage</h2>
+    <?php include VIEW . 'messages.phtml' ?>
+    <div class="row fa-pull-right">
+        <div class="col-8">
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                        id="dashboard_daterangepicker">
+                    <i class="	fas fa-bullseye"></i> sorting data by
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Day</a>
+                    <a class="dropdown-item" href="#">Week</a>
+                    <a class="dropdown-item" href="#">Month</a>
+                    <a class="dropdown-item" href="#">Range</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4"><a href="/admin/role/create" class="btn btn-success "><i class="fa fa-plus"> </i> Add</a>
+    </div>
+    <table id="example1" class="table table-bordered table-striped">
+        <thead class="thead-dark font-size-18">
+        <tr>
+            <th>Role Name</th>
+            <th>Role Description</th>
+            <th>Role Status</th>
+            <th>Control</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <?php if (array_key_exists('Role', $this->view_data)) {
+            foreach ($this->view_data['Role'] as $role) { ?>
+
+
+                <tr>
+                    <td><?php echo $role['role_name'] ?></td>
+                    <td><?php echo $role['role_description'] ?></td>
+
+
+                    <td>
+                        <a class="active" data-id="<?php echo $role['role_id'] ?>"
+                                data-status="<?php echo $role['role_status'] ?>"
+                                ><?php echo ($role['role_status'] == '1') ? '<i class="fas fa-check"></i>' : '<i class="fa fa-window-close"></i>' ?> </a>
+                    </td>
+
+
+                    <?php if ($this->view_data['deleted'] == false) { ?>
+                        <td><a href="Categories.php?do=edit" ><i class="fa fa-edit"></i></a>
+
+
+                            <a href="/admin/universities/delete/<?php echo $role['id'] ?>"
+                               onclick="return confirm('هل أنت متأكد من الحذف');" ><i
+                                        class="fa fa-trash-restore"></i></a>
+
+                        </td>
+                    <?php } else { ?>
+                        <th>{{getUserName( $role['deleted_by'] )?></th>
+                        <td><?php echo $role['deleted_at'] ?></td>
+
+
+                        <td class="text-center">
+                            <a href="{{  route('admin.universities.restore',encrypt( $role['']id)) }}"
+                               class="btn btn-primary"><i
+                                        class="fa fa-arrow-up"></i></a>
+                        </td>
+
+                    <?php } ?>
+
+
+                </tr>
+            <?php }
+        } ?>
+    </table>
+</div>
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
+
+<script>
+    $(document).on('click', '.btn_visibility', function () {
+        var data = 'visibility=' + encodeURIComponent($(this).attr('data-visibility')) + '&data_id=' + encodeURIComponent($(this).attr('data-id'));
+        var url = '/admin/categories/visibility';
+        var _this = $(this);
+        $.ajax({
+            url: url,//   var url=$('#news').attr('action');
+            method: 'POST',
+            dataType: 'json',// data type that i want to return
+            data: data,// var form=$('#news').serialize();
+            success: function (data) {
+                if (data == 1) {
+                    _this.html("<i class=\"fa fa-eye\"> </i>");
+                    _this.attr("data-visibility", data);
+                } else {
+                    _this.html("<i class=\"fa fa-eye-slash\"> </i>");
+                    _this.attr("data-visibility", data);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        });
+        return (false);
+    });
+    Active('Role');
+    $(function () {
+        $('#example1').DataTable({
+            language: {url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Arabic.json"},
+            dom: "Blfrtip",
+            buttons: [{extend: "copy", text: "copy", className: "btn-sm"}, {
+                extend: "csv",
+                text: " CSV",
+                className: "btn-sm"
+            }, {extend: "excel", text: "excel", className: "btn-sm"}, {
+                extend: "pdfHtml5",
+                text: " PDF",
+                className: "btn-sm"
+            }, {extend: "print", text: "print", className: "btn-sm"}],
+            responsive: !1
+        });
+    });
+</script>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+
+
+
+

@@ -76,7 +76,7 @@
                 </div>
                 <div id="collapse2" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <a href="role.php"><i class="fa fa-user-cog icon"></i> <label class="hrefLabel">Roles</label></a>
+                        <a href="/admin/role/index"><i class="fa fa-user-cog icon"></i> <label class="hrefLabel">Roles</label></a>
                         <a href="permision.php"><i class="fa fa-cogs icon"></i> <label class="hrefLabel">Permision</label></a>
 
                      </div>
