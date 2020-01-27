@@ -88,6 +88,9 @@ class CategoriesController extends Controller
     public function store()
     {
         $category_parents = 0;
+        if ($_REQUEST['main_category_parents'] != 0)
+            $category_parents = $_REQUEST['main_category_parents'];
+
         if ($_REQUEST['sub_category_parents'] != 0)
             $category_parents = $_REQUEST['sub_category_parents'];
 
