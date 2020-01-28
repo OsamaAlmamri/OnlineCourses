@@ -48,7 +48,7 @@
     </div>
     <div class="link">
 
-        <a href="/admin/home/index"><i class="fa fa-home iconi"></i> <label class="hrefLabel">Home</label></a>
+        <a href="/admin/index"><i class="fa fa-home iconi"></i> <label class="hrefLabel">Home</label></a>
         <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">

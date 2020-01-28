@@ -28,15 +28,31 @@ class adminController extends Controller
 
     public function login()
     {
-        $auth = new Login;
-        $auth->login('admin');
+        if (!isset($_SESSION['user'])) {
+            $auth = new Login;
+            $auth->login('admin');
+        } else {
+//            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            Helper::back('/home', '', '');
+        }
 
     }
 
     public function register()
     {
-        $auth = new Register;
-        $auth->register('admin');
+//        $auth = new Register;
+//        $auth->register('admin');
+        if (!isset($_SESSION['user'])) {
+            $this->view('home' . DIRECTORY_SEPARATOR . 'login', ['active' => "singUP"]);
+            $this->view->pageTitle = 'SingUp';
+            $this->view->render();
+
+        } else {
+//            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            Helper::back('/home', '', '');
+        }
+
+
     }
 
     public function PostLogin()
@@ -50,6 +66,8 @@ class adminController extends Controller
     {
         $auth = new LogOut;
         $auth->logout();
+        session_unset();
+        Helper::back('/home', '', '');
     }
 
     public function singUp()

@@ -43,6 +43,7 @@ class Helper
         $like = $data['input'] . " like '%" . $data['data'] . "%' ";
         $counter = DB::init()->query("SELECT COUNT(*)  As count FROM " . $data['table'] . " WHERE user_id <>" . $data['id'] . " and " . $like);
         return ($counter[0]['count']) > 0 ? true : false;
+        return  false;
     }
 //
 //    public static function returnChild($id)
