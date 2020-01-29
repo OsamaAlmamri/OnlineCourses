@@ -49,7 +49,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top head">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top head" id="main_navbar">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -58,14 +58,22 @@
     <center><a class="navbar-brand" href="#">Step Forward</a></center>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0" id="nav">
             <li class="nav-item active">
                 <a class="nav-link navmy" href="/home/home"><i class="icon-home"></i>Home <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item ">
+                <a  class="nav-link navmy" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="icon-th"></i>Categories
+                </a>
 
-            <li class="nav-item">
-                <a class="nav-link navmy" href="#"><i class="icon-th"></i>Categories</a>
             </li>
+
+<!--            <li class="nav-item">-->
+<!---->
+<!--                 -->
+<!---->
+<!--            </li>-->
 
         </ul>
         <div class="visible-lg-block visible-xl-block header-right-divider"></div>
@@ -155,13 +163,13 @@
                 <li class="nav-item">
                     <!--        <a href="#" class="nav-link"><button  type="submit" class="btn  btn-quaternary" data-toggle="modal" data-target="#loginModal">Log In</button>-->
                     <!--        </a>-->
-                    <a href="/admin/login" class="btn btn-danger btn-block">Log In</a>
+                    <a href="/admin/login" class="btn btn-quaternary btn-block nav-link">Log In</a>
 
                 </li>
                 <li class="nav-item">
                     <!--        <a href="#"class="nav-link"><button  type="submit" class=" btn btn-danger btnn" data-toggle="modal" data-target="#signupModal">Sign Up</button>-->
                     <!--        </a>-->
-                    <a href="/admin/register" class="btn btn-danger btn-block">Sign Up </a>
+                    <a href="/admin/register" class="btn btn-danger btnn btn-block nav-link">Sign Up </a>
 
                 </li>
             <?php } else { ?>
