@@ -66,8 +66,7 @@ class adminController extends Controller
     {
         $auth = new LogOut;
         $auth->logout();
-        session_unset();
-        Helper::back('/home', '', '');
+
     }
 
     public function singUp()
