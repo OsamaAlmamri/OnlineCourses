@@ -44,22 +44,25 @@ class Register extends Controller
 
     public function register($type)
     {
-        $this->view('home' . DIRECTORY_SEPARATOR . 'register',['type' => $type]);
+        $this->view('home' . DIRECTORY_SEPARATOR . 'register', ['type' => $type]);
         $this->view->pageTitle = 'SingUp';
         $this->view->render();
     }
 
     public function signUp($type, $status)
     {
-
+//        return var_dump(($_FILES['document']['name'])!='');
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $validate = \Validation::validate([
+            $universityRequired = [];
+            if ($this->role_name == 'university')
+                $universityRequired = ['document' => array(['imageRequired' => 'imageRequired'])];
+            $validate = \Validation::validate(array_merge($universityRequired, [
                 'user_password' => array(['required' => 'required', 'min' => '6', 'confirmed' => 'password_confirmation']),
                 'user_email' => array(['required' => 'required', 'unique' => array('users', 'user_email')]),
                 'user_full_name' => array(['required' => 'required', 'minWords' => 2, 'maxWords' => 5]),
                 'user_name' => array(['required' => 'required', 'unique' => array('users', 'user_name')]),
-            ]);
+            ]));
             if (count($validate) == 0) {
                 $user = array(
                     ':user_email' => htmlentities($this->email),
@@ -77,10 +80,10 @@ class Register extends Controller
                     $this->addUserProfile($id);
                     $this->addUserRole($id);
                     if ($this->role_name != "teacher") {
-                        if($this->role_name=='university')
-                        Helper::back('/home/register/university', 'see your email to confirm your account', 'success');
-                       else
-                           Helper::back('/home/register/student', 'see your email to confirm your account', 'success');
+                        if ($this->role_name == 'university')
+                            Helper::back('/home/register/university', 'see your email to confirm your account', 'success');
+                        else
+                            Helper::back('/home/register/student', 'see your email to confirm your account', 'success');
 
 
                     } else
@@ -89,7 +92,7 @@ class Register extends Controller
                 }
             } else {
                 if ($this->role_name != "teacher")
-                    Helper::backToRegister($validate, 'error',$this->role_name);
+                    Helper::backToRegister($validate, 'error', $this->role_name);
                 else
                     Helper::back('/admin/teachers/create', 'there is error', 'warning');
 

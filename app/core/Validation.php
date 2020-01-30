@@ -32,6 +32,10 @@ class Validation
                     if (strlen($formData) < 1)
                         $errors[$fildName][$typeValidate] = $fildName . ' is required ';
                     break;
+                case 'imageRequired':
+                    if (($_FILES[$fildName]['name']) == '')
+                        $errors[$fildName][$typeValidate] = $fildName . ' is required ';
+                    break;
                 case 'min':
                     if (strlen($formData) < $data)
                         $errors[$fildName][$typeValidate] = $fildName . '  must be more than ' . $data;
