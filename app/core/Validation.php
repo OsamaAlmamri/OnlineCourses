@@ -33,7 +33,7 @@ class Validation
                         $errors[$fildName][$typeValidate] = $fildName . ' is required ';
                     break;
                 case 'imageRequired':
-                    if (isset($_FILES[$fildName]))
+                    if (($_FILES[$fildName]['name']) == '')
                         $errors[$fildName][$typeValidate] = $fildName . ' is required ';
                     break;
                 case 'min':

@@ -51,7 +51,7 @@ class Register extends Controller
 
     public function signUp($type, $status)
     {
-//        return var_dump($_REQUEST);
+//        return var_dump(($_FILES['document']['name'])!='');
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $universityRequired = [];
