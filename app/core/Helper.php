@@ -127,11 +127,11 @@ class Helper
         return;
     }
 
-    public static function backToRegister($message, $status)
+    public static function backToRegister($message, $status,$type='student')
     {
         $homeController = new homeController();
         Message::setMessage('main', $message, $status);
-        $homeController->register();
+        $homeController->register($type);
         return;
     }
 

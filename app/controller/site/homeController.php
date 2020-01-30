@@ -117,10 +117,10 @@ class homeController extends Controller
 //        $this->view->render();
 //    }
 
-    public function register()
+    public function register($type)
     {
         $auth = new Register;
-        $auth->register('student');
+        $auth->register($type);
     }
 
     public function activation()

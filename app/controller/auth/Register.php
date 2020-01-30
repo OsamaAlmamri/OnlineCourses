@@ -32,7 +32,7 @@ class Register extends Controller
             $this->email = $userData["user_email"];
             $this->password = $userData["user_password"];
             $this->user_phone = $userData["user_phone"];
-            $this->user_gender = $userData["user_gender"];
+            $this->user_gender = isset($userData["user_gender"]) ? $userData["user_gender"] : '';
             $this->role_name = isset($userData["role_name"]) ? $userData["role_name"] : $role;
             $this->user_qualification = isset($userData["user_qualification"]) ?: '';
             $this->status = $status;
@@ -44,9 +44,7 @@ class Register extends Controller
 
     public function register($type)
     {
-
-
-        $this->view('home' . DIRECTORY_SEPARATOR . 'login', ['active' => "singUP"]);
+        $this->view('home' . DIRECTORY_SEPARATOR . 'register',['type' => $type]);
         $this->view->pageTitle = 'SingUp';
         $this->view->render();
     }
@@ -78,15 +76,20 @@ class Register extends Controller
                         $this->sendEmail();
                     $this->addUserProfile($id);
                     $this->addUserRole($id);
-                    if ($this->role_name != "teacher")
-                        Helper::backToLogin('see your email to confirm your account', 'success');
-                    else
+                    if ($this->role_name != "teacher") {
+                        if($this->role_name=='university')
+                        Helper::back('/home/register/university', 'see your email to confirm your account', 'success');
+                       else
+                           Helper::back('/home/register/student', 'see your email to confirm your account', 'success');
+
+
+                    } else
                         Helper::back('/admin/teachers/index', 'teacher add successfully', 'success');
                     return;
                 }
             } else {
                 if ($this->role_name != "teacher")
-                    Helper::backToRegister($validate, 'error');
+                    Helper::backToRegister($validate, 'error',$this->role_name);
                 else
                     Helper::back('/admin/teachers/create', 'there is error', 'warning');
 

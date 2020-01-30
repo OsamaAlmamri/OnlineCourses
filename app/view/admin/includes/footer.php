@@ -7,6 +7,7 @@
 <script src="/design/dashboard/js/dash.js"></script>
 <script src="/design/dashboard/js/design.js"></script>
 <script src="/design/dashboard/js/main.js"></script>
+<script src="/design/dashboard/js/my-login.js"></script>
 
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>tinymce.init({selector: 'textarea'});</script>
