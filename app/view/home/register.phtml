@@ -3,131 +3,136 @@
 <div class="content1">
     <?php include VIEW . 'messages.phtml' ?>
 
-
-    <div class="row">
-        <div class="col-xl-8 ">
-            <div class="card">
-                <div class="card-body">
-                    <form method="post" action="/admin/singUp" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class=" col-12">
-
-                                <h2 class="text-center">Sign Up</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="user_email">Email address:</label>
-                                <input type="email" class="form-control" placeholder="Enter email" id="user_email"
-                                       value="<?php Helper::old('user_email'); ?>"
-                                       name="user_email">
-                                <?php echo Message::getInputErrorMessage('user_email') ?>
-                                <label for="user_password">Password:</label>
-                                <input type="password" class="form-control" placeholder="Enter password"
-                                       id="user_password" name="user_password">
-                                <?php echo Message::getInputErrorMessage('user_password') ?>
-
-
-                                <label for="user_password">Confirm Password:</label>
-                                <input type="password" class="form-control" placeholder="Enter password"
-                                       id="password_confirmation" name="password_confirmation">
-                                <?php echo Message::getInputErrorMessage('password_confirmation') ?>
-
-                                <label for="user_full_name">User Full Name:</label>
-                                <input type="text" class="form-control" placeholder="Enter User Full Name"
-                                       value="<?php Helper::old('user_full_name'); ?>"
-                                       id="user_full_name" name="user_full_name">
-                                <?php echo Message::getInputErrorMessage('user_full_name') ?>
-                                <label for="user_name">User Name:</label>
-                                <input type="text" class="form-control" placeholder="Enter User Name" id="user_name"
-                                       value="<?php Helper::old('user_name'); ?>"
-                                       name="user_name">
-                                <?php echo Message::getInputErrorMessage('user_name') ?>
-
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="user_image">User Image:</label>
-                                <div class="custom-file">
-
-                                    <input type="file" class="custom-file-input" name="user_image" id="user_image">
-                                    <label class="custom-file-label" for="user_image">Choose file</label>
-                                </div>
-                                <div id="user_image_dev">
-                                    <?php if (array_key_exists('news', $this->view_data)) { ?>
-                                        <img src="<?php echo($this->view_data['user']['user_image']); ?>"
-                                             width="100px">
-
-                                    <?php } ?>
-                                </div>
-                                <label for="user_phone">User Phone:</label>
-                                <input type="phone" class="form-control" placeholder="Enter User Phone"
-                                       value="<?php Helper::old('user_phone'); ?>"
-                                       id="user_phone" name="user_phone">
-                                <?php if (array_key_exists('type', $this->view_data)) {
-                                if ($this->view_data['type']=='student') { ?>
-                                    <div id="student">
-                                        <input type="hidden" name="role_name" value="student">
-
-                                        <label for="user_gender">User Gender:</label>
-
-                                        <select class="form-control" id="user_gender" name="user_gender">
-                                            <option value="male" selected>Male</option>
-                                            <option value="female">Female</option>
-
-                                        </select>
-
-                                        <div id="student">
-                                            <label for="user_qualification">User Qualification:</label>
-                                            <input type="text" class="form-control"
-                                                   placeholder="Enter User Qualification"
-                                                   id="user_qualification" name="user_qualification"
-                                                   value="<?php Helper::old('user_qualification'); ?>">
-                                        </div>
-                                    </div>
-                                <?php }}
-                                if (array_key_exists('type', $this->view_data)) {
-                                if ($this->view_data['type']=='university'){
-                                ?>
-
-                                <input type="hidden" name="role_name" value="university">
-                                <label for="user_image">University Document:</label>
-
-                                <div class="custom-file ">
-
-                                    <input type="file" class="custom-file-input" name="document"
-                                           id="document">
-                                    <label class="custom-file-label" for="user_image">Choose file</label>
-
-                                    <div id="university_document_dev">
-                                        <?php if (array_key_exists('user', $this->view_data)) { ?>
-                                            <img src="<?php echo($this->view_data['user']['user_image']); ?>"
-                                                 width="100px">
-
-                                        <?php }} ?>
-                                    </div> <?php
-                                    } ?>
-                                </div>
-
-
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <br> <input type="submit" class="btn btn-primary " name="submit">
-
-                            </div>
-                        </div>
-
-                    </form>
-
+    <div class="container h-100">
+        <div class="row justify-content-lg-center h-100">
+            <div class="card-wrapper col-md-8">
+                <div class="brand">
+                    <img src="img/logo.jpg" alt="bootstrap 4 login page">
                 </div>
+                <div class="card fat">
+                    <div class="card-body">
+                        <h4 class="card-title">Register</h4>
+                        <form method="post" action="/admin/singUp" class="my-login-validation" novalidate="" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="user_email">Email address:</label>
+                                    <input type="email" class="form-control" placeholder="Enter email" id="user_email"
+                                           value="<?php Helper::old('user_email'); ?>"
+                                           name="user_email" required>
+                                    <?php echo Message::getInputErrorMessage('user_email') ?>
+
+                                    <label for="user_password">Password:</label>
+                                    <input type="password" class="form-control" placeholder="Enter password"
+                                           id="user_password" name="user_password" required>
+                                    <?php echo Message::getInputErrorMessage('user_password') ?>
+
+                                    <label for="user_password">Confirm Password:</label>
+                                    <input type="password" class="form-control" placeholder="Enter password"
+                                           id="password_confirmation" name="password_confirmation" required>
+                                    <?php echo Message::getInputErrorMessage('password_confirmation') ?>
+
+                                    <label for="user_full_name">User Full Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter User Full Name"
+                                           value="<?php Helper::old('user_full_name'); ?>"
+                                           id="user_full_name" name="user_full_name" required>
+                                    <?php echo Message::getInputErrorMessage('user_full_name') ?>
+                                    <label for="user_name">User Name:</label>
+                                    <input type="text" class="form-control" placeholder="Enter User Name" id="user_name"
+                                           value="<?php Helper::old('user_name'); ?>"
+                                           name="user_name" required>
+                                    <?php echo Message::getInputErrorMessage('user_name') ?>
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="user_image">User Image:</label>
+                                    <div class="custom-file">
+
+                                        <input type="file" class="custom-file-input" name="user_image" id="user_image" required>
+                                        <label class="custom-file-label" for="user_image">Choose file</label>
+                                    </div>
+                                    <div id="user_image_dev">
+                                        <?php if (array_key_exists('news', $this->view_data)) { ?>
+                                            <img src="<?php echo($this->view_data['user']['user_image']); ?>"
+                                                 width="100px" class="img-circle">
+
+                                        <?php } ?>
+                                    </div>
+
+                                    <label for="user_phone">User Phone:</label>
+                                    <input type="phone" class="form-control" placeholder="Enter User Phone"
+                                           value="<?php Helper::old('user_phone'); ?>"
+                                           id="user_phone" name="user_phone" required>
+
+                                    <?php if (array_key_exists('type', $this->view_data)) {
+                                        if ($this->view_data['type']=='student') { ?>
+                                            <div id="student">
+                                                <input type="hidden" name="role_name" value="student">
+
+                                                <label for="user_gender">User Gender:</label>
+
+                                                <select class="form-control" id="user_gender" name="user_gender">
+                                                    <option value="male" selected>Male</option>
+                                                    <option value="female">Female</option>
+
+                                                </select>
+
+                                                <div id="student">
+                                                    <label for="user_qualification">User Qualification:</label>
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Enter User Qualification"
+                                                           id="user_qualification" name="user_qualification"
+                                                           value="<?php Helper::old('user_qualification'); ?>" required>
+                                                </div>
+                                            </div>
+                                        <?php }}
+                                    if (array_key_exists('type', $this->view_data)) {
+                                    if ($this->view_data['type']=='university'){
+                                    ?>
+
+                                    <input type="hidden" name="role_name" value="university">
+                                    <label for="user_image">University Document:</label>
+
+                                    <div class="custom-file ">
+
+                                        <input type="file" class="custom-file-input" name="document"
+                                               id="document" required>
+                                        <label class="custom-file-label" for="user_image">Choose file</label>
+
+                                        <div id="university_document_dev">
+                                            <?php if (array_key_exists('user', $this->view_data)) { ?>
+                                                <img src="<?php echo($this->view_data['user']['user_image']); ?>"
+                                                     width="100px">
+
+                                            <?php }} ?>
+                                        </div> <?php
+                                        } ?>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group m-0">
+                                        <button type="submit" class="btn btn-primary btn-block">
+                                            Register
+                                        </button>
+                                    </div>
+                                    <div class="mt-4 text-center">
+                                        Already have an account? <a href="/home/login">Login</a>
+                                    </div>
+                                    <div class="footer text-center">
+                                        Copyright &copy; 2020 &mdash; StepForward
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+
             </div>
-
         </div>
-
-
     </div>
 
 
