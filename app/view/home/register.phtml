@@ -101,14 +101,14 @@
 
                                     <div id="university_document_dev">
                                         <?php if (array_key_exists('user', $this->view_data)) { ?>
-                                            <img src="<?php echo($this->view_data['user']['user_image']); ?>"
+                                            <img src="<?php echo($this->view_data['user']['document']); ?>"
                                                  width="100px">
 
                                         <?php }} ?>
                                     </div> <?php
                                     } ?>
                                 </div>
-
+                                <?php echo Message::getInputErrorMessage('document') ?>
 
                             </div>
 
