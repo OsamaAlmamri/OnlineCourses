@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 يناير 2020 الساعة 14:14
+-- Generation Time: 31 يناير 2020 الساعة 21:38
 -- إصدار الخادم: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -32,7 +32,7 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `category_description` text NOT NULL,
-  `category_parents` text,
+  `category_parents` text DEFAULT '0',
   `category_status` int(10) NOT NULL,
   `category_visibility` int(10) NOT NULL,
   `category_date` datetime NOT NULL,
@@ -45,17 +45,21 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_description`, `category_parents`, `category_status`, `category_visibility`, `category_date`, `category_updates`) VALUES
 (1, 'IT', 'it', '0', 1, 1, '2020-01-28 00:00:00', '2'),
-(2, 'Helath', 'Helath', '0', 0, 0, '0000-00-00 00:00:00', NULL),
-(3, 'web', '', '1', 1, 1, '0000-00-00 00:00:00', NULL),
-(4, 'Android', '', '1', 1, 0, '0000-00-00 00:00:00', NULL),
-(5, 'DataMining', '', '1', 0, 1, '0000-00-00 00:00:00', NULL),
-(6, 'iugu', '', '2', 1, 0, '0000-00-00 00:00:00', NULL),
-(7, 'php', '', '3', 1, 1, '0000-00-00 00:00:00', NULL),
-(8, 'paython', '', '3', 1, 1, '0000-00-00 00:00:00', NULL),
-(9, 'flutter', '', '4', 0, 1, '0000-00-00 00:00:00', NULL),
-(10, 'java', '', '4', 1, 1, '0000-00-00 00:00:00', NULL),
+(2, 'Helath', 'Helath', '0', 1, 0, '0000-00-00 00:00:00', NULL),
+(3, 'web', '', '1', 0, 1, '0000-00-00 00:00:00', NULL),
+(4, 'Android', '', '1', 0, 0, '0000-00-00 00:00:00', NULL),
+(5, 'DataMining', '', '1', 1, 1, '0000-00-00 00:00:00', NULL),
+(7, 'php', '', 'level3_3', 1, 0, '0000-00-00 00:00:00', NULL),
+(8, 'paython', '', 'level3_3', 1, 1, '0000-00-00 00:00:00', NULL),
+(9, 'flutter', '', 'level3_4', 1, 1, '0000-00-00 00:00:00', NULL),
+(10, 'java', '', 'level3_4', 1, 1, '0000-00-00 00:00:00', NULL),
 (48, 'network', '                ', '1', 0, 1, '0000-00-00 00:00:00', NULL),
-(49, 'CNNA', '                ', '48', 0, 0, '0000-00-00 00:00:00', NULL);
+(49, 'CNNA', '                ', 'level3_48', 0, 0, '0000-00-00 00:00:00', NULL),
+(50, 'js', '                ', 'level3_3', 0, 0, '0000-00-00 00:00:00', NULL),
+(51, 'enginnering', '                ', '0', 0, 0, '0000-00-00 00:00:00', NULL),
+(52, 'electrestic', '                ', '51', 0, 0, '0000-00-00 00:00:00', NULL),
+(53, 'rechnology', '&lt;p&gt;oij&lt;/p&gt;', '0', 0, 0, '0000-00-00 00:00:00', NULL),
+(54, 'kotlin', 'kotlin', 'level3_4', 0, 0, '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -100,18 +104,27 @@ CREATE TABLE `coupons` (
 CREATE TABLE `courses` (
   `course_id` int(11) NOT NULL,
   `course_title` text NOT NULL,
-  `course__description` text NOT NULL,
+  `course_description` text NOT NULL,
   `courses_image` text NOT NULL,
   `course_price` float NOT NULL,
+  `course_price_afterDiscount` int(11) NOT NULL,
   `course_requirements` text NOT NULL,
   `course_students_target` text NOT NULL,
   `course_goals` text NOT NULL,
   `categories_ids` text NOT NULL,
   `course_date` int(11) NOT NULL,
-  `course_status` int(10) NOT NULL,
-  `course_updates` text NOT NULL,
-  `course_visibility` int(11) NOT NULL
+  `course_status` int(10) DEFAULT 1,
+  `course_updates` text DEFAULT NULL,
+  `course_visibility` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `courses`
+--
+
+INSERT INTO `courses` (`course_id`, `course_title`, `course_description`, `courses_image`, `course_price`, `course_price_afterDiscount`, `course_requirements`, `course_students_target`, `course_goals`, `categories_ids`, `course_date`, `course_status`, `course_updates`, `course_visibility`) VALUES
+(3, 'ooo', 'oooo', '/images/courses/1580500660التقاط.PNG', 77, 7, '', '                mokp', 'kpkp                ', '[\"50\"]', 0, 1, NULL, 0),
+(4, 'jnkb', 'kbkjbk', '/images/courses/1580501266‏‏لقطة الشاشة (4).png', 77, 77, '', ';lm                ', ';lm;l                ', '[\"10\",\"54\",\"9\"]', 0, 1, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -197,7 +210,7 @@ CREATE TABLE `profiles` (
   `user_image` text NOT NULL,
   `document` varchar(255) DEFAULT NULL,
   `user_phone` text NOT NULL,
-  `user_gender` varchar(255) NOT NULL,
+  `user_gender` varchar(255) DEFAULT NULL,
   `user_qualification` varchar(255) DEFAULT NULL,
   `user_register_date` datetime NOT NULL,
   `user_updates` text DEFAULT NULL
@@ -213,12 +226,19 @@ INSERT INTO `profiles` (`profile_id`, `user_id`, `user_full_name`, `user_image`,
 (6, 30, '147147 oih dd ', '/images/users/profiles/1579783172echarts (25).png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (7, 31, '147147 oih dd ', '/images/users/profiles/default.png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (8, 32, 'iy kbjkj vdshl', '/images/users/profiles/1579783653echarts (25).png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
-(9, 1, 'osama mohammed', '', '', '773569041', 'male', '', '2020-01-20 00:00:00', NULL),
+(9, 1, 'osama mohammed', '/images/users/profiles/default.png', '', '773569041', 'male', '', '2020-01-20 00:00:00', NULL),
 (10, 33, 'osama mohammed ahmed ', '/images/users/profiles/1580057196_20191006_020221.JPG', '4.jpg', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (11, 34, '147147 oih dd ', '/images/users/profiles/1580126520git.PNG', NULL, '54545256', 'male', '1', '0000-00-00 00:00:00', NULL),
 (12, 35, 'osama mohammed ', '/images/users/profiles/15801266654.jpg', '', '785', 'male', '1', '0000-00-00 00:00:00', NULL),
 (13, 36, 'osama mohammed ahmed ali', '/images/users/profiles/15801268924.jpg', '', '661918890', 'male', '1', '0000-00-00 00:00:00', NULL),
-(14, 37, 'p jn uhi ', '/images/users/profiles/15801270074.jpg', '/images/universities/document/default.png', '8', 'male', '1', '0000-00-00 00:00:00', NULL);
+(14, 37, 'p jn uhi ', '/images/users/profiles/15801270074.jpg', '/images/universities/document/default.png', '8', 'male', '1', '0000-00-00 00:00:00', NULL),
+(15, 38, 'sanaa university', '/images/users/profiles/1580192088git.PNG', '1.PNG', '77456987', 'female', '1', '0000-00-00 00:00:00', NULL),
+(16, 39, 'rayad alshatabi', '/images/users/profiles/15801923244.jpg', '', '451320', 'male', '1', '0000-00-00 00:00:00', NULL),
+(17, 40, 'joij oijm j', '/images/users/profiles/default.png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
+(18, 41, 'io ihjoi hiho ', '/images/users/profiles/15801966504.jpg', '/images/universities/document/default.png', '4854165', 'male', '1', '0000-00-00 00:00:00', NULL),
+(19, 42, 'saba university', '/images/users/profiles/default.png', '/images/universities/document/default.png', '78466', 'male', '1', '0000-00-00 00:00:00', NULL),
+(20, 43, 'hitam almaqtari', '/images/users/profiles/15801973954.jpg', '', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
+(21, 44, '', '/images/users/profiles/default.png', '/images/universities/document/default.png', '6619188912', '', '', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -238,9 +258,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`role_id`, `role_name`, `role_description`, `role_status`) VALUES
-(1, 'admin', 'admins', 1),
+(1, 'admin', 'admins', 0),
 (2, 'university', 'university', 1),
-(3, 'student', 'students', 1),
+(3, 'student', 'students', 0),
 (4, 'teacher', 'ijgomvjco', 1);
 
 -- --------------------------------------------------------
@@ -264,7 +284,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `university_id`, `user_email`, `user_name`, `user_password`, `user_activation_key`, `user_status`) VALUES
-(1, 0, 'straw4hat@gmail.com', 'sam', '28707e14e88523777d295deaad67407b', '123', 1),
+(1, 0, 'thamar@gmail.com', 'thamar', '28707e14e88523777d295deaad67407b', '123', 0),
 (5, 0, 'ali2@gmail.com', 'ali2', '28707e14e88523777d295deaad67407b', '123', 1),
 (29, 0, 'mmmkkkmm@f.ff', 'ali', '28707e14e88523777d295deaad67407b', '6025', 1),
 (30, 0, 'll@e.s', 'njkj njikn hjbkj', 'e8836edf9ff4213a9f3c4588a116db21', '3496', 0),
@@ -274,7 +294,14 @@ INSERT INTO `users` (`user_id`, `university_id`, `user_email`, `user_name`, `use
 (34, 1, 'straw44xhat@gmail.com', 't1', 'e8836edf9ff4213a9f3c4588a116db21', '6488', 0),
 (35, 1, '1@1.d', 't2', 'e8836edf9ff4213a9f3c4588a116db21', '1449', 0),
 (36, 1, 'straw4hnjhlat@gmail.com', 't4', 'e8836edf9ff4213a9f3c4588a116db21', '3264', 0),
-(37, NULL, 'osama1287@gmail.com', 'hiuh uhgou okop', 'e8836edf9ff4213a9f3c4588a116db21', '2071', 0);
+(37, NULL, 'osama1287@gmail.com', 'hiuh uhgou okop', 'e8836edf9ff4213a9f3c4588a116db21', '2071', 0),
+(38, NULL, 'u@u.c', 'sanaa', 'e8836edf9ff4213a9f3c4588a116db21', '4965', 1),
+(39, 38, 'r@r.com', 'ryad', 'e8836edf9ff4213a9f3c4588a116db21', '1432', 0),
+(40, NULL, 'straw4hat@gmail.com', 'njkj njikn hjbkllll', 'e8836edf9ff4213a9f3c4588a116db21', '8882', 0),
+(41, NULL, 's@s.com', 's1', 'e8836edf9ff4213a9f3c4588a116db21', '2470', 0),
+(42, NULL, 'u11@u.d', 'saba', 'e8836edf9ff4213a9f3c4588a116db21', '7442', 1),
+(43, 42, 'straw4kpokhat@gmail.com', 'hitam ', 'e8836edf9ff4213a9f3c4588a116db21', '1959', 0),
+(44, NULL, 'straw4hat@gmail.coml', '', 'ca47cc4e62f7cb066889b386402a5d9a', '2548', 0);
 
 -- --------------------------------------------------------
 
@@ -308,14 +335,21 @@ CREATE TABLE `user_role` (
 
 INSERT INTO `user_role` (`user_role_id`, `user_id`, `role_id`, `extra_permissions`) VALUES
 (1, 1, 2, ''),
-(4, 29, 2, ''),
+(4, 29, 1, ''),
 (5, 30, 3, ''),
 (6, 31, 2, ''),
 (7, 32, 3, ''),
 (8, 5, 2, ''),
 (10, 33, 2, ''),
 (11, 36, 4, ''),
-(12, 37, 3, '');
+(12, 37, 3, ''),
+(13, 38, 2, ''),
+(14, 39, 4, ''),
+(15, 40, 3, ''),
+(16, 41, 3, ''),
+(17, 42, 2, ''),
+(18, 43, 4, ''),
+(19, 44, 2, '');
 
 --
 -- Indexes for dumped tables
@@ -427,7 +461,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -445,7 +479,7 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `evaluations`
@@ -469,7 +503,7 @@ ALTER TABLE `permission_role`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -481,13 +515,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- قيود الجداول المحفوظة
