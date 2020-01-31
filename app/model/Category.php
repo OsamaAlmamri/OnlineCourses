@@ -30,12 +30,13 @@ class Category
         return $this->db->query("select * from categories2 WHERE id =$id");
     }
 
-    public function mainCategories($aData)
+
+    public function fetchCategories($aData)
     {
 
         $likeVar = "%" . $aData . "%";
 
-        $oStmt = $this->db->preparation('SELECT category_id ,category_name FROM categories WHERE category_name  LIKE  and category_name  LIKE  ?  ');
+        $oStmt = $this->db->preparation('SELECT category_id as id ,category_name as name FROM categories WHERE category_name  LIKE  ? and category_parents LIKE "level3%" ');
         $oStmt->execute(array(0 => $likeVar));
         return $oStmt->fetchAll();
 
@@ -52,33 +53,6 @@ class Category
 
     }
 
-    public function update(array $aData)
-    {
-
-        $oStmt = $this->db->preparation('update  categories2 set name_ar =:name_ar, name_en=:name_en, parent=:parent, liveNews=:liveNews,
-                                                    newsCount=:newsCount,sort=:sort,  section_count=:section_count,
-                                                    isMain=:isMain,hasSlides=:hasSlides,  sort=:sort,
-                                                 status=:status, updates=:updates, updated_at=:updated_at where id=:id
-                                                  ');
-        return $oStmt->execute($aData);
-
-    }
-
-
-    public function delete($id)
-    {
-        $counter = DB::init()->query("SELECT COUNT(*) AS count FROM categories2 WHERE parent= $id ");
-
-
-        if ($counter[0]['count'] > 0)
-            return "hasChild";
-
-
-        $oStmt = $this->db->preparation('delete from  categories2  WHERE id LIKE  ? ');
-        return $oStmt->execute(array(0 => $id));
-//        return $oStmt->execute($aData);
-
-    }
 
     public function activeByAdmin(array $aData)
     {
@@ -87,6 +61,7 @@ class Category
         return $oStmt->execute($aData);
 
     }
+
     public function visibility(array $aData)
     {
 //        return var_dump($aData);

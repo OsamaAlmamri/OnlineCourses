@@ -1,70 +1,97 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 
-<link href="/design/dashboard/lib/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
-
 <!-- Select2 -->
 <link href="/design/dashboard/lib/select2/dist/css/select2.min.css" rel="stylesheet">
 <!-- Switchery -->
-<link href="/design/dashboard/lib/switchery/dist/switchery.min.css" rel="stylesheet">
-<!-- starrr -->
-<link href="/design/dashboard/lib/starrr/dist/starrr.css" rel="stylesheet">
+
 <link rel="stylesheet" href="/design/dashboard/lib/jquery-ui/jquery-ui.css">
 
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 <div class="content">
-    <?php include VIEW . 'messages.phtml' ?>
+    <?php include VIEW . 'messages.phtml';
+    ?>
     <h2 class="text-center"><i class="fa  fa-list"></i> Categories Add</h2>
-    <form action="admin/courses/store" method="post" enctype="multipart/form-data" >
+    <form action="/admin/courses/store" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="course_title">Course Title:</label>
-            <input type="text" class="form-control" id="course_title" name="course_title">
+            <input type="text"
+                   value="<?php Helper::old('course_title'); ?>"
+                   class="form-control" id="course_title" name="course_title">
+            <?php echo Message::getInputErrorMessage('course_title') ?>
         </div>
         <div class="form-group">
-            <label for="course__description">Course Description:</label>
-            <input type="text" class="form-control" id="course__description" name="course__description">
+            <label for="course_description">Course Description:</label>
+            <input type="text" class="form-control"
+                   value="<?php Helper::old('course_description'); ?>"
+                   id="course_description" name="course_description">
+            <?php echo Message::getInputErrorMessage('course_description') ?>
         </div>
 
         <div class="form-group">
             <label for="courses_image">Course Imagefdd:</label>
-            <div class="custom-file" >
+            <div class="custom-file">
 
                 <input type="file" class="custom-file-input" name="courses_image" id="courses_image">
                 <label class="custom-file-label" for="courses_image">Choose file</label>
+                <?php echo Message::getInputErrorMessage('courses_image') ?>
+                <div id="courses_image_dev"></div>
             </div>
         </div>
         <div class="form-group">
             <label for="course_price">Course Price:</label>
-            <input type="number" class="form-control" id="course_price" name="course_price">
+            <input type="number"
+                   value="<?php Helper::old('course_price'); ?>"
+                   class="form-control" id="course_price" name="course_price">
+            <?php echo Message::getInputErrorMessage('course_price') ?>
         </div>
         <div class="form-group">
-            <textarea name="editor1" ></textarea>
-            <script>
+            <label for="course_price">course price after Discount :</label>
+            <input type="number"
+                   value="<?php Helper::old('course_price_afterDiscount'); ?>"
+                   class="form-control" id="course_price_afterDiscount" name="course_price_afterDiscount">
+            <?php echo Message::getInputErrorMessage('course_price_afterDiscount') ?>
+        </div>
+        <div class="form-group">
+            <label for="categories_input">categories :</label>
+            <input type="text"
+                   value="<?php Helper::old('categories_ids'); ?>"
+                   class="form-control" id="categories_input" name="categories">
+            <div id="categories_ids" class="well well-sm"
+                 style="height: 50px; overflow: auto;">
+            </div>
+            <?php echo Message::getInputErrorMessage('categories_ids') ?>
+        </div>
 
-            </script>
+        <div class="form-group">
             <label for="course_requirements">Course Requirements:</label>
-            <textarea  id="course_requirements" name="course_requirements">
+            <textarea id="course_requirements"
+                      value="<?php Helper::old('course_requirements'); ?>"
+                      name="course_requirements">
                     </textarea>
+            <?php echo Message::getInputErrorMessage('course_requirements') ?>
         </div>
         <div class="form-group">
             <label for="course_students_target">Student Target:</label>
-            <textarea class="form-control" id="course_students_target" name="course_students_target">
+            <textarea class="form-control"
+                      value="<?php Helper::old('course_students_target'); ?>"
+                      id="course_students_target" name="course_students_target">
                 </textarea>
-        </div>
-        <div class="form-group">
-            <label for="course_goals">Course Goals:</label>
-            <textarea class="form-control" id="course_goals" name="course_goals">
-                </textarea>
-        </div>
-        <label for="course_visibility">Course Visibility:</label>
-        <div class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" id="course_visibility" name="course_visibility" value="yes">
-            <label class="custom-control-label" for="customRadio">yes</label><br>
-            <input type="radio" class="custom-control-input" id="course_visibility" name="course_visibility" value="no">
-            <label class="custom-control-label" for="customRadio">no</label>
+            <?php echo Message::getInputErrorMessage('course_students_target') ?>
         </div>
 
-        <button type="submit" name="submit" class="btn btn-primary btn-block">Submit</button>
+
+        <div class="form-group">
+            <label for="course_goals">Course Goals:</label>
+            <textarea class="form-control"
+                      value="<?php Helper::old('course_goals'); ?>"
+                      id="course_goals" name="course_goals">
+                </textarea>
+            <?php echo Message::getInputErrorMessage('course_goals') ?>
+        </div>
+
+
+        <button type="submit" name="submit" class="btn btn-primary btn-block">Save</button>
     </form>
     <br>
 
@@ -73,22 +100,17 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
 <script src="/design/dashboard/lib/jquery.tagsinput/src/jquery.tagsinput.js"></script>
 <!-- Switchery -->
-<script src="/design/dashboard/lib/switchery/dist/switchery.min.js"></script>
 <!-- Select2 -->
 <script src="/design/dashboard/lib/select2/dist/js/select2.full.min.js"></script>
 <!-- Parsley -->
 <script src="/design/dashboard/lib/parsleyjs/dist/parsley.min.js"></script>
 <script src="/design/dashboard/lib/parsleyjs/dist/i18n/ar.js"></script>
 <!-- Autosize -->
-<script src="/design/dashboard/lib/autosize/dist/autosize.min.js"></script>
 <!-- jQuery autocomplete -->
-<script src="/design/dashboard/lib/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-<!-- starrr -->
-<script src="/design/dashboard/lib/starrr/dist/starrr.js"></script>
-
 <script src="/design/dashboard/lib/jquery-ui/jquery-ui.js"></script>
 
 <script>
+
 
     $(function () {
         $('.select2bs4').select2({
@@ -102,8 +124,15 @@
         $('.select2').select2()
     })
 </script>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'readImageFile.phtml' ?>
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'autocomplate.phtml' ?>
+
+
 <script>
 
+    autoComplate('categories', 'categories_ids[]', 'categories_ids', '/admin/categories/fetchCategory', 'name', true);
+    readFile('#courses_image', '#courses_image_dev');
 
     fetchCategories('#main_category_parents', '#sub_category');
     fetchCategories('#sub_category', '#sub_sub_category');
@@ -130,27 +159,6 @@
         });
     }
 
-    $(document).on('change', '#logo', function () {
-        if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
-        {
-            var data = $(this)[0].files; //this file data
-            $('#logo_image').html('');
-            $.each(data, function (index, file) { //loop though each file
-                if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
-                    var fRead = new FileReader(); //new filereader
-                    fRead.onload = (function (file) { //trigger function on successful read
-                        return function (e) {
-                            var img = $('<img/>').addClass('thumb').attr('src', e.target.result); //create image element
-                            $('#logo_image').append(img); //append image to output element
-                        };
-                    })(file);
-                    fRead.readAsDataURL(file); //URL representing the file's data.
-                }
-            });
-        } else {
-            alert("Your browser doesn't support File API!"); //if File API is absent
-        }
-    });
 
     CKEDITOR.replace('editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
 </script>

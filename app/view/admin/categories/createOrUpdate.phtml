@@ -20,10 +20,6 @@
             <label for="course_title">Category Name:</label>
             <input type="text" class="form-control" id="course_title" name="category_name">
         </div>
-        <div class="form-group">
-            <label for="course__description">Category Description:</label>
-            <input type="text" class="form-control" id="course__description" name="category_description">
-        </div>
 
 
         <div class="form-group">
@@ -31,7 +27,7 @@
 
             <select class="select2" id="main_category_parents" name="main_category_parents"
                     data-placeholder="Major" style="width: 100%;">
-                <option value="0"  selected> select Main Category</option>
+                <option value="0" selected> select Main Category</option>
                 <?php if (array_key_exists('MainCategories', $this->view_data)) {
                     foreach ($this->view_data['MainCategories'] as $category) { ?>
 
@@ -49,12 +45,9 @@
 
             <select id="sub_category" class="select2" name="sub_category_parents"
                     data-placeholder="Field" style="width: 100%;">
-                <option value="0"  selected> select Sub Category</option>
-
-
+                <option value="0" selected> select Sub Category</option>
             </select>
         </div>
-
 
 
         <div class="form-group">
@@ -85,19 +78,14 @@
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
 <script src="/design/dashboard/lib/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-<!-- Switchery -->
-<script src="/design/dashboard/lib/switchery/dist/switchery.min.js"></script>
 <!-- Select2 -->
 <script src="/design/dashboard/lib/select2/dist/js/select2.full.min.js"></script>
 <!-- Parsley -->
 <script src="/design/dashboard/lib/parsleyjs/dist/parsley.min.js"></script>
 <script src="/design/dashboard/lib/parsleyjs/dist/i18n/ar.js"></script>
-<!-- Autosize -->
-<script src="/design/dashboard/lib/autosize/dist/autosize.min.js"></script>
+
 <!-- jQuery autocomplete -->
 <script src="/design/dashboard/lib/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-<!-- starrr -->
-<script src="/design/dashboard/lib/starrr/dist/starrr.js"></script>
 
 <script src="/design/dashboard/lib/jquery-ui/jquery-ui.js"></script>
 

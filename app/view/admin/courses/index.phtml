@@ -25,69 +25,74 @@
     <table id="example1" class="table table-bordered table-striped">
         <thead class="thead-dark font-size-18">
         <tr>
+            <td>#</td>
             <td>Course Title</td>
             <td>Course Description</td>
             <td>Course Image</td>
             <td>Course Price</td>
-            <td>Course</td>
+            <td> Price after discount</td>
             <td>Student Target</td>
             <td>Course Goals</td>
             <td>Categories Name</td>
             <td>Course status</td>
-            <td>Course Date</td>
             <td>Course visibility</td>
 
-            <th>Control</th>
+            <th>update</th>
+            <th>delete</th>
         </tr>
         </thead>
 
         <tbody>
-        <?php if (array_key_exists('courses', $this->view_data)) {
-            foreach ($this->view_data['courses'] as $course) { ?>
 
+        <?php if (array_key_exists('courses', $this->view_data)) {
+            foreach ($this->view_data['courses'] as $k => $course) { ?>
                 <tr>
-                    <td><?php echo $course['name'] ?></td>
-                    <td><?php echo Helper::getCategoryName($course['parent']) ?></td>
-                    <td><?php echo ($course['status'] == '1') ? 'مفعل' : 'معطل' ?></td>
+                    <td><?php echo $k ?></td>
+                    <td><?php echo $course['course_title'] ?></td>
+                    <td><?php echo $course['course_description'] ?></td>
+                    <td><img src="<?php echo $course['courses_image'] ?>" width="100px"></td>
+                    <td><?php echo $course['course_price'] ?></td>
+                    <td><?php echo $course['course_price_afterDiscount'] ?></td>
+
+                    <td><?php echo $course['course_students_target'] ?></td>
+                    <td><?php echo $course['course_goals'] ?></td>
+<!--                    <td>--><?php //echo ($course['categories_ids']) ?><!--</td>-->
+                    <td><?php echo Helper::Names($course['categories_ids'],'Category') ?></td>
+
+
                     <td>
-                        <a href="Categories.php?do=edit"><i class="fa fa-edit"></i></a>
-                        <a href="Categories.php?do=delete"><i class="fa fa-trash-restore"></i></a>
-                        <a href="/admin/categories/delete/<?php echo $course['id'] ?>"
-                           onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
-                                    class="fa fa-trash"></i></a>
-                        <a href="Categories.php?do=activate"><i class="fa fa-check"> </i></a>
-                        <a href="Categories.php?do=updates"><i class="fa fa-history"> </i></a>
+                        <button data-id="<?php echo $course['course_id'] ?>"
+                                data-status="<?php echo $course['course_visibility'] ?>"
+                                class="btn btn-success active"><?php echo ($course['course_visibility'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </button>
+                    </td>
+
+                    <td>
+                        <button data-id="<?php echo $course['course_id'] ?>"
+                                data-visibility="<?php echo $course['course_visibility'] ?>"
+                                class="btn btn-success btn_visibility"><?php echo ($course['course_visibility'] == '1') ? ' <i class="fa fa-eye"> </i>' : '  <i class="fa fa-eye-slash"> </i>' ?> </button>
                     </td>
 
                     <?php if ($this->view_data['deleted'] == false) { ?>
-                        <td><?php echo $course['section_count'] ?></td>
-                        <td><?php echo $course['sort'] ?></td>
+                        <td><a href="Categories.php?do=edit" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
 
-                        <td class="text-center">
-                            <a href="/admin/categories/edit/<?php echo $course['id'] ?>"
-                               class="btn btn-primary"><i
-                                        class="fa fa-pencil"></i></a>
+                        <td>
+                            <a href="/admin/universities/delete/<?php echo $course['id'] ?>"
+                               onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
+                                        class="fa fa-trash"></i></a>
+
                         </td>
-
                     <?php } else { ?>
                         <th>{{getUserName( $course['deleted_by'] )?></th>
                         <td><?php echo $course['deleted_at'] ?></td>
 
 
                         <td class="text-center">
-                            <a href="{{  route('admin.categories.restore',encrypt( $course['']id)) }}"
+                            <a href="{{  route('admin.universities.restore',encrypt( $course['']id)) }}"
                                class="btn btn-primary"><i
                                         class="fa fa-arrow-up"></i></a>
                         </td>
 
                     <?php } ?>
-
-
-                    <td class="text-center">
-                        <a href="/admin/categories/delete/<?php echo $course['id'] ?>"
-                           onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
-                                    class="fa fa-trash"></i></a>
-                    </td>
 
 
                 </tr>
@@ -98,6 +103,8 @@
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
+
 
 <script>
 

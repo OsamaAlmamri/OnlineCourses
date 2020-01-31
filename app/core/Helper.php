@@ -43,7 +43,7 @@ class Helper
         $like = $data['input'] . " like '%" . $data['data'] . "%' ";
         $counter = DB::init()->query("SELECT COUNT(*)  As count FROM " . $data['table'] . " WHERE user_id <>" . $data['id'] . " and " . $like);
         return ($counter[0]['count']) > 0 ? true : false;
-        return  false;
+        return false;
     }
 //
 //    public static function returnChild($id)
@@ -115,7 +115,6 @@ class Helper
     {
         Message::setMessage('main', $message, $status);
         header("Location: " . $url);
-
         return;
     }
 
@@ -127,7 +126,7 @@ class Helper
         return;
     }
 
-    public static function backToRegister($message, $status,$type='student')
+    public static function backToRegister($message, $status, $type = 'student')
     {
         $homeController = new homeController();
         Message::setMessage('main', $message, $status);
@@ -147,6 +146,7 @@ class Helper
     public static function old($key)
     {
         echo isset($_REQUEST[$key]) ? $_REQUEST[$key] : '';
+
     }
 
 
@@ -167,9 +167,9 @@ class Helper
         $t = '(';
         foreach ($ids as $k => $id) {
             if ($type == 'Category') {
-                $cat_name = DB::init()->query("SELECT *  FROM categories WHERE id = $id ");
+                $cat_name = DB::init()->query("SELECT *  FROM categories WHERE category_id = $id ");
                 if ($cat_name)
-                    $t .= $cat_name[0]['name'];
+                    $t .= $cat_name[0]['category_name'];
             }
             if ($k < count($ids) - 1 and $k % 2 == 1)
                 $t .= ' <br> ';
@@ -202,6 +202,7 @@ class Helper
 
     public static function getCategoryName($id)
     {
+//        if(explode())
 
         $cat_name = DB::init()->query("SELECT *  FROM categories WHERE category_id = $id ");
         if (!empty($cat_name)) {
@@ -209,7 +210,6 @@ class Helper
         }
 
     }
-
 
 
 }
