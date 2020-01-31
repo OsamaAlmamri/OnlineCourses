@@ -3,7 +3,7 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 <div class="content">
     <?php include VIEW . 'messages.phtml' ?>
-    <h2 class="text-center"><i class="fa fa-list"></i> Teachers Manage</h2>
+    <h2 class="text-center"><i class="fa fa-chalkboard-teacher" style="color:#ec3901"></i> Teachers Manage</h2>
     <div class="row fa-pull-right">
         <div class="col-8">
             <div class="dropdown">
@@ -23,6 +23,7 @@
 
     <div class="col-4"><a href="/admin/teachers/create" class="btn btn-success "><i class="fa fa-plus"> </i> Add</a>
     </div>
+    <br>
     <table id="example1" class="table table-bordered table-striped">
         <thead class="thead-dark font-size-18">
         <tr>
@@ -32,9 +33,8 @@
             <th>User Image</th>
             <th>User Phone</th>
             <th>Registration Date</th>
-            <th> Status</th>
-            <th>update</th>
-            <th>delete</th>
+            <th> Control</th>
+
 
 
         </tr>
@@ -52,19 +52,19 @@
                     <td><?php echo $teacher['user_phone'] ?></td>
                     <td><?php echo $teacher['user_register_date'] ?></td>
                     <td>
-                        <button data-id="<?php echo $teacher['user_id'] ?>"
+                        <a href="" data-id="<?php echo $teacher['user_id'] ?>"
                                 data-status="<?php echo $teacher['user_status'] ?>"
-                                class="btn btn-success active"><?php echo ($teacher['user_status'] == '1') ?  '<i class=\'fas fa-check\'></i>' :'<i class=\'ion ion-close\'></i>'  ?> </button>
-                    </td>
+                                class=" active"><?php echo ($teacher['user_status'] == '1') ?  '<i class=\'fas fa-check\'></i>' :'<i class=\'ion ion-close\'></i>'  ?> </a>
+
 
 
                     <?php if ($this->view_data['deleted'] == false) { ?>
-                        <td><a href="Categories.php?do=edit" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
+                       <a href="/admin/teachers/edit/<?php echo $teacher['user_id'] ?>" ><i class="fa fa-edit"></i></a>
 
-                        <td>
-                            <a href="/admin/universities/delete/<?php echo $teacher['id'] ?>"
-                               onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
-                                        class="fa fa-trash"></i></a>
+
+                            <a href="/admin/teachers/delete/<?php echo $teacher['user_id'] ?>"
+                               onclick="return confirm('هل أنت متأكد من الحذف');" ><i
+                                        class="fa fa-trash-restore"></i></a>
 
                         </td>
                     <?php } else { ?>
@@ -87,7 +87,7 @@
     </table>
 </div>
 
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
 <script>
 

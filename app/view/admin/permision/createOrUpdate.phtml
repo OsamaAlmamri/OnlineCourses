@@ -1,0 +1,124 @@
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+
+<link href="/design/dashboard/lib/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+
+<!-- Select2 -->
+<link href="/design/dashboard/lib/select2/dist/css/select2.min.css" rel="stylesheet">
+<!-- Switchery -->
+<link href="/design/dashboard/lib/switchery/dist/switchery.min.css" rel="stylesheet">
+<!-- starrr -->
+<link href="/design/dashboard/lib/starrr/dist/starrr.css" rel="stylesheet">
+<link rel="stylesheet" href="/design/dashboard/lib/jquery-ui/jquery-ui.css">
+
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
+<div class="content">
+    <?php include VIEW . 'messages.phtml' ?>
+    <h2 class="text-center"><i class="fa  fa-cogs" style="color:#ec3901"></i> Permision Add</h2>
+    <form action="/admin/permision/store" method="post">
+        <div class="row" >
+            <div class="col-md-12">
+                <label for="permission_name">Permision Name:</label>
+                <input type="text" class="form-control" placeholder="Enter Permision Name" id="permission_name" name="permission_name">
+                <label for="permissions_description">Permision Description:</label>
+                <textarea class="tinymce" placeholder="Enter Permision Description" id="permissions_description" name="permissions_description">
+                    </textarea>
+            </div>
+
+            <br>
+            <div class="col-md-12">
+                <br> <input type="submit" class="btn btn-primary btn-block" name="submit">
+            </div>
+        </div>
+
+    </form>
+    <br>
+
+</div>
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
+<script src="/design/dashboard/lib/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="/design/dashboard/lib/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="/design/dashboard/lib/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="/design/dashboard/lib/parsleyjs/dist/parsley.min.js"></script>
+<script src="/design/dashboard/lib/parsleyjs/dist/i18n/ar.js"></script>
+<!-- Autosize -->
+<script src="/design/dashboard/lib/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="/design/dashboard/lib/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="/design/dashboard/lib/starrr/dist/starrr.js"></script>
+
+<script src="/design/dashboard/lib/jquery-ui/jquery-ui.js"></script>
+
+<script>
+
+    $(function () {
+        $('.select2bs4').select2({
+            theme: 'bootstrap4'
+        })
+
+        //Initialize Select2 Elements
+        $('.select2').select2()
+
+        //Initialize Select2 Elements
+        $('.select2').select2()
+    })
+</script>
+<script>
+
+
+    fetchCategories('#main_category_parents', '#sub_category');
+    fetchCategories('#sub_category', '#sub_sub_category');
+
+    function fetchCategories(input, select) {
+
+        $(document).on('change', input, function () {
+            var data = 'category_parents=' + encodeURIComponent($(this).val());
+            var url = '/admin/Categories/fetchSubCategories';
+            $.ajax({
+                url: url,//   var url=$('#news').attr('action');
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: data,// var form=$('#news').serialize();
+                success: function (data) {
+                    $(select).html(data);
+
+                }, error:
+                    function (xhr, status, error) {
+                        $(select).html(xhr.responseText);
+                    }
+            });
+            return (false);
+        });
+    }
+
+    $(document).on('change', '#logo', function () {
+        if (window.File && window.FileReader && window.FileList && window.Blob) //check File API supported browser
+        {
+            var data = $(this)[0].files; //this file data
+            $('#logo_image').html('');
+            $.each(data, function (index, file) { //loop though each file
+                if (/(\.|\/)(gif|jpe?g|png)$/i.test(file.type)) { //check supported file type
+                    var fRead = new FileReader(); //new filereader
+                    fRead.onload = (function (file) { //trigger function on successful read
+                        return function (e) {
+                            var img = $('<img/>').addClass('thumb').attr('src', e.target.result); //create image element
+                            $('#logo_image').append(img); //append image to output element
+                        };
+                    })(file);
+                    fRead.readAsDataURL(file); //URL representing the file's data.
+                }
+            });
+        } else {
+            alert("Your browser doesn't support File API!"); //if File API is absent
+        }
+    });
+
+    CKEDITOR.replace('editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
+</script>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+

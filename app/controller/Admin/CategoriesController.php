@@ -66,7 +66,7 @@ class CategoriesController extends Controller
 
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['MainCategories' => $category->all('0')]);
-        $this->view->pageTitle = 'الاصناف';
+        $this->view->pageTitle = 'Category';
         $this->view->render();
     }
 

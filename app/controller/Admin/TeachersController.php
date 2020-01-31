@@ -41,7 +41,7 @@ class TeachersController extends Controller
 
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'teachers' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
-        $this->view->pageTitle = 'الاصناف';
+        $this->view->pageTitle = 'Teacher';
         $this->view->render();
     }
 
