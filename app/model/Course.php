@@ -38,6 +38,13 @@ class Course
 
     }
 
+    public function visibility(array $aData)
+    {
+        $oStmt = $this->db->preparation('update  courses set course_visibility =:course_visibility where course_id=:course_id');
+        return $oStmt->execute($aData);
+
+    }
+
     public function add(array $aData)
     {
 

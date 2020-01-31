@@ -45,6 +45,16 @@ class CoursesController extends Controller
         echo ($_REQUEST['status'] == 1) ? 0 : 1;
     }
 
+    public function visibility()
+    {
+        $data = array(
+            ':course_id' => htmlentities($_REQUEST['data_id']),
+            ':course_visibility' => htmlentities(($_REQUEST['visibility'] == 1) ? 0 : 1),
+        );
+        $course = $this->model('Course');
+        $status = ($course->visibility($data));
+        echo ($_REQUEST['visibility'] == 1) ? 0 : 1;
+    }
 
     public function saveVideo($size = '')
     {
