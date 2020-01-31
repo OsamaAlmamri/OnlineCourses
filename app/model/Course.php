@@ -30,15 +30,13 @@ class Course
 
 
     }
-    // ':course_title' => htmlentities($_REQUEST['category_description']),
-    //                    ':course_description' => htmlentities($_REQUEST['category_description']),
-    //                    ':courses_image' => $image,
-    //                    ':course_price' => htmlentities($_REQUEST['category_description']),
-    //                    ':course_price_afterDiscount' => htmlentities($_REQUEST['category_description']),
-    //                    ':course_students_target' => htmlentities($_REQUEST['category_name']),
-    //                    ':course_goals' => htmlentities($_REQUEST['course_goals']),
-    //                    ':categories_ids' => htmlentities($_REQUEST['course_goals']),
 
+    public function activeByAdmin(array $aData)
+    {
+        $oStmt = $this->db->preparation('update  courses set course_status =:course_status where course_id=:course_id');
+        return $oStmt->execute($aData);
+
+    }
 
     public function add(array $aData)
     {

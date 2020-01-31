@@ -34,6 +34,18 @@ class CoursesController extends Controller
         $this->view->render();
     }
 
+    public function active()
+    {
+        $data = array(
+            ':course_id' => htmlentities($_REQUEST['data_id']),
+            ':course_status' => htmlentities(($_REQUEST['status'] == 1) ? 0 : 1),
+        );
+        $course = $this->model('Course');
+        $status = ($course->activeByAdmin($data));
+        echo ($_REQUEST['status'] == 1) ? 0 : 1;
+    }
+
+
     public function saveVideo($size = '')
     {
 
