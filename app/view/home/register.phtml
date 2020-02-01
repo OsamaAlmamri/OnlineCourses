@@ -1,7 +1,9 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 
 <div class="content1">
-    <?php include VIEW . 'messages.phtml' ?>
+    <?php include VIEW . 'messages.phtml' ;
+
+    ?>
 
     <div class="container h-100">
         <div class="row justify-content-lg-center h-100">
@@ -47,18 +49,6 @@
                                 <div class="col-md-6">
                                     <label for="user_image">User Image:</label>
                                     <div class="custom-file">
-
-
-                                        <input type="file" class="custom-file-input" name="user_image" id="user_image" required>
-                                        <label class="custom-file-label" for="user_image">Choose file</label>
-                                    </div>
-                                    <div id="user_image_dev">
-                                        <?php if (array_key_exists('news', $this->view_data)) { ?>
-                                            <img src="<?php echo($this->view_data['user']['user_image']); ?>"
-                                                 width="100px" class="img-circle">
-
-                                        <?php } ?>
-                                    </div>
 
                                     <label for="user_phone">User Phone:</label>
                                     <input type="phone" class="form-control" placeholder="Enter User Phone"
@@ -166,6 +156,3 @@
 
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
-
-
-

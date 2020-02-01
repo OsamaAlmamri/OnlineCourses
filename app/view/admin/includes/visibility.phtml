@@ -1,0 +1,31 @@
+<script>
+    function Visible(controller) {
+
+        $(document).on('click', '.btn_visibility', function () {
+            var data = 'visibility=' + encodeURIComponent($(this).attr('data-visibility')) + '&data_id=' + encodeURIComponent($(this).attr('data-id'));
+            var url = '/admin/' + controller + '/visibility';
+            var _this = $(this);
+            $.ajax({
+                url: url,//   var url=$('#news').attr('action');
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: data,// var form=$('#news').serialize();
+                success: function (data) {
+                    if (data == 1) {
+                        _this.html("<i class=\"fa fa-eye\"> </i>");
+                        _this.attr("data-visibility", data);
+                    } else {
+                        _this.html("<i class=\"fa fa-eye-slash\"> </i>");
+                        _this.attr("data-visibility", data);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            return (false);
+        });
+
+    }
+
+</script>

@@ -26,55 +26,37 @@ class Course
 
     public function find($id)
     {
-//        $oStmt = $this->db->preparation('SELECT * FROM courses WHERE id =$id');
         return $this->db->query("select * from courses WHERE id =$id");
-//        $oStmt->execute($aData);
-//        return $oStmt->fetch();
+
 
     }
 
+    public function activeByAdmin(array $aData)
+    {
+        $oStmt = $this->db->preparation('update  courses set course_status =:course_status where course_id=:course_id');
+        return $oStmt->execute($aData);
+
+    }
+
+    public function visibility(array $aData)
+    {
+        $oStmt = $this->db->preparation('update  courses set course_visibility =:course_visibility where course_id=:course_id');
+        return $oStmt->execute($aData);
+
+    }
 
     public function add(array $aData)
     {
 
-        $oStmt = $this->db->preparation('INSERT INTO courses (  categories2, editor, title, introduction, logo,sort,  has_comment,
-                                                 status, created_by, updates, created_at, updated_at)
-                                                  VALUES (  :categories2, :editor, :title, :introduction, :logo,:sort, :has_comment, 
-                                                  :status,:created_by, :updates, :created_at, :updated_at)');
-        return $oStmt->execute($aData);
-
-    }
-
-
-    public function update(array $aData)
-    {
-
-        $oStmt = $this->db->preparation('update  courses set categories2 =:categories2, editor=:editor, title=:title, introduction=:introduction, logo=:logo,sort=:sort,  has_comment=:has_comment,
-                                                 status=:status, updates=:updates, updated_at=:updated_at where id=:id
-                                                  ');
-        return $oStmt->execute($aData);
-
-    }
-
-
-    public function findCategory($aData)
-    {
-        $oStmt = $this->db->preparation('SELECT * FROM courses WHERE category =?');
+        $oStmt = $this->db->preparation('INSERT INTO courses (  course_title, course_description, courses_image,course_price,course_price_afterDiscount,
+                                                                    course_students_target,course_goals,categories_ids)
+                                                  VALUES (  :course_title, :course_description, :courses_image,:course_price,:course_price_afterDiscount,
+                                                  :course_students_target,:course_goals,:categories_ids)');
         $oStmt->execute($aData);
-        return $oStmt->fetchAll();
+        return $this->db->lastInsertId();
 
     }
 
-//add new row to courses table
-
-    public function delete($id)
-    {
-
-        $oStmt = $this->db->preparation('delete from  courses  WHERE id LIKE  ? ');
-        return $oStmt->execute(array(0 => $id));
-//        return $oStmt->execute($aData);
-
-    }
 }
 
 

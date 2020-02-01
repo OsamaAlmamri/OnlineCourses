@@ -27,6 +27,7 @@
     <table id="example1" class="table table-bordered table-striped">
         <thead class="thead-dark font-size-18">
         <tr>
+            <th> #</th>
             <th>Category Name</th>
             <th>description</th>
             <th>Category Parents</th>
@@ -37,13 +38,16 @@
 
         <tbody>
         <?php if (array_key_exists('categories', $this->view_data)) {
-            foreach ($this->view_data['categories'] as $category) { ?>
+            foreach ($this->view_data['categories'] as $k => $category) { ?>
 
 
                 <tr>
+                    <td><?php echo $k ?></td>
                     <td><?php echo $category['category_name'] ?></td>
                     <td><?php echo $category['category_description'] ?></td>
-                    <td> <?php echo Helper::getCategoryName($category['category_parents']) ?></td>
+
+                    <td> <?php echo Helper::getCategoryName(str_replace('level3_', '', $category['category_parents'])) ?></td>
+
                     <td>
                         <a href="" data-id="<?php echo $category['category_id'] ?>"
                                 data-visibility="<?php echo $category['category_visibility'] ?>"
@@ -52,7 +56,6 @@
 
                         <a href="" data-id="<?php echo $category['category_id'] ?>"
                                 data-status="<?php echo $category['category_status'] ?>"
-                                class=" active"><?php echo ($category['category_status'] == '1') ?  '<i class=\'fas fa-check\'></i>' :'<i class=\'ion ion-close\'></i>' ?> </a>
 
 
 
@@ -88,33 +91,12 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'visibility.phtml' ?>
 
 <script>
-    $(document).on('click', '.btn_visibility', function () {
-        var data = 'visibility=' + encodeURIComponent($(this).attr('data-visibility')) + '&data_id=' + encodeURIComponent($(this).attr('data-id'));
-        var url = '/admin/categories/visibility';
-        var _this = $(this);
-        $.ajax({
-            url: url,//   var url=$('#news').attr('action');
-            method: 'POST',
-            dataType: 'json',// data type that i want to return
-            data: data,// var form=$('#news').serialize();
-            success: function (data) {
-                if (data == 1) {
-                    _this.html("<i class=\"fa fa-eye\"> </i>");
-                    _this.attr("data-visibility", data);
-                } else {
-                    _this.html("<i class=\"fa fa-eye-slash\"> </i>");
-                    _this.attr("data-visibility", data);
-                }
-            },
-            error: function (xhr, status, error) {
-                alert(xhr.responseText);
-            }
-        });
-        return (false);
-    });
+
     Active('categories');
+    Visible('categories');
     $(function () {
         $('#example1').DataTable({
             language: {url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Arabic.json"},

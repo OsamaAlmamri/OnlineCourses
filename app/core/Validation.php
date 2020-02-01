@@ -36,6 +36,10 @@ class Validation
                     if (($_FILES[$fildName]['name']) == '')
                         $errors[$fildName][$typeValidate] = $fildName . ' is required ';
                     break;
+                case 'hasElements':
+                    if (!(isset($_REQUEST[$fildName]) ))
+                        $errors[$fildName][$typeValidate] = $fildName . ' must be has at less  ' . $data . 'element';
+                    break;
                 case 'min':
                     if (strlen($formData) < $data)
                         $errors[$fildName][$typeValidate] = $fildName . '  must be more than ' . $data;

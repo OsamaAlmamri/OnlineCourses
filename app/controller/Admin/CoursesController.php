@@ -7,9 +7,6 @@ namespace Admin;
 
 use Controller;
 use Helper;
-use Message;
-use Session;
-use Validation;
 
 class CoursesController extends Controller
 {
@@ -19,60 +16,86 @@ class CoursesController extends Controller
     {
         Helper::viewAdminFile();
 
-        $category = $this->model('Category');
+        $course = $this->model('Course');
 //        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'index', ['courses' => [], 'deleted' => false]);
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
         $this->view->pageTitle = 'courses';
         $this->view->render();
     }
 
-    public function create()
+    public function addVideo()
     {
-
         Helper::viewAdminFile();
 
-        $category = $this->model('Category');
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
-        $this->view->pageTitle = 'الاصناف';
+//        $category = $this->model('Category');
+//        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'addVideo', ['courses' => [], 'deleted' => false]);
+        $this->view->pageTitle = 'courses';
         $this->view->render();
     }
 
-
-    public function edit($id)
+    public function active()
     {
-
-        Helper::viewAdminFile();
-
-        $CatModel = $this->model('Category');
-        $category = $CatModel->find($id)[0];
-//        return var_dump($news);
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'create', ['category' => $category, 'type' => 'update']);
-
-//        $this->view('admin' . DIRECTORY_SEPARATOR . 'news' . DIRECTORY_SEPARATOR . 'create', ['news' => $news]);
-        $this->view->pageTitle = 'الاصناف';
-        $this->view->render();
+        $data = array(
+            ':course_id' => htmlentities($_REQUEST['data_id']),
+            ':course_status' => htmlentities(($_REQUEST['status'] == 1) ? 0 : 1),
+        );
+        $course = $this->model('Course');
+        $status = ($course->activeByAdmin($data));
+        echo ($_REQUEST['status'] == 1) ? 0 : 1;
     }
 
-    public function delete($id)
+    public function visibility()
     {
-        Helper::viewAdminFile();
-        $this->model('Category');
-        $c = $this->model->delete($id);
+        $data = array(
+            ':course_id' => htmlentities($_REQUEST['data_id']),
+            ':course_visibility' => htmlentities(($_REQUEST['visibility'] == 1) ? 0 : 1),
+        );
+        $course = $this->model('Course');
+        $status = ($course->visibility($data));
+        echo ($_REQUEST['visibility'] == 1) ? 0 : 1;
+    }
 
+    public function saveVideo($size = '')
+    {
 
-        if ($c == 'hasChild') {
-            Message::setMessage('msgState', 0);
-            Message::setMessage('main', ' لا زال هناك اقسام فرعية  تحت هذا القسم ');
+        $ini_PostSize = preg_replace("/[^0-9,.]/", "", ini_get('post_max_size')) * (1024 * 1024);
+        $ini_FileSize = preg_replace("/[^0-9,.]/", "", ini_get('upload_max_filesize')) * (1024 * 1024);
+        $maxFileSize = ($ini_PostSize < $ini_FileSize ? $ini_PostSize : $ini_FileSize);
+        $file = (isset($_FILES["file1"]) ? $_FILES["file1"] : 0);
+
+        if (($size != '')) {
+            echo $maxFileSize;
+            exit;
+        }
+        if (!$file) { // if file not chosen
+
+            if ($file["size"] > $maxFileSize) {
+                die("ERROR: The File is too big! The maximum file size is " . $maxFileSize / (1024 * 1024) . "MB");
+            }
+            die("ERROR: Please browse for a file before clicking the upload button");
+        }
+        if ($file["error"]) {
+
+            die("ERROR: File couldn't be processed");
+
+        }
+        $time = time();
+        if (move_uploaded_file($file["tmp_name"], "videos/" . $time . $file["name"])) {
+//    echo "SUCCESS: The upload of " . $file["name"] . " is complete";
+            echo '/videos/' . time() . $file["name"];
 
         } else {
-
-            Message::setMessage('msgState', 1);
-            Message::setMessage('main', 'تم حذف القسم بنجاح');
+            echo "ERROR: Couldn't move the file to the final location";
         }
 
-        $category = $this->model;
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-        $this->view->pageTitle = 'الاصناف';
+    }
+
+    public function create()
+    {
+        Helper::viewAdminFile();
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
+        $this->view->pageTitle = 'Courses';
         $this->view->render();
     }
 
@@ -88,104 +111,57 @@ class CoursesController extends Controller
         $c = json_encode($c);
         echo($c);
     }
-
+//course_id
+//course_title
+//course_description
+//courses_image
+//course_price
+//course_requirements
+//course_students_target
+//course_goals
+//categories_ids
+//course_date
+//course_status
+//course_updates
+//course_visibility
 
     public function store()
     {
 
-        // check if there submit
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $validate = Validation::required(['', 'name_ar', 'name_en', 'section_count', 'newsCount', 'sort']);
-            if ($validate['status'] == 1) {
-                $cate = array(
-                    ':name_ar' => htmlentities($_REQUEST['name_ar']),
-                    ':name_en' => htmlentities($_REQUEST['name_en']),
-                    ':parent' => htmlentities($_REQUEST['parent'] != null ? $_REQUEST['parent'] : 0),
-                    ':section_count' => htmlentities($_REQUEST['section_count']),
-                    ':newsCount' => htmlentities($_REQUEST['newsCount']),
-                    ':isMain' =>  (isset($_REQUEST['isMain'])== 'on' ? 1 : 0),
-                    ':liveNews' =>  (isset($_REQUEST['liveNews']) == 'on' ? 1 : 0),
-                    ':hasSlides' =>  (isset($_REQUEST['hasSlides'])== 'on' ? 1 : 0),
-                    ':sort' => htmlentities($_REQUEST['sort']),
-                    ':status' =>  (isset($_REQUEST['status']) ? 1 : 0),
-                    ':created_by' => Session::logged(),
-                    ':updates' => '',
-                    ':created_at' => time(),
-                    ':updated_at' => time(),
+            $validate = \Validation::validate([
+                'course_title' => array(['required' => 'required']),
+                'course_description' => array(['required' => 'required']),
+                'courses_image' => array(['imageRequired' => 'imageRequired']),
+                'course_price' => array(['required' => 'required']),
+                'course_price_afterDiscount' => array(['required' => 'required']),
+                'course_students_target' => array(['required' => 'required']),
+                'course_goals' => array(['required' => 'required']),
+                'categories_ids' => array(['hasElements' => 'hasElements']),
+            ]);
+            if (count($validate) == 0) {
+                if (isset($_FILES['courses_image']['name']))
+                    $image = Helper::saveImage('courses_image', 'images/courses/');
+                $course = array(
+                    ':course_title' => htmlentities($_REQUEST['course_title']),
+                    ':course_description' => htmlentities($_REQUEST['course_description']),
+                    ':courses_image' => $image,
+                    ':course_price' => htmlentities($_REQUEST['course_price']),
+                    ':course_price_afterDiscount' => htmlentities($_REQUEST['course_price_afterDiscount']),
+                    ':course_students_target' => htmlentities($_REQUEST['course_students_target']),
+                    ':course_goals' => htmlentities($_REQUEST['course_goals']),
+                    ':categories_ids' => json_encode($_REQUEST['categories_ids']),
                 );
-
-                if ($this->model == "Category")
-                    $category = $this->model;
-                else
-                    $category = $this->model('Category');
-
-
-
-                if ($category->add($cate)) {
-                    Message::setMessage('msgState', 1);
-                    Message::setMessage('main', 'تم اضافة القسم بنجاح');
-
-                }
-            }
-
-
-        }
-
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-        $this->view->pageTitle = 'الاصناف';
-        $this->view->render();
-    }
-
-    public function update()
-    {
-
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $validate = Validation::required(['', 'name_ar', 'name_en', 'section_count', 'newsCount', 'sort']);
-            if ($validate['status'] == 1) {
-                $time = date("D- y/m/j  h-i-s ");
-//
-
-                $u = (['update_by' => Session::logged(), 'update_date' => $time]);
-                $uArray = json_decode($_REQUEST['_updates']);
-                $uArray[] = $u;
-
-                $cate = array(
-                    ':id' => htmlentities($_REQUEST['_id']),
-                    ':name_ar' => htmlentities($_REQUEST['name_ar']),
-                    ':name_en' => htmlentities($_REQUEST['name_en']),
-                    ':parent' => htmlentities($_REQUEST['parent'] != null ? $_REQUEST['parent'] : 0),
-                    ':section_count' => htmlentities($_REQUEST['section_count']),
-                    ':newsCount' => htmlentities($_REQUEST['newsCount']),
-                    ':isMain' => (isset($_REQUEST['isMain']) ? 1 : 0),
-                    ':liveNews' => (isset($_REQUEST['liveNews']) ? 1 : 0),
-                    ':hasSlides' => (isset($_REQUEST['hasSlides']) ? 1 : 0),
-                    ':sort' => htmlentities($_REQUEST['sort']),
-                    ':status' => (isset($_REQUEST['status']) ? 1 : 0), ':updates' => json_encode($uArray),
-                    ':updated_at' => $time,
-                );
-
-                $this->model('Category');
-                if ($this->model->update($cate)) {
-                    Message::setMessage('msgState', 1);
-                    Message::setMessage('main', 'تم تعديل القسم  بنجاح');
-//                    $news = $this->model('Course');
-                    $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $this->model->all(), 'deleted' => false]);
-                    $this->view->pageTitle = 'الاصناف';
-                    $this->view->render();
-
+                $this->model('Course');
+                $id = $this->model->add($course);
+                if ($id) {
+                    Helper::back('/admin/courses/index', 'add successfully', 'success');
+                    return;
                 }
             } else {
-                if ($this->model == "Category")
-                    $category = $this->model;
-                else
-                    $category = $this->model('Category');
-                $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-                $this->view->pageTitle = 'الاصناف';
-                $this->view->render();
+                Helper::back('/admin/courses/create', 'error in required input', 'danger');
+                return;
             }
-
-
         }
 
 
