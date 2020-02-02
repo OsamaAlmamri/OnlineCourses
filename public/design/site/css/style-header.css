@@ -175,6 +175,18 @@ border-color: crimson;
         margin-top: 22% !important;
         margin-left: -146% !important;
     }
+    .dmheart{
+        border: 1px solid #eee !important;
+        margin-top: 22% !important;
+        margin-left: -199% !important;
+    }
+    .dmcourses{
+
+        border: 1px solid #eee !important;
+        margin-top: 16% !important;
+        margin-left: -61% !important;
+    
+    }
     .two{
         margin-left: 17%;
     }
@@ -201,7 +213,7 @@ border-color: crimson;
         border: 1px solid transparent;
         margin-left: 60%;
         margin-top: 9%;
-        margin-bottom: 12%;
+
 
     }
     .btn-quaternary {
