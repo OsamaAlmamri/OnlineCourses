@@ -25,6 +25,13 @@
 
         </div>
 
+        <div class="form-group">
+            <label for="course__description">Category Description:</label>
+            <textarea type="text" class="form-control" id="course__description" name="category_description">
+            </textarea>
+        </div>
+
+
 
         <div class="form-group">
             <label for="main_category_parents">Main Category(Major):</label>
@@ -54,16 +61,6 @@
         </div>
 
 
-        <div class="form-group">
-            <label for="category_description">Category Description:</label>
-            <textarea class="form-control" id="category_description"
-                      value="<?php Helper::old('category_description'); ?>"
-                      name="category_description">
-
-                </textarea>
-            <?php echo Message::getInputErrorMessage('category_description') ?>
-
-        </div>
 
 
         <!---->
@@ -85,7 +82,7 @@
 
 </div>
 
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <script src="/design/dashboard/lib/jquery.tagsinput/src/jquery.tagsinput.js"></script>
 <!-- Select2 -->
 <script src="/design/dashboard/lib/select2/dist/js/select2.full.min.js"></script>
@@ -143,4 +140,3 @@
 
 </script>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
-

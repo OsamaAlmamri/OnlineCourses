@@ -156,6 +156,9 @@ body {
     left: 110px;
     top: 0;
 }
+.btn_visibility{
+    color:#481F41;
+}
 /*end icon style*/
 /*start button style*/
 .btn-primary {
@@ -164,6 +167,7 @@ body {
     border-color: #4d557a;
 
 }
+
 /*end button style*/
 /*start content page style*/
 div.content {
@@ -243,7 +247,10 @@ label {
     transition: 0.3s;
     font-size: 17px;
 }
-
+div.dataTables_wrapper div.dataTables_filter {
+    text-align: right;
+    margin-top: -52px;
+}
 /* Change background color of buttons on hover */
 .tab button:hover {
     background-color: #ec3901;

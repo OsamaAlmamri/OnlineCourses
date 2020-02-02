@@ -50,19 +50,6 @@
                                     <label for="user_image">User Image:</label>
                                     <div class="custom-file">
 
-                                    <input type="file" class="custom-file-input" name="user_image"
-                                           id="user_image">
-                                    <label class="custom-file-label" for="user_image">Choose file</label>
-
-                                    <div id="user_image_dev">
-                                        <?php if (array_key_exists('user', $this->view_data)) { ?>
-                                            <img src="<?php echo($this->view_data['user']['document']); ?>"
-                                                 width="100px">
-
-                                        <?php } ?>
-                                    </div>
-                                <?php echo Message::getInputErrorMessage('document') ?>
-
                                     <label for="user_phone">User Phone:</label>
                                     <input type="phone" class="form-control" placeholder="Enter User Phone"
                                            value="<?php Helper::old('user_phone'); ?>"
@@ -142,7 +129,7 @@
 
 </div>
 
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.php' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'readImageFile.phtml' ?>
 
 <script>
