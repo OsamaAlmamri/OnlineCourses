@@ -13,6 +13,19 @@
     ?>
     <h2 class="text-center"><i class="fa  fa-list"></i> Categories Add</h2>
     <form action="/admin/courses/store" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="course_title"> Teacher:</label>
+            <select class="form-control" name="course_owner" id="">
+                <?php if (array_key_exists('teachers', $this->view_data)) {
+                    foreach ($this->view_data['teachers'] as $k => $teacher) { ?>
+                        <option  value="<?php echo $teacher['user_id'] ?>" > <?php echo $teacher['user_full_name'] ?>   </option>
+                    <?php }
+                } ?>
+            </select>
+            <?php echo Message::getInputErrorMessage('course_title') ?>
+        </div>
+
         <div class="form-group">
             <label for="course_title">Course Title:</label>
             <input type="text"
@@ -20,6 +33,8 @@
                    class="form-control" id="course_title" name="course_title">
             <?php echo Message::getInputErrorMessage('course_title') ?>
         </div>
+
+
         <div class="form-group">
             <label for="course_description">Course Description:</label>
             <input type="text" class="form-control"
@@ -59,7 +74,7 @@
                    class="form-control" id="categories_input" name="categories">
             <div id="categories_ids" class="well well-sm"
                  style="height: 50px; overflow: auto;">
-                <?php if ((Helper::old('categories_ids')!='')) {
+                <?php if ((Helper::old('categories_ids') != '')) {
                     foreach (Helper::old('categories_ids') as $id) { ?>
                         <div id="categories_ids<?php echo $id ?>">
                             <svg class="svg-inline--fa fa-minus-circle fa-w-16" aria-hidden="true" focusable="false"
@@ -67,9 +82,10 @@
                                  viewBox="0 0 512 512" data-fa-i2svg="">
                                 <path fill="currentColor"
                                       d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"></path>
-                            </svg><!-- <i class="fa fa-minus-circle"></i> --> <?php echo Helper::getCategoryName($id)  ?><input type="hidden"
-                                                                                            name="categories_ids[]"
-                                                                                            value="<?php echo $id ?>">
+                            </svg><!-- <i class="fa fa-minus-circle"></i> --> <?php echo Helper::getCategoryName($id) ?>
+                            <input type="hidden"
+                                   name="categories_ids[]"
+                                   value="<?php echo $id ?>">
                         </div>
                     <?php }
                 } ?>

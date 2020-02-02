@@ -17,7 +17,6 @@ class CoursesController extends Controller
         Helper::viewAdminFile();
 
         $course = $this->model('Course');
-//        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
         $this->view->pageTitle = 'courses';
         $this->view->render();
@@ -94,7 +93,17 @@ class CoursesController extends Controller
     public function create()
     {
         Helper::viewAdminFile();
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
+
+        $this->model('Role');
+        $role_id = $this->model->getRoleByName('teacher');
+        $teachers = $this->model('Users');
+        if ($_SESSION['role_name'] == 'university')
+            $Allteachers = $teachers->UniversityTeacher($role_id, Session::logged());
+        else
+            $Allteachers = $teachers->all($role_id);
+
+
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['teachers' => $Allteachers] );
         $this->view->pageTitle = 'Courses';
         $this->view->render();
     }
@@ -138,11 +147,13 @@ class CoursesController extends Controller
                 'course_students_target' => array(['required' => 'required']),
                 'course_goals' => array(['required' => 'required']),
                 'categories_ids' => array(['hasElements' => 'hasElements']),
+                'course_owner' => array(['hasElements' => 'hasElements']),
             ]);
             if (count($validate) == 0) {
                 if (isset($_FILES['courses_image']['name']))
                     $image = Helper::saveImage('courses_image', 'images/courses/');
                 $course = array(
+                    ':course_owner' => htmlentities($_REQUEST['course_owner']),
                     ':course_title' => htmlentities($_REQUEST['course_title']),
                     ':course_description' => htmlentities($_REQUEST['course_description']),
                     ':courses_image' => $image,
