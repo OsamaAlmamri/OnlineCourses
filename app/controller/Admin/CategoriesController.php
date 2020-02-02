@@ -112,7 +112,7 @@ class CategoriesController extends Controller
                     return;
                 }
             } else {
-                Helper::back('/admin/categories/index', 'error in required input', 'danger');
+                Helper::back('/admin/categories/create', 'error in required input', 'danger');
                 return;
             }
         }
