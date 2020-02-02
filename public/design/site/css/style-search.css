@@ -1,0 +1,30 @@
+#page_container {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#accordion_search_bar_container {
+  position: relative;
+}
+#accordion_search_bar_container:after {
+  content: '\e003';
+  font-family: Glyphicons Halflings;
+  width: 291px;
+  height: 18px;
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
+}
+#accordion_search_bar_container #accordion_search_bar {
+  display: block;
+  margin: 10px auto;
+  width: 43%;
+  padding: 7px 10px;
+  border: 1px solid #cacaca;
+  border-radius: 6px;
+  outline: 0;
+}
+
+.panel-title a {
+  display: block;
+}

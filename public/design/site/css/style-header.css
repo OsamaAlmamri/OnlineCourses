@@ -1,0 +1,325 @@
+body{
+    overflow-y:scroll;
+    overflow-x: hidden;
+    background: #eee;
+    padding: 0 !important;
+    margin: 0;
+}
+body::-webkit-scrollbar{
+    width: 10px;
+}
+body::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    /*background: rgba(0,0,0,.1);*/
+    background: gray;
+}
+#site{
+    color: #fdfbfb;
+}
+
+/*!* Small devices (portrait tablets and large phones, 600px and up) *!*/
+/*@media only screen and (min-width: 600px) {*/
+/*    .carousel-inner {*/
+/*        position: relative;*/
+/*        width: 100%;*/
+/*        overflow: hidden;*/
+/*        height: 70% !important;*/
+/*    }*/
+/*    .w-100 {*/
+/*        width: 100%!important;*/
+/*        !*height: 100% !important;*!*/
+/*    }*/
+/*}*/
+
+/* Medium devices (landscape tablets, 768px and up) */
+/*@media only screen and (min-width: 768px) {...}*/
+.seicon{
+    position: absolute;
+    top: 43%;
+    right: 5%;
+    transform: translateY(0px);
+}
+.head{
+
+    box-shadow: 0 0 1px 1px rgba(20,23,28,.1), 0 3px 1px 0 rgba(20,23,28,.1);
+
+
+}
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 3px;
+    z-index: 99;
+    font-size: 13px;
+    border: none;
+    outline: none;
+    background-color: #350786;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 54px;
+}
+
+#myBtn:hover {
+    background-color: #555;
+}
+
+a{
+  text-decoration: none;
+}
+.navbar{
+    background: #fff !important;
+    /*height: 65px;*/
+    /*display: flex;*/
+    /*justify-content: space-between;*/
+    /*position: relative;*/
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+.dm{
+    /*display: block !important;*/
+    border:1px solid #eee !important;
+
+}
+.dm>a:hover{
+    background: transparent !important;
+}
+#link{
+    color: blue;
+}
+#link:hover{
+    color: red;
+}
+.dm:before,.dm:after{
+    content: ""  !important;
+    position: absolute  !important;
+    border: 10px solid transparent  !important;
+    border-top:0  !important;
+    right: 30px  !important;
+
+    top:10px  !important;
+}
+.dm:before{
+    top:-9px  !important;
+    border-bottom-color: #fff  !important;
+}
+.dm:after{
+    top:-9px  !important;
+    border-bottom-color: #fff  !important;
+    z-index: -1  !important;
+}
+@media (min-width: 992px) {
+    .search{
+        margin-right: 8%;
+        margin-top: 0%;
+        margin-bottom: -2%;}
+    .seicon{
+        position: absolute;
+        top: 44%;
+        right: 38%;
+        transform: translateY(0px);
+        color: #dc4700;
+    }
+    .sea{
+        width: 164% !important;
+        background: #6b66661a !important;
+
+    }
+
+    .input-icons {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .icon {
+        right: 534px;
+        position: absolute;
+        top: 29px;
+    }
+    .sea:hover{
+border-color: crimson;
+        background: white !important;
+
+    }
+    /*.carousel-inner {*/
+    /*    position: relative;*/
+    /*    width: 100%;*/
+    /*    overflow: hidden;*/
+    /*    height: 70% !important;*/
+    /*}*/
+    /*.w-100 {*/
+    /*    !*width: 100%!important;*!*/
+    /*    !*height: 100% !important;*!*/
+    /*}*/
+
+    .dropdown{
+        padding: 6px 6px;
+        /*margin-left: -230%;*/
+    }
+    .navmy:hover{
+        border-bottom:0px solid grey;
+        padding: 6px 6px;
+        background: #eee !important;
+        border-bottom:1px solid grey;
+    }
+    .dropdown:hover{
+        /*border-bottom:0px solid grey;*/
+        /*padding: 6px 6px;*/
+        /*background: #eee !important;*/
+    }
+    .dm{
+        border: 1px solid #eee !important;
+        margin-top: 22% !important;
+        margin-left: -146% !important;
+    }
+    .two{
+        margin-left: 17%;
+    }
+    .btn{
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 600;
+        text-align: center;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        /*padding: 11px 12px;*/
+        font-size: 15px;
+        line-height: 1.35135;
+        border-radius: 2px;
+    }
+    .btnn{
+        padding: 8px 8px;
+        color: #fff;
+        background-color: #ec5252;
+        border: 1px solid transparent;
+        margin-left: 60%;
+        margin-top: 9%;
+        margin-bottom: 12%;
+
+    }
+    .btn-quaternary {
+        padding:8px 8px !important;
+        color: #686f7a !important;
+        background-color: #fff !important;
+        border: 1px solid #686f7a !important;
+        margin-left: 16px;
+        margin-top: 9%;
+
+    }
+    .btn-quaternary:hover {
+
+        color: black !important;
+        background: white;
+        border-color: black;
+
+
+    }
+
+}
+.mycart{
+    font-size: 24px !important;
+    position: relative !important;
+    top: 3px;
+    left: -2px;
+    color: #ef4501;
+}
+.before_cart{
+    margin-left: 0%;
+}
+.heart:hover{
+    background: #8080801a;
+    border-radius: 20px;
+    /*border:1px solid #b7b4b4;*/
+}
+.footer{
+    background: #eee;
+}
+/*login*/
+.login{
+    width: 75% !important;
+}
+/*login*/
+/*courses*/
+.haedcourses{
+    background: white;
+    margin-top: 3%;
+    margin-bottom: -4%;
+    height: 8%;
+    border-bottom: 2px solid #ec5252;
+}
+.head-courses{
+    margin-top: 0% !important;
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+.wish_list{
+    background: white;
+    margin-top: 12%;
+    margin-bottom: -4%;
+    height: 8%;
+    border-bottom: 2px solid #ec5252;
+}
+@media (min-width: 1024px)
+{
+
+    /*.filters_listing {*/
+    /*    padding: 10px 0 5px 0;*/
+    /*    background: #101010;*/
+    /*    z-index: 999999 !important;*/
+    /*    position: relative;*/
+    /*    margin-top: 7%;*/
+    /*    width: 100%;*/
+    /*}*/
+}
+@media (max-width: 480px) {
+    .wish_list{
+        background: white;
+        margin-top: 19%;
+        margin-bottom: -4%;
+        height: 8%;
+        border-bottom: 2px solid #ec5252;
+    }
+    .filters_listing {
+        padding: 10px 0 5px 0;
+        background: #101010;
+        z-index: 999999 !important;
+        position: relative;
+        margin-top: 13%;
+        width: 100%;
+    }
+}
+
+/*courses*/
+.badge {
+    position: absolute;
+    right: 4px;
+    top: 7px;
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    /*margin-left: -24%;*/
+
+}
+
+.carousel-control-prev {
+    left: 0;
+    z-index: 3;
+}
+.carousel-control-next {
+    right: 0;
+    z-index: 3;
+}
+
