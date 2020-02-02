@@ -113,6 +113,7 @@ class Helper
 
     public static function back($url, $message, $status)
     {
+        Session::set('oldFormData', $_REQUEST);
         Message::setMessage('main', $message, $status);
         header("Location: " . $url);
         return;
@@ -145,7 +146,14 @@ class Helper
 
     public static function old($key)
     {
-        echo isset($_REQUEST[$key]) ? $_REQUEST[$key] : '';
+//        echo isset($_REQUEST[$key]) ? $_REQUEST[$key] : '';
+        if (Session::has('oldFormData'))
+            if (is_array($_SESSION['oldFormData'][$key]))
+                return $_SESSION['oldFormData'][$key];
+            else
+                echo $_SESSION['oldFormData'][$key];
+        else
+            echo '';
 
     }
 
