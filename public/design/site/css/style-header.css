@@ -66,7 +66,7 @@ body::-webkit-scrollbar-thumb{
 }
 
 a{
-  text-decoration: none;
+    text-decoration: none;
 }
 .navbar{
     background: #fff !important;
@@ -140,7 +140,7 @@ a{
         top: 29px;
     }
     .sea:hover{
-border-color: crimson;
+        border-color: crimson;
         background: white !important;
 
     }
@@ -185,7 +185,7 @@ border-color: crimson;
         border: 1px solid #eee !important;
         margin-top: 16% !important;
         margin-left: -61% !important;
-    
+
     }
     .two{
         margin-left: 17%;
