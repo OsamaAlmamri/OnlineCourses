@@ -157,6 +157,29 @@ class Helper
 
     }
 
+    public static function getVideoDeatils($url)
+    {
+        include_once(CORE . DIRECTORY_SEPARATOR . 'getid3' . DIRECTORY_SEPARATOR . 'getid3.php');
+        $getID3 = new getID3;
+        $file = $getID3->analyze($url);
+        return ($file);
+
+//        echo("Duration: " . $file['playtime_string'] .
+//                            " / Dimensions: " . $file['video']['resolution_x'] . " wide by " . $file['video']['resolution_y'] . " tall" .
+//                            " / Filesize: " . $file['filesize'] . " bytes<br />");
+    }
+
+
+    public static function getVideoDuartion($url)
+    {
+        include_once(CORE . DIRECTORY_SEPARATOR . 'getid3' . DIRECTORY_SEPARATOR . 'getid3.php');
+        $getID3 = new getID3;
+        $file = $getID3->analyze($url);
+        return ($file['playtime_string']);
+
+
+    }
+
 
     public static function errors($key)
     {

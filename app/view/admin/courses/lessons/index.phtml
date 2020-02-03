@@ -53,6 +53,8 @@
             <td>#</td>
             <td>chapter</td>
             <td>video</td>
+            <td>duration</td>
+            <td>size</td>
 
             <!--            resources_id-->
             <!--            resources_video-->
@@ -67,54 +69,49 @@
         </thead>
 
         <tbody>
+
+
         <?php if (array_key_exists('courses', $this->view_data)) {
-            foreach ($this->view_data['courses'] as $k => $course) { ?>
-                <tr>
-                    <td><?php echo $k ?></td>
-                    <td><?php echo $course['resources_chapter'] ?></td>
-                    <td>
-                        <div style="display:none;margin:0 auto;" class="html5gallery" data-html5player="true"
-                             data-width="480" data-height="272" data-resizemode="fill" data-showsocialmedia="false"
-                             data-src="<?php echo $course['resources_video'] ?>"
-                             data-webm="<?php echo $course['resources_video'] ?>"
-                        >
-                        </div>
-                        <!--                        <video class=”afterglow” id=”myvideo” width=”1280" height=”720">-->
-                        <!--                            <source type=”video/mp4" src='-->
-                        <?php //echo $course['resources_video'] ?><!--'/>-->
-                        <!--                        </video>-->
-                        <!--                        <video width='320' height='240' controls autoplay>-->
-                        <!--                            <source src='-->
-                        <?php //echo $course['resources_video'] ?><!--' type='video/mp4'>-->
-                        <!--                            Your browser does not support the video tag.-->
-                        <!--                        </video>-->
-                        <!--                        ?>-->
-                    </td>
-
-                    <?php if ($this->view_data['deleted'] == false) { ?>
-                        <td><a href="" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
-
-                        <td>
-                            <a href="/admin/lessons/delete/<?php echo $course['id'] ?>"
-                               onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
-                                        class="fa fa-trash"></i></a>
-
-                        </td>
-                    <?php } else { ?>
-
-                        <td class="text-center">
-                            <a href=""
-                               class="btn btn-primary"><i
-                                        class="fa fa-arrow-up"></i></a>
-                        </td>
-
-                    <?php } ?>
+        foreach ($this->view_data['courses'] as $k => $course) { ?>
+        <tr>
+            <?php $file = Helper::getVideoDeatils(substr($course['resources_video'], 1)); ?>
+            <td><?php echo $k ?></td>
+            <td><?php echo $course['resources_chapter'] ?></td>
+            <td>
+                <div style="display:none;margin:0 auto;" class="html5gallery" data-html5player="true"
+                     data-width="480" data-height="272" data-resizemode="fill" data-showsocialmedia="false"
+                     data-src="<?php echo $course['resources_video'] ?>"
+                     data-webm="<?php echo $course['resources_video'] ?>"
+</div>
+    </td>
+    <td> <?php echo $file['playtime_string'] ?></td>
+    <td> <?php echo round($file['filesize'] / 1014 / 1024, 2) . 'MB' ?></td>
 
 
-                </tr>
-            <?php }
-        } ?>
-    </table>
+<?php if ($this->view_data['deleted'] == false) { ?>
+    <td><a href="" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
+
+    <td>
+        <a href="/admin/lessons/delete/<?php echo $course['id'] ?>"
+           onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
+                    class="fa fa-trash"></i></a>
+
+    </td>
+<?php } else { ?>
+
+    <td class="text-center">
+        <a href=""
+           class="btn btn-primary"><i
+                    class="fa fa-arrow-up"></i></a>
+    </td>
+
+<?php } ?>
+
+
+    </tr>
+<?php }
+} ?>
+</table>
 </div>
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>

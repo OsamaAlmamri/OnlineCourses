@@ -22,6 +22,8 @@ class LessonsController extends Controller
         $this->view->render();
     }
 
+
+
     public function saveVideo($size = '')
     {
 
