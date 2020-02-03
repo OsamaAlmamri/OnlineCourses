@@ -48,9 +48,9 @@ class Course
     public function add(array $aData)
     {
 
-        $oStmt = $this->db->preparation('INSERT INTO courses (  course_title, course_description, courses_image,course_price,course_price_afterDiscount,
+        $oStmt = $this->db->preparation('INSERT INTO courses ( course_owner, course_title, course_description, courses_image,course_price,course_price_afterDiscount,
                                                                     course_students_target,course_goals,categories_ids)
-                                                  VALUES (  :course_title, :course_description, :courses_image,:course_price,:course_price_afterDiscount,
+                                                  VALUES ( :course_owner, :course_title, :course_description, :courses_image,:course_price,:course_price_afterDiscount,
                                                   :course_students_target,:course_goals,:categories_ids)');
         $oStmt->execute($aData);
         return $this->db->lastInsertId();
