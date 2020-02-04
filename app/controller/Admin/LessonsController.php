@@ -104,9 +104,9 @@ class LessonsController extends Controller
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = \Validation::validate([
-//                'resources_chapter' => array(['required' => 'required']),
-//                'course_id' => array(['required' => 'required']),
-//                'resources_video' => array(['required' => 'required']),
+                'resources_chapter' => array(['required' => 'required']),
+                'course_id' => array(['required' => 'required']),
+                'resources_video' => array(['required' => 'required']),
             ]);
             if (count($validate) == 0) {
 
