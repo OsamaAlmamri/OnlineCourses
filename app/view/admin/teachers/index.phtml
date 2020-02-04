@@ -1,15 +1,19 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-<div class="content">
-    <?php include VIEW . 'messages.phtml' ?>
-    <h2 class="text-center"><i class="fa fa-chalkboard-teacher" style="color:#ec3901"></i> Teachers Manage</h2>
-    <div class="row fa-pull-right">
-        <div class="col-8">
+<!-- Start Main-content -->
+<div class="container">
+    <div class="row bg-light mb-4 ">
+        <div class="text-right  mt-auto col-6">
+            <h3><i class="fa fa-university" style="color:#ec3901"></i> ادارة حسابات المدرسين </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 text-right">
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                         id="dashboard_daterangepicker">
-                    <i class="	fas fa-bullseye"></i> sorting data by
+                    <i class="	fas fa-bullseye"></i> ترنيب حسب
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Day</a>
@@ -19,61 +23,61 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div class="col-6 text-left">
+            <a href="/admin/universities/create" class="btn btn-success "><i class="fa fa-plus"> </i> اضافة استاذ جديدة</a>
+        </div>
 
-    <div class="col-4"><a href="/admin/teachers/create" class="btn btn-success "><i class="fa fa-plus"> </i> Add</a>
+
     </div>
     <br>
     <table id="example1" class="table table-bordered table-striped">
-        <thead class="thead-dark font-size-18">
+        <thead class="thead-dark font-size-14">
         <tr>
-            <th> Name</th>
-            <th>Email</th>
-            <th>User Display Name</th>
-            <th>User Image</th>
-            <th>User Phone</th>
-            <th>Registration Date</th>
-            <th> Control</th>
-
-
+            <th>الاسم</th>
+            <th>الايميل</th>
+            <th>اسم المستخدم</th>
+            <th>صورة المستخدم</th>
+            <th>رقم الهاتف</th>
+            <th>تاريخ التسجيل</th>
+            <th>الاعدادات</th>
 
         </tr>
         </thead>
 
         <tbody>
-        <?php if (array_key_exists('teachers', $this->view_data)) {
-            foreach ($this->view_data['teachers'] as $teacher) { ?>
+        <?php if (array_key_exists('universities', $this->view_data)) {
+            foreach ($this->view_data['universities'] as $university) { ?>
 
                 <tr>
-                    <td><?php echo $teacher['user_name'] ?></td>
-                    <td><?php echo $teacher['user_email'] ?></td>
-                    <td><?php echo $teacher['user_full_name'] ?></td>
-                    <td><?php echo $teacher['user_image'] ?></td>
-                    <td><?php echo $teacher['user_phone'] ?></td>
-                    <td><?php echo $teacher['user_register_date'] ?></td>
+                    <td><?php echo $university['user_name'] ?></td>
+                    <td><?php echo $university['user_email'] ?></td>
+                    <td><?php echo $university['user_full_name'] ?></td>
+                    <td><?php echo $university['user_image'] ?></td>
+                    <td><?php echo $university['user_phone'] ?></td>
+                    <td><?php echo $university['user_register_date'] ?></td>
                     <td>
-                        <a href="" data-id="<?php echo $teacher['user_id'] ?>"
-                                data-status="<?php echo $teacher['user_status'] ?>"
-                                class=" active"><?php echo ($teacher['user_status'] == '1') ?  '<i class=\'fas fa-check\'></i>' :'<i class=\'ion ion-close\'></i>'  ?> </a>
+                        <a href="" data-id="<?php echo $university['user_id'] ?>"
+                           data-status="<?php echo $university['user_status'] ?>"
+                           class=" active"><?php echo ($university['user_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
 
 
+                        <?php if ($this->view_data['deleted'] == false) { ?>
+                        <a href="/admin/universities/edit/<?php echo $university['id'] ?>"><i
+                                    class="fa fa-edit"></i></a>
 
-                    <?php if ($this->view_data['deleted'] == false) { ?>
-                       <a href="/admin/teachers/edit/<?php echo $teacher['user_id'] ?>" ><i class="fa fa-edit"></i></a>
 
+                        <a href="/admin/universities/delete/<?php echo $university['id'] ?>"
+                           onclick="return confirm('هل أنت متأكد من الحذف');"><i
+                                    class="fa fa-trash-restore"></i></a>
 
-                            <a href="/admin/teachers/delete/<?php echo $teacher['user_id'] ?>"
-                               onclick="return confirm('هل أنت متأكد من الحذف');" ><i
-                                        class="fa fa-trash-restore"></i></a>
-
-                        </td>
+                    </td>
                     <?php } else { ?>
-                        <th>{{getUserName( $teacher['deleted_by'] )?></th>
-                        <td><?php echo $teacher['deleted_at'] ?></td>
+                        <th>{{getUserName( $university['deleted_by'] )?></th>
+                        <td><?php echo $university['deleted_at'] ?></td>
 
 
                         <td class="text-center">
-                            <a href="{{  route('admin.universities.restore',encrypt( $teacher['']id)) }}"
+                            <a href="{{  route('admin.universities.restore',encrypt( $university['']id)) }}"
                                class="btn btn-primary"><i
                                         class="fa fa-arrow-up"></i></a>
                         </td>
@@ -85,6 +89,11 @@
             <?php }
         } ?>
     </table>
+</div>
+<!-- End Main-content -->
+</div>
+<!-- End Content -->
+</div>
 </div>
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>

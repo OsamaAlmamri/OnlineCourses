@@ -12,45 +12,58 @@
 
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-
-<div class="content">
-    <h2 class="text-center"><i class="fa fa-university" style="color:#ec3901"></i> University Accounts Add</h2>
-    <form  method="post" action="" enctype="multipart/form-data">
-        <div class="row">
-            <div class="col-md-12">
-                <label for="user_email">Email address:</label>
-                <input type="email"   data-validate-linked="email" class="form-control" placeholder="Enter email" id="user_email" name="user_email">
-                <label for="user_password">Password:</label>
-                <input type="password" class="form-control" placeholder="Enter password" id="user_password" name="user_password">
-                <label for="user_full_name">User Full Name:</label>
-                <input type="text" class="form-control"   data-validate-words="2" placeholder="Enter User Full Name" id="user_full_name" name="user_full_name">
-                <label for="user_name">User Name:</label>
-                <input type="text" class="form-control" placeholder="Enter User Name" id="user_name" name="user_name">
-
-            </div>
-            <div class="col-md-12">
-                <label for="user_phone">User Image:</label>
-                <div class="custom-file">
-
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose file</label>
-                </div>
-                <label for="user_phone">User Phone:</label>
-                <input type="phone" class="form-control" placeholder="Enter User Phone" id="user_phone" name="user_phone">
-                <label for="user_gender">User Gender:</label>
-                <input type="text" class="form-control" placeholder="Enter User Gender" id="user_gender" name="user_gender">
-                <label for="user_qualification">User Qualification:</label>
-                <input type="phone" class="form-control" placeholder="Enter User Qualification" id="user_qualification" name="user_qualification">
-
-            </div>
-            <br>
-            <div class="col-md-12">
-                <br> <input type="submit" class="btn btn-primary btn-block" name="submit">
-            </div>
+<!-- Start Main-content -->
+<div class="container">
+    <div class="row bg-white mb-4 ">
+        <div class="text-right mt-auto col-6">
+            <h3><i class="fa fa-university" style="color:#ec3901"></i> اضافة جامعة جديدة  </h3>
         </div>
+    </div>
 
-    </form>
+    <div class="row-cols-1">
+        <form class=""  method="post" action=""  enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="user_email">البريد الالكتروني :</label>
+                    <input type="email"   data-validate-linked="email" class="form-control" placeholder="Enter email" id="user_email" name="user_email">
+                    <label for="user_password">كلمة المرور:</label>
+                    <input type="password" class="form-control" placeholder="Enter password" id="user_password" name="user_password">
+                    <label for="user_full_name">User Full Name:</label>
+                    <input type="text" class="form-control"   data-validate-words="2" placeholder="Enter User Full Name" id="user_full_name" name="user_full_name">
+                    <label for="user_name">User Name:</label>
+                    <input type="text" class="form-control" placeholder="Enter User Name" id="user_name" name="user_name">
 
+                </div>
+                <div class="col-md-6">
+                    <label for="user_phone">User Image:</label>
+                    <div class="custom-file">
+
+                        <input type="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                    </div>
+                    <label for="user_phone">User Phone:</label>
+                    <input type="phone" class="form-control" placeholder="Enter User Phone" id="user_phone" name="user_phone">
+                    <label for="user_gender">User Gender:</label>
+                    <input type="text" class="form-control" placeholder="Enter User Gender" id="user_gender" name="user_gender">
+                    <label for="user_qualification">User Qualification:</label>
+                    <input type="phone" class="form-control" placeholder="Enter User Qualification" id="user_qualification" name="user_qualification">
+
+                </div>
+                <br>
+                <div class="col-md-12">
+                    <br> <input type="submit" class="btn btn-primary btn-block" name="submit">
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+<!-- End Main-content -->
+</div>
+<!-- End Content -->
+</div>
 </div>
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
