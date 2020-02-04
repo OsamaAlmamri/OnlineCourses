@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row">
         <!--  Start Sidebar -->
-        <div class="col-sm-2 p-0 ">
+        <div class="col-2 p-0 ">
             <div class="sidebar bg-dark" id="mySidenav">
                     <div class="logo-site pr-3">
                         <img  src="/image/logo.png" >
@@ -68,7 +68,7 @@
         <!--  End Sidebar   -->
 
         <!-- Start Content -->
-        <div class="col-sm-10 p-0">
+        <div class="col-10 p-0">
 
             <!-- Start navBar -->
             <div class="row-cols-1 mb-4">
