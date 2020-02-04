@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 31 يناير 2020 الساعة 21:38
--- إصدار الخادم: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: 04 فبراير 2020 الساعة 07:52
+-- إصدار الخادم: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,11 +32,11 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `category_description` text NOT NULL,
-  `category_parents` text DEFAULT '0',
+  `category_parents` text,
   `category_status` int(10) NOT NULL,
   `category_visibility` int(10) NOT NULL,
   `category_date` datetime NOT NULL,
-  `category_updates` text DEFAULT NULL
+  `category_updates` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -59,7 +59,8 @@ INSERT INTO `categories` (`category_id`, `category_name`, `category_description`
 (51, 'enginnering', '                ', '0', 0, 0, '0000-00-00 00:00:00', NULL),
 (52, 'electrestic', '                ', '51', 0, 0, '0000-00-00 00:00:00', NULL),
 (53, 'rechnology', '&lt;p&gt;oij&lt;/p&gt;', '0', 0, 0, '0000-00-00 00:00:00', NULL),
-(54, 'kotlin', 'kotlin', 'level3_4', 0, 0, '0000-00-00 00:00:00', NULL);
+(54, 'kotlin', 'kotlin', 'level3_4', 0, 0, '0000-00-00 00:00:00', NULL),
+(55, 'j9oj', '                hnoij[', '0', 0, 0, '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -103,6 +104,7 @@ CREATE TABLE `coupons` (
 
 CREATE TABLE `courses` (
   `course_id` int(11) NOT NULL,
+  `course_owner` int(11) NOT NULL,
   `course_title` text NOT NULL,
   `course_description` text NOT NULL,
   `courses_image` text NOT NULL,
@@ -113,18 +115,17 @@ CREATE TABLE `courses` (
   `course_goals` text NOT NULL,
   `categories_ids` text NOT NULL,
   `course_date` int(11) NOT NULL,
-  `course_status` int(10) DEFAULT 1,
-  `course_updates` text DEFAULT NULL,
-  `course_visibility` int(11) DEFAULT 1
+  `course_status` int(10) DEFAULT '1',
+  `course_updates` text,
+  `course_visibility` int(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- إرجاع أو استيراد بيانات الجدول `courses`
 --
 
-INSERT INTO `courses` (`course_id`, `course_title`, `course_description`, `courses_image`, `course_price`, `course_price_afterDiscount`, `course_requirements`, `course_students_target`, `course_goals`, `categories_ids`, `course_date`, `course_status`, `course_updates`, `course_visibility`) VALUES
-(3, 'ooo', 'oooo', '/images/courses/1580500660التقاط.PNG', 77, 7, '', '                mokp', 'kpkp                ', '[\"50\"]', 0, 1, NULL, 0),
-(4, 'jnkb', 'kbkjbk', '/images/courses/1580501266‏‏لقطة الشاشة (4).png', 77, 77, '', ';lm                ', ';lm;l                ', '[\"10\",\"54\",\"9\"]', 0, 1, NULL, 0);
+INSERT INTO `courses` (`course_id`, `course_owner`, `course_title`, `course_description`, `courses_image`, `course_price`, `course_price_afterDiscount`, `course_requirements`, `course_students_target`, `course_goals`, `categories_ids`, `course_date`, `course_status`, `course_updates`, `course_visibility`) VALUES
+(5, 36, 'jlkjlj', 'ljljl', 'صورة1.jpg', 55, 741, '', '&lt;p&gt;[l[l&lt;/p&gt;', '&lt;p&gt;[l[l&lt;/p&gt;', '[\"8\"]', 0, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -142,6 +143,15 @@ CREATE TABLE `course_resources` (
   `resources_status` int(11) NOT NULL,
   `resources_updates` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `course_resources`
+--
+
+INSERT INTO `course_resources` (`resources_id`, `resources_video`, `resources_file`, `resources_chapter`, `course_id`, `resources_date`, `resources_status`, `resources_updates`) VALUES
+(1, '/videos/15806508271580385672What is GitHub.mp4', '', 'chapter2', 5, '0000-00-00 00:00:00', 0, ''),
+(2, '/videos/15806508271580385672What is GitHub.mp4', '', 'chapter2', 5, '0000-00-00 00:00:00', 0, ''),
+(3, '/videos/15806508271580385672What is GitHub.mp4', '', 'chapter2', 5, '0000-00-00 00:00:00', 0, '');
 
 -- --------------------------------------------------------
 
@@ -213,7 +223,7 @@ CREATE TABLE `profiles` (
   `user_gender` varchar(255) DEFAULT NULL,
   `user_qualification` varchar(255) DEFAULT NULL,
   `user_register_date` datetime NOT NULL,
-  `user_updates` text DEFAULT NULL
+  `user_updates` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -261,7 +271,8 @@ INSERT INTO `roles` (`role_id`, `role_name`, `role_description`, `role_status`) 
 (1, 'admin', 'admins', 0),
 (2, 'university', 'university', 1),
 (3, 'student', 'students', 0),
-(4, 'teacher', 'ijgomvjco', 1);
+(4, 'teacher', 'ijgomvjco', 1),
+(5, 'admin', '&lt;p&gt;ABO MENS&lt;/p&gt;', 1);
 
 -- --------------------------------------------------------
 
@@ -271,7 +282,7 @@ INSERT INTO `roles` (`role_id`, `role_name`, `role_description`, `role_status`) 
 
 CREATE TABLE `users` (
   `user_id` int(255) NOT NULL,
-  `university_id` int(11) DEFAULT 0,
+  `university_id` int(11) DEFAULT '0',
   `user_email` varchar(255) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `user_password` text NOT NULL,
@@ -380,12 +391,14 @@ ALTER TABLE `coupons`
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
-  ADD PRIMARY KEY (`course_id`);
+  ADD PRIMARY KEY (`course_id`),
+  ADD KEY `course_owner` (`course_owner`);
 
 --
 -- Indexes for table `course_resources`
 --
 ALTER TABLE `course_resources`
+  ADD PRIMARY KEY (`resources_id`),
   ADD KEY `course_id` (`course_id`);
 
 --
@@ -461,7 +474,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -479,7 +492,13 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `course_resources`
+--
+ALTER TABLE `course_resources`
+  MODIFY `resources_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `evaluations`
@@ -509,7 +528,7 @@ ALTER TABLE `profiles`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -539,6 +558,12 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `coupons`
   ADD CONSTRAINT `coupons_ibfk_1` FOREIGN KEY (`coupon_create_by`) REFERENCES `users` (`user_id`);
+
+--
+-- القيود للجدول `courses`
+--
+ALTER TABLE `courses`
+  ADD CONSTRAINT `course_owner` FOREIGN KEY (`course_owner`) REFERENCES `users` (`user_id`);
 
 --
 -- القيود للجدول `course_resources`
@@ -573,23 +598,10 @@ ALTER TABLE `profiles`
   ADD CONSTRAINT `user_profile` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- القيود للجدول `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`university_id`) REFERENCES `users` (`user_id`);
-
---
 -- القيود للجدول `users_courses`
 --
 ALTER TABLE `users_courses`
   ADD CONSTRAINT `users_courses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-
---
--- القيود للجدول `user_role`
---
-ALTER TABLE `user_role`
-  ADD CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

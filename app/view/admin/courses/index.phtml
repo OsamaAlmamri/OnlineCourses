@@ -1,15 +1,23 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-<div class="content">
+<!-- Start Main-content -->
+<div class="container">
     <?php include VIEW . 'messages.phtml' ?>
-    <h2 class="text-center"><i class="fa fa-list"></i> Courses Manage</h2>
-    <div class="row fa-pull-right">
-        <div class="col-8">
+    <div class="row bg-white mb-4 ">
+        <div class="text-right mt-auto col-6">
+            <h3><i class="" style="color:#ec3901"></i>ادارة الكورسات   </h3>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-6 text-right">
+            <a href="/admin/courses/create" class="btn btn-success "><i class="fa fa-plus"> </i> اضافة كورس جديد</a>
+        </div>
+        <div class="col-6 text-left">
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                         id="dashboard_daterangepicker">
-                    <i class="	fas fa-bullseye"></i> sorting data by
+                    <i class="	fas fa-bullseye"></i> ترنيب حسب
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Day</a>
@@ -20,10 +28,8 @@
             </div>
         </div>
     </div>
-    <div class="col-4"><a href="/admin/courses/create" class="btn btn-primary "><i class="fa fa-plus"> </i> Add</a>
-    </div>
     <table id="example1" class="table table-bordered table-striped">
-        <thead class="thead-dark font-size-18">
+        <thead class="thead-dark font-size-16">
         <tr>
             <td>#</td>
             <td>Course Title</td>
@@ -35,6 +41,7 @@
             <td>Course Goals</td>
             <td>Categories Name</td>
             <td>Course status</td>
+            <td>Lessons</td>
             <td>Course visibility</td>
 
             <th>update</th>
@@ -65,7 +72,12 @@
                                 data-status="<?php echo $course['course_status'] ?>"
                                 class="btn btn-success active"><?php echo ($course['course_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </button>
                     </td>
+                    <td>
+                        <a href="/admin/lessons/index/<?php echo $course['course_id'] ?>"
+                         class="btn btn-info"><i
+                                    class="fa fa-eye"></i></a>
 
+                    </td>
                     <td>
                         <button data-id="<?php echo $course['course_id'] ?>"
                                 data-visibility="<?php echo $course['course_visibility'] ?>"
@@ -100,7 +112,11 @@
         } ?>
     </table>
 </div>
-
+<!-- End Main-content -->
+</div>
+<!-- End Content -->
+</div>
+</div>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>

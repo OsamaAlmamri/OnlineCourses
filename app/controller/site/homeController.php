@@ -95,7 +95,12 @@ class homeController extends Controller
         $this->view->pageTitle = ' home ';
         $this->view->render();
     }
-
+    public function profile()
+    {
+        $this->view('website' . DIRECTORY_SEPARATOR . 'profile', ['news' => [], 'category' => []]);
+        $this->view->pageTitle = ' home ';
+        $this->view->render();
+    }
     public function wish_list()
     {
         $this->view('website' . DIRECTORY_SEPARATOR . 'wish_list', ['news' => [], 'category' => []]);
