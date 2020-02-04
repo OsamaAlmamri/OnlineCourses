@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 03 فبراير 2020 الساعة 08:33
--- إصدار الخادم: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: 04 فبراير 2020 الساعة 07:52
+-- إصدار الخادم: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,11 +32,11 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `category_description` text NOT NULL,
-  `category_parents` text DEFAULT '0',
+  `category_parents` text,
   `category_status` int(10) NOT NULL,
   `category_visibility` int(10) NOT NULL,
   `category_date` datetime NOT NULL,
-  `category_updates` text DEFAULT NULL
+  `category_updates` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -115,9 +115,9 @@ CREATE TABLE `courses` (
   `course_goals` text NOT NULL,
   `categories_ids` text NOT NULL,
   `course_date` int(11) NOT NULL,
-  `course_status` int(10) DEFAULT 1,
-  `course_updates` text DEFAULT NULL,
-  `course_visibility` int(11) DEFAULT 1
+  `course_status` int(10) DEFAULT '1',
+  `course_updates` text,
+  `course_visibility` int(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -223,7 +223,7 @@ CREATE TABLE `profiles` (
   `user_gender` varchar(255) DEFAULT NULL,
   `user_qualification` varchar(255) DEFAULT NULL,
   `user_register_date` datetime NOT NULL,
-  `user_updates` text DEFAULT NULL
+  `user_updates` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -282,7 +282,7 @@ INSERT INTO `roles` (`role_id`, `role_name`, `role_description`, `role_status`) 
 
 CREATE TABLE `users` (
   `user_id` int(255) NOT NULL,
-  `university_id` int(11) DEFAULT 0,
+  `university_id` int(11) DEFAULT '0',
   `user_email` varchar(255) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `user_password` text NOT NULL,
@@ -598,23 +598,10 @@ ALTER TABLE `profiles`
   ADD CONSTRAINT `user_profile` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- القيود للجدول `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`university_id`) REFERENCES `users` (`user_id`);
-
---
 -- القيود للجدول `users_courses`
 --
 ALTER TABLE `users_courses`
   ADD CONSTRAINT `users_courses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-
---
--- القيود للجدول `user_role`
---
-ALTER TABLE `user_role`
-  ADD CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
