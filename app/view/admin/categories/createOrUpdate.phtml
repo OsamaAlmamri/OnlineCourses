@@ -12,18 +12,12 @@
 
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-<!-- Start Main-content -->
-<div class="container">
-    <div class="row bg-light mb-4 ">
-        <div class="text-right mt-auto col-6">
-            <h3><i class="fa fa-list"></i> ادارة الاقسام </h3>
-        </div>
-    </div>
-
+<div class="content">
     <?php include VIEW . 'messages.phtml' ?>
+    <h2 class="text-center"><i class="fa  fa-list"></i> Categories Add</h2>
     <form action="/admin/categories/store" method="post">
         <div class="form-group">
-            <label for="course_title">اسم القسم :</label>
+            <label for="course_title">Category Name:</label>
             <input type="text" class="form-control" id="course_title"
                    value="<?php Helper::old('category_name'); ?>"
                    name="category_name">
@@ -32,15 +26,15 @@
         </div>
 
         <div class="form-group">
-            <label for="course__description">الوصف:</label>
-            <textarea type="text" rows="7" class="form-control" id="course__description" name="category_description">
+            <label for="course__description">Category Description:</label>
+            <textarea type="text" class="form-control" id="course__description" name="category_description">
             </textarea>
         </div>
 
 
 
         <div class="form-group">
-            <label for="main_category_parents">القسم الرئيسي (الاب):</label>
+            <label for="main_category_parents">Main Category(Major):</label>
 
             <select class="select2" id="main_category_parents" name="main_category_parents"
                     data-placeholder="Major" style="width: 100%;">
@@ -82,16 +76,10 @@
         <!--        -->
 
 
-        <button type="submit" name="submit" class="btn btn-success">اضافة</button>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
     </form>
     <br>
 
-</div>
-<!-- End Main-content -->
-
-</div>
-<!-- End Content -->
-</div>
 </div>
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
