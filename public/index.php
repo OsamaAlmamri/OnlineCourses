@@ -12,7 +12,6 @@ set_include_path(get_include_path().PATH_SEPARATOR.implode(PATH_SEPARATOR,$modul
 spl_autoload_register('spl_autoload',false);
 // var_dump($_SERVER['REQUEST_URI']);
 // echo ROOT;
-
 $app= new Application;
 
 

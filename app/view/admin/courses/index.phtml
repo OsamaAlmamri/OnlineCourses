@@ -47,11 +47,6 @@
         <?php if (array_key_exists('courses', $this->view_data)) {
             foreach ($this->view_data['courses'] as $k => $course) { ?>
                 <tr>
-
-                    <td><?php echo $course['name'] ?></td>
-                    <td><?php echo Helper::getCategoryName($course['parent']) ?></td>
-                    <td><?php echo ($course['status'] == '1') ? 'Active' : 'Disactive' ?></td>
-
                     <td><?php echo $k ?></td>
                     <td><?php echo $course['course_title'] ?></td>
                     <td><?php echo $course['course_description'] ?></td>
@@ -63,7 +58,6 @@
                     <td><?php echo $course['course_goals'] ?></td>
                     <!--                    <td>--><?php //echo ($course['categories_ids']) ?><!--</td>-->
                     <td><?php echo Helper::Names($course['categories_ids'], 'Category') ?></td>
-
 
 
                     <td>
