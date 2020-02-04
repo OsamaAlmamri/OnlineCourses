@@ -22,6 +22,8 @@
     <div id="lesson_details">
         <form action="/admin/lessons/store" id="form_lesson_details" method="post" enctype="multipart/form-data">
             <input type="hidden" name="course_id" value="<?php echo $this->view_data['course_id'] ?>">
+            <input type="hidden" name="resources_video" value=" <?php Helper::old('resources_video') ?>">
+            <?php echo Message::getInputErrorMessage('resources_video') ?>
             <div id="video_info">
             </div>
             <div class="form-group">
@@ -31,6 +33,8 @@
                        class="form-control" id="chapter" name="resources_chapter">
                 <div id="categories_ids" class="well well-sm"
                      style="height: 50px; overflow: auto;">
+                    <?php echo Message::getInputErrorMessage('resources_chapter') ?>
+
                     <?php if ((Helper::old('resources_chapter') != '')) {
                         ?>
                         <div id="chapter<?php echo Helper::old('resources_chapter') ?>">
@@ -44,7 +48,7 @@
                             <!-- <i class="fa fa-minus-circle"></i> --> <?php echo Helper::old('resources_chapter') ?>
                             <input type="hidden"
                                    name="resources_chapter"
-                                   value="<?php  Helper::old('resources_chapter') ?>">
+                                   value="<?php Helper::old('resources_chapter') ?>">
                         </div>
                     <?php }
                     ?>
@@ -101,7 +105,7 @@
         var file = _("file1").files[0];
         if (typeof file === "undefined") {
 
-            _("status").innerHTML = "ERROR: Please browse for a file before clicking the upload button";
+            _("status").innerHTML = "خطا :يرجى اختيار ملف اولا قبل الرفع";
             _("progressBar").value = 0;
 
         } else {
@@ -119,7 +123,7 @@
                     ajax.open("POST", "/admin/lessons/saveVideo");
                     ajax.send(formdata);
                 } else {
-                    var sizewarn = "ERROR: The File is too big! The maximum file size is ";
+                    var sizewarn = "عفوا : حجم الملف كبير جدا ! اقصى حجم لرفع الملفات هو  ";
                     sizewarn += sizelimit / (1024 * 1024);
                     sizewarn += "MB";
                     _("status").innerHTML = sizewarn;
@@ -131,15 +135,15 @@
     }
 
     function progressHandler(event) {
-        _("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
+        _("loaded_n_total").innerHTML = "تم تحميل  " + event.loaded + " bytes من اصل  " + event.total;
         var percent = (event.loaded / event.total) * 100;
         _("progressBar").value = Math.round(percent);
-        _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
+        _("status").innerHTML = Math.round(percent) + "% محمل ... يرجى  الانتظار ";
     }
 
     function completeHandler(event) {
         _("status").innerHTML = event.target.responseText;
-        $('#video_info').html('<input type="text"  name="resources_video" value="' + event.target.responseText + '"> ')
+        $('#video_info').html('<input type="hidden"  name="resources_video" value="' + event.target.responseText + '"> ')
         _("progressBar").value = 0;
     }
 

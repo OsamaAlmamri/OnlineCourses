@@ -23,9 +23,12 @@ class LessonsController extends Controller
     }
 
 
-
     public function saveVideo($size = '')
     {
+        ini_set('upload_max_filesize', '1000M');
+        ini_set('post_max_size', '1000M');
+        ini_set('max_input_time', 300);
+        ini_set('max_execution_time', 300);
 
         $ini_PostSize = preg_replace("/[^0-9,.]/", "", ini_get('post_max_size')) * (1024 * 1024);
         $ini_FileSize = preg_replace("/[^0-9,.]/", "", ini_get('upload_max_filesize')) * (1024 * 1024);
@@ -101,9 +104,9 @@ class LessonsController extends Controller
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = \Validation::validate([
-//                'resources_chapter' => array(['required' => 'required']),
-//                'course_id' => array(['required' => 'required']),
-//                'resources_video' => array(['required' => 'required']),
+                'resources_chapter' => array(['required' => 'required']),
+                'course_id' => array(['required' => 'required']),
+                'resources_video' => array(['required' => 'required']),
             ]);
             if (count($validate) == 0) {
 
@@ -117,11 +120,11 @@ class LessonsController extends Controller
                 $id = $this->model->add($course);
 
                 if ($id) {
-                    Helper::back('/admin/lessons/index/'.$_REQUEST['course_id'], 'add successfully', 'success');
+                    Helper::back('/admin/lessons/index/' . $_REQUEST['course_id'], 'add successfully', 'success');
                     return;
                 }
             } else {
-                Helper::back('/admin/lessons/create/'.$_REQUEST['course_id'], 'error in required input', 'danger');
+                Helper::back('/admin/lessons/create/' . $_REQUEST['course_id'], 'error in required input', 'danger');
                 return;
             }
         }
