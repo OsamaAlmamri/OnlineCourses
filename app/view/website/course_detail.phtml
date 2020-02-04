@@ -9,7 +9,6 @@
 <!--			</div>-->
 <!--		</section>-->
 		<!--/hero_in-->
-
 		<div class="bg_color_1">
 			<nav class="secondary_nav">
 				<div class="container">
@@ -17,53 +16,65 @@
 						<li><a href="#description" class="active">Description</a></li>
 						<li><a href="#lessons">Lessons</a></li>
 						<li><a href="#reviews">Reviews</a></li>
+
 					</ul>
 				</div>
 			</nav>
 			<div class="container margin_61_35">
 				<div class="row">
+
 					<div class="col-lg-8">
-						
-						<section id="description">
-							<h2>Description</h2>
-							<p>Per consequat adolescens ex, cu nibh commune temporibus vim, ad sumo viris eloquentiam sed. Mea appareat omittantur eloquentiam ad, nam ei quas oportere democritum. Prima causae admodum id est, ei timeam inimicus sed. Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate pertinacia eum at.</p>
-							<h5>What will you learn</h5>
-							<ul class="list_ok">
-								<li>
-									<h6>Suas summo id sed erat erant oporteat</h6>
-									<p>Ut unum diceret eos, mel cu velit principes, ut quo inani dolorem mediocritatem. Mea in justo posidonium necessitatibus.</p>
-								</li>
-								<li>
-									<h6>Illud singulis indoctum ad sed</h6>
-									<p>Ut unum diceret eos, mel cu velit principes, ut quo inani dolorem mediocritatem. Mea in justo posidonium necessitatibus.</p>
-								</li>
-								<li>
-									<h6>Alterum bonorum mentitum an mel</h6>
-									<p>Ut unum diceret eos, mel cu velit principes, ut quo inani dolorem mediocritatem. Mea in justo posidonium necessitatibus.</p>
-								</li>
-							</ul>
-							<hr>
-							<p>Mea appareat omittantur eloquentiam ad, nam ei quas oportere democritum. Prima causae admodum id est, ei timeam inimicus sed. Sit an meis aliquam, cetero inermis vel ut. An sit illum euismod facilisis, tamquam vulputate pertinacia eum at.</p>
-							<div class="row">
-								<div class="col-lg-6">
-									<ul class="bullets">
-										<li>Dolorem mediocritatem</li>
-										<li>Mea appareat</li>
-										<li>Prima causae</li>
-										<li>Singulis indoctum</li>
-									</ul>
-								</div>
-								<div class="col-lg-6">
-									<ul class="bullets">
-										<li>Timeam inimicus</li>
-										<li>Oportere democritum</li>
-										<li>Cetero inermis</li>
-										<li>Pertinacia eum</li>
-									</ul>
-								</div>
-							</div>
-							<!-- /row -->
-						</section>
+                        <?php if (array_key_exists('courses_detail', $this->view_data)) {
+                        foreach ($this->view_data['courses_detail'] as $course) { ?>
+                            <section id="description">
+                                <h2>Description</h2>
+                                <p><?php echo $course['course__description ']; ?></p>
+                                <h5>What will you learn</h5>
+                                <ul class="list_ok">
+                                    <li>
+                                        <h6>Suas summo id sed erat erant oporteat</h6>
+                                        <p>Ut unum diceret eos, mel cu velit principes, ut quo inani dolorem
+                                            mediocritatem. Mea in justo posidonium necessitatibus.</p>
+                                    </li>
+                                    <li>
+                                        <h6>Illud singulis indoctum ad sed</h6>
+                                        <p>Ut unum diceret eos, mel cu velit principes, ut quo inani dolorem
+                                            mediocritatem. Mea in justo posidonium necessitatibus.</p>
+                                    </li>
+                                    <li>
+                                        <h6>Alterum bonorum mentitum an mel</h6>
+                                        <p>Ut unum diceret eos, mel cu velit principes, ut quo inani dolorem
+                                            mediocritatem. Mea in justo posidonium necessitatibus.</p>
+                                    </li>
+                                </ul>
+                                <hr>
+                                <p>Mea appareat omittantur eloquentiam ad, nam ei quas oportere democritum. Prima causae
+                                    admodum id est, ei timeam inimicus sed. Sit an meis aliquam, cetero inermis vel ut.
+                                    An sit illum euismod facilisis, tamquam vulputate pertinacia eum at.</p>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <ul class="bullets">
+                                            <li>Dolorem mediocritatem</li>
+                                            <li>Mea appareat</li>
+                                            <li>Prima causae</li>
+                                            <li>Singulis indoctum</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <ul class="bullets">
+                                            <li>Timeam inimicus</li>
+                                            <li>Oportere democritum</li>
+                                            <li>Cetero inermis</li>
+                                            <li>Pertinacia eum</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- /row -->
+                            </section>
+                            <?php
+                        }
+                        }
+                        ?>
 						<!-- /section -->
 						
 						<section id="lessons">
@@ -329,5 +340,20 @@
 		<!-- /bg_color_1 -->
 	</main>
 	<!--/main-->
+<script>
+    // function setLinks(){
+    //     var all_links = document.getElementById("courseItems").innerHTML;
+    //     localStorage.setItem("savedLinkHTML", all_links);
+    // }
+    // function getLinks(){
+    //     var all_links = localStorage.getItem("savedLinkHTML");
+    //     if(all_links) document.getElementById("courseItems").innerHTML = all_links;
+    // }
+    // $ids= getLinks();
+    // console.log($ids);
+
+
+</script>
+
 
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
