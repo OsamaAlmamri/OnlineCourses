@@ -148,10 +148,14 @@ class Helper
     {
 //        echo isset($_REQUEST[$key]) ? $_REQUEST[$key] : '';
         if (Session::has('oldFormData'))
-            if (is_array($_SESSION['oldFormData'][$key]))
+        {
+            if (isset($_SESSION['oldFormData'][$key] ) and is_array($_SESSION['oldFormData'][$key]))
                 return $_SESSION['oldFormData'][$key];
             else
-                echo $_SESSION['oldFormData'][$key];
+//                echo $_SESSION['oldFormData'][$key];
+            echo isset($_SESSION['oldFormData'][$key]) ?$_SESSION['oldFormData'][$key] : '';
+        }
+
         else
             echo '';
 
