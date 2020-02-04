@@ -151,7 +151,9 @@ CREATE TABLE `course_resources` (
 INSERT INTO `course_resources` (`resources_id`, `resources_video`, `resources_file`, `resources_chapter`, `course_id`, `resources_date`, `resources_status`, `resources_updates`) VALUES
 (1, '/videos/15806508271580385672What is GitHub.mp4', '', 'chapter2', 5, '0000-00-00 00:00:00', 0, ''),
 (2, '/videos/15806508271580385672What is GitHub.mp4', '', 'chapter2', 5, '0000-00-00 00:00:00', 0, ''),
-(3, '/videos/15806508271580385672What is GitHub.mp4', '', 'chapter2', 5, '0000-00-00 00:00:00', 0, '');
+(3, '/videos/15806508271580385672What is GitHub.mp4', '', 'chapter2', 5, '0000-00-00 00:00:00', 0, ''),
+(4, '/videos/1580733883ro7 3sq قل للمليحة في الخمار الاسود علي الهلباوي.mp4', '', 'chapter1', 5, '0000-00-00 00:00:00', 0, ''),
+(5, '/videos/1580734051اصابك عشق نجوى فاروق_زهرات♡حديقتي   (اغار عليها من.mp4', '', 'chapter3', 5, '0000-00-00 00:00:00', 0, '');
 
 -- --------------------------------------------------------
 
