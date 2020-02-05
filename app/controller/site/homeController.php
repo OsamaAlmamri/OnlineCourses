@@ -19,7 +19,8 @@ class homeController extends Controller
     {
         $news = $this->model('Course');
         $category = $this->model('Category');
-        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['news' => [], 'category' => []]);
+        $course_site=$this->model('Course_site');
+        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['news' => [], 'latestCourses' =>$course_site->latestCoursesWebsite()] );
 
 //        $this->view('home' . DIRECTORY_SEPARATOR . 'index', ['news' => $news->all(), 'category' => $category->all()]);
         $this->view->pageTitle = 'home';
@@ -82,17 +83,20 @@ class homeController extends Controller
         $this->view->render();
     }
 
-    public function home()
-    {
-        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['news' => [], 'category' => []]);
-        $this->view->pageTitle = ' home ';
-        $this->view->render();
-    }
+
 
     public function mycourses()
+{
+    $this->view('website' . DIRECTORY_SEPARATOR . 'mycourses', ['news' => [], 'category' => []]);
+    $this->view->pageTitle = ' home ';
+    $this->view->render();
+}
+    public function fectchLatestCourses()
     {
-        $this->view('website' . DIRECTORY_SEPARATOR . 'mycourses', ['news' => [], 'category' => []]);
-        $this->view->pageTitle = ' home ';
+        $course_site=$this->model('Course_site');
+
+        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['homeCourses' => $course_site->latestCoursesWebsite(),'deleted' => false]);
+        $this->view->pageTitle ='Home';
         $this->view->render();
     }
     public function profile()
@@ -114,13 +118,7 @@ class homeController extends Controller
         $auth->login('student');
     }
 
-//    public function register()
-//    {
-//
-//        $this->view('home' . DIRECTORY_SEPARATOR . 'register');
-//        $this->view->pageTitle = 'register';
-//        $this->view->render();
-//    }
+
 
     public function register($type)
     {

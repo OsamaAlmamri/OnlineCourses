@@ -17,11 +17,18 @@ class coursesController extends \Controller
     public function index()
     {
         $course_site=$this->model('Course_site');
-//        return var_dump( $course_site->all() );
         $this->view('website' . DIRECTORY_SEPARATOR . 'courses', ['courses' => $course_site->all() ,'deleted' => false]);
         $this->view->pageTitle ='Course_site';
         $this->view->render();
 }
+    public function fectchLatestCourses()
+    {
+        $course_site=$this->model('Course_site');
+
+        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['homeCourses' => $course_site->latestCoursesWebsite(),'deleted' => false]);
+        $this->view->pageTitle ='Home';
+        $this->view->render();
+    }
 public function insertCourseUser(){
    $userCourse=$this->model('Course_site');
     $userInfoCourse=array(

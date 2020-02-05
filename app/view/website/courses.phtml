@@ -60,14 +60,14 @@
                             <figure class="block-reveal">
                                 <div class="block-horizzontal"></div>
                                 <a href="#0" class="wish_bt"></a>
-                                <a href="home/course_detail"><img src="/img/1.jpg" class="img-fluid" alt=""></a>
+                                <a href="/home/course_detail"><img src="/images/site/<?php echo $course['courses_image']?>" class="img-fluid" alt=""></a>
                                 <div class="price"><?php echo $course['course_price']; ?></div>
                                 <div class="preview"><span>Preview course</span></div>
                             </figure>
                             <div class="wrapper">
                                 <small>Category</small>
                                 <h3><?php echo $course['course_title']; ?></h3>
-                                <p><?php echo $course['course__description']; ?></p>
+                                <p><?php echo $course['course_description']; ?></p>
                                 <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i
                                             class="icon_star voted"></i><i class="icon_star"></i><i
                                             class="icon_star"></i> <small>(145)</small></div>
@@ -111,7 +111,5 @@ function addToCart(id)
     document.cookie ='item_id['+id+']='+id;
     alert(id);
 }
-
-    }
 </script>
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
