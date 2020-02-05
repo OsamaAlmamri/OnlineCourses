@@ -5,7 +5,7 @@
         <div class="col-2 p-0 ">
             <div class="sidebar bg-dark" id="mySidenav">
                     <div class="logo-site pr-3">
-                        <img  src="/image/logo.png" >
+                        <img  src="/images/logo.png" >
                     </div>
 
                 <div class="userImage text-center">
@@ -13,6 +13,10 @@
                 </div>
                 <div class="link m-5">
                     <a href="/admin/index"><i class="fa fa-home iconi"></i> <label class="hrefLabel">الصفحة الرئيسية</label></a>
+                    <a href="/admin/categories/index"><i class="fa fa-list iconi"></i> <label
+                            class="hrefLabel">الأقسام</label></a>
+                    <a href="/admin/courses/index"><i class="fa fa-book-reader iconi"></i> <label class="hrefLabel">الكورسات</label></a>
+
                     <div class="panel-group">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -58,9 +62,6 @@
                         </div>
                     </div>
 
-                    <a href="/admin/courses/index"><i class="fa fa-book-reader iconi"></i> <label class="hrefLabel">الكورسات</label></a>
-                    <a href="/admin/categories/index"><i class="fa fa-list iconi"></i> <label
-                                class="hrefLabel">الأقسام</label></a>
 
                 </div>
             </div>

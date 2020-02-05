@@ -12,22 +12,25 @@
 
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-<div class="content">
-    <?php include VIEW . 'messages.phtml' ?>
-    <h2 class="text-center"><i class="fa  fa-cogs" style="color:#ec3901"></i> Permision Add</h2>
+<div class="container">
+    <div class="row bg-white mb-4 ">
+        <div class="text-right  mt-auto col-6">
+    <h2 ><i class="fa  fa-cogs" style="color:#ec3901"></i> إضافة الصلاحيات</h2>
+        </div>
+    </div>
     <form action="/admin/permision/store" method="post">
         <div class="row" >
             <div class="col-md-12">
-                <label for="permission_name">Permision Name:</label>
-                <input type="text" class="form-control" placeholder="Enter Permision Name" id="permission_name" name="permission_name">
-                <label for="permissions_description">Permision Description:</label>
-                <textarea class="tinymce" placeholder="Enter Permision Description" id="permissions_description" name="permissions_description">
+                <label for="permission_name">اسم الصلاحية:</label>
+                <input type="text" class="form-control" placeholder="اسم الصلاحية" id="permission_name" name="permission_name">
+                <label for="permissions_description">وصف الصلاحية:</label>
+                <textarea class="tinymce" placeholder="وصف الصلاحية" id="permissions_description" name="permissions_description">
                     </textarea>
             </div>
 
             <br>
             <div class="col-md-12">
-                <br> <input type="submit" class="btn btn-primary btn-block" name="submit">
+                <br> <button type="submit" class="btn btn-success btn-block" name="submit">إضافة</button>
             </div>
         </div>
 

@@ -77,7 +77,11 @@
                                 <!--                                <li><i class="icon_like"></i> 890</li>-->
                                 <!--                                onclick="addToCat(-->
                                 <?php //echo $course['course_id']; ?><!--)"-->
+
                                 <button class="buy_btn"> buy</button>
+
+                                <button onclick="addToCart(<?php echo $course['course_id'];?>)"> buy</button>
+
                                 <li><a href="/home/course_detail/<?php echo $course['course_id']; ?>" id="courseItems">Enroll
                                         now</a></li>
                             </ul>
@@ -107,6 +111,7 @@
 
 <script>
 
+
     $(document).on('click', '.buy_btn', function () {
         alert('jj');
 
@@ -121,6 +126,13 @@
     //        //         Helper::buy($_COOKIE['item_id']);
     //        //                Session::set('cart_item[]', $_COOKIE['item_id']);
     //        ?>
-    }
+
+function addToCart(id)
+{
+    document.cookie ='item_id['+id+']='+id;
+    alert(id);
+}
+
+
 </script>
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>

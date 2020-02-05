@@ -13,30 +13,22 @@ use Controller;
 class coursesController extends \Controller
 {
 
-    public  function old(){
+
+    public function old()
+    {
 
 
         //return var_dump($_COOKIE['item_id']);
     }
+
     public function index()
     {
-        $course_site=$this->model('Course_site');
+        $course_site = $this->model('Course_site');
 //        return var_dump( $course_site->all() );
-        $this->view('website' . DIRECTORY_SEPARATOR . 'courses', ['courses' => $course_site->all() ,'deleted' => false]);
+        $this->view('website' . DIRECTORY_SEPARATOR . 'courses', ['courses' => $course_site->all(), 'deleted' => false]);
 
-        $this->view->pageTitle ='Course_site';
+        $this->view->pageTitle = 'Course_site';
         $this->view->render();
-}
-public function insertCourseUser(){
-   $userCourse=$this->model('Course_site');
-//    $userInfoCourse=array(
-//        ":user_id"=>,
-//        ":course_buy"=>,
-//   " :user_whil_list"=>
-//    );
-}
-//public function addCoursesId(){
-//    Session::set('cousresUserId'=>);
-//}
+    }
 }
 ?>

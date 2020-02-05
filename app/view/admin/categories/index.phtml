@@ -3,31 +3,34 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 <!-- Start Main-content -->
 <div class="container">
-    <div class="row bg-light mb-4 ">
-        <div class="text-right mt-auto col-6">
-            <h3><i class="fa fa-list"></i> ادارة الاقسام </h3>
+    <div class="row bg-white mb-4 ">
+        <div class="text-right  mt-auto col-6">
+            <h3><i class="fa fa-list" style="color:#ec3901"></i> ادارة الاقسام </h3>
         </div>
     </div>
     <?php include VIEW . 'messages.phtml' ?>
-    <div class="row ">
-        <div class="col-6 text-right">
-            <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                        id="dashboard_daterangepicker">
-                    <i class="	fas fa-bullseye"></i> ترتيب حسب
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Day</a>
-                    <a class="dropdown-item" href="#">Week</a>
-                    <a class="dropdown-item" href="#">Month</a>
-                    <a class="dropdown-item" href="#">Range</a>
+
+
+        <div class="row mb-4">
+            <div class="col-6 text-right">
+                <a href="/admin/categories/create" class="btn btn-success"><i class="fa fa-plus"> </i> إنشاء قسم جديد</a>
+            </div>
+            <div class="col-6 text-left">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                            id="dashboard_daterangepicker">
+                        <i class="	fas fa-bullseye"></i> ترتيب حسب
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Day</a>
+                        <a class="dropdown-item" href="#">Week</a>
+                        <a class="dropdown-item" href="#">Month</a>
+                        <a class="dropdown-item" href="#">Range</a>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-6 text-left">
-            <a href="/admin/categories/create" class="btn btn-success"><i class="fa fa-plus"> </i> إنشاء قسم جديد</a>
-        </div>
-    </div>
+
 
     <br>
     <table id="example1" class="table table-bordered table-striped">
@@ -126,7 +129,7 @@
         });
     });
 </script>
-</script>
+
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
 
 

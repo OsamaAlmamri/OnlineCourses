@@ -106,6 +106,14 @@ class Helper
 
     }
 
+    public static function getVideoName($name)
+    {
+
+
+     return   explode( '.',explode('______',$name )[1] )[0];
+
+    }
+
 
     public static function backToHome($message, $status)
     {
