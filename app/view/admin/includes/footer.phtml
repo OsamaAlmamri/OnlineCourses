@@ -8,50 +8,82 @@
 <script src="/design/dashboard/js/design.js"></script>
 <script src="/design/dashboard/js/main.js"></script>
 <script src="/design/dashboard/js/my-login.js"></script>
-<script src="/design/dashboard/js/validate.js"></script>
 <script src="/design/dashboard/lib/tinymce/jquery.tinymce.min.js" referrerpolicy="origin"></script>
 <script src="/design/dashboard/lib/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
-        tinymce.init({
-            selector : 'textarea',
-            plugins : 'image',
-            toolbar : 'image',
 
-            images_upload_url : 'upload.php',
-            automatic_uploads : false,
+    tinymce.init({
+        selector : 'textarea',
+        plugins : 'image',
+        toolbar : 'image',
 
-            images_upload_handler : function(blobInfo, success, failure) {
-                var xhr, formDa ta;
+        images_upload_url : 'upload.php',
+        automatic_uploads : false,
 
-                xhr = new XMLHttpRequest();
-                xhr.withCredentials = false;
-                xhr.open('POST', 'upload.php');
+        images_upload_handler : function(blobInfo, success, failure) {
+            var xhr, formData;
 
-                xhr.onload = function() {
-                    var json;
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+            xhr.open('POST', 'upload.php');
 
-                    if (xhr.status != 200) {
-                        failure('HTTP Error: ' + xhr.status);
-                        return;
-                    }
+            xhr.onload = function() {
+                var json;
 
-                    json = JSON.parse(xhr.responseText);
+                if (xhr.status != 200) {
+                    failure('HTTP Error: ' + xhr.status);
+                    return;
+                }
 
-                    if (!json || typeof json.file_path != 'string') {
-                        failure('Invalid JSON: ' + xhr.responseText);
-                        return;
-                    }
+                json = JSON.parse(xhr.responseText);
 
-                    success(json.file_path);
-                };
+                if (!json || typeof json.file_path != 'string') {
+                    failure('Invalid JSON: ' + xhr.responseText);
+                    return;
+                }
 
-                formData = new FormData();
-                formData.append('file', blobInfo.blob(), blobInfo.filename());
+                success(json.file_path);
+            };
 
-                xhr.send(formData);
-            },
-        });
-    </script>
-<?php (Message::getMessage('errors')); ?>
-<?php Session::delete('oldFormData'); ?>
+            formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
 
+            xhr.send(formData);
+        },
+    });
+</script>
+<?php
+$url = array(
+    "http://localhost"
+);
+
+reset($_FILES);
+$temp = current($_FILES);
+
+if (is_uploaded_file($temp['tmp_name'])) {
+    if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
+        header("HTTP/1.1 400 Invalid file name,Bad request");
+        return;
+    }
+
+    // Validating File extensions
+    if (! in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array(
+        "gif",
+        "jpg",
+        "png"
+    ))) {
+        header("HTTP/1.1 400 Not an Image");
+        return;
+    }
+
+    $fileName = "/images/" . $temp['name'];
+    move_uploaded_file($temp['tmp_name'], $fileName);
+
+    // Return JSON response with the uploaded file path.
+    echo json_encode(array(
+        'file_path' => $fileName
+    ));
+}
+(Message::getMessage('errors'));
+ Session::delete('oldFormData');
+ ?>

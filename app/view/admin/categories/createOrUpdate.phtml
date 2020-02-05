@@ -14,9 +14,10 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 <!-- Start Main-content -->
 <div class="container">
-    <div class="row bg-light mb-4 ">
+
+    <div class="row bg-white mb-4 ">
         <div class="text-right mt-auto col-6">
-            <h3><i class="fa fa-list"></i> ادارة الاقسام </h3>
+            <h3><i class="fa fa-list" style="color:#ec3901"></i> ادارة الاقسام </h3>
         </div>
     </div>
 
@@ -24,7 +25,7 @@
     <form action="/admin/categories/store" method="post">
         <div class="form-group">
             <label for="course_title">اسم القسم :</label>
-            <input type="text" class="form-control" id="course_title"
+            <input type="text" class="form-control" id="course_title" placeholder="اسم القسم"
                    value="<?php Helper::old('category_name'); ?>"
                    name="category_name">
             <?php echo Message::getInputErrorMessage('category_name') ?>
@@ -44,7 +45,7 @@
 
             <select class="select2" id="main_category_parents" name="main_category_parents"
                     data-placeholder="Major" style="width: 100%;">
-                <option value="0" selected> select Main Category</option>
+                <option value="0" selected> اختيار القسم الرئيسي</option>
                 <?php if (array_key_exists('MainCategories', $this->view_data)) {
                     foreach ($this->view_data['MainCategories'] as $category) { ?>
 
@@ -58,11 +59,11 @@
 
 
         <div class="form-group">
-            <label for="sub_category">Sub Main Category(Field): </label>
+            <label for="sub_category">القسم الفرعي(المتفرع من الاب): </label>
 
             <select id="sub_category" class="select2" name="sub_category_parents"
                     data-placeholder="Field" style="width: 100%;">
-                <option value="0" selected> select Sub Category</option>
+                <option value="0" selected> اختيار القسم الفرعي</option>
             </select>
         </div>
 
@@ -82,17 +83,12 @@
         <!--        -->
 
 
-        <button type="submit" name="submit" class="btn btn-success">اضافة</button>
+        <button type="submit" name="submit" class="btn btn-success btn-block">اضافة</button>
     </form>
     <br>
 
 </div>
-<!-- End Main-content -->
 
-</div>
-<!-- End Content -->
-</div>
-</div>
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <script src="/design/dashboard/lib/jquery.tagsinput/src/jquery.tagsinput.js"></script>

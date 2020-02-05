@@ -33,13 +33,13 @@
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                         id="dashboard_daterangepicker">
-                    <i class="	fas fa-bullseye"></i> sorting data by
+                    <i class="	fas fa-bullseye"></i> ترنيب حسب
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Day</a>
-                    <a class="dropdown-item" href="#">Week</a>
-                    <a class="dropdown-item" href="#">Month</a>
-                    <a class="dropdown-item" href="#">Range</a>
+                    <a class="dropdown-item" href="#">اليوم</a>
+                    <a class="dropdown-item" href="#">الاسبوع</a>
+                    <a class="dropdown-item" href="#">الشهر</a>
+                    <a class="dropdown-item" href="#">الفترة</a>
                 </div>
             </div>
         </div>
@@ -51,10 +51,10 @@
         <thead class="thead-dark font-size-18">
         <tr>
             <td>#</td>
-            <td>chapter</td>
-            <td>video</td>
-            <td>duration</td>
-            <td>size</td>
+            <td>الشبابتر</td>
+            <td>الفيديو</td>
+            <td>المدة</td>
+            <td>الحجم</td>
 
             <!--            resources_id-->
             <!--            resources_video-->
@@ -89,9 +89,9 @@
 
 
 <?php if ($this->view_data['deleted'] == false) { ?>
-    <td><a href="" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
+    <td><a href="/admin/lessons/edit/" class="btn btn-success"><i class="fa fa-edit"></i></a>
 
-    <td>
+
         <a href="/admin/lessons/delete/<?php echo $course['id'] ?>"
            onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
                     class="fa fa-trash"></i></a>
