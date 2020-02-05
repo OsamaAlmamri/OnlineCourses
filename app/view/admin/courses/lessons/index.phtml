@@ -51,6 +51,7 @@
         <thead class="thead-dark font-size-18">
         <tr>
             <td>#</td>
+            <td>عنوان الدرس</td>
             <td>الشبابتر</td>
             <td>الفيديو</td>
             <td>المدة</td>
@@ -74,8 +75,10 @@
         <?php if (array_key_exists('courses', $this->view_data)) {
         foreach ($this->view_data['courses'] as $k => $course) { ?>
         <tr>
+<!--            --><?php //$file = Helper::getVideName()); ?>
             <?php $file = Helper::getVideoDeatils(substr($course['resources_video'], 1)); ?>
             <td><?php echo $k ?></td>
+            <td><?php echo  Helper::getVideoName($course['resources_video']) ?></td>
             <td><?php echo $course['resources_chapter'] ?></td>
             <td>
                 <div style="display:none;margin:0 auto;" class="html5gallery" data-html5player="true"
