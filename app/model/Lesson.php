@@ -62,7 +62,7 @@ class Lesson
 
         $likeVar = "%" . $course . "%";
 
-        $oStmt = $this->db->preparation('SELECT resources_chapter as id ,resources_chapter as name FROM course_resources WHERE resources_chapter  LIKE  ? ');
+        $oStmt = $this->db->preparation('SELECT distinct resources_chapter as id ,resources_chapter as name FROM course_resources WHERE resources_chapter  LIKE  ? ');
         $oStmt->execute(array(0 => $likeVar));
         return $oStmt->fetchAll();
 
