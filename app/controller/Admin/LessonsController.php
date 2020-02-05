@@ -22,6 +22,19 @@ class LessonsController extends Controller
         $this->view->render();
     }
 
+    public function chapterVideos($id)
+    {
+        Helper::viewAdminFile();
+
+        $lessons = $this->model('Lesson');
+
+//        return print_r($lessons->allLessonByChapterName($id));
+
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'lessons' . DIRECTORY_SEPARATOR . 'index', ['courses' => $lessons->allLessonByChapterName($id), 'course_id' => $id, 'deleted' => false]);
+        $this->view->pageTitle = 'courses';
+        $this->view->render();
+    }
+
 
     public function saveVideo($size = '')
     {
