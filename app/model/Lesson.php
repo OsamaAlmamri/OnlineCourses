@@ -19,6 +19,22 @@ class Lesson
         return $this->db->query("select * from course_resources");
     }
 
+    public function chapterLessons($id, $chapter)
+    {
+        return $this->db->query("select * from course_resources WHERE course_id =$id and resources_chapter like '$chapter' ");
+    }
+
+    public function cont_lessons($id)
+    {
+        return $this->db->query("select count(course_id) as count from course_resources WHERE course_id =$id  ")[0]['count'];
+    }
+
+    public function chapterNames($id)
+    {
+        return $this->db->query("select distinct resources_chapter from course_resources  WHERE course_id =$id  ");
+    }
+
+
     // return all row of table of course_resources
     public function course_lessons($id)
     {
@@ -62,7 +78,7 @@ class Lesson
 
         $likeVar = "%" . $course . "%";
 
-        $oStmt = $this->db->preparation('SELECT resources_chapter as id ,resources_chapter as name FROM course_resources WHERE resources_chapter  LIKE  ? ');
+        $oStmt = $this->db->preparation('SELECT distinct resources_chapter as id ,resources_chapter as name FROM course_resources WHERE resources_chapter  LIKE  ? ');
         $oStmt->execute(array(0 => $likeVar));
         return $oStmt->fetchAll();
 

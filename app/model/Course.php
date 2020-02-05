@@ -26,7 +26,7 @@ class Course
 
     public function find($id)
     {
-        return $this->db->query("select * from courses WHERE id =$id");
+        return $this->db->query("select * from courses WHERE course_id =$id");
 
 
     }
