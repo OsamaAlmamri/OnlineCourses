@@ -23,7 +23,6 @@
         <form action="/admin/lessons/store" id="form_lesson_details" method="post" enctype="multipart/form-data">
             <input type="hidden" name="course_id" value="<?php echo $this->view_data['course_id'] ?>">
             <input type="hidden" name="resources_video" value="<?php Helper::old('resources_video') ?>">
-            <?php echo  '=>'.Helper::old('resources_video') ?>
             <?php echo Message::getInputErrorMessage('resources_video') ?>
             <div id="video_info">
             </div>
@@ -140,6 +139,6 @@
     }
 </script>
 <script>
-    autoComplate('resources_chapter', 'resources_chapter', 'chapter', '/admin/lessons/fetchChapter', 'name', false);
+    autoComplate('resources_chapter', 'resources_chapter11', 'chapter', '/admin/lessons/fetchChapter', 'name', false);
 </script>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
