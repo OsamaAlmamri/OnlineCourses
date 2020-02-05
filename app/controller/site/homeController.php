@@ -61,7 +61,7 @@ class homeController extends Controller
         $this->view->render();
     }
 
-    public function course_detail()
+    public function courseDetails()
     {
         $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail', ['news' => [], 'category' => []]);
         $this->view->pageTitle = 'course list';

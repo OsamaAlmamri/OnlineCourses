@@ -67,7 +67,7 @@
                             <div class="wrapper">
                                 <small>Category</small>
                                 <h3><?php echo $course['course_title']; ?></h3>
-                                <p><?php echo $course['course__description']; ?></p>
+                                <p><?php echo $course['course_description']; ?></p>
                                 <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i
                                             class="icon_star voted"></i><i class="icon_star"></i><i
                                             class="icon_star"></i> <small>(145)</small></div>
@@ -78,11 +78,10 @@
                                 <!--                                onclick="addToCat(-->
                                 <?php //echo $course['course_id']; ?><!--)"-->
 
-                                <button class="buy_btn"> buy</button>
 
                                 <button onclick="addToCart(<?php echo $course['course_id'];?>)"> buy</button>
 
-                                <li><a href="/home/course_detail/<?php echo $course['course_id']; ?>" id="courseItems">Enroll
+                                <li><a href="/courseDetails/<?php echo $course['course_id']; ?>" id="courseItems">Enroll
                                         now</a></li>
                             </ul>
                         </div>

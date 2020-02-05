@@ -19,12 +19,13 @@ class Course_site
     {
 
         return $this->db->Insert("insert into users_courses(user_id,couces_buy,user_wish_list) 
-values(:user_id,:course_buy,:user_whil_list)",$args);
+               values(:user_id,:course_buy,:user_whil_list)",$args);
 
         return $this->db->Insert("insert into users_courses(user_id,couces_buy) 
 values(:user_id,:course_buy)",$args);
 
     }
+
 
 }
 ?>

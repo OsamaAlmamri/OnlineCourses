@@ -24,51 +24,38 @@
 				<div class="row">
 
 					<div class="col-lg-8">
-                        <?php if (array_key_exists('courses_detail', $this->view_data)) {
-                        foreach ($this->view_data['courses_detail'] as $course) { ?>
+                        <?php if (array_key_exists('course_detail', $this->view_data)) {
+                        foreach ($this->view_data['course_detail'] as $course) {
+                            ?>
+
                             <section id="description">
                                 <h2>Description</h2>
-                                <p><?php echo $course['course__description ']; ?></p>
-                                <h5>What will you learn</h5>
-                                <ul class="list_ok">
-                                    <li>
-                                        <h6>Suas summo id sed erat erant oporteat</h6>
-                                        <p>Ut unum diceret eos, mel cu velit principes, ut quo inani dolorem
-                                            mediocritatem. Mea in justo posidonium necessitatibus.</p>
-                                    </li>
-                                    <li>
-                                        <h6>Illud singulis indoctum ad sed</h6>
-                                        <p>Ut unum diceret eos, mel cu velit principes, ut quo inani dolorem
-                                            mediocritatem. Mea in justo posidonium necessitatibus.</p>
-                                    </li>
-                                    <li>
-                                        <h6>Alterum bonorum mentitum an mel</h6>
-                                        <p>Ut unum diceret eos, mel cu velit principes, ut quo inani dolorem
-                                            mediocritatem. Mea in justo posidonium necessitatibus.</p>
-                                    </li>
-                                </ul>
+                                <p ><?php echo $course['course_description']; ?></p>
                                 <hr>
-                                <p>Mea appareat omittantur eloquentiam ad, nam ei quas oportere democritum. Prima causae
-                                    admodum id est, ei timeam inimicus sed. Sit an meis aliquam, cetero inermis vel ut.
-                                    An sit illum euismod facilisis, tamquam vulputate pertinacia eum at.</p>
+                                <h2>Course goals</h2>
+                                <p><?php echo $course['course_goals']; ?></p>
+                                <hr>
                                 <div class="row">
                                     <div class="col-lg-6">
+                                        <h2>Course requirements</h2>
                                         <ul class="bullets">
-                                            <li>Dolorem mediocritatem</li>
-                                            <li>Mea appareat</li>
-                                            <li>Prima causae</li>
-                                            <li>Singulis indoctum</li>
+                                            <li><?php echo $course['course_requirements']; ?></li>
+
                                         </ul>
                                     </div>
-                                    <div class="col-lg-6">
-                                        <ul class="bullets">
-                                            <li>Timeam inimicus</li>
-                                            <li>Oportere democritum</li>
-                                            <li>Cetero inermis</li>
-                                            <li>Pertinacia eum</li>
-                                        </ul>
-                                    </div>
+
+
                                 </div>
+                                <hr>
+                                <h2>Target students</h2>
+                                <ul class="list_ok">
+                                    <li>
+
+                                        <p><?php echo $course['course_students_target']; ?></p>
+                                    </li>
+
+                                </ul>
+
                                 <!-- /row -->
                             </section>
                             <?php
