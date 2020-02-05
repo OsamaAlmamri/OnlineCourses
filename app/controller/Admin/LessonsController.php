@@ -51,7 +51,7 @@ class LessonsController extends Controller
             die("ERROR: File couldn't be processed");
 
         }
-        $time = time();
+        $time = time() . '______';
         if (move_uploaded_file($file["tmp_name"], "videos/" . $time . $file["name"])) {
 //    echo "SUCCESS: The upload of " . $file["name"] . " is complete";
             echo '/videos/' . time() . $file["name"];
