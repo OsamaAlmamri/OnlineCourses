@@ -1,27 +1,27 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 <style type="text/css">
-    div.guide {
-        margin: 12px 24px;
-    }
+div.guide {
+margin: 12px 24px;
+}
 
-    div.guide span {
-        color: #ff0000;
-        font: italic 14px Arial, Helvetica, sans-serif;
-    }
+div.guide span {
+color: #ff0000;
+font: italic 14px Arial, Helvetica, sans-serif;
+}
 
-    div.guide p {
-        color: #000000;
-        font: 14px Arial, Helvetica, sans-serif;
-    }
+div.guide p {
+color: #000000;
+font: 14px Arial, Helvetica, sans-serif;
+}
 
-    div.guide pre {
-        color: #990000;
-    }
+div.guide pre {
+color: #990000;
+}
 
-    div.guide p.title {
-        color: #df501f;
-        font: 18px Arial, Helvetica, sans-serif;
-    }
+div.guide p.title {
+color: #df501f;
+font: 18px Arial, Helvetica, sans-serif;
+}
 </style>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
@@ -75,10 +75,10 @@
         <?php if (array_key_exists('courses', $this->view_data)) {
         foreach ($this->view_data['courses'] as $k => $course) { ?>
         <tr>
-<!--            --><?php //$file = Helper::getVideName()); ?>
+            <!--            --><?php //$file = Helper::getVideName()); ?>
             <?php $file = Helper::getVideoDeatils(substr($course['resources_video'], 1)); ?>
             <td><?php echo $k ?></td>
-            <td><?php echo  Helper::getVideoName($course['resources_video']) ?></td>
+            <td><?php echo Helper::getVideoName($course['resources_video']) ?></td>
             <td><?php echo $course['resources_chapter'] ?></td>
             <td>
                 <div style="display:none;margin:0 auto;" class="html5gallery" data-html5player="true"
@@ -87,7 +87,8 @@
                      data-webm="<?php echo $course['resources_video'] ?>"
 </div>
     </td>
-    <td> <?php echo $file['playtime_string'] ?></td>
+    <!--    <td> --><?php //echo $file['playtime_string'] ?><!--</td>-->
+    <td> <?php echo gmdate("H:i:s", $file['playtime_seconds']) ?></td>
     <td> <?php echo round($file['filesize'] / 1014 / 1024, 2) . 'MB' ?></td>
 
 
