@@ -6,7 +6,7 @@
     <?php include VIEW . 'messages.phtml' ?>
     <div class="row bg-white mb-4 ">
         <div class="text-right mt-auto col-6">
-            <h3><i class="" style="color:#ec3901"></i>ادارة الكورسات   </h3>
+            <h3><i class="fa fa-book-open" style="color:#ec3901"></i>ادارة الكورسات   </h3>
         </div>
     </div>
     <div class="row mb-4">
@@ -20,38 +20,40 @@
                     <i class="	fas fa-bullseye"></i> ترنيب حسب
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Day</a>
-                    <a class="dropdown-item" href="#">Week</a>
-                    <a class="dropdown-item" href="#">Month</a>
-                    <a class="dropdown-item" href="#">Range</a>
+                    <a class="dropdown-item" href="#">اليوم</a>
+                    <a class="dropdown-item" href="#">الاسبوع</a>
+                    <a class="dropdown-item" href="#">الشهر</a>
+                    <a class="dropdown-item" href="#">الفترة</a>
                 </div>
             </div>
         </div>
     </div>
     <table id="example1" class="table table-bordered table-striped">
-        <thead class="thead-dark font-size-16">
-        <tr>
-            <td>#</td>
-            <td>Course Title</td>
-            <td>Course Description</td>
-            <td>Course Image</td>
-            <td>Course Price</td>
-            <td> Price after discount</td>
-            <td>Student Target</td>
-            <td>Course Goals</td>
-            <td>Categories Name</td>
-            <td>Course status</td>
-            <td>Lessons</td>
-            <td>Course visibility</td>
+        <thead class="thead-dark font-size-18">
 
-            <th>update</th>
-            <th>delete</th>
+        <tr>
+
+            <th>#الرقم المميز</th>
+            <th>عنوان الكورس</th>
+            <th>وصف الكورس</th>
+            <th>صورة الكورس</th>
+            <th>سعر الكورس</th>
+            <th> السعر بعد التحفيض</th>
+            <th>الطلاب المسهدفين</th>
+            <th>أهداف الكورس</th>
+            <th>اسم الصنف</th>
+            <th>حالة الكورس</th>
+            <th>الدروس</th>
+            <th>إظهار الكورس</th>
+
+            <th>الاعدادات</th>
+
         </tr>
         </thead>
 
         <tbody>
 
-        <?php if (array_key_exists('courses', $this->view_data)) {
+<?php if (array_key_exists('courses', $this->view_data)) {
             foreach ($this->view_data['courses'] as $k => $course) { ?>
                 <tr>
                     <td><?php echo $k ?></td>
@@ -112,11 +114,7 @@
         } ?>
     </table>
 </div>
-<!-- End Main-content -->
-</div>
-<!-- End Content -->
-</div>
-</div>
+
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
