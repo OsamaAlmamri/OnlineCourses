@@ -65,9 +65,9 @@ class LessonsController extends Controller
 
         }
         $time = time() . '______';
-        if (move_uploaded_file($file["tmp_name"], "videos/" . $time . $file["name"])) {
+        if (move_uploaded_file($file["tmp_name"], "videos/" . $time . $file["name"] . '.webm')) {
 //    echo "SUCCESS: The upload of " . $file["name"] . " is complete";
-            echo '/videos/' . $time . $file["name"];
+            echo '/videos/' . $time . $file["name"] . '.webm';
 
         } else {
             echo "ERROR: Couldn't move the file to the final location";
