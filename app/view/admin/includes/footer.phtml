@@ -60,7 +60,7 @@ $url = array(
 reset($_FILES);
 $temp = current($_FILES);
 
-if (is_uploaded_file($temp['tmp_name'])) {
+if (isset($temp['tmp_name'])  and is_uploaded_file($temp['tmp_name'])) {
     if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
         header("HTTP/1.1 400 Invalid file name,Bad request");
         return;
