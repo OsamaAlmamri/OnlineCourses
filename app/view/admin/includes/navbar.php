@@ -15,7 +15,7 @@
                 <ul class="list-unstyled components">
                     <li>
                         <a href="/admin/index">
-                            <i class="fas fa-home"></i>
+                            <i class="fas fa-home a2"></i>
                             الصفحة الرئيسية
                         </a>
                     </li>
@@ -71,37 +71,6 @@
 
                 </ul>
             </nav>
-
-
-            <div class="sidebar bg-dark" id="mySidenav">
-                <div class="logo-site pr-3">
-                    <img src="/images/logo.png">
-                </div>
-                <div class="link m-5">
-
-                    <div class="panel-group">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-
-                                <a data-toggle="collapse" href="#collapse2"><i class="fa fa-users-cog iconi"></i> <label
-                                            class="hrefLabel">الادارة<i class="fa fa-angle-down "></i></label></a>
-
-                            </div>
-                            <div id="collapse2" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <a href="/admin/role/index"><i class="fa fa-user-cog icon"></i> <label
-                                                class="hrefLabel">الادوار</label></a>
-                                    <a href="/admin/permision/index"><i class="fa fa-cogs icon"></i> <label
-                                                class="hrefLabel">الصلاحيات</label></a>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
         </div>
         <!--  End Sidebar   -->
 

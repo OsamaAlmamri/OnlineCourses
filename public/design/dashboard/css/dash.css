@@ -163,10 +163,7 @@ a:focus {
     margin: 40px 0;
 }
 
-i,
-span {
-    display: inline-block;
-}
+
 
 /* ---------------------------------------------------
     SIDEBAR STYLE
@@ -229,20 +226,18 @@ span {
     display: block;
 }
 
-#sidebar ul li a:hover {
+#sidebar ul li a:hover{
+    padding: 15px;
     border-right: 7px solid #F1603F ;
     color: #e1e1e1;
     background: #1e1e1e;
 }
 
-#sidebar ul li a i {
+#sidebar i {
+    margin-left: 10px;
 }
 
-#sidebar ul li.active>a,
-a[aria-expanded="true"] {
-    color: #fff;
-    background: #F1603F;
-}
+
 
 a[data-toggle="collapse"] {
     position: relative;
