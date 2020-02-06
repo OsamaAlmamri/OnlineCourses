@@ -22,10 +22,26 @@ class LessonsController extends Controller
         $this->view->render();
     }
 
+    public function chapterVideos($id)
+    {
+        Helper::viewAdminFile();
+
+        $lessons = $this->model('Lesson');
+
+//        return print_r($lessons->allLessonByChapterName($id));
+
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'lessons' . DIRECTORY_SEPARATOR . 'index', ['courses' => $lessons->allLessonByChapterName($id), 'course_id' => $id, 'deleted' => false]);
+        $this->view->pageTitle = 'courses';
+        $this->view->render();
+    }
 
 
     public function saveVideo($size = '')
     {
+        ini_set('upload_max_filesize', '1000M');
+        ini_set('post_max_size', '1000M');
+        ini_set('max_input_time', 300);
+        ini_set('max_execution_time', 300);
 
         $ini_PostSize = preg_replace("/[^0-9,.]/", "", ini_get('post_max_size')) * (1024 * 1024);
         $ini_FileSize = preg_replace("/[^0-9,.]/", "", ini_get('upload_max_filesize')) * (1024 * 1024);
@@ -48,10 +64,10 @@ class LessonsController extends Controller
             die("ERROR: File couldn't be processed");
 
         }
-        $time = time();
-        if (move_uploaded_file($file["tmp_name"], "videos/" . $time . $file["name"])) {
+        $time = time() . '______';
+        if (move_uploaded_file($file["tmp_name"], "videos/" . $time . $file["name"] . '.webm')) {
 //    echo "SUCCESS: The upload of " . $file["name"] . " is complete";
-            echo '/videos/' . time() . $file["name"];
+            echo '/videos/' . $time . $file["name"] . '.webm';
 
         } else {
             echo "ERROR: Couldn't move the file to the final location";
@@ -101,9 +117,9 @@ class LessonsController extends Controller
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = \Validation::validate([
-//                'resources_chapter' => array(['required' => 'required']),
-//                'course_id' => array(['required' => 'required']),
-//                'resources_video' => array(['required' => 'required']),
+                'resources_chapter' => array(['required' => 'required']),
+                'course_id' => array(['required' => 'required']),
+                'resources_video' => array(['required' => 'required']),
             ]);
             if (count($validate) == 0) {
 
@@ -117,11 +133,11 @@ class LessonsController extends Controller
                 $id = $this->model->add($course);
 
                 if ($id) {
-                    Helper::back('/admin/lessons/index/'.$_REQUEST['course_id'], 'add successfully', 'success');
+                    Helper::back('/admin/lessons/index/' . $_REQUEST['course_id'], 'add successfully', 'success');
                     return;
                 }
             } else {
-                Helper::back('/admin/lessons/create/'.$_REQUEST['course_id'], 'error in required input', 'danger');
+                Helper::back('/admin/lessons/create/' . $_REQUEST['course_id'], 'error in required input', 'danger');
                 return;
             }
         }

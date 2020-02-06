@@ -19,13 +19,15 @@ data-tilt>
                                     </div>
                                 </div>
                                 <div class="col-md-6 pull-left">
-                                    <h4 class="card-title">Login</h4>
-                                    <form method="POST" class="my-login-validation" novalidate="" action="/home/postLogin">
+                                    <h4 class="card-title">تسجيل الدخول</h4>
+                                    <form method="POST" class="my-login-validation" novalidate="" action="/home/postLogin"
+                                          id='first_form'
+                                          >
                                         <div class="form-group">
-                                            <label for="user_email">User Name:</label>
+                                            <label for="user_email">إسم المستخدم او البريد الالكتروني:</label>
                                             <input type="username" value="<?php Helper::old('username'); ?>"
-                                                   class="form-control" placeholder="Enter email" id="user_email"
-                                                   name="username" required>
+                                                   class="form-control" placeholder="أدخل اسم المستخدم او البريد الالكتروني" id="user_email"
+                                                   name="username">
 
                                             <div class="invalid-feedback">
                                                 User Name is invalid
@@ -33,11 +35,11 @@ data-tilt>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="password">Password
+                                            <label for="password">كلمة السر:
 
                                             </label>
-                                            <label for="password">Password:</label>
-                                            <input type="password" class="form-control" placeholder="Enter password"
+                                            
+                                            <input type="password" class="form-control" placeholder="يرجى إدراج كلمة السر"
                                                    id="password" name="password" data-eye>
                                             <div class="invalid-feedback">
                                                 Password is required
@@ -48,7 +50,7 @@ data-tilt>
                                         <div class="form-group ml-4">
                                             <div class="custom-checkbox custom-control">
                                                 <input type="checkbox" name="remember" id="remember" class="custom-control-input">
-                                                <label for="remember" class="custom-control-label">Remember Me</label>
+                                                <label for="remember" class="custom-control-label">تـذكرني</label>
                                             </div>
 
 
@@ -58,20 +60,20 @@ data-tilt>
 
                                         <div class="form-group m-0">
                                             <button type="submit"  name="submit" class="btn btn-primary btn-block">
-                                                Login
+                                                تسجيـــل الدخــول
                                             </button>
                                         </div>
                                         <div class="mt-4 text-center">
                                             Don't have an account?
 
-                                            <a href="/home/register/student" > Regsiter as Student ,</a>
-                                            <a href="/home/register/university" > Regsiter as University, </a>
+                                            <a href="/home/register/student" > تسجيل حساب جديد كـ طالب</a>
+                                            <a href="/home/register/university" > تسجيل حساب جديد كـ جامعة</a>
 
                                         </div>
                                         <div class="footer text-center">
-                                            Copyright &copy; 2020 &mdash; StepForward
+                                            حقوق التطوير &copy; 2020 &mdash; كورسات
                                          <br>   <a href="forgot.html" >
-                                                Forgot Password ?
+                                                نسيــت كلمـة السر ؟
                                             </a>
                                         </div>
                                     </form>
@@ -119,3 +121,34 @@ data-tilt>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
 
 
+<script>
+$(document).ready(function() {
+
+  $('#first_form').submit(function(e) {
+    e.preventDefault();
+    var user_email = $('#user_email').val();
+    var password = $('#password').val();
+
+    $(".error").remove();
+
+    if (user_email.length < 1) {
+      $('#user_email').after('<span class="error" style=background-color:red;>يرجى إدراج البريد الالكتروني أو إسم المستخدم</span>');
+    }
+    if (password.length < 1) {
+      $('#password').after('<span class="error" style=background-color:red;>يرجى إدراج كلمة السر</span>'  );
+    }
+
+    else {
+      var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
+      var validEmail = regEx.test(email);
+      if (!validEmail) {
+        $('#email').after('<span class="error">Enter a valid email</span>');
+      }
+    }
+    if (password.length < 8) {
+      $('#password').after('<span class="error"></span>');
+    }
+  });
+
+});                                        
+</script>
