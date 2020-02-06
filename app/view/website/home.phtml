@@ -66,20 +66,20 @@
                                                <figure class="block-reveal">
                                                    <div class="block-horizzontal"></div>
                                                    <a href="#0" class="wish_bt"></a>
-                                                   <a href="/home/course_detail"><img src="/images/site/<?php echo $course['courses_image'];?>" class="img-fluid" alt=""></a>
-                                                   <div class="price"><?php echo $course['course_title']?></div>
-                                                   <div class="preview"><span>Preview course</span></div>
+                                                   <a href="/home/course_detail/<?php echo $course['course_id']?>"><img src="/images/site/<?php echo $course['courses_image'];?>" class="img-fluid" alt=""></a>
+                                                   <div class="price"><?php echo $course['course_price']?> $</div>
+                                                   <div class="preview"><span>عرض الكورس  </span></div>
                                                </figure>
                                                <div class="wrapper">
-                                                   <small>Category</small>
-                                                   <h3>At deseruisse scriptorem</h3>
-                                                   <p>Id placerat tacimates definitionem.......</p>
+                                                   <small>الصنف</small>
+                                                   <h3> <?php echo Helper::Names($course['categories_ids'], 'Category') ?> </h3>
+                                                   <p><?php echo $course['course_title']?></p>
                                                    <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
                                                </div>
                                                <ul>
                                                    <li><i class="icon_clock_alt"></i> 1h 30min</li>
                                                    <li><i class="icon_like"></i> 890</li>
-                                                   <li><a href="/home/course_detail">Enroll now</a></li>
+                                                   <li><a href="/home/course_detail/<?php echo $course['course_id']?>"> تسجيل الان</a></li>
                                                </ul>
                                            </div>
                                        </div>

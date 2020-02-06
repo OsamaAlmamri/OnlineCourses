@@ -37,9 +37,10 @@
 
         <div class="form-group">
             <label for="course_description">وصف الكورس:</label>
-            <input type="text" class="form-control"
-                   value="<?php Helper::old('course_description'); ?>"
-                   id="course_description" placeholder="وصف الكورس" name="course_description">
+            <textarea class="form-control" placeholder="أهداف الكورس"
+                      value="<?php Helper::old('course_description'); ?>"
+                      id="course_description" name="course_description">
+                </textarea>
             <?php echo Message::getInputErrorMessage('course_description') ?>
         </div>
 
