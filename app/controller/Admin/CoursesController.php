@@ -59,7 +59,7 @@ class CoursesController extends Controller
 
     public function create()
     {
-        Permissions::getInstaince()->allow('course_create');
+       Permissions::getInstaince()->allow('course_create');
 
         Helper::viewAdminFile();
 

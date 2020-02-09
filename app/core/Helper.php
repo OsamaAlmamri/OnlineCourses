@@ -86,14 +86,6 @@ class Helper
 
     }
 
-    public static function allowView($name)
-    {
-        $p =  Permissions::getInstaince()->hasPermision($name);
-//        $p->hasPermision($name);
-
-
-    }
-
     public static function siteUrl()
     {
         return "http://uni-be.net";

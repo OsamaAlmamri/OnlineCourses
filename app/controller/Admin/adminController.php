@@ -18,7 +18,6 @@ class adminController extends Controller
 
     public function index()
     {
-//        Permissions::getInstaince()->allow($name)
         Permissions::getInstaince()->allow('admin_index');
         $this->model('Course');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'index', ['news' => $this->model->all()]);

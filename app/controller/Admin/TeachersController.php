@@ -18,7 +18,7 @@ class TeachersController extends Controller
 
     public function index()
     {
-        Permissions::getInstaince()->allow('teacher_index');
+        $permissionObject=Permissions::getInstaince()->allow('teacher_index');
 
 
         $this->model('Role');
@@ -38,7 +38,7 @@ class TeachersController extends Controller
     public function create()
     {
 
-        Permissions::getInstaince()->allow('teacher_create');
+        $permissionObject=Permissions::getInstaince()->allow('teacher_create');
 
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'teachers' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
@@ -50,7 +50,7 @@ class TeachersController extends Controller
     public function edit($id)
     {
 
-        Permissions::getInstaince()->allow('teacher_edit');
+        $permissionObject=Permissions::getInstaince()->allow('teacher_edit');
 
         $CatModel = $this->model('Category');
         $category = $CatModel->find($id)[0];
@@ -64,7 +64,7 @@ class TeachersController extends Controller
 
     public function delete($id)
     {
-        Permissions::getInstaince()->allow('teacher_delete');
+        $permissionObject=Permissions::getInstaince()->allow('teacher_delete');
         Helper::viewAdminFile();
         $this->model('Category');
         $c = $this->model->delete($id);
@@ -102,6 +102,8 @@ class TeachersController extends Controller
 
     public function store()
     {
+        $permissionObject=Permissions::getInstaince()->allow('teacher_store');
+
 
         // check if there submit
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -148,6 +150,7 @@ class TeachersController extends Controller
     public function update()
     {
 
+        $permissionObject=Permissions::getInstaince()->allow('teacher_update');
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = Validation::required(['', 'name_ar', 'name_en', 'section_count', 'newsCount', 'sort']);

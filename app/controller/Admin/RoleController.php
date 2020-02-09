@@ -20,7 +20,6 @@ class RoleController extends Controller
     {
         Permissions::getInstaince()->allow('role_index');
 
-        Helper::viewAdminFile();
         $role = $this->model('Role');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'role' . DIRECTORY_SEPARATOR . 'index', ['Role' => $role->all(), 'deleted' => false]);
         $this->view->pageTitle = 'Role';

@@ -1,4 +1,5 @@
 <?php
+
 namespace auth;
 
 use Controller;
@@ -25,9 +26,11 @@ class Permissions extends Controller
 
     }
 
-    public function hasPermision($name)
+    public
+    function hasPermision($name)
     {
-        $this->model('Permision');
+        if ($this->model == null)
+            $this->model('Permision');
         $p = $this->model->getPermissionByName($name);
         return (in_array($p, $_SESSION['user_permissions']));
     }
