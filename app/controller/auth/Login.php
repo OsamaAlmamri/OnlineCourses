@@ -19,10 +19,7 @@ class Login extends Controller
 
     public function login($type)
     {
-
-
         $this->view('home' . DIRECTORY_SEPARATOR . 'login', ['active' => "Login"]);
-
         $this->view->pageTitle = 'login';
         $this->view->render();
     }
@@ -45,7 +42,7 @@ class Login extends Controller
                 $user = $this->model->Login($userForm);
                 if ($user == 0 || $user['user_status'] == 0) {
                     if ($user == 0)
-                        Helper::backToLogin('كلمة المرور او اسم المستخدم خطاء ', 'danger');
+                        Helper::backToLogin('يرجى التأكد من كلمة المرور او اسم المستخدم  ', 'danger');
                     else
                         Helper::backToLogin('حسابك غير مفعل حاليا', 'warning');
                     return;
@@ -69,7 +66,8 @@ class Login extends Controller
                 }
 
 
-            } else {
+            }
+            else {
                 \Helper::backToLogin($validate, 'error');
                 return;
             }

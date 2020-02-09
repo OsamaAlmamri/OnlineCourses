@@ -1,96 +1,76 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+</head>
+<body class="login-page">
+            <div class="container">
+                <!-- login form-->
+                <div class="row justify-content-center">
+                    <div class="col-lg-3 col-md-6 col-sm-6 ">
+                        <div class="login-box card ">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="logo-login">
+                                            <img  src="/images/logo-color.png">
+                                        </div>
 
+                                        <!-- Alert Message-->
+                                        <div class="alert-message">
+                                            <?php include VIEW . 'messages.phtml' ?>
+                                        </div>
+                                        <!-- /. Alert Message-->
+                                        <form method="POST" class="my-login-validation" novalidate="" action="/home/postLogin"
+                                              id='first_form'>
+                                            <div class="form-group">
+                                                <input type="text" value="<?php Helper::old('username'); ?>"
+                                                       class="form-control" placeholder="أدخل اسم المستخدم او البريد الالكتروني" id="user_email" name="username">
+                                                <div class="invalid-feedback">
+                                                    User Name is invalid
+                                                </div>
+                                            </div>
 
-<div class="content1">
-    <?php include VIEW . 'messages.phtml' ?>
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" placeholder="يرجى إدراج كلمة السر"
+                                                       id="password" name="password">
+                                                <div class="invalid-feedback">
+                                                    Password is required
+                                                </div>
 
-    <section class="h-100">
-        <div class="container h-100">
-            <div class="row justify-content-lg-center ">
-                <div class="card-wrapper col-md-10 col-sm-6">
+                                            </div>
 
-                    <div class="card fat">
-                        <div class="card-body ">
-                            <div class="row">
-                                <div class="col-md-6 pull-right" >
-                                    <div
-data-tilt>
-                                        <img src="/images/login.png" alt="IMG"  width="110%" >
+                                            <div class="forget-pass">
+                                                <a href="forgot.html" >نسيــت كلمـة السر ؟</a>
+                                            </div>
+
+                                            <!--                                            <div class="form-group">-->
+                                            <!--                                                <div class="custom-checkbox custom-control">-->
+                                            <!--                                                    <input type="checkbox" name="remember" id="remember" class="custom-control-input">-->
+                                            <!--                                                    <label for="remember" class="custom-control-label">تـذكرني</label>-->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
+
+                                            <div class="form-group m-0">
+                                                <button type="submit"  name="submit" class="btn btn-primary btn-block">
+                                                    تسجيـــل الدخــول
+                                                </button>
+                                            </div>
+                                            <div class="register-link">
+                                                لايوجد لديك حساب ؟ يمكنك التسجيل
+                                                <a href="/home/register/student" > كطالب</a>
+                                                <a href="/home/register/university" > او كجامعة</a>
+                                            </div>
+
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="col-md-6 pull-left">
-                                    <h4 class="card-title">تسجيل الدخول</h4>
-                                    <form method="POST" class="my-login-validation" novalidate="" action="/home/postLogin"
-                                          id='first_form'
-                                          >
-                                        <div class="form-group">
-                                            <label for="user_email">إسم المستخدم او البريد الالكتروني:</label>
-                                            <input type="username" value="<?php Helper::old('username'); ?>"
-                                                   class="form-control" placeholder="أدخل اسم المستخدم او البريد الالكتروني" id="user_email"
-                                                   name="username">
 
-                                            <div class="invalid-feedback">
-                                                User Name is invalid
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="password">كلمة السر:
-
-                                            </label>
-                                            
-                                            <input type="password" class="form-control" placeholder="يرجى إدراج كلمة السر"
-                                                   id="password" name="password" data-eye>
-                                            <div class="invalid-feedback">
-                                                Password is required
-                                            </div>
-
-                                        </div>
-
-                                        <div class="form-group ml-4">
-                                            <div class="custom-checkbox custom-control">
-                                                <input type="checkbox" name="remember" id="remember" class="custom-control-input">
-                                                <label for="remember" class="custom-control-label">تـذكرني</label>
-                                            </div>
-
-
-
-
-                                        </div>
-
-                                        <div class="form-group m-0">
-                                            <button type="submit"  name="submit" class="btn btn-primary btn-block">
-                                                تسجيـــل الدخــول
-                                            </button>
-                                        </div>
-                                        <div class="mt-4 text-center">
-                                            Don't have an account?
-
-                                            <a href="/home/register/student" > تسجيل حساب جديد كـ طالب</a>
-                                            <a href="/home/register/university" > تسجيل حساب جديد كـ جامعة</a>
-
-                                        </div>
-                                        <div class="footer text-center">
-                                            حقوق التطوير &copy; 2020 &mdash; كورسات
-                                         <br>   <a href="forgot.html" >
-                                                نسيــت كلمـة السر ؟
-                                            </a>
-                                        </div>
-                                    </form>
-                                </div>
                             </div>
-
-
                         </div>
                     </div>
-
                 </div>
+                <!-- /. login form-->
+
             </div>
-        </div>
-    </section>
 
-
-</div>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'readImageFile.phtml' ?>
 
@@ -150,5 +130,6 @@ $(document).ready(function() {
     }
   });
 
-});                                        
+});
 </script>
+</body>
