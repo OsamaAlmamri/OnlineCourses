@@ -84,6 +84,8 @@ class RoleController extends Controller
                 $this->model('Role');
                 $id = $this->model->add($role);
                 if ($id) {
+                    if (isset($_REQUEST['permissions']))
+                        $this->storeRolePermission($_REQUEST['permissions'], $id);
                     Helper::back('/admin/role/index', 'add successfully', 'success');
                     return;
                 }
@@ -92,6 +94,21 @@ class RoleController extends Controller
                 return;
             }
         }
+
+
+    }
+
+    private function storeRolePermission($permissions, $role_id)
+    {
+        foreach ($permissions as $p) {
+            $role = array(
+                ':role_id' => $role_id,
+                ':permission_id' => $p,
+            );
+//            return var_dump()
+            $id = $this->model->addPermissionRole($role);
+        }
+        return;
 
 
     }

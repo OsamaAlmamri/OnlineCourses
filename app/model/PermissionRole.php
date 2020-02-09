@@ -17,6 +17,7 @@ class PermissionRole
 
 //
 
+
     public function getPermissionByName($name)
     {
         $id = $this->db->fetchOne("select permission_id from permissions WHERE permission_name  like '" . $name . "' ");

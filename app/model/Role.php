@@ -58,6 +58,15 @@ class Role
 
     }
 
+    public function addPermissionRole(array $aData)
+    {
+        $oStmt = $this->db->preparation('INSERT INTO permission_role ( permission_id,role_id)
+                                                  VALUES (:permission_id, :role_id)');
+
+        return $oStmt->execute($aData);
+
+    }
+
 }
 
 
