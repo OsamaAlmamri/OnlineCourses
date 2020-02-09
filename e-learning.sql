@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 09 فبراير 2020 الساعة 12:39
+-- Generation Time: 09 فبراير 2020 الساعة 20:56
 -- إصدار الخادم: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -32,7 +32,7 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `category_description` text NOT NULL,
-  `category_parents` text ,
+  `category_parents` text DEFAULT '0',
   `category_status` int(10) NOT NULL,
   `category_visibility` int(10) NOT NULL,
   `category_date` datetime NOT NULL,
@@ -208,66 +208,67 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`permission_id`, `permission_name`, `permissions_description`, `permission_status`) VALUES
-(1, 'admin_index', '', 0),
-(2, 'course_index', '', 0),
-(3, 'course_showLesson', '', 0),
-(4, 'course_Active', '', 0),
-(5, 'course_store', '', 0),
-(6, 'course_create', '', 0),
-(7, 'course_update', '', 0),
-(8, 'course_edit', '', 0),
-(9, 'course_delete', '', 0),
-(10, 'create_ForseDelete', '', 0),
-(11, 'category_index', '', 0),
-(12, 'category_showLesson', '', 0),
-(13, 'category_Active', '', 0),
-(14, 'category_store', '', 0),
-(15, 'category_create', '', 0),
-(16, 'category_update', '', 0),
-(17, 'category_edit', '', 0),
-(18, 'category_delete', '', 0),
-(19, 'car=t_ForseDelete', '', 0),
-(20, 'lesson_index', '', 0),
-(21, 'lesson_chapterVideo', '', 0),
-(22, 'lesson_Active', '', 0),
-(23, 'lesson_store', '', 0),
-(24, 'lesson_create', '', 0),
-(25, 'lesson_update', '', 0),
-(26, 'lesson_edit', '', 0),
-(27, 'lesson_delete', '', 0),
-(28, 'create_ForseDelete', '', 0),
-(29, 'permission_index', '', 0),
-(30, 'permission_Active', '', 0),
-(31, 'permission_store', '', 0),
-(32, 'permission_create', '', 0),
-(33, 'permission_update', '', 0),
-(34, 'permission_edit', '', 0),
-(35, 'permission_delete', '', 0),
-(36, 'permission_ForseDelete', '', 0),
-(37, 'role_index', '', 0),
-(38, 'role_Active', '', 0),
-(39, 'role_store', '', 0),
-(40, 'role_create', '', 0),
-(41, 'role_update', '', 0),
-(42, 'role_edit', '', 0),
-(43, 'role_delete', '', 0),
-(44, 'role_ForseDelete', '', 0),
-(45, 'teacher_index', '', 0),
-(46, 'teacher_Active', '', 0),
-(47, 'teacher_store', '', 0),
-(48, 'teacher_create', '', 0),
-(49, 'teacher_update', '', 0),
-(50, 'teacher_edit', '', 0),
-(51, 'teacher_delete', '', 0),
-(52, 'teacher_ForseDelete', '', 0),
-(53, 'university_index', '', 0),
-(54, 'university_Active', '', 0),
-(55, 'university_store', '', 0),
-(56, 'university_create', '', 0),
-(57, 'university_update', '', 0),
-(58, 'university_edit', '', 0),
-(59, 'university_delete', '', 0),
-(60, 'university_ForseDelete', '', 0);
+(1, 'admin_index', 'الصفحة الرئيسة للوحى التحكم', 0),
+(2, 'course_index', 'الصفحة الرئيسية للمواد', 0),
+(3, 'course_showLesson', 'عرض دروس المادة', 0),
+(4, 'course_Active', 'تغعيل/تعطيل المادة', 0),
+(5, 'course_store', 'حفظ المادة', 0),
+(6, 'course_create', 'انشاء مادة', 0),
+(7, 'course_update', 'تعديل مادة', 0),
+(8, 'course_edit', 'عرض صفحة تعديل المادة', 0),
+(9, 'course_delete', 'حذف المادة', 0),
+(10, 'create_ForseDelete', 'حذف نهائي للمادة', 0),
+(11, 'category_index', 'الصفحة الرئيسية للتصنيفات', 0),
+(12, 'category_showLesson', 'عرض دروس التصنيفات', 0),
+(13, 'category_Active', 'تغعيل/تعطيل التصنيفات', 0),
+(14, 'category_store', 'حفظ التصنيفات', 0),
+(15, 'category_create', 'انشاء تصنيف', 0),
+(16, 'category_update', 'تعديل تصنيف', 0),
+(17, 'category_edit', 'عرض صفحة تعديل التصنيفات', 0),
+(18, 'category_delete', 'حذف التصنيفات', 0),
+(19, 'cat_ForseDelete', 'حذف بشكل نهائي للتصنيفات', 0),
+(20, 'lesson_index', 'عرض الدروس', 0),
+(21, 'lesson_chapterVideo', 'عرض فديوهات الدرس', 0),
+(22, 'lesson_Active', 'تغعيل/تعطيل درس', 0),
+(23, 'lesson_store', 'حفظ درس', 0),
+(24, 'lesson_create', 'انشاء درس', 0),
+(25, 'lesson_update', 'تعديل درس', 0),
+(26, 'lesson_edit', 'عرض صفحة تعديل الدرس', 0),
+(27, 'lesson_delete', 'حذف درس', 0),
+(28, 'create_ForseDelete', 'حذف نهائي للدرس', 0),
+(29, 'permission_index', 'عرض الصلاحيات', 0),
+(30, 'permission_Active', 'تفعيل/تعطيل صلاحية', 0),
+(31, 'permission_store', 'حفظ صلاحية جديدة', 0),
+(32, 'permission_create', 'انشاء صلاحية جديدة', 0),
+(33, 'permission_update', 'تعديل الصلاحيات', 0),
+(34, 'permission_edit', 'عرض صفحة تعديل الصلاحيات', 0),
+(35, 'permission_delete', 'حذف صلاحية', 0),
+(36, 'permission_ForseDelete', 'حذف نهائي للصلاحية', 0),
+(37, 'role_index', 'عرض الادوار', 0),
+(38, 'role_Active', 'تفعيل/تعطيل الادوار', 0),
+(39, 'role_store', 'حفظ الادوار', 0),
+(40, 'role_create', 'عرض صفحة اضافة دور جديد', 0),
+(41, 'role_update', 'تعديل الادوار', 0),
+(42, 'role_edit', 'عرض صفحة تعديل الادوار', 0),
+(43, 'role_delete', 'حذف الدور', 0),
+(44, 'role_ForseDelete', 'حذف الدور بشكل نهائي ', 0),
+(45, 'teacher_index', 'عرض الاساتذة', 0),
+(46, 'teacher_Active', 'تغعيل/تعطيل استاذ', 0),
+(47, 'teacher_store', 'حفظ  بيانات الاستاذ', 0),
+(48, 'teacher_create', 'انشاء استاذ', 0),
+(49, 'teacher_update', 'تعديل بيانات الاستاذ', 0),
+(50, 'teacher_edit', 'عرض صفحة تعديل بيانات استاذ', 0),
+(51, 'teacher_delete', 'حذف استاذ', 0),
+(52, 'teacher_ForseDelete', 'حذف نهائي للاساتذة', 0),
+(53, 'university_index', 'عرض الجامعات', 0),
+(54, 'university_Active', 'تغعيل/تعطيل جامعة', 0),
+(55, 'university_store', 'حفظ جامعة ', 0),
+(56, 'university_create', 'انشاء جامعة', 0),
+(57, 'university_update', 'تعديل الجامعة', 0),
+(58, 'university_edit', 'عرض صفحة تعديل الجامعة', 0),
+(59, 'university_delete', 'حذف الجامعة', 0),
+(60, 'university_ForseDelete', 'حذف نهائي للجامعة', 0),
+(61, 'university_addTeacher', 'اضافة استاذ من قبل الجامعة', 0);
 
 -- --------------------------------------------------------
 
@@ -280,6 +281,18 @@ CREATE TABLE `permission_role` (
   `role_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `permission_role`
+--
+
+INSERT INTO `permission_role` (`permission_role_id`, `role_id`, `permission_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 20),
+(5, 1, 37),
+(6, 1, 53);
 
 -- --------------------------------------------------------
 
@@ -587,13 +600,13 @@ ALTER TABLE `evaluations`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `permission_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `permission_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `permission_role`
 --
 ALTER TABLE `permission_role`
-  MODIFY `permission_role_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `permission_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `profiles`
