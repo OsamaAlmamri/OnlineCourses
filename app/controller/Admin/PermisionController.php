@@ -18,8 +18,7 @@ class PermisionController extends Controller
 
     public function index()
     {
-        $p = new Permissions();
-        $p->allow('permission_index');
+        Permissions::getInstaince()->allow('permission_index');
         $permision = $this->model('Permision');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'permision' . DIRECTORY_SEPARATOR . 'index', ['permision' => $permision->all(), 'deleted' => false]);
         $this->view->pageTitle = 'Permision';
@@ -42,8 +41,7 @@ class PermisionController extends Controller
     public function create()
     {
 
-        $p = new Permissions();
-        $p->allow('permission_create');
+        Permissions::getInstaince()->allow('permission_create');
         $Permision = $this->model('Permision');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'permision' . DIRECTORY_SEPARATOR . 'createOrUpdate');
         $this->view->pageTitle = 'Permision';
@@ -52,8 +50,7 @@ class PermisionController extends Controller
 
     public function store()
     {
-        $p = new Permissions();
-        $p->allow('permission_store');
+        Permissions::getInstaince()->allow('permission_store');
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = \Validation::validate([
                 'permission_name' => array(['required' => 'required']),
@@ -82,8 +79,7 @@ class PermisionController extends Controller
 
     public function update()
     {
-        $p = new Permissions();
-        $p->allow('permission_update');
+        Permissions::getInstaince()->allow('permission_update');
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = Validation::required(['', 'name_ar', 'name_en', 'section_count', 'newsCount', 'sort']);

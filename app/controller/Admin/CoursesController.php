@@ -15,8 +15,7 @@ class CoursesController extends Controller
 
     public function index()
     {
-        $p = new Permissions();
-        $p->allow('course_index');
+        Permissions::getInstaince()->allow('course_index');
 
         $course = $this->model('Course');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
@@ -26,8 +25,7 @@ class CoursesController extends Controller
 
     public function showLessons()
     {
-        $p = new Permissions();
-        $p->allow('course_showLesson');
+        Permissions::getInstaince()->allow('course_showLesson');
 
         $course = $this->model('Course');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'lessons' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
@@ -61,8 +59,7 @@ class CoursesController extends Controller
 
     public function create()
     {
-        $p = new Permissions();
-        $p->allow('course_create');
+        Permissions::getInstaince()->allow('course_create');
 
         Helper::viewAdminFile();
 
@@ -108,8 +105,7 @@ class CoursesController extends Controller
 
     public function store()
     {
-        $p = new Permissions();
-        $p->allow('course_store');
+        Permissions::getInstaince()->allow('course_store');
 
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

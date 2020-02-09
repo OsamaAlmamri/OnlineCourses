@@ -15,8 +15,7 @@ class LessonsController extends Controller
 
     public function index($id)
     {
-        $p = new Permissions();
-        $p->allow('lesson_index');
+        Permissions::getInstaince()->allow('lesson_index');
         $lessons = $this->model('Lesson');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'lessons' . DIRECTORY_SEPARATOR . 'index', ['courses' => $lessons->course_lessons($id), 'course_id' => $id, 'deleted' => false]);
         $this->view->pageTitle = 'courses';
@@ -25,8 +24,7 @@ class LessonsController extends Controller
 
     public function chapterVideos($id)
     {
-        $p = new Permissions();
-        $p->allow('lesson_chapterVideo');
+        Permissions::getInstaince()->allow('lesson_chapterVideo');
         $lessons = $this->model('Lesson');
 
 //        return print_r($lessons->allLessonByChapterName($id));
@@ -39,8 +37,7 @@ class LessonsController extends Controller
 
     public function saveVideo($size = '')
     {
-        $p = new Permissions();
-        $p->allow('lesson_chapterVideo');
+        Permissions::getInstaince()->allow('lesson_chapterVideo');
 
         ini_set('upload_max_filesize', '1000M');
         ini_set('post_max_size', '1000M');
@@ -81,8 +78,7 @@ class LessonsController extends Controller
 
     public function create($course_id)
     {
-        $p = new Permissions();
-        $p->allow('lesson_create');
+        Permissions::getInstaince()->allow('lesson_create');
 
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'lessons' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['course_id' => $course_id]);
         $this->view->pageTitle = 'Course Lessons';
@@ -118,8 +114,7 @@ class LessonsController extends Controller
     public function store()
     {
 
-        $p = new Permissions();
-        $p->allow('lesson_store');
+        Permissions::getInstaince()->allow('lesson_store');
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = \Validation::validate([
                 'resources_chapter' => array(['required' => 'required']),

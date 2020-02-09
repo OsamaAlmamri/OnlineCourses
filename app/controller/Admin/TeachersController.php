@@ -18,8 +18,7 @@ class TeachersController extends Controller
 
     public function index()
     {
-        $p = new Permissions();
-        $p->allow('teacher_index');
+        Permissions::getInstaince()->allow('teacher_index');
 
 
         $this->model('Role');
@@ -39,8 +38,7 @@ class TeachersController extends Controller
     public function create()
     {
 
-        $p = new Permissions();
-        $p->allow('teacher_create');
+        Permissions::getInstaince()->allow('teacher_create');
 
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'teachers' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
@@ -52,8 +50,7 @@ class TeachersController extends Controller
     public function edit($id)
     {
 
-        $p = new Permissions();
-        $p->allow('teacher_edit');
+        Permissions::getInstaince()->allow('teacher_edit');
 
         $CatModel = $this->model('Category');
         $category = $CatModel->find($id)[0];
@@ -67,8 +64,7 @@ class TeachersController extends Controller
 
     public function delete($id)
     {
-        $p = new Permissions();
-        $p->allow('teacher_delete');
+        Permissions::getInstaince()->allow('teacher_delete');
         Helper::viewAdminFile();
         $this->model('Category');
         $c = $this->model->delete($id);

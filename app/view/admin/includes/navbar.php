@@ -20,18 +20,19 @@
                             الصفحة الرئيسية
                         </a>
                     </li>
-
-                    <li>
-                        <a href="/admin/categories/index">
-                            <i class="fas fa-list"></i>
-                            الاقسام
-                        </a>
-                    </li>
+<!--                    --><?php //if (Helper::allowView('category_index')) { ?>
+                        <li>
+                            <a href="/admin/categories/index">
+                                <i class="fas fa-list"></i>
+                                الاقسام
+                            </a>
+                        </li>
+<!--                    --><?php //} ?>
 
                     <li>
                         <a href="/admin/courses/index">
                             <i class="fas fa-list"></i>
-                           الكورسات
+                            الكورسات
                         </a>
                     </li>
                     <li>
@@ -41,7 +42,7 @@
                         </a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             <li>
-                                <a href="#"><i class="fa fa-users-cog "></i>المدراء الفرعين  </a>
+                                <a href="#"><i class="fa fa-users-cog "></i>المدراء الفرعين </a>
                             </li>
                             <li>
                                 <a href="/admin/universities/index"><i class="ion ion-university  "></i>الجامعات</a>

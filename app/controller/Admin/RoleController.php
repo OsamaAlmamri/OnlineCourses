@@ -18,8 +18,7 @@ class RoleController extends Controller
 
     public function index()
     {
-        $p = new Permissions();
-        $p->allow('role_index');
+        Permissions::getInstaince()->allow('role_index');
 
         Helper::viewAdminFile();
         $role = $this->model('Role');
@@ -41,8 +40,7 @@ class RoleController extends Controller
     public function create()
     {
 
-        $p = new Permissions();
-        $p->allow('role_create');
+        Permissions::getInstaince()->allow('role_create');
 
 
         $category = $this->model('Role');

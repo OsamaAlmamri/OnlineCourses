@@ -1,14 +1,27 @@
 <?php
-
-
 namespace auth;
 
 use Controller;
 
 class Permissions extends Controller
 {
+    private static $instance = null;
+
+    public static function getInstaince()
+    {
+        if (is_null(self::$instance)) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+
+    }
+
     public function __construct()
     {
+//        if (self::$opbject == null)
+//            self::$opbject = new Permissions();
+//
+//        return self::$opbject;
 
     }
 
@@ -19,7 +32,8 @@ class Permissions extends Controller
         return (in_array($p, $_SESSION['user_permissions']));
     }
 
-    public function allow($name)
+    public
+    function allow($name)
     {
         if ($this->hasPermision($name))
             return true;

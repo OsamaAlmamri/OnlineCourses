@@ -17,8 +17,7 @@ class UniversitiesController extends Controller
 
     public function index()
     {
-        $p = new Permissions();
-        $p->allow('university_index');
+       Permissions::getInstaince()->allow('university_index');
 
         $role = $this->model('Role');
         $role_id = ($role->getRoleByName('university'));
@@ -43,8 +42,7 @@ class UniversitiesController extends Controller
     public function create()
     {
 
-        $p = new Permissions();
-        $p->allow('university_create');
+       Permissions::getInstaince()->allow('university_create');
 
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'universities' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
@@ -56,8 +54,7 @@ class UniversitiesController extends Controller
     public function edit($id)
     {
 
-        $p = new Permissions();
-        $p->allow('university_edit');
+       Permissions::getInstaince()->allow('university_edit');
 
         $CatModel = $this->model('Category');
         $category = $CatModel->find($id)[0];
@@ -72,8 +69,7 @@ class UniversitiesController extends Controller
     public function addTeacher()
     {
 //        return var_dump($_REQUEST);
-        $p = new Permissions();
-        $p->allow('university_addTeacher');
+       Permissions::getInstaince()->allow('university_addTeacher');
         $auth = new Register($_REQUEST,1,'teacher');
         $auth->signUp('teacher', 0);
 
@@ -81,8 +77,7 @@ class UniversitiesController extends Controller
 
     public function delete($id)
     {
-        $p = new Permissions();
-        $p->allow('university_delete');
+       Permissions::getInstaince()->allow('university_delete');
         $this->model('Category');
         $c = $this->model->delete($id);
 
