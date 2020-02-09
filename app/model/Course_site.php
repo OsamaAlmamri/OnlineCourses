@@ -15,10 +15,14 @@ class Course_site
     {
         return $this->db->query("select * from courses");
     }
-    public function insertInToUsersCourses($args=array())
+    public function insertInToUsersCourses(array $aData)
     {
-        return $this->db->Insert("insert into users_courses(user_id,couces_buy) 
-values(:user_id,:course_buy)",$args);
+
+        $insertIntoUserCourses = $this->db->preparation('INSERT INTO `users_courses`( `user_id`, `couces_buy`,user_wish_list) 
+                                 VALUES (:user_id ,:couces_buy,:user_wish_list)');
+        $insertIntoUserCourses->execute($aData);
+        return $this->db->lastInsertId();
+
     }
     public function latestCoursesWebsite()
     {

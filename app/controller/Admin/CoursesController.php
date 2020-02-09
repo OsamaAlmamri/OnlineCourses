@@ -58,7 +58,6 @@ class CoursesController extends Controller
     public function create()
     {
         Helper::viewAdminFile();
-
         $this->model('Role');
         $role_id = $this->model->getRoleByName('teacher');
         $teachers = $this->model('Users');

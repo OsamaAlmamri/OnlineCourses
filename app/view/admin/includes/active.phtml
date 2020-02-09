@@ -24,7 +24,28 @@
             });
             return (false);
         });
-
     }
-
+    function AddToWish(controller) {
+        $(document).on('click', '.wish_bt', function () {
+            var data = 'wish=' + encodeURIComponent($(this).attr('data-status')) + '&data_id=' + encodeURIComponent($(this).attr('data-id'));
+            var url = '/website/' + controller + '/insertCourseUser';
+            var _this = $(this);
+            $.ajax({
+                url: url,//   var url=$('#news').attr('action');
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: data,// var form=$('#news').serialize();
+                success: function (data) {
+                    if (data == 1) {
+                        _this.html(" <a href='#' class='wish_bt'>ooooooo</a>");
+                        _this.attr("data-status", data);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            return (false);
+        });
+    }
 </script>
