@@ -5,6 +5,7 @@
  */
 namespace Admin;
 
+use auth\Permissions;
 use Controller;
 use Helper;
 
@@ -14,7 +15,8 @@ class CoursesController extends Controller
 
     public function index()
     {
-        Helper::viewAdminFile();
+        $p = new Permissions();
+        $p->allow('course_index');
 
         $course = $this->model('Course');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
@@ -24,7 +26,8 @@ class CoursesController extends Controller
 
     public function showLessons()
     {
-        Helper::viewAdminFile();
+        $p = new Permissions();
+        $p->allow('course_showLesson');
 
         $course = $this->model('Course');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'lessons' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
@@ -35,6 +38,7 @@ class CoursesController extends Controller
 
     public function active()
     {
+
         $data = array(
             ':course_id' => htmlentities($_REQUEST['data_id']),
             ':course_status' => htmlentities(($_REQUEST['status'] == 1) ? 0 : 1),
@@ -57,6 +61,9 @@ class CoursesController extends Controller
 
     public function create()
     {
+        $p = new Permissions();
+        $p->allow('course_create');
+
         Helper::viewAdminFile();
 
         $this->model('Role');
@@ -101,6 +108,9 @@ class CoursesController extends Controller
 
     public function store()
     {
+        $p = new Permissions();
+        $p->allow('course_store');
+
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = \Validation::validate([

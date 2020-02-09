@@ -5,6 +5,7 @@
  */
 namespace Admin;
 
+use auth\Permissions;
 use Controller;
 use Helper;
 use Message;
@@ -17,7 +18,8 @@ class TeachersController extends Controller
 
     public function index()
     {
-        Helper::viewAdminFile();
+        $p = new Permissions();
+        $p->allow('teacher_index');
 
 
         $this->model('Role');
@@ -37,7 +39,8 @@ class TeachersController extends Controller
     public function create()
     {
 
-        Helper::viewAdminFile();
+        $p = new Permissions();
+        $p->allow('teacher_create');
 
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'teachers' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
@@ -49,7 +52,8 @@ class TeachersController extends Controller
     public function edit($id)
     {
 
-        Helper::viewAdminFile();
+        $p = new Permissions();
+        $p->allow('teacher_edit');
 
         $CatModel = $this->model('Category');
         $category = $CatModel->find($id)[0];
@@ -63,6 +67,8 @@ class TeachersController extends Controller
 
     public function delete($id)
     {
+        $p = new Permissions();
+        $p->allow('teacher_delete');
         Helper::viewAdminFile();
         $this->model('Category');
         $c = $this->model->delete($id);
