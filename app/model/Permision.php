@@ -23,6 +23,13 @@ class Permision
 
 //
 
+    public function getPermissionCategoryByName($name)
+    {
+
+        return $this->db->query("select * from permissions WHERE permission_name  like '" . $name . "_%' ");
+
+    }
+
     public function getPermissionByName($name)
     {
         $id = $this->db->fetchOne("select permission_id from permissions WHERE permission_name  like '" . $name . "' ");
