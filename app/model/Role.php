@@ -33,6 +33,13 @@ class Role
         $id = $this->db->fetchOne("select role_id from roles WHERE role_name  like '%" . $name . "%' ");
         return ($id['role_id']);
     }
+
+    public function getPermissions($id)
+    {
+        $per = $this->db->query("select permission_id from permission_role WHERE role_id  =$id");
+        return ($per);
+    }
+
     public function activeRoleByAdmin(array $aData)
     {
 //        return var_dump($aData);
@@ -40,6 +47,7 @@ class Role
         return $oStmt->execute($aData);
 
     }
+
     public function add(array $aData)
     {
 
