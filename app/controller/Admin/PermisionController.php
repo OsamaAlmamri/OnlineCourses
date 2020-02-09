@@ -19,6 +19,7 @@ class PermisionController extends Controller
     public function index()
     {
         Permissions::getInstaince()->allow('permission_index');
+        if ($this->model != 'Permision')
         $permision = $this->model('Permision');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'permision' . DIRECTORY_SEPARATOR . 'index', ['permision' => $permision->all(), 'deleted' => false]);
         $this->view->pageTitle = 'Permision';

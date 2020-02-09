@@ -30,7 +30,7 @@ class Permissions extends Controller
     function hasPermision($name)
     {
         if ($this->model == null)
-            $this->model('Permision');
+            $this->model('PermissionRole');
         $p = $this->model->getPermissionByName($name);
         return (in_array($p, $_SESSION['user_permissions']));
     }
@@ -42,6 +42,8 @@ class Permissions extends Controller
             return true;
         \Helper::back('/home', '', '');
     }
+
+
 
 
 }
