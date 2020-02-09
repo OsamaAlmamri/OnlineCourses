@@ -4,7 +4,6 @@
 namespace auth;
 
 use Controller;
-use site\homeController;
 
 class Permissions extends Controller
 {
@@ -12,7 +11,6 @@ class Permissions extends Controller
     {
 
     }
-
 
     public function hasPermision($name)
     {
@@ -25,8 +23,7 @@ class Permissions extends Controller
     {
         if ($this->hasPermision($name))
             return true;
-        $h = new homeController;
-        $h->index();
+        \Helper::back('/home', '', '');
     }
 
 
