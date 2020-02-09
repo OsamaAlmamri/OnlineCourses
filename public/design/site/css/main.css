@@ -1,0 +1,151 @@
+
+/* Start Navbar */
+
+.navbar-dark {
+    background: #004A93;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-nav .nav-link {
+    color: #fff;
+}
+
+.btco-hover-menu a, .navbar > li > a {
+    text-transform: capitalize;
+    padding: 10px 10px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.btco-hover-menu .active a,
+.btco-hover-menu .active a:focus,
+.btco-hover-menu .active a:hover,
+.btco-hover-menu li a:hover,
+.btco-hover-menu li a:focus,
+.navbar > .show > a, .navbar > .show > a:focus, .navbar > .show > a:hover {
+    outline: 0;
+    color: #fff;
+    -webkit-transition: 0.8s 0s;
+    -o-transition: 0.8s 0s;
+    transition: 0.8s 0s;
+
+}
+
+
+/*submenu style start from here*/
+
+
+.dropdown-menu {
+    padding: 0px 0;
+    margin: 0 0 0;
+    border-top: 2px solid #e8ab1b;
+    border-bottom: 2px solid #e8ab1b;
+    border-radius: 0px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+
+
+}
+
+/*first level*/
+.btco-hover-menu .collapse ul > li:hover > a {
+    background: #004A93;
+
+
+}
+
+.btco-hover-menu .collapse ul ul > li:hover > a, .navbar .show .dropdown-menu > li > a:focus, .navbar .show .dropdown-menu > li > a:hover {
+    background: #004A93;
+
+}
+
+/*second level*/
+.btco-hover-menu .collapse ul ul ul > li:hover > a {
+    background: #004A93;
+}
+
+/*third level*/
+.btco-hover-menu .collapse ul ul, .btco-hover-menu .collapse ul ul.dropdown-menu {
+    background: #0066B5;
+}
+
+.btco-hover-menu .collapse ul ul ul, .btco-hover-menu .collapse ul ul ul.dropdown-menu {
+    background: #0066B5;
+}
+
+.btco-hover-menu .collapse ul ul ul ul, .btco-hover-menu .collapse ul ul ul ul.dropdown-menu {
+    background: #0066B5;
+}
+
+/*Drop-down menu work on hover*/
+.btco-hover-menu {
+    background: #010536;
+    margin: 0;
+    padding: 0;
+    min-height: 20px;
+}
+
+@media only screen and (max-width: 991px) {
+    .btco-hover-menu .show > .dropdown-toggle::after {
+        transform: rotate(-90deg);
+    }
+}
+
+@media only screen and (min-width: 991px) {
+
+    .btco-hover-menu .collapse ul li {
+        position: relative;
+    }
+
+    .btco-hover-menu .collapse ul li:hover > ul {
+        display: block
+    }
+
+    .btco-hover-menu .collapse ul ul {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        min-width: 300px;
+        display: none
+    }
+
+    /*******/
+    .btco-hover-menu .collapse ul ul li {
+        position: relative
+    }
+
+    .btco-hover-menu .collapse ul ul li:hover > ul {
+        display: block
+    }
+
+    .btco-hover-menu .collapse ul ul ul {
+        position: absolute;
+        top: 0;
+        right: 100%;
+        min-width: 250px;
+        display: none
+    }
+
+    /*******/
+    .btco-hover-menu .collapse ul ul ul li {
+        position: relative
+    }
+
+    .btco-hover-menu .collapse ul ul ul li:hover ul {
+        display: block
+    }
+
+    .btco-hover-menu .collapse ul ul ul ul {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        min-width: 250px;
+        display: none;
+        z-index: 1
+    }
+
+}
+
+/* End Navbar*/

@@ -1,15 +1,11 @@
 <?php
-
+//
 use admin\adminController;
 use site\homeController;
 
-/**
- *
- */
+/*class Helper has functions that use every times*/
 class Helper
 {
-
-
 //    public static function getMainMenu($type)
 //    {
 //        if ($type == 'main') {
@@ -56,7 +52,6 @@ class Helper
 
     public static function userName($id)
     {
-
         $username = DB::init()->query("SELECT * FROM users WHERE id = $id ");
         if (!empty($username)) {
             return $username[0]['username'];
@@ -85,28 +80,23 @@ class Helper
 
     public static function siteName()
     {
-        return "StepForword";
+        return "كورسات";
 
     }
 
     public static function siteUrl()
     {
         return "http://uni-be.net";
-
     }
 
     public static function siteEmail()
     {
         return "elarning@gmail.com";
-
     }
 
     public static function getVideoName($name)
     {
-
-
      return   explode( '.',explode('______',$name )[1] )[0];
-
     }
 
 

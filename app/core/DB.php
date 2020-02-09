@@ -7,7 +7,7 @@ class DB
 
     public const DB_USER = 'root';
     private const DB_PASS = '';
-    private $dsn = "mysql:host=localhost;dbname=e-learning";
+    private $dsn ;
     private static $PDO_OBJECT;
 
 
@@ -16,14 +16,13 @@ class DB
         try {
             $this->dsn = "mysql:host=localhost;dbname=e-learning";
             self::$PDO_OBJECT = new PDO($this->dsn, DB::DB_USER, DB::DB_PASS);
-
             self::$PDO_OBJECT->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $e) {
+            self::$PDO_OBJECT->exec("SET NAMES utf8");
+
+        }
+        catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }
-
-
-        self::$PDO_OBJECT->exec("SET NAMES utf8");
 
         if (!self::$PDO_OBJECT) {
             throw new Exception('Could not connect to DB ');
@@ -43,21 +42,17 @@ class DB
     public function query($sql)
     {
         if (!self::$PDO_OBJECT) {
-
             return false;
         }
 
         $result = self::$PDO_OBJECT->query($sql);
 
-        $data = array();
+        $data = [];
         while ($row = $result->fetch()) {
-            $data[] = $row;
+            $data = $row;
         }
-
-
         return $data;
     }
-
 
     public function escape($str)
     {
@@ -70,3 +65,4 @@ class DB
         return $stmt;
     }
 }
+
