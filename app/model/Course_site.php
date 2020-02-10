@@ -18,8 +18,8 @@ class Course_site
     public function insertInToUsersCourses(array $aData)
     {
 
-        $insertIntoUserCourses = $this->db->preparation('INSERT INTO `users_courses`( `user_id`, `couces_buy`,user_wish_list) 
-                                 VALUES (:user_id ,:couces_buy,:user_wish_list)');
+        $insertIntoUserCourses = $this->db->preparation('INSERT INTO `users_courses`( `user_id`,user_wish_list) 
+                                 VALUES (:user_id ,:user_wish_list)');
         $insertIntoUserCourses->execute($aData);
         return $this->db->lastInsertId();
 

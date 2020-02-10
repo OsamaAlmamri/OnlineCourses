@@ -27,15 +27,13 @@ public function insertCourseUser(){
    $userCourse=$this->model('Course_site');
     $userInfoCourse=array(
         ":user_id" =>Session::get('user')['user_id'],
-   ":couces_buy"=>implode(',',$_COOKIE['item_id']),
-        ":user_wish_list"=>implode(',',$_COOKIE['item_whishlish_id'])
+//   ":couces_buy"=>implode(",",$_COOKIE['item_id']),
+        ":user_wish_list"=>implode(",",$_COOKIE['item_whishlish_id'])
     );
+   $userCourse->insertInToUsersCourses($userInfoCourse);
+echo 1;
+   // Helper::back('/cousres' , 'add successfully', 'success');
 
-    $this->view('website' . DIRECTORY_SEPARATOR . 'courses', ['courses' => $userCourse->insertInToUsersCourses($userInfoCourse) ,'deleted' => false]);
-    $this->view->pageTitle ='Course_site';
-    $this->view->render();
-    Helper::back('' , 'add successfully', 'success');
-    return;
     }
 
 //public function addCoursesId(){
