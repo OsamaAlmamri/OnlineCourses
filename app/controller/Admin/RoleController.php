@@ -67,8 +67,8 @@ class RoleController extends Controller
 
     public function store()
     {
+        Permissions::getInstaince()->allow('role_store');
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//            $validate = \Validation::required(['', 'password', 'email', 'username']); //sure that first element in array most be null
             $validate = Validation::validate([
                 'role_name' => array(['required' => 'required']),
                 'role_description' => array(['required' => 'required']),
@@ -109,6 +109,62 @@ class RoleController extends Controller
             $id = $this->model->addPermissionRole($role);
         }
         return;
+
+
+    }
+
+    public function edit($id)
+    {
+//        Permissions::getInstaince()->allow('role_edit');
+        $roleModel = $this->model('Role');
+        $role = $roleModel->find($id);
+        $oldRolePermission = $roleModel->getPermissions($id);
+        $permissions = [];
+        foreach ($oldRolePermission as $p) {
+            $permissions[] = $p['permission_id'];
+
+        }
+//        return var_dump($permissions);
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'role' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['role' => $role, 'oldRolePermission' => $permissions, 'permissions' => $this->getPermission(), 'type' => 'update']);
+        $this->view->pageTitle = 'تحديث الادوار';
+        $this->view->render();
+    }
+
+
+    public function update()
+    {
+//        return var_dump($_REQUEST['role_id']);
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $validate = Validation::validate([
+                'role_name' => array(['required' => 'required']),
+                'role_description' => array(['required' => 'required']),
+
+
+            ]);
+            if (count($validate) == 0) {
+                $role = array(
+
+                    ':role_id' => htmlentities($_REQUEST['role_id']),
+                    ':role_name' => htmlentities($_REQUEST['role_name']),
+                    ':role_description' => htmlentities($_REQUEST['role_description']),
+                );
+                $this->model('Role');
+                $id = $this->model->update($role);
+                if ($id) {
+                    if (isset($_REQUEST['permissions'])) {
+                        $this->model->deleteOldPermission($_REQUEST['role_id']);
+                        $this->storeRolePermission($_REQUEST['permissions'], $id);
+                    }
+                    Helper::back('/admin/role/index', 'تم التعديل بنجاح', 'success');
+                    return;
+                }
+            } else {
+                Helper::back('/admin/role/edit/' . $_REQUEST['role_id'], 'خطاء في المدخلات', 'danger');
+                return;
+            }
+        }
+//
 
 
     }

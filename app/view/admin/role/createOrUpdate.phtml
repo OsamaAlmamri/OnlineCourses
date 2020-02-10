@@ -15,25 +15,37 @@
 <div class="container">
     <div class="row bg-white mb-4 ">
         <div class="text-right  mt-auto col-6">
-            <h2 class="text-center"><i class="fa fa fa-user-cog" style="color:#ec3901"></i> إضافة الادوار في الحسابات
+            <h2 class="text-center"><i class="fa fa fa-user-cog" style="color:#ec3901"></i>
+                <?php if (array_key_exists('role', $this->view_data)) echo 'تعديل'; else   echo 'اضافة'; ?>
+                الادوار في الحسابات
             </h2>
         </div>
     </div>
-    <form action="/admin/role/store" method="post">
+    <form action="/admin/role/<?php if (array_key_exists('role', $this->view_data)) echo 'update/' . $this->view_data['role'][0]['role_id']; else   echo 'store'; ?>"
+          method="post">
+        <input type="hidden" name="role_id"
+               value="<?php if (array_key_exists('role', $this->view_data)) echo($this->view_data['role'][0]['role_id']); else   echo ''; ?>"
+        >
         <div class="row">
             <div class="col-md-12">
                 <label for="role_name">اسم الدور:</label>
-                <input type="text" class="form-control" placeholder="اسم الدور" id="role_name" name="role_name">
+                <input type="text" class="form-control" placeholder="اسم الدور" id="role_name"
+                       value="<?php if (array_key_exists('role', $this->view_data)) echo($this->view_data['role'][0]['role_name']); else   echo ''; ?>"
+                       name="role_name">
                 <label for="role_description">Role Description:</label>
                 <textarea class="form-control" placeholder="Enter Role Description" id="role_description"
+                          value="<?php if (array_key_exists('role', $this->view_data)) echo($this->view_data['role'][0]['role_description']); else   echo ''; ?>"
                           name="role_description">
+                    <?php if (array_key_exists('role', $this->view_data)) echo($this->view_data['role'][0]['role_description']); else   echo ''; ?>
                     </textarea>
             </div>
 
             <br>
             <div class="col-md-12">
                 <br>
-                <button type="submit" class="btn btn-success btn-block" name="submit">لإضافة</button>
+                <button type="submit" class="btn btn-success btn-block" name="submit">
+                    <?php if (array_key_exists('role', $this->view_data)) echo 'تعديل'; else   echo 'اضافة'; ?>
+                </button>
             </div>
         </div>
 
@@ -62,6 +74,8 @@
                                 <div class="checkbox">
                                     <label class="">
                                         <input type="checkbox" name="permissions[]"
+                                            <?php if (array_key_exists('role', $this->view_data) and in_array($permission['permission_id'], $this->view_data['oldRolePermission']))
+                                                echo 'checked' ?>
                                                class="selectAll select-message<?php echo $k ?>"
                                                value="<?php echo $permission['permission_id'] ?>">
                                         <ins class="iCheck-helper"
