@@ -74,5 +74,10 @@ class Model
         return $stmt;
 
     }
+    public function Insert($sql,$args=array())
+    {
+        $data=$this->pdoObject->prepare($sql);
+        $data->execute($args);
+    }
 
 }
