@@ -14,6 +14,13 @@ class coursesController extends \Controller
 {
 
 
+    public function old()
+    {
+
+
+        //return var_dump($_COOKIE['item_id']);
+    }
+
     public function index()
     {
         $course_site=$this->model('Course_site');
@@ -39,5 +46,6 @@ echo 1;
 //public function addCoursesId(){
 //    Session::set('cousresUserId'=>);
 //}
+
 }
 ?>

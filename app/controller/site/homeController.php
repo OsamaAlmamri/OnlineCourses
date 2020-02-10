@@ -64,6 +64,9 @@ class homeController extends Controller
     }
 
 
+
+
+
 //        return print_r($lessons->allLessonByChapterName($id));
 
     public function countDuration($data)
@@ -80,6 +83,7 @@ class homeController extends Controller
     }
 
     public function course_detail($id)
+
     {
         $courseModel = $this->model('Course');
         $course = $courseModel->find($id);

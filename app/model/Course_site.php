@@ -28,7 +28,9 @@ class Course_site
     {
         return $this->db->query("SELECT * FROM courses ORDER BY course_id DESC LIMIT 6
 ");
+
     }
+
 
 }
 ?>
