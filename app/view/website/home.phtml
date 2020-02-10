@@ -18,7 +18,7 @@
         <div class="carousel-inner">
     <?php      foreach ($this->view_data['latestCourses'] as $k=> $course) { ?>
             <div class="carousel-item  <?php if ($k==0) echo'active' ?> ">
-                <img src="<?php echo $course['courses_image'] ?>" class="d-block w-100" alt="..." height="70%">
+                <img src="/images/site/<?php echo $course['courses_image'] ?>" class="d-block w-100" alt="..." height="70%">
                 <div class="carousel-caption d-none d-md-block">
                     <h5><?php echo $course['course_title'] ?></h5>
                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -33,6 +33,10 @@
                 </a>
             </div>
     <?php     } ?>
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 21214de... Merge branch 'master' into noha2
         </div>
         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -73,7 +77,7 @@
                                                <figure class="block-reveal">
                                                    <div class="block-horizzontal"></div>
                                                    <a href="#0" class="wish_bt"></a>
-                                                   <a href="/home/course_detail/<?php echo $course['course_id']?>"><img src="<?php echo $course['courses_image'];?>" class="img-fluid" alt=""></a>
+                                                   <a href="/home/course_detail/<?php echo $course['course_id']?>"><img src="/images/site/<?php echo $course['courses_image'];?>" class="img-fluid" alt=""></a>
                                                    <div class="price"><?php echo $course['course_price']?> $</div>
                                                    <div class="preview"><span>عرض الكورس  </span></div>
                                                </figure>
