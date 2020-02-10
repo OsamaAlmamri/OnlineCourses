@@ -6,6 +6,9 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/design/site/css/bootstrap.css">
+<!--    <link rel="stylesheet" href="/design/dashboard/css/bootstrap.css">-->
+<!--    <link rel="stylesheet" href="/design/dashboard/css/bootstrap-rtl.min.css">-->
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/design/site/css/bootstrap.min.css">
@@ -45,6 +48,7 @@
     <link rel="stylesheet" type="text/css" href="/design/site/css/main-contact.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" href="/design/site/css/style-header.css">
+
 </head>
 
 <body>
@@ -63,17 +67,18 @@
                 <a class="nav-link navmy" href="/home/home"><i class="icon-home"></i>Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item ">
-                <a  class="nav-link navmy" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link navmy" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false">
                     <i class="icon-th"></i>Categories
                 </a>
 
             </li>
 
-<!--            <li class="nav-item">-->
-<!---->
-<!--                 -->
-<!---->
-<!--            </li>-->
+            <!--            <li class="nav-item">-->
+            <!---->
+            <!--                 -->
+            <!---->
+            <!--            </li>-->
 
         </ul>
         <div class="visible-lg-block visible-xl-block header-right-divider"></div>
@@ -88,8 +93,6 @@
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 two">
 
             <!--    /* after session*/-->
-
-
 
 
             <?php if (!isset($_SESSION['user'])) { ?>
@@ -117,62 +120,67 @@
 
                 </li>
             <?php } else { ?>
-                    <li class="nav-item"><a href="" class="nav-link"> </a></li>
-                    <li class="nav-item dropdown heart">
-                        <a class="nav-link  dropdown-toggle" title="" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            MyCourses
+                <li class="nav-item"><a href="" class="nav-link"> </a></li>
+                <li class="nav-item dropdown heart">
+                    <a class="nav-link  dropdown-toggle" title="" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        MyCourses
 
-                        </a>
-                        <div class="dropdown-menu dm dmcourses" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#"> <br></a>
-                            <a class="dropdown-item"  href="">no courses</a>
-                            <a class=" btn dropdown-item btn-primary"  href="/home/mycourses">see</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown heart">
-                        <a class="nav-link  dropdown-toggle" title="wish list" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class=" icon_heart_alt  mycart"></i>
-                            <span class="badge badge-danger badge-counter">3</span>
-                        </a>
-                        <div class="dropdown-menu dm dmheart" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">wishList is empty <br></a>
-                            <a class="dropdown-item"  id="link" href="/home/wish-list">Wish List</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown heart">
-                        <a class="nav-link  dropdown-toggle" title="notification" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="icon-bell-alt mycart"></i>
-                            <span class="badge badge-danger badge-counter">3</span>
-                        </a>
-                        <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
-                            <i class=" icon_setting"></i>
-                            <a class="dropdown-item" href="#">notification</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item">No notification</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown heart">
-                        <a class="nav-link  dropdown-toggle" title="my_cart" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="icon-cart mycart"></i>
-                            <span class="badge badge-danger badge-counter">3</span>
-                        </a>
-                        <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Cart is empty <br></a>
-                            <a class="dropdown-item"  id="link" href="/home/cart1">Keep Shopping</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown heart">
-                        <a class="nav-link  dropdown-toggle" title="information user" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="icon-user mycart"></i>
-                            <span class="badge badge-danger badge-counter">3</span>
-                        </a>
-                        <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
+                    </a>
+                    <div class="dropdown-menu dm dmcourses" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#"> <br></a>
+                        <a class="dropdown-item" href="">no courses</a>
+                        <a class=" btn dropdown-item btn-primary" href="/home/mycourses">see</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown heart">
+                    <a class="nav-link  dropdown-toggle" title="wish list" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class=" icon_heart_alt  mycart"></i>
+                        <span class="badge badge-danger badge-counter">3</span>
+                    </a>
+                    <div class="dropdown-menu dm dmheart" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">wishList is empty <br></a>
+                        <a class="dropdown-item" id="link" href="/home/wish-list">Wish List</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown heart">
+                    <a class="nav-link  dropdown-toggle" title="notification" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-bell-alt mycart"></i>
+                        <span class="badge badge-danger badge-counter">3</span>
+                    </a>
+                    <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
+                        <i class=" icon_setting"></i>
+                        <a class="dropdown-item" href="#">notification</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item">No notification</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown heart">
+                    <a class="nav-link  dropdown-toggle" title="my_cart" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-cart mycart"></i>
+                        <span class="badge badge-danger badge-counter">3</span>
+                    </a>
+                    <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Cart is empty <br></a>
+                        <a class="dropdown-item" id="link" href="/home/cart1">Keep Shopping</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown heart">
+                    <a class="nav-link  dropdown-toggle" title="information user" href="#" id="navbarDropdown"
+                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-user mycart"></i>
+                        <span class="badge badge-danger badge-counter">3</span>
+                    </a>
+                    <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
 
-                            <a href="/profile" class="nav-link">profile</a>
-                            <a href="/admin/logout" class="nav-link"> logout </a>
-                            <a class="dropdown-item nav-link"   href="">Message</a>
-                        </div>
-                    </li>
+                        <a href="/profile" class="nav-link">profile</a>
+                        <a href="/admin/logout" class="nav-link"> logout </a>
+                        <a class="dropdown-item nav-link" href="">Message</a>
+                    </div>
+                </li>
 
                 <!--    /* end after session*/-->
 

@@ -248,7 +248,7 @@ class Helper
 
         $cat_name = DB::init()->query("SELECT *  FROM categories WHERE category_id = $id ");
         if (!empty($cat_name)) {
-            return $cat_name[0]['category_name'];
+            return $cat_name['category_name'];
         }
 
     }

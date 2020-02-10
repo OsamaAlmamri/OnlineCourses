@@ -59,8 +59,11 @@
                         <div class="box_grid wow">
                             <figure class="block-reveal">
                                 <div class="block-horizzontal"></div>
-                                <a class="wish_bt" data-id="<?php echo $course['course_id']?>" onclick="addToWhishLish(<?php echo $course['course_id']?>)"></a>
-                                <a href="/home/course_detail"><img src="/images/site/<?php echo $course['courses_image']?>" class="img-fluid" alt=""></a>
+                                <a class="wish_bt" data-id="<?php echo $course['course_id'] ?>"
+                                   onclick="addToWhishLish(<?php echo $course['course_id'] ?>)"></a>
+                                <a href="/home/course_detail"><img
+                                            src="/images/site/<?php echo $course['courses_image'] ?>" class="img-fluid"
+                                            alt=""></a>
                                 <div class="price"><?php echo $course['course_price']; ?></div>
                                 <div class="preview"><span>Preview course</span></div>
                             </figure>
@@ -77,7 +80,7 @@
                                 <!--                                <li><i class="icon_like"></i> 890</li>-->
                                 <!--                                onclick="addToCat(-->
                                 <?php //echo $course['course_id']; ?><!--)"-->
-                                <button href="" onclick="addToCart(<?php echo $course['course_id'];?>)"> buy</button>
+                                <button href="" onclick="addToCart(<?php echo $course['course_id']; ?>)"> buy</button>
                                 <li><a href="/home/course_detail/<?php echo $course['course_id']; ?>" id="courseItems">Enroll
                                         now</a></li>
                             </ul>
@@ -107,19 +110,18 @@
 
 <script>
 
-    function addToCart(id)
-    {
-        document.cookie ='item_id['+id+']='+id;
+    function addToCart(id) {
+        document.cookie = 'item_id[' + id + ']=' + id;
         alert(id);
 
 
     }
-    function addToWhishLish(id)
-    {  document.cookie ='item_whishlish_id['+id+']='+id;
+
+    function addToWhishLish(id) {
+        document.cookie = 'item_whishlish_id[' + id + ']=' + id;
         alert(id);
 
     }
-
 
 
 </script>
