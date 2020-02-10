@@ -195,13 +195,18 @@ class Helper
 
     public static function Names($ids, $type)
     {
+
+//        if($ids=='')
+
         $ids = json_decode($ids);
+//        return var_dump()$ids;
         $t = '(';
         foreach ($ids as $k => $id) {
             if ($type == 'Category') {
                 $cat_name = DB::init()->query("SELECT *  FROM categories WHERE category_id = $id ");
+//                return var_dump($cat_name['category_name']);
                 if ($cat_name)
-                    $t .= $cat_name[0]['category_name'];
+                    $t .= $cat_name['category_name'];
             }
             if ($k < count($ids) - 1 and $k % 2 == 1)
                 $t .= ' <br> ';
