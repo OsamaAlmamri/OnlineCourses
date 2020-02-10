@@ -5,6 +5,7 @@
  */
 namespace Admin;
 
+use auth\Permissions;
 use Controller;
 use Helper;
 
@@ -14,7 +15,7 @@ class CoursesController extends Controller
 
     public function index()
     {
-        Helper::viewAdminFile();
+        Permissions::getInstaince()->allow('course_index');
 
         $course = $this->model('Course');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
@@ -24,7 +25,7 @@ class CoursesController extends Controller
 
     public function showLessons()
     {
-        Helper::viewAdminFile();
+        Permissions::getInstaince()->allow('course_showLesson');
 
         $course = $this->model('Course');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'lessons' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
@@ -58,6 +59,8 @@ class CoursesController extends Controller
 
     public function create()
     {
+       Permissions::getInstaince()->allow('course_create');
+
         Helper::viewAdminFile();
         $this->model('Role');
         $role_id = $this->model->getRoleByName('teacher');
@@ -101,6 +104,8 @@ class CoursesController extends Controller
 
     public function store()
     {
+        Permissions::getInstaince()->allow('course_store');
+
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = \Validation::validate([

@@ -5,6 +5,7 @@
  */
 namespace Admin;
 
+use auth\Permissions;
 use Controller;
 use Helper;
 
@@ -14,7 +15,7 @@ class CategoriesController extends Controller
 
     public function index()
     {
-        Helper::viewAdminFile();
+        Permissions::getInstaince()->allow('category_index');
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
         $this->view->pageTitle = 'Category';
@@ -59,10 +60,7 @@ class CategoriesController extends Controller
     public function create()
     {
 
-        Helper::viewAdminFile();
-
         Permissions::getInstaince()->allow('category_create');
-
 
 
         $category = $this->model('Category');
@@ -86,6 +84,7 @@ class CategoriesController extends Controller
 
     public function store()
     {
+        Permissions::getInstaince()->allow('category_store');
         $category_parents = 0;
         if ($_REQUEST['main_category_parents'] != 0)
             $category_parents = $_REQUEST['main_category_parents'];
