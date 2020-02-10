@@ -35,79 +35,54 @@
     <div class="row">
         <div class="col-12">
             <table id="example1" class="table table-bordered table-striped">
-                <thead class="thead-dark font-size-18">
+                <thead class="thead-dark font-size-10">
                 <tr>
-                    <th>#الرقم المميز</th>
+                    <th>#الرقم</th>
                     <th>عنوان الكورس</th>
-                    <!--            <th>وصف الكورس</th>-->
                     <th>صورة الكورس</th>
                     <th>سعر الكورس</th>
                     <th> السعر بعد التحفيض</th>
-                    <!--            <th>الطلاب المسهدفين</th>-->
-                    <!--            <th>أهداف الكورس</th>-->
-                    <th>اسم الصنف</th>
+                    <th>اسم القسم</th>
                     <th>حالة الكورس</th>
                     <th>الدروس</th>
                     <th>إظهار الكورس</th>
                     <th>الاعدادات</th>
                 </tr>
                 </thead>
-
                 <tbody>
 
                 <?php if (array_key_exists('courses', $this->view_data)) {
                     foreach ($this->view_data['courses'] as $k => $course) {
+//                        echo "<pre>";
+//                        var_dump($this->view_data['courses'][0]['course_id']);
+//                        echo "</pre>";
                         ?>
                         <tr>
-                            <td><?php echo $k  ?></td>
+                            <td><?php echo $course['course_id']  ?></td>
                             <td><?php echo $course['course_title'] ?></td>
-                            <!--                    <td>--><?php //echo html_entity_decode($course['course_description']) ?><!--</td>-->
                             <td><img src="<?php echo $course['courses_image'] ?>" width="100px"></td>
-                            <td><?php echo $course['course_price'] ?></td>
-                            <td><?php echo $course['course_price_afterDiscount'] ?></td>
-
-                            <!--                    <td>--><?php //echo html_entity_decode($course['course_students_target']) ?><!--</td>-->
-                            <!--                    <td>--><?php //echo html_entity_decode($course['course_goals']) ?><!--</td>-->
-                            <!--                    <td>--><?php //echo ($course['categories_ids']) ?><!--</td>-->
+                            <td><?php echo '$'. $course['course_price'] ?></td>
+                            <td><?php echo '$'. $course['course_price_afterDiscount'] ?></td>
                             <td><?php echo Helper::Names($course['categories_ids'], 'Category') ?></td>
-
-
-                            <td>
-                                <button data-id="<?php echo $course['course_id'] ?>"
+                            <td><button data-id="<?php echo $course['course_id'] ?>"
                                         data-status="<?php echo $course['course_status'] ?>"
-                                        class="btn btn-success active"><?php echo ($course['course_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </button>
-                            </td>
-                            <td>
-                                <a href="/admin/lessons/index/<?php echo $course['course_id'] ?>"
-                                   class="btn btn-info"><i
-                                            class="fa fa-eye"></i></a>
-
-                            </td>
-                            <td>
-                                <button data-id="<?php echo $course['course_id'] ?>"
+                                        class="btn btn-success active">
+                                    <?php echo ($course['course_status'] == '1') ? '<i class="fas fa-check"></i>' : '<i class="ion ion-close"></i>' ?>
+                                </button></td>
+                            <td><a href="/admin/lessons/index/<?php echo $course['course_id'] ?>" class="btn btn-info"><i
+                                            class="fa fa-eye"></i></a></td>
+                            <td><button data-id="<?php echo $course['course_id'] ?>"
                                         data-visibility="<?php echo $course['course_visibility'] ?>"
-                                        class="btn btn-success btn_visibility"><?php echo ($course['course_visibility'] == '1') ? ' <i class="fa fa-eye"> </i>' : '  <i class="fa fa-eye-slash"> </i>' ?> </button>
-                            </td>
+                                        class="btn btn-success btn_visibility"><?php echo ($course['course_visibility'] == '1') ? ' <i class="fa fa-eye"> </i>' : '  <i class="fa fa-eye-slash"> </i>' ?> </button></td>
 
                             <?php if ($this->view_data['deleted'] == false) { ?>
-                                <td><a href="Categories.php?do=edit" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
-
-                                <td>
+                                <td><a href="Categories.php?do=edit" class="btn btn-success"><i class="fa fa-edit"></i></a>
                                     <a href="/admin/universities/delete/<?php echo $course['id'] ?>"
                                        onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
                                                 class="fa fa-trash"></i></a>
-
                                 </td>
                             <?php } else { ?>
-                                <th>{{getUserName( $course['deleted_by'] )?></th>
-                                <td><?php echo $course['deleted_at'] ?></td>
-
-
-                                <td class="text-center">
-                                    <a href="{{  route('admin.universities.restore',encrypt( $course['']id)) }}"
-                                       class="btn btn-primary"><i
-                                                class="fa fa-arrow-up"></i></a>
-                                </td>
+                            <td><?php echo $course['deleted_at'] ?></td>
 
                             <?php } ?>
 
@@ -115,6 +90,7 @@
                         </tr>
                     <?php }
                 } ?>
+                <tbody>
             </table>
 
         </div>

@@ -35,6 +35,7 @@ class CoursesController extends Controller
 
     public function active()
     {
+
         $data = array(
             ':course_id' => htmlentities($_REQUEST['data_id']),
             ':course_status' => htmlentities(($_REQUEST['status'] == 1) ? 0 : 1),

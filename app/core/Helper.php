@@ -80,7 +80,7 @@ class Helper
 
     public static function siteName()
     {
-        return "كورسات";
+        return "StepForword";
 
     }
 

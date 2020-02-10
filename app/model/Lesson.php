@@ -24,7 +24,7 @@ class Lesson
         return $this->db->query("select * from course_resources WHERE course_id =$id and resources_chapter like '$chapter' ");
     }
 
-    public function cont_lessons($id)
+    public function count_lessons($id)
     {
         return $this->db->query("select count(course_id) as count from course_resources WHERE course_id =$id  ")[0]['count'];
     }

@@ -47,7 +47,6 @@
         <div class="container margin_61_35">
             <div class="row">
                 <div class="col-lg-8">
-
                     <section id="description">
                         <?php echo html_entity_decode($course['course_description']) ?>
                     </section>
@@ -55,7 +54,7 @@
                     <!--						--><?php //print_r($this->view_data['lessons'])?>
                     <section id="lessons">
                         <div class="intro_title">
-                            <h2>Lessons</h2>
+                            <h2>الدروس</h2>
                             <ul>
                                 <li><?php echo $this->view_data['course_count'] ?> lessons</li>
 
@@ -67,44 +66,30 @@
                             <?php foreach ($this->view_data['lessons'] as $k => $chapter) { ?>
 
                                 <div class="card">
-                                    <!--                                    <div class="card-header" role="tab" id="headingOne">-->
-                                    <!--                                        <h5 class="mb-0">-->
-                                    <!--                                            <a data-toggle="collapse"-->
-                                    <!--                                               href="#-->
-                                    <?php //echo $k ?><!--" aria-expanded="true"-->
-                                    <!--                                               aria-controls="collapseOne"><i class="indicator ti-plus"></i>-->
-                                    <!--                                                -->
-                                    <?php //echo $k ?><!--     </a>-->
-                                    <!---->
-                                    <!--                                        </h5>-->
-                                    <!--                                    </div>-->
                                     <div class="intro_title card-header" role="tab" id="headingOne">
-                                        <a data-toggle="collapse"
-                                           href="#<?php echo $k ?>" aria-expanded="true"
-                                           aria-controls="collapseOne"><i class="indicator ti-plus"></i>
-                                            <?php echo $k ?>     </a>
-
+                                        <a data-toggle="collapse" href="#<?php echo $k ?>" aria-expanded="true"
+                                           aria-controls="collapseOne"><i class="indicator ti-plus"></i><?php echo $k ?>
+                                        </a>
                                         <ul>
-                                            <li><?php echo count($chapter['lessons']) ?> lessons</li>
+                                            <li><?php echo count($chapter['lessons']) ?> درس</li>
 
-                                            <li>  <?php echo $chapter['duration'] ?> </li>
+                                            <li> <?php echo $chapter['duration'] ?> </li>
                                         </ul>
                                     </div>
 
-                                    <div id="<?php echo $k ?>" class="collapse "
-                                         role="tabpanel"
-                                         aria-labelledby="headingOne"
-                                         data-parent="#accordion_lessons">
+                                    <div id="<?php echo $k ?>" class="collapse " role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion_lessons">
                                         <div class="card-body">
                                             <div class="list_lessons">
                                                 <ul>
                                                     <?php foreach ($chapter['lessons'] as $lesson) {
-                                                    $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1)); ?>
-                                                    <li><a href="http://127.0.0.1:800<?php echo $lesson['resources_video'] ?>"
-                                                           class="video"><?php echo Helper::getVideoName($lesson['resources_video']) ?>
-                                                            </a><span> <?php echo gmdate("H:i:s", $file['playtime_seconds']) ?></span></li>
+                                                        $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1)); ?>
+                                                        <li>
+                                                            <a href="http://127.0.0.1:800<?php echo $lesson['resources_video'] ?>"
+                                                               class="video"><?php echo Helper::getVideoName($lesson['resources_video']) ?>
+                                                            </a><span> <?php echo gmdate("H:i:s", $file['playtime_seconds']) ?></span>
+                                                        </li>
 
-                                                        <?php } ?>
+                                                    <?php } ?>
                                                 </ul>
                                             </div>
                                         </div>
@@ -149,7 +134,8 @@
                     <!-- /section -->
 
                     <section id="reviews">
-                        <h2>Reviews</h2>
+                        <h2>تقييمات الكورس </h2>
+
                         <div class="reviews-container">
                             <div class="row">
                                 <div class="col-lg-3">
@@ -218,79 +204,68 @@
                             </div>
                             <!-- /row -->
                         </div>
-
                         <hr>
 
-                        <div class="reviews-container">
+                        <div class="reviews-container list_comment">
 
+                             <?php
+
+                             foreach($this->view_data['comments'] as $k => $comment) {?>
                             <div class="review-box clearfix">
-                                <figure class="rev-thumb"><img
-                                            src="http://via.placeholder.com/150x150/ccc/fff/avatar1.jpg" alt="">
+                                <figure class="rev-thumb">
+                                    <img
+                                            src="<?php echo $comment['user_image'];?>" alt="">
                                 </figure>
                                 <div class="rev-content">
-                                    <div class="rating">
+                                    <div class="rating mb-1">
                                         <i class="icon_star voted"></i><i class="icon_star voted"></i><i
                                                 class="icon_star voted"></i><i class="icon_star voted"></i><i
                                                 class="icon_star"></i>
                                     </div>
                                     <div class="rev-info">
-                                        Admin – April 03, 2016:
+                                        <?php echo $comment['user_full_name'] ." - " . $comment['comment_date'] ;?>
                                     </div>
                                     <div class="rev-text">
-                                        <p>
-                                            Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar
-                                            hendrerit. Cum sociis natoque penatibus et magnis dis
+                                        <p><?php echo $comment['comment_text'];?>
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /review-box -->
-                            <div class="review-box clearfix">
-                                <figure class="rev-thumb"><img
-                                            src="http://via.placeholder.com/150x150/ccc/fff/avatar2.jpg" alt="">
-                                </figure>
-                                <div class="rev-content">
-                                    <div class="rating">
-                                        <i class="icon-star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star"></i>
-                                    </div>
-                                    <div class="rev-info">
-                                        Ahsan – April 01, 2016:
-                                    </div>
-                                    <div class="rev-text">
-                                        <p>
-                                            Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar
-                                            hendrerit. Cum sociis natoque penatibus et magnis dis
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /review-box -->
-                            <div class="review-box clearfix">
-                                <figure class="rev-thumb"><img
-                                            src="http://via.placeholder.com/150x150/ccc/fff/avatar3.jpg" alt="">
-                                </figure>
-                                <div class="rev-content">
-                                    <div class="rating">
-                                        <i class="icon-star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star"></i>
-                                    </div>
-                                    <div class="rev-info">
-                                        Sara – March 31, 2016:
-                                    </div>
-                                    <div class="rev-text">
-                                        <p>
-                                            Sed eget turpis a pede tempor malesuada. Vivamus quis mi at leo pulvinar
-                                            hendrerit. Cum sociis natoque penatibus et magnis dis
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /review-box -->
+                            <?php }?>
                         </div>
                         <!-- /review-container -->
+
+                        <hr>
+
+
+                        <div class="reviews-container">
+                                <div class="review-box clearfix">
+                                    <figure class="rev-thumb"><img
+                                                src="<?php echo Session::get('user')['user_image'];?>" alt="">
+                                    </figure>
+                                    <div class="rev-content">
+<!--                                        <div class="rating mb-1">-->
+<!--                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i-->
+<!--                                                    class="icon_star voted"></i><i class="icon_star voted"></i><i-->
+<!--                                                    class="icon_star"></i>-->
+<!--                                        </div>-->
+                                        <div class="rev-info">
+                                            <?php echo Session::get('user')['user_full_name']  ;?>
+                                        </div>
+                                        <div class="rev-text">
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control comment_input" name="comment_text" data-course="<?php echo $course['course_id'];?>" data-image-user="<?php echo(Session::get('user')['user_image']) ?>" data-user-name="<?php echo(Session::get('user')['user_full_name']) ?>"  data-user="<?php echo(Session::get('userID')) ?>" >
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-success" id="add_comment" name="add_comment" >تعليق</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+
+
                     </section>
                     <!-- /section -->
                 </div>
@@ -333,4 +308,7 @@
 <!--/main-->
 <script type=”text/javascript” src=”//cdn.jsdelivr.net/afterglow/latest/afterglow.min.js”></script>
 <script type="text/javascript" src="/design/dashboard/lib/html5gallery/html5gallery.js"></script>
+
+
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'comments.phtml' ?>
