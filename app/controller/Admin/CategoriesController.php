@@ -58,7 +58,13 @@ class CategoriesController extends Controller
 
     public function create()
     {
+
         Helper::viewAdminFile();
+
+        Permissions::getInstaince()->allow('category_create');
+
+
+
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['MainCategories' => $category->all('0')]);
         $this->view->pageTitle = 'Category';
