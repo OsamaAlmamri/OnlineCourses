@@ -62,7 +62,6 @@ class CoursesController extends Controller
        Permissions::getInstaince()->allow('course_create');
 
         Helper::viewAdminFile();
-
         $this->model('Role');
         $role_id = $this->model->getRoleByName('teacher');
         $teachers = $this->model('Users');

@@ -21,22 +21,21 @@ class coursesController extends \Controller
         $this->view->pageTitle ='Course_site';
         $this->view->render();
 }
-    public function fectchLatestCourses()
-    {
-        $course_site=$this->model('Course_site');
 
-        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['homeCourses' => $course_site->latestCoursesWebsite(),'deleted' => false]);
-        $this->view->pageTitle ='Home';
-        $this->view->render();
-    }
 public function insertCourseUser(){
+
    $userCourse=$this->model('Course_site');
     $userInfoCourse=array(
-        ":user_id"=>Session::get('user')['user_id'],
-        ":course_buy"=>explode($_COOKIE['item_id'])
-
+        ":user_id" =>Session::get('user')['user_id'],
+//   ":couces_buy"=>implode(",",$_COOKIE['item_id']),
+        ":user_wish_list"=>implode(",",$_COOKIE['item_whishlish_id'])
     );
-}
+   $userCourse->insertInToUsersCourses($userInfoCourse);
+echo 1;
+   // Helper::back('/cousres' , 'add successfully', 'success');
+
+    }
+
 //public function addCoursesId(){
 //    Session::set('cousresUserId'=>);
 //}

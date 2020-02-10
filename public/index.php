@@ -13,12 +13,4 @@ spl_autoload_register('spl_autoload',false);
 // var_dump($_SERVER['REQUEST_URI']);
 // echo ROOT;
 $app= new Application;
-
-
-
-
-
-
-
-
- ?>
+?>

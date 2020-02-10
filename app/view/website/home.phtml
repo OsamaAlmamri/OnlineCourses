@@ -93,7 +93,7 @@
                                    <div class="row">
    <?php      foreach ($this->view_data['latestCourses'] as $k=> $course) { ?>
        <?php
-       if($k>2){
+       if($k>2 && $k<6){
           
            ?>
            <div class="col-md-4 col-sm-6 col-12">
@@ -101,7 +101,7 @@
                    <figure class="block-reveal">
                        <div class="block-horizzontal"></div>
                        <a href="#0" class="wish_bt"></a>
-                       <a href="/home/course_detail"><img src="/images/site/<?php echo $course['courses_image']; ?>" class="img-fluid" alt=""></a>
+                       <a href="home/course_detail/<?php $course['course_id']?>"><img src="/images/site/<?php echo $course['courses_image']; ?>" class="img-fluid" alt=""></a>
                        <div class="price">$45</div>
                        <div class="preview"><span>Preview course</span></div>
                    </figure>
