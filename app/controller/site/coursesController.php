@@ -21,9 +21,16 @@ class coursesController extends \Controller
         $this->view->pageTitle ='Course_site';
         $this->view->render();
 }
+    public function featchLatestCourses()
+    {
+        $course_site=$this->model('Course_site');
 
-public function insertCourseUser(){
+        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['homeCourses' => $course_site->latestCoursesWebsite(),'deleted' => false]);
+        $this->view->pageTitle ='Home';
+        $this->view->render();
+    }
 
+    public function insertCourseUser(){
    $userCourse=$this->model('Course_site');
     $userInfoCourse=array(
         ":user_id" =>Session::get('user')['user_id'],

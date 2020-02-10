@@ -24,7 +24,7 @@
         });
        }
     function Active(controller) {
-        $(document).on('click', '.active', function () {
+        $('.active').on('click', function () {
             var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&data_id=' + encodeURIComponent($(this).attr('data-id'));
             var url = '/admin/' + controller + '/active';
             var _this = $(this);
@@ -35,7 +35,7 @@
                 data: data,// var form=$('#news').serialize();
                 success: function (data) {
                     if (data == 1) {
-                        _this.html("<i class='fas fa-check'></i>");
+                        _this.html("<i class='fa fa-check'></i>");
                         _this.attr("data-status", data);
                     } else {
                         _this.html("<i class='ion ion-close'></i>");

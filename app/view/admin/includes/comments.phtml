@@ -1,0 +1,61 @@
+<script>
+    $(function () {
+        $('#add_comment').on('click', function () {
+
+            // data that sent to /admin/Comments/addComment to add to DB
+            var data = 'commentText=' + encodeURIComponent($('.comment_input').val()) + '&user_id=' + encodeURIComponent($('.comment_input').attr('data-user')) +
+                '&course_id=' + encodeURIComponent($('.comment_input').attr('data-course')) + '&comment_date=' + encodeURIComponent($('.comment_input').attr('data-comment-date'));
+
+
+            // data that show in box comments
+            var user_name = $('.comment_input').attr('data-user-name');
+            var image = $('.comment_input').attr('data-image-user');
+            var comment_date = $('.comment_input').attr('data-comment-date');
+            var comment = $('.comment_input').val();
+            $('.comment_input').val(null);
+
+
+
+            var url = '/admin/Comments/addComment';
+            var _this = $(this);
+            $.ajax({
+                url: url,
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: data,
+                success: function (data, status, xhr) {
+                    //Function To Run When Request Is Succeeded
+                    if (data == 1) {
+
+                        $('.list_comment').html($('.list_comment').html() + ' <div class="review-box clearfix">\n' +
+                            '                                <figure class="rev-thumb"><img\n' +
+                            '                                            src=' + image + ' alt="">\n' +
+                            '                                </figure>\n' +
+                            '                                <div class="rev-content">\n' +
+                            '                                    <div class="rating mb-1">\n' +
+                            '                                        <i class="icon_star voted"></i><i class="icon_star voted"></i><i\n' +
+                            '                                                class="icon_star voted"></i><i class="icon_star voted"></i><i\n' +
+                            '                                                class="icon_star"></i>\n' +
+                            '                                    </div>\n' +
+                            '                                    <div class="rev-info">' + comment_date + ' - ' + user_name + '</div>\n' +
+                            '                                    <div class="rev-text">\n' +
+                            '                                        <p>' + comment + '</p>\n' +
+                            '                                    </div>\n' +
+                            '                                </div>\n' +
+                            '                            </div>'
+                        );
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            return (false);
+        });
+
+    });
+
+</script>
+
+

@@ -66,11 +66,13 @@ class homeController extends Controller
 
 //        return print_r($lessons->allLessonByChapterName($id));
 
-    public function countDuration($data)
+    public function countDurationChapter($data)
     {
         $sum = 0;
 
         foreach ($data as $lesson) {
+
+
             $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1));
             $sum += $file['playtime_seconds'];
         }
@@ -81,27 +83,38 @@ class homeController extends Controller
 
     public function course_detail($id)
     {
+        //get all details for course
         $courseModel = $this->model('Course');
         $course = $courseModel->find($id);
+
+        //access to videos table and get all details
         $lessons = $this->model('Lesson');
-        $duration = 0;
+        $courseDuration = 0;
         $chaptersLessons = [];
-        $course_count = $lessons->cont_lessons($id);
-        foreach ($lessons->chapterNames($id) as $chapter) {
-            $le = $lessons->chapterLessons($id, $chapter['resources_chapter']);
-            $courseDuration = $this->countDuration($le);
-            $duration += $courseDuration;
+        $course_count = $lessons->count_lessons($id);
+        $chaptersName = $lessons->chapterNames($id) ;
+
+        foreach ($chaptersName as $chapter) {
+            $videos = $lessons->chapterLessons($id, $chapter['resources_chapter']);
+            $chapterDuration = $this->countDurationChapter($videos);
+            $courseDuration += $chapterDuration;
             $chaptersLessons[$chapter['resources_chapter']] = array(
-                'duration' => gmdate("H:i:s", $courseDuration),
-                'lessons' => $le,
+                'duration' => gmdate("H:i:s", $chapterDuration),
+                'lessons' => $videos,
             );
         }
+
+        //get all comments of course
+          $commentModel =$this->model('Comment');
+          $comments =$commentModel->allCommentsOfCourse($id);
+
         $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail',
             [
                 'course' => $course,
                 'lessons' => $chaptersLessons,
                 'course_count' => $course_count,
-                'course_duration' => gmdate("H:i:s", $duration),
+                'course_duration' => gmdate("H:i:s", $courseDuration),
+                'comments'=>$comments
             ]);
         $this->view->pageTitle = 'course list';
         $this->view->render();

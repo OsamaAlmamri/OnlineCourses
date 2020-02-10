@@ -26,8 +26,7 @@ class Course_site
     }
     public function latestCoursesWebsite()
     {
-        return $this->db->query("SELECT * FROM courses ORDER BY course_id DESC LIMIT 6
-");
+        return $this->db->query("SELECT * FROM courses ORDER BY course_id DESC LIMIT 6");
     }
 
 }
