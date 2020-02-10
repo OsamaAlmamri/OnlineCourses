@@ -40,7 +40,7 @@
 
                 <?php echo Message::getInputErrorMessage('categories_ids') ?>
             </div>
-            <button type="submit" name="submit" class="btn btn-primary btn-block">إرسال الاستعلام</button>
+            <button type="submit" disabled id="btn_submit" name="submit" class="btn btn-primary btn-block">إرسال الاستعلام</button>
         </form>
 
     </div>
@@ -125,6 +125,7 @@
     }
 
     function completeHandler(event) {
+        $("#btn_submit").removeAttr('disabled') ;
         _("status").innerHTML = event.target.responseText;
         $('#video_info').html('<input type="hidden"  name="resources_video" value="' + event.target.responseText + '"> ')
         _("progressBar").value = 0;
