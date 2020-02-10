@@ -23,26 +23,11 @@ class Permision
 
 //
 
-    public function getPermissionCategoryByName($name)
-    {
-
-        return $this->db->query("select * from permissions WHERE permission_name  like '" . $name . "_%' ");
-
-    }
-
-    public function getPermissionByName($name)
-    {
-        $id = $this->db->fetchOne("select permission_id from permissions WHERE permission_name  like '" . $name . "' ");
-        if ($id == false)
-            return 0;
-        return ($id['permission_id']);
-    }
-
-
     public function find($id)
     {
         return $this->db->query("select * from permissions WHERE id =$id");
     }
+
 
 
     public function add(array $aData)
@@ -50,7 +35,7 @@ class Permision
         $oStmt = $this->db->preparation('INSERT INTO permissions ( permission_name, permissions_description,permission_status)
                                                   VALUES (:permission_name, :permissions_description,0)');
 
-        return $oStmt->execute($aData);
+        return   $oStmt->execute($aData);
 
     }
 
@@ -72,6 +57,8 @@ class Permision
         $counter = DB::init()->query("SELECT COUNT(*) AS count FROM permissions WHERE permission_id= $id ");
 
 
+
+
         $oStmt = $this->db->preparation('delete from  permissions  WHERE permission_id LIKE  ? ');
         return $oStmt->execute(array(0 => $id));
 //        return $oStmt->execute($aData);
@@ -85,7 +72,6 @@ class Permision
         return $oStmt->execute($aData);
 
     }
-
     public function visibility(array $aData)
     {
 //        return var_dump($aData);

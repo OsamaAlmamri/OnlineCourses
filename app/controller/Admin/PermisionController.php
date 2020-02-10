@@ -5,7 +5,6 @@
  */
 namespace Admin;
 
-use auth\Permissions;
 use Controller;
 use Helper;
 use Message;
@@ -18,8 +17,7 @@ class PermisionController extends Controller
 
     public function index()
     {
-        Permissions::getInstaince()->allow('permission_index');
-        if ($this->model != 'Permision')
+        Helper::viewAdminFile();
         $permision = $this->model('Permision');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'permision' . DIRECTORY_SEPARATOR . 'index', ['permision' => $permision->all(), 'deleted' => false]);
         $this->view->pageTitle = 'Permision';
@@ -42,24 +40,23 @@ class PermisionController extends Controller
     public function create()
     {
 
-        Permissions::getInstaince()->allow('permission_create');
+        Helper::viewAdminFile();
+
         $Permision = $this->model('Permision');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'permision' . DIRECTORY_SEPARATOR . 'createOrUpdate');
         $this->view->pageTitle = 'Permision';
         $this->view->render();
     }
-
-    public function store()
+public function store()
     {
-        Permissions::getInstaince()->allow('permission_store');
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $validate = \Validation::validate([
+ if ($_SERVER["REQUEST_METHOD"] == "POST") {
+     $validate = \Validation::validate([
                 'permission_name' => array(['required' => 'required']),
                 'permissions_description' => array(['required' => 'required']),
-            ]);
+     ]);
             if (count($validate) == 0) {
                 $Permision = array(
-
+                   
                     ':permission_name' => htmlentities($_REQUEST['permission_name']),
                     ':permissions_description' => htmlentities($_REQUEST['Permision_name']),
                 );
@@ -80,7 +77,7 @@ class PermisionController extends Controller
 
     public function update()
     {
-        Permissions::getInstaince()->allow('permission_update');
+
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = Validation::required(['', 'name_ar', 'name_en', 'section_count', 'newsCount', 'sort']);

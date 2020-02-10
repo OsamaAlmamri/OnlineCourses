@@ -1,11 +1,9 @@
 <?php
 //
 use admin\adminController;
-use auth\Permissions;
 use site\homeController;
 
 /*class Helper has functions that use every times*/
-
 class Helper
 {
 //    public static function getMainMenu($type)
@@ -98,7 +96,7 @@ class Helper
 
     public static function getVideoName($name)
     {
-        return explode('.', explode('______', $name)[1])[0];
+     return   explode( '.',explode('______',$name )[1] )[0];
     }
 
 
@@ -147,13 +145,16 @@ class Helper
     public static function old($key)
     {
 //        echo isset($_REQUEST[$key]) ? $_REQUEST[$key] : '';
-        if (Session::has('oldFormData')) {
-            if (isset($_SESSION['oldFormData'][$key]) and is_array($_SESSION['oldFormData'][$key]))
+        if (Session::has('oldFormData'))
+        {
+            if (isset($_SESSION['oldFormData'][$key] ) and is_array($_SESSION['oldFormData'][$key]))
                 return $_SESSION['oldFormData'][$key];
             else
 //                echo $_SESSION['oldFormData'][$key];
-                echo isset($_SESSION['oldFormData'][$key]) ? $_SESSION['oldFormData'][$key] : '';
-        } else
+            echo isset($_SESSION['oldFormData'][$key]) ?$_SESSION['oldFormData'][$key] : '';
+        }
+
+        else
             echo '';
 
     }

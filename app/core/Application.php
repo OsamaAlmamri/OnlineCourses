@@ -43,7 +43,7 @@ class Application
         $request = trim($_SERVER['REQUEST_URI'], '/');
         if (!empty($request)) {
             $url = explode('/', $request);
-            $this->namespace = (isset($url[0]) and ($url[0] == 'admin' or $url[0] == 'teacher' or $url[0] == 'auth' or $url[0] == 'university')) ? $url[0] : 'site';
+            $this->namespace = (isset($url[0]) and ($url[0] == 'admin' or $url[0] == 'teacher' or $url[0] == 'university')) ? $url[0] : 'site';
             if ($this->namespace == 'site') {
                 $this->controller = isset($url[0]) ? $url[0] . 'Controller' : 'homeController';
 //              if (isset($url[0]) and ($url[0] == 'login' or $url[0] == 'logout' or $url[0] == 'register' or $url[0] == 'singUp' or $url[0] == 'index')) {

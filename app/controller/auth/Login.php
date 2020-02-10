@@ -47,19 +47,12 @@ class Login extends Controller
                         Helper::backToLogin('حسابك غير مفعل حاليا', 'warning');
                     return;
                 } else {
-                        $per=$this->model->getPermissions($user['role_id']);
-                        $permissions=[];
-                        foreach ($per as $p )
-                        {
-                            $permissions[]=$p['permission_id'];
-                        }
-
+//                    return var_dump($user);
                     $session_data = array(
                         'user_id' => $user['user_id'],
                         'user' => $user,
                         'user_name' => $user['user_name'],
-                        'role_id' => $user['role_id'],
-                        'user_permissions' => $permissions,
+                        'role_id' => $this->model->roleName($user['user_id'])['user_role_id'],
                         'role_name' => $this->model->roleName($user['user_id'])['role_name']);
                     Session::loggIn($session_data);
 
@@ -73,7 +66,8 @@ class Login extends Controller
                 }
 
 
-            } else {
+            }
+            else {
                 \Helper::backToLogin($validate, 'error');
                 return;
             }
