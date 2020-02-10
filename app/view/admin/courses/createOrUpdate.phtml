@@ -11,12 +11,12 @@
 <div class="content">
     <?php include VIEW . 'messages.phtml';
     ?>
-    <h2 class="text-center"><i class="fa  fa-list"></i> Categories Add</h2>
+    <h2 class="text-center"><i class="fa  fa-book"></i>إضافة كورس</h2>
     <form action="/admin/courses/store" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
-            <label for="course_title"> Teacher:</label>
-            <select class="form-control" name="course_owner" id="">
+            <label for="course_title"> الاستاذ:</label>
+            <select class="form-control"  name="course_owner" id="">
                 <?php if (array_key_exists('teachers', $this->view_data)) {
                     foreach ($this->view_data['teachers'] as $k => $teacher) { ?>
                         <option  value="<?php echo $teacher['user_id'] ?>" > <?php echo $teacher['user_full_name'] ?>   </option>
@@ -27,24 +27,24 @@
         </div>
 
         <div class="form-group">
-            <label for="course_title">Course Title:</label>
+            <label for="course_title">عنوان الكورس:</label>
             <input type="text"
                    value="<?php Helper::old('course_title'); ?>"
-                   class="form-control" id="course_title" name="course_title">
+                   class="form-control" id="course_title" placeholder="عنوان الكورس" name="course_title">
             <?php echo Message::getInputErrorMessage('course_title') ?>
         </div>
 
 
         <div class="form-group">
-            <label for="course_description">Course Description:</label>
+            <label for="course_description">وصف الكورس:</label>
             <input type="text" class="form-control"
                    value="<?php Helper::old('course_description'); ?>"
-                   id="course_description" name="course_description">
+                   id="course_description" placeholder="وصف الكورس" name="course_description">
             <?php echo Message::getInputErrorMessage('course_description') ?>
         </div>
 
         <div class="form-group">
-            <label for="courses_image">Course Imagefdd:</label>
+            <label for="courses_image">صورة الكورس:</label>
             <div class="custom-file">
 
                 <input type="file" class="custom-file-input" name="courses_image" id="courses_image">
@@ -54,21 +54,21 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="course_price">Course Price:</label>
+            <label for="course_price">سعر الكورس:</label>
             <input type="number"
                    value="<?php Helper::old('course_price'); ?>"
-                   class="form-control" id="course_price" name="course_price">
+                   class="form-control" id="course_price" placeholder="سعر الكورس" name="course_price">
             <?php echo Message::getInputErrorMessage('course_price') ?>
         </div>
         <div class="form-group">
-            <label for="course_price">course price after Discount :</label>
-            <input type="number"
+            <label for="course_price">سعر الكورس بعد التحفيض :</label>
+            <input type="number" placeholder="سعر الكورس بعد التحفيض"
                    value="<?php Helper::old('course_price_afterDiscount'); ?>"
                    class="form-control" id="course_price_afterDiscount" name="course_price_afterDiscount">
             <?php echo Message::getInputErrorMessage('course_price_afterDiscount') ?>
         </div>
         <div class="form-group">
-            <label for="categories_input">categories :</label>
+            <label for="categories_input">الاصناف :</label>
             <input type="text"
                    value=""
                    class="form-control" id="categories_input" name="categories">
@@ -96,16 +96,16 @@
         </div>
 
         <div class="form-group">
-            <label for="course_requirements">Course Requirements:</label>
-            <textarea id="course_requirements"
+            <label for="course_requirements">متطلبات الكورس:</label>
+            <textarea id="course_requirements" placeholder="متطلبات الكورس"
                       value="<?php Helper::old('course_requirements'); ?>"
                       name="course_requirements">
                     </textarea>
             <?php echo Message::getInputErrorMessage('course_requirements') ?>
         </div>
         <div class="form-group">
-            <label for="course_students_target">Student Target:</label>
-            <textarea class="form-control"
+            <label for="course_students_target">الطلاب المستهدفين:</label>
+            <textarea class="form-control" placeholder="الطلاب المستهدفين"
                       value="<?php Helper::old('course_students_target'); ?>"
                       id="course_students_target" name="course_students_target">
                 </textarea>
@@ -114,8 +114,8 @@
 
 
         <div class="form-group">
-            <label for="course_goals">Course Goals:</label>
-            <textarea class="form-control"
+            <label for="course_goals">أهداف الكورس:</label>
+            <textarea class="form-control" placeholder="أهداف الكورس"
                       value="<?php Helper::old('course_goals'); ?>"
                       id="course_goals" name="course_goals">
                 </textarea>
@@ -123,7 +123,7 @@
         </div>
 
 
-        <button type="submit" name="submit" class="btn btn-primary btn-block">Save</button>
+        <button type="submit" name="submit" class="btn btn-primary btn-block">إرسال الاستعلام</button>
     </form>
     <br>
 

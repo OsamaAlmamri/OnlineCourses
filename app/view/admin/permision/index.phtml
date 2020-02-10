@@ -2,35 +2,44 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 
-<div class="content">
-    <h2 class="text-center"><i class="fa fa fa-cogs" style="color:#ec3901"></i> Permisions Accounts Manage</h2>
-    <?php include VIEW . 'messages.phtml' ?>
-    <div class="row fa-pull-right">
-        <div class="col-8">
-            <div class="dropdown">
-                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                        id="dashboard_daterangepicker">
-                    <i class="	fas fa-bullseye"></i> sorting data by
-                </button>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Day</a>
-                    <a class="dropdown-item" href="#">Week</a>
-                    <a class="dropdown-item" href="#">Month</a>
-                    <a class="dropdown-item" href="#">Range</a>
-                </div>
-            </div>
+<div class="container">
+    <div class="row bg-white mb-4 ">
+        <div class="text-right  mt-auto col-6">
+    <h2 ><i class="fa fa fa-cogs" style="color:#ec3901"></i> إدارة الصلاحيات</h2>
         </div>
     </div>
-    <div class="col-4"><a href="/admin/permision/create" class="btn btn-success "><i class="fa fa-plus"> </i> Add</a>
+    <div class="row mb-4">
+        <div class="col-6 text-right">
+            <a href="/admin/permision/create" class="btn btn-success "><i class="fa fa-plus"> </i> إصافة صلاحية جديدة</a>
+        </div>
+        <div class="col-6 text-left">
+
+                <div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                            id="dashboard_daterangepicker">
+                        <i class="	fas fa-bullseye"></i>ترتيب حسب
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">اليوم</a>
+                        <a class="dropdown-item" href="#">الاسبوع</a>
+                        <a class="dropdown-item" href="#">الشهر</a>
+                        <a class="dropdown-item" href="#">المدة</a>
+                    </div>
+                </div>
+
+        </div>
     </div>
-    <br>
+
+
+
+
     <table id="example1" class="table table-bordered table-striped">
         <thead class="thead-dark font-size-18">
         <tr>
-            <th>permision Name</th>
-            <th>permision Description</th>
-            <th>permision Status</th>
-            <th>Control</th>
+            <th>اسم الصلاحية</th>
+            <th>وصف الصلاحية</th>
+            <th>حالة الصلاحية</th>
+            <th>الاعدادات</th>
         </tr>
         </thead>
 

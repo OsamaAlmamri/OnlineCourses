@@ -13,10 +13,13 @@
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 
-<div class="content">
+<div class="container">
     <?php include VIEW . 'messages.phtml' ?>
-
-    <h2 class="text-center"><i class="fa fa-chalkboard-teacher" style="color:#ec3901"></i> Teacher Accounts Add</h2>
+    <div class="row bg-white mb-4 ">
+        <div class="text-right mt-auto col-6">
+    <h2 0><i class="fa fa-chalkboard-teacher" style="color:#ec3901"></i> Teacher Accounts Add</h2>
+        </div>
+    </div>
     <form action="/admin/universities/addTeacher" method="post" enctype="multipart/form-data">
         <input type="hidden" name="addTeacher" value="true">
 
@@ -24,30 +27,30 @@
 
 
             <div class="col-md-6">
-                <label for="user_email">Email address:</label>
-                <input type="email" class="form-control" placeholder="Enter email" id="user_email"
+                <label for="user_email">البريد الالكتروني:</label>
+                <input type="email" class="form-control" placeholder="البريد الالكتروني" id="user_email"
                        value="<?php Helper::old('user_email'); ?>"
                        name="user_email">
                 <?php echo Message::getInputErrorMessage('user_email') ?>
-                <label for="user_password">Password:</label>
+                <label for="user_password">كلمة المرور:</label>
 
-                <input type="password" class="form-control" placeholder="Enter password"
+                <input type="password" class="form-control" placeholder="كلمة المرور"
                        id="user_password" name="user_password">
                 <?php echo Message::getInputErrorMessage('user_password') ?>
 
 
-                <label for="user_password">Confirm Password:</label>
-                <input type="password" class="form-control" placeholder="Enter password"
+                <label for="user_password">تاكيد كلمة المرور:</label>
+                <input type="password" class="form-control" placeholder="تاكيد كلمة المرور"
                        id="password_confirmation" name="password_confirmation">
                 <?php echo Message::getInputErrorMessage('password_confirmation') ?>
 
-                <label for="user_full_name">User Full Name:</label>
-                <input type="text" class="form-control" placeholder="Enter User Full Name"
+                <label for="user_full_name">الاسم الكامل للمستخدم:</label>
+                <input type="text" class="form-control" placeholder="الاسم الكامل للمستخدم"
                        value="<?php Helper::old('user_full_name'); ?>"
                        id="user_full_name" name="user_full_name">
                 <?php echo Message::getInputErrorMessage('user_full_name') ?>
-                <label for="user_name">User Name:</label>
-                <input type="text" class="form-control" placeholder="Enter User Name" id="user_name"
+                <label for="user_name">اسم المستخدم:</label>
+                <input type="text" class="form-control" placeholder="اسم المستخدم" id="user_name"
                        value="<?php Helper::old('user_name'); ?>"
                        name="user_name">
                 <?php echo Message::getInputErrorMessage('user_name') ?>
@@ -55,7 +58,7 @@
             </div>
 
             <div class="col-md-6">
-                <label for="user_image">User Image:</label>
+                <label for="user_image">صورة السنتخدم:</label>
                 <div class="custom-file">
 
                     <input type="file" class="custom-file-input" name="user_image" id="user_image">
@@ -68,24 +71,24 @@
 
                     <?php } ?>
                 </div>
-                <label for="user_phone">User Phone:</label>
-                <input type="phone" class="form-control" placeholder="Enter User Phone"
+                <label for="user_phone">رقم الهاتف:</label>
+                <input type="phone" class="form-control" placeholder="رقم الهاتف"
                        value="<?php Helper::old('user_phone'); ?>"
                        id="user_phone" name="user_phone">
                 <?php echo Message::getInputErrorMessage('user_phone') ?>
 
 
-                <label for="user_gender">User Gender:</label>
+                <label for="user_gender">الجنس:</label>
 
                 <select class="form-control" id="user_gender" name="user_gender">
-                    <option value="male" selected>Male</option>
-                    <option value="female">Female</option>
+                    <option value="male" selected>ذكر</option>
+                    <option value="female">انثى</option>
 
                 </select>
 
                 <div id="student">
-                    <label for="user_qualification">User Qualification:</label>
-                    <input type="text" class="form-control" placeholder="Enter User Qualification"
+                    <label for="user_qualification">مؤهل السمتخدم:</label>
+                    <input type="text" class="form-control" placeholder="مؤهل السمتخدم"
                            id="user_qualification"
                            value="<?php Helper::old('user_qualification'); ?>"
                            name="user_qualification">
@@ -97,7 +100,7 @@
             </div>
             <br>
             <div class="col-md-12">
-                <br> <input type="submit" class="btn btn-primary btn-block" name="submit">
+                <br> <button type="submit" class="btn btn-success btn-block" name="submit">إضافة</button>
             </div>
         </div>
 

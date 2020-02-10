@@ -216,6 +216,7 @@ a{
 
 
     }
+
     .btn-quaternary {
         padding:8px 8px !important;
         color: #686f7a !important;
@@ -225,6 +226,7 @@ a{
         margin-top: 9%;
 
     }
+
     .btn-quaternary:hover {
 
         color: black !important;
@@ -334,4 +336,13 @@ a{
     right: 0;
     z-index: 3;
 }
-
+.imgedit{
+    position: absolute;
+    margin-top: 10%;
+    margin-left: -45%;
+    font-size: 215%;
+}
+label{
+    float: right !important;
+    font-weight: bold;
+}

@@ -72,6 +72,11 @@ class Helper
             return false;
 
     }
+    public static function buy($id)
+    {
+
+         echo ($id);
+    }
 
     public static function viewAdminFile()
     {
@@ -98,6 +103,14 @@ class Helper
     public static function siteEmail()
     {
         return "elarning@gmail.com";
+
+    }
+
+    public static function getVideoName($name)
+    {
+
+
+     return   explode( '.',explode('______',$name )[1] )[0];
 
     }
 
@@ -148,12 +161,39 @@ class Helper
     {
 //        echo isset($_REQUEST[$key]) ? $_REQUEST[$key] : '';
         if (Session::has('oldFormData'))
-            if (is_array($_SESSION['oldFormData'][$key]))
+        {
+            if (isset($_SESSION['oldFormData'][$key] ) and is_array($_SESSION['oldFormData'][$key]))
                 return $_SESSION['oldFormData'][$key];
             else
-                echo $_SESSION['oldFormData'][$key];
+//                echo $_SESSION['oldFormData'][$key];
+            echo isset($_SESSION['oldFormData'][$key]) ?$_SESSION['oldFormData'][$key] : '';
+        }
+
         else
             echo '';
+
+    }
+
+    public static function getVideoDeatils($url)
+    {
+        include_once(CORE . DIRECTORY_SEPARATOR . 'getid3' . DIRECTORY_SEPARATOR . 'getid3.php');
+        $getID3 = new getID3;
+        $file = $getID3->analyze($url);
+        return ($file);
+
+//        echo("Duration: " . $file['playtime_string'] .
+//                            " / Dimensions: " . $file['video']['resolution_x'] . " wide by " . $file['video']['resolution_y'] . " tall" .
+//                            " / Filesize: " . $file['filesize'] . " bytes<br />");
+    }
+
+
+    public static function getVideoDuartion($url)
+    {
+        include_once(CORE . DIRECTORY_SEPARATOR . 'getid3' . DIRECTORY_SEPARATOR . 'getid3.php');
+        $getID3 = new getID3;
+        $file = $getID3->analyze($url);
+        return ($file['playtime_string']);
+
 
     }
 

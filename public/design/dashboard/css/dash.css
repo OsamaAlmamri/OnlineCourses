@@ -1,121 +1,125 @@
-/*start body style*/
-body {
-    margin: 0;
-    font-family: "Lato", sans-serif;
+@font-face {
+    font-family: 'DroidKufi-Bold';
+    src: url('../fonts/DroidKufi-Bold.ttf');
+}
 
+@font-face {
+    font-family: 'DroidKufi-Regular';
+    src: url('../fonts/DroidKufi-Regular.ttf');
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'DroidKufi-Bold', sans-serif;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+p {
+    color: #757575;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+a {
+    text-decoration: none;
+    font-size:16px ;
 
 }
 
-/*end body style*/
+a:hover, a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+
+body {
+    direction: rtl;
+    font-family: 'DroidKufi-Regular', sans-serif;
+    background-color: #f9f9f9;
+}
+.container-fluid{
+}
 /*start form register style*/
 
-/*start navbar style*/
-.navbar {
-    z-index: 1;
-    position: fixed;
-    width: 100%;
 
-}
+/* start navbar style */
 .sidebar {
-    margin: 0;
-    padding: 0;
 
-    width: 247px;
-    padding-top: 71px;
-    background-color: #272B34;
-    position: fixed;
-    height: 100%;
-    top: 0;
+    min-height: 1000px;
     overflow: auto;
 }
-.image_back {
-    background-image: url(../../image/user-info2.jpg);
-    background-repeat: no-repeat;
-
-    margin-top: -16px;
+.sidebar .logo-site {
+    max-width: 284px;
+    height:70px;
+    background-color: #F1603F;
 }
-.image_back img {
-    padding: 24px;
-    margin: 0;
-    width: 58%;
-    position: relative;
-    top: 2px;
-    left: 47px;
-}
-.link {
-    position: relative;
-    margin: 0;
-    top: 0;
-    bottom: 37px;
-    margin-left: 1px;
-    overflow: hidden;
-
+.sidebar .logo-site img{
+    height: 100%;
 
 }
 .sidebar a {
     display: block;
     color: white;
     padding: 2px;
+}
 
-    text-decoration: none;
+
+.userImage img {
+    padding: 24px;
+    width: 50%;
+
 }
-.navbar-dark .navbar-nav .show > .nav-link:hover{
-    background-color: #ec3901;
+
+.link {
+    position: relative;
+    top: 0;
+    bottom: 37px;
+    margin-left: 1px;
+    overflow: hidden;
 }
+
+
+
+.navbar-dark .navbar-nav .show > .nav-link:hover {
+    background-color: #f84938;
+}
+
 .navbar-nav > .nav-item > .nav-link:hover {
-    background-color: #ec3901;
-    border-radius: 8px 38px;
-
+    background-color: #f84938;
 }
+
 .navbar-nav > .nav-item > .nav-link:focus {
     background-color: #ec3901;
 }
+
 .dropdown-item:hover {
-    background-color: #ec3901;
 }
+
 @media (min-width: 768px) {
     .navbar-nav > .nav-item {
-        float: left;
         position: relative;
-        left: 14px;
         /* margin-left: 27px; */
     }
 }
+
 .navbar-dark .navbar-nav .nav-link {
     color: rgb(254, 254, 254);
 }
-.badge-light{
-    background-color: #ec3901;
+
+.badge-light {
+    background-color: #f84938;
     color: white;
-    border-radius: 60%;
-}
-.btn-primary:hover {
-    color: #fff;
-    background-color: #ec3901;
-    border-color: #ec3901;
 }
 
-.btn-primary:focus, .btn-primary.focus {
-    box-shadow: 0 0 0 0.2rem #FFB200;
-}
 
-.btn-primary.disabled, .btn-primary:disabled {
-    color: #fff;
-    background-color: #ec3901;
-    border-color: #ec3901
-}
 
-.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
-.show > .btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #ec3901;
-    border-color: #ec3901;
-}
 
-.btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
-.show > .btn-primary.dropdown-toggle:focus {
-    box-shadow: 0 0 0 0.2rem #FFB200;
-}
+
+
 
 .sidebar a.active {
     background-color: #4CAF50;
@@ -123,61 +127,42 @@ body {
 }
 
 .sidebar a:hover:not(.active) {
-    background-color: #ec3901 ;
+    background-color: #ec3901;
     color: white;
 }
-.hrefLabel{
+
+.hrefLabel {
     display: inline-block;
     margin-bottom: 0.5rem;
     margin-left: 10px;
 }
-.icon {
 
-    margin-left: 40px;
 
-}
-.iconi{
-    margin-left: 20px;
-}
 /*end navbar style*/
 /*start icon style*/
-.fa-edit{
-    color:#1c7430;
+.fa-edit {
+    color: #1c7430;
 }
 
-.fa-trash-restore{
-    color:#c82333;
+.fa-trash-restore {
+    color: #c82333;
 }
-.fa-history{
+
+.fa-history {
     color: #856404;
 }
+
 .fa-angle-down {
     position: relative;
     left: 110px;
     top: 0;
 }
-.btn_visibility{
-    color:#481F41;
+
+.btn_visibility {
+    color: #481F41;
 }
+
 /*end icon style*/
-/*start button style*/
-.btn-primary {
-    background-color: #ec3901;
-    margin-bottom: 14px;
-    border-color: #4d557a;
-
-}
-
-/*end button style*/
-/*start content page style*/
-div.content {
-    margin-left: 255px;
-    padding: 74px 16px;
-height: 20000px;
-
-}
-/*end content page style*/
-
 
 
 label {
@@ -186,10 +171,12 @@ label {
     margin-top: 0.6rem;
 
 }
+
 .form-inside {
     margin-left: 85px;
     margin-top: -11px;
 }
+
 .custom-file-label {
     position: absolute;
     top: -8px;
@@ -206,11 +193,11 @@ label {
     border-radius: 0.25rem;
 }
 
-.card{
-    border-radius: 8px 38px;
-
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.card {
+    /*border-radius: 8px 38px;*/
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
 }
+
 /*end form register style*/
 /* Style the tab */
 .tab {
@@ -220,25 +207,9 @@ label {
 }
 
 /* Style the buttons inside the tab */
-.content1{
 
-    margin: 105px auto;
-    margin-left: 21%;
-}
-
-
-@media (min-width: 992px) {
-    .justify-content-lg-center {
-        -ms-flex-pack: center !important;
-        justify-content: center !important;
-        position: relative;
-        left: -147px;
-
-    }
-}
 .tab button {
     background-color: inherit;
-
     display: block;
     border: none;
     outline: none;
@@ -247,10 +218,8 @@ label {
     transition: 0.3s;
     font-size: 17px;
 }
-div.dataTables_wrapper div.dataTables_filter {
-    text-align: right;
-    margin-top: -52px;
-}
+
+
 /* Change background color of buttons on hover */
 .tab button:hover {
     background-color: #ec3901;
@@ -267,6 +236,7 @@ div.dataTables_wrapper div.dataTables_filter {
     padding: 6px 12px;
 
 }
+
 /*start responsive page style*/
 @media screen and (max-width: 700px) {
     .sidebar {
@@ -274,26 +244,27 @@ div.dataTables_wrapper div.dataTables_filter {
         height: auto;
         position: relative;
     }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
 
+    .sidebar a {
+    }
 
-
+    div.content {
+        margin-left: 0;
+    }
 
 
     .image_back {
         background-image: url(../../image/user-info2.jpg);
         background-repeat: no-repeat;
-
         margin-top: -16px;
-
         width: 100%;
     }
+
     .image_back img {
 
         padding: 24px;
         margin: 0;
-        width:20%;
+        width: 20%;
         position: relative;
         top: -18px;
         left: 29px;
@@ -304,25 +275,25 @@ div.dataTables_wrapper div.dataTables_filter {
 @media screen and (max-width: 400px) {
     .sidebar a {
         text-align: center;
-        float: none;
     }
-    div.content {margin-left: 0;}
+
+    div.content {
+        margin-left: 0;
+    }
+
     .image_back {
         background-image: url(../../image/user-info2.jpg);
         background-repeat: no-repeat;
-
-
         width: 100%;
     }
-    .image_back img {
 
+    .image_back img {
         padding: 24px;
         margin: 0;
-        width:20%;
+        width: 20%;
         position: relative;
         top: -18px;
         left: 29px;
-
     }
 
 

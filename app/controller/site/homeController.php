@@ -10,6 +10,7 @@ use auth\login;
 use auth\LogOut;
 use auth\Register;
 use Controller;
+use Helper;
 
 class homeController extends Controller
 {
@@ -61,9 +62,50 @@ class homeController extends Controller
         $this->view->render();
     }
 
-    public function course_detail()
+
+
+
+
+//        return print_r($lessons->allLessonByChapterName($id));
+
+    public function countDuration($data)
     {
-        $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail', ['news' => [], 'category' => []]);
+        $sum = 0;
+
+        foreach ($data as $lesson) {
+            $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1));
+            $sum += $file['playtime_seconds'];
+        }
+        return $sum;
+
+
+    }
+
+    public function course_detail($id)
+
+    {
+        $courseModel = $this->model('Course');
+        $course = $courseModel->find($id);
+        $lessons = $this->model('Lesson');
+        $duration = 0;
+        $chaptersLessons = [];
+        $course_count = $lessons->cont_lessons($id);
+        foreach ($lessons->chapterNames($id) as $chapter) {
+            $le = $lessons->chapterLessons($id, $chapter['resources_chapter']);
+            $courseDuration = $this->countDuration($le);
+            $duration += $courseDuration;
+            $chaptersLessons[$chapter['resources_chapter']] = array(
+                'duration' => gmdate("H:i:s", $courseDuration),
+                'lessons' => $le,
+            );
+        }
+        $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail',
+            [
+                'course' => $course,
+                'lessons' => $chaptersLessons,
+                'course_count' => $course_count,
+                'course_duration' => gmdate("H:i:s", $duration),
+            ]);
         $this->view->pageTitle = 'course list';
         $this->view->render();
     }
@@ -95,12 +137,14 @@ class homeController extends Controller
         $this->view->pageTitle = ' home ';
         $this->view->render();
     }
+
     public function profile()
     {
         $this->view('website' . DIRECTORY_SEPARATOR . 'profile', ['news' => [], 'category' => []]);
         $this->view->pageTitle = ' home ';
         $this->view->render();
     }
+
     public function wish_list()
     {
         $this->view('website' . DIRECTORY_SEPARATOR . 'wish_list', ['news' => [], 'category' => []]);
