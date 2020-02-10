@@ -67,11 +67,6 @@ class Helper
             return false;
 
     }
-    public static function buy($id)
-    {
-
-         echo ($id);
-    }
 
     public static function viewAdminFile()
     {
