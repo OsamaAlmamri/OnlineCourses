@@ -66,8 +66,7 @@
 
 
                                 </ul>
-                            </section>
-                            <!--        end description                -->
+
                                 <div class="card">
                                     <!--                                    <div class="card-header" role="tab" id="headingOne">-->
                                     <!--                                        <h5 class="mb-0">-->
@@ -88,7 +87,7 @@
 
 
                                 <!-- /row -->
-
+                            </section>
                             <?php
                         }
                         }
@@ -183,7 +182,7 @@
                                                     $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1)); ?>
                                                     <li><a href="http://127.0.0.1:800<?php echo $lesson['resources_video'] ?>"
                                                            class="video"><?php echo Helper::getVideoName($lesson['resources_video']) ?>
-                                                            </a><span> <?php echo gmdate("H:i:s", $file['playtime_seconds']) ?></span></li><br>
+                                                            </a><span> <?php echo gmdate("H:i:s", $file['playtime_seconds']) ?></span></li>
 
                                                         <?php } ?>
                                                 </ul>
@@ -191,7 +190,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            <?php } ?>
 
 
 								<div class="card">
