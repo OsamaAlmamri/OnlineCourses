@@ -23,13 +23,21 @@ class CommentsController extends Controller
         $data = array(
             ':course_id' => htmlentities($_REQUEST['course_id']),
             ':user_id' => htmlentities($_REQUEST['user_id']),
-            ':comment_text' => htmlentities($_REQUEST['commentText'])
+            ':comment_text' => htmlentities($_REQUEST['commentText']),
+            ':comment_date' => htmlentities($_REQUEST['comment_date'])
         );
         $comment = $this->model('Comment');
         $idComment = $comment->addComments($data);
-        $commentData=$comment->getCommentById($idComment);
-        $data =  json_encode($commentData);
-        echo $data;
+        if ( $idComment>0)
+        {
+            echo 1;
+
+        }
+        else
+            echo 0;
+
+//        $commentData=$comment->getCommentById($idComment);
+//        $data =  json_encode($commentData);
 
     }
 

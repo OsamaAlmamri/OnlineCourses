@@ -34,8 +34,8 @@ class Comment
     public function addComments(array $Data)
     {
 
-        $Stmt = $this->db->preparation('INSERT INTO comments (comment_text, user_id,course_id,comment_status)
-                                                  VALUES ( :comment_text,:user_id,:course_id,1)');
+        $Stmt = $this->db->preparation('INSERT INTO comments (comment_text, user_id,course_id,comment_status,comment_date)
+                                                  VALUES ( :comment_text,:user_id,:course_id,1,:comment_date)');
         $Stmt->execute($Data);
         return $this->db->lastInsertId();
 
