@@ -2,7 +2,7 @@
 
     function AddToWish(controller) {
         $(document).on('click', '.wish_bt', function () {
-            var data =  encodeURIComponent($(this).attr('data-id'));
+            var data = encodeURIComponent($(this).attr('data-id'));
             var url =  controller + '/insertCourseUser';
             var _this = $(this);
             $.ajax({
@@ -16,13 +16,14 @@
                     }
                 },
                 error: function (xhr, status, error) {
-                    window.location.href="/admin/login";
-                  //  alert(error.responseText);
+                    // window.location.href="/admin/login";
+                    //  alert(error.responseText);
                 }
             });
             return (false);
         });
-       }
+    }
+
     function Active(controller) {
         $('.active').on('click', function () {
             var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&data_id=' + encodeURIComponent($(this).attr('data-id'));
