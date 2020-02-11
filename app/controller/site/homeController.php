@@ -96,12 +96,24 @@ class homeController extends Controller
                 'lessons' => $le,
             );
         }
+
+
+        //get all Ratings of course
+          $RatingModel =$this->model('Rating');
+          $AllRatings =$RatingModel->allRatingsOfCourse($id);
+
+
         $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail',
             [
                 'course' => $course,
                 'lessons' => $chaptersLessons,
                 'course_count' => $course_count,
-                'course_duration' => gmdate("H:i:s", $duration),
+
+
+
+                'course_duration' => gmdate("H:i:s", $courseDuration),
+                'AllRatings'=>$AllRatings,
+
             ]);
         $this->view->pageTitle = 'course list';
         $this->view->render();
