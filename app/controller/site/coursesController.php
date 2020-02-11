@@ -32,7 +32,7 @@ public function insertCourseUser(){
     );
    $userCourse->insertInToUsersCourses($userInfoCourse);
 echo 1;
-   // Helper::back('/cousres' , 'add successfully', 'success');
+
 
     }
 
