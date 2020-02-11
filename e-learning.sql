@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 09 فبراير 2020 الساعة 20:56
--- إصدار الخادم: 10.4.11-MariaDB
--- PHP Version: 7.4.1
+-- Generation Time: 11 فبراير 2020 الساعة 08:05
+-- إصدار الخادم: 10.1.37-MariaDB
+-- PHP Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,11 +32,11 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `category_description` text NOT NULL,
-  `category_parents` text DEFAULT '0',
+  `category_parents` text,
   `category_status` int(10) NOT NULL,
   `category_visibility` int(10) NOT NULL,
   `category_date` datetime NOT NULL,
-  `category_updates` text DEFAULT NULL
+  `category_updates` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -61,21 +61,6 @@ INSERT INTO `categories` (`category_id`, `category_name`, `category_description`
 (53, 'rechnology', '&lt;p&gt;oij&lt;/p&gt;', '0', 0, 0, '0000-00-00 00:00:00', NULL),
 (54, 'kotlin', 'kotlin', 'level3_4', 0, 0, '0000-00-00 00:00:00', NULL),
 (55, 'j9oj', '                hnoij[', '0', 0, 0, '0000-00-00 00:00:00', NULL);
-
--- --------------------------------------------------------
-
---
--- بنية الجدول `comments`
---
-
-CREATE TABLE `comments` (
-  `comment_id` int(11) NOT NULL,
-  `comment_text` text NOT NULL,
-  `comment_date` datetime NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `comment_status` int(10) NOT NULL,
-  `course_id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -115,9 +100,9 @@ CREATE TABLE `courses` (
   `course_goals` text NOT NULL,
   `categories_ids` text NOT NULL,
   `course_date` int(11) NOT NULL,
-  `course_status` int(10) DEFAULT 1,
-  `course_updates` text DEFAULT NULL,
-  `course_visibility` int(11) DEFAULT 1
+  `course_status` int(10) DEFAULT '1',
+  `course_updates` text,
+  `course_visibility` int(11) DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -125,8 +110,8 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`course_id`, `course_owner`, `course_title`, `course_description`, `courses_image`, `course_price`, `course_price_afterDiscount`, `course_requirements`, `course_students_target`, `course_goals`, `categories_ids`, `course_date`, `course_status`, `course_updates`, `course_visibility`) VALUES
-(5, 36, 'github', '&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;strong dir=&quot;rtl&quot;&gt;2. محول WebM إلى MP4 على شبكة الانترنت&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;هناك بعض المواقع الإلكترونية التي يمكنك زيارتها حيث تحصل على محول على شبكة الانترنت يسمح لك بتحويل WebM إلى MP4. يمكنك كذلك الاستفادة من العديد من الخيارات عندما يتعلق الأمر باستخدام محول WebM إلى MP4 من على شبكة الانترنت:&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.zamzar.com/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;Zamzar&lt;/a&gt;&amp;nbsp;هو محول مجاني على شبكة الانترنت يسمح لك بتحويل الملفات إلى تنسيق mp4 عبر الانترنت مجانا. كل ما عليك فعله هو الحصول على اتصال جيد بشبكة الانترنت لتحويل الملفات بنجاح. يمكن استخدام Zamzar لتحويل ملفات WebM إلى مختلف التنسيقات مثل 3gp, 3g2, aac, ac3, avi, flv, flac, gif, mp3, mp4, mpg, ogg, wav و wmv. لاستخدامه، عليك زيارة الموقع الرسمي Zamzar والاتصال بالانترنت لبدء تحويل الملفات. واحد من أفضل الأمور التي عليك معرفتها حول هذا المحول هو أنه يمكنه تحويل الملفات بسرعة كبيرة للغاية. هو برنامج مجاني وسهل الاستخدام. المشكلة الوحيدة هو أنه لا يمكنك استخدامه قط إن لم تكن متصلا بالانترنت.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.apowersoft.com/free-online-video-converter&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;أبوويرسوفت&lt;/a&gt;&amp;nbsp;هو خيار آخر رائع لتحويل الملفات عبر شبكة الانترنت. هو محول قوي من تنسيق webm إلى MP4 يمكن استخدامه لتحويل الملفات عبر الانترنت مجانا. هذه الأداة عبر الانترنت لن تحتاج إلى تنزيل برنامج لها لاستخدامها. يوفر لك تحويل سريع للملفات بسرعة كبيرة للغاية. يدعم نطاق واسع من تنسيقات الفيديو والصوت مثل VCD, DVD, PSP, آي باد وآي فون. الخصائص الأخرى التي يقدمها هي التحويل السريع والجودة العالية التي تتراوح بين 144p حتى 1080p وتنسيقات المخرج الكثيرة وكذلك الإعدادات وسهولة الاستخدام. مثل تطبيق Zamzar، العيب الوحيد بهذا المحول هو أنه عليك الاتصال بالانترنت لاستخدامه.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;strong dir=&quot;rtl&quot;&gt;3. محول WebM إلى MP4 المجاني&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;ماذا عن تحويل الملفات دون الاتصال بالانترنت؟ هذا ممكن بالتأكيد! يمكنك القيام بذلك عبر تحميل محول يمكنه تحويل الملفات دون الاتصال بالإنترنت. الانترنت يوفر لك العديد من الخيارات للاختيار من بينها بما فيها:&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.apowersoft.com/video-converter-studio.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;محول فيديو ستوديو&lt;/a&gt;&amp;nbsp;هو محول عالي الكفاءة الذي صمم خصيصا لتحويل كافة تنسيقات الفيديو والصوت. يقدم لك المحول خصائص متقدمة وكذلك مميزات مثل تحرير الفيديو التي تشمل قص مقاطع الفيديو وضبط تأثيرات الفيديو وقص حجم الفيديو واستيراد الترجمة الخارجية ودمج عدة مقاطع من الفيديو وكذلك تحويل الفيديو إلى تنسيقات متوافقة مع الأجهزة المحمولة مثل أندرويد. من السهل استخدامه كما ترغب ولا تحتاج إلى الاتصال بالانترنت حتى تبدأ تحويل الملفات. المشكلة التي ربما تواجهك هي سرعة التحويل حيث يستغرق وقتا أطول بالمقارنة مع التطبيقات عبر الانترنت.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;يمكنك كذلك استخدام&amp;nbsp;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.any-video-converter.com/products/for_video_free/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;إني فيديو كوفيرتر&lt;/a&gt;&amp;nbsp;لتحويل الملفات إلى mp4 اليوم. تماما مثلما ذكرنا، هذا المحول يوفر لك سهولة الاستخدام ودعم نطاق واسع من تنسيقات الملفات عند التحويل. يمكنك استخدام محول الفيديو أني لتحويل ملفات webm إلى كافة التنسيقات المتوافرة تقريبا. المشكلة الوحيد هو أنه يستغرق أكثر من ساعة لتحويل الملف. تحويل الملفات سوف يتسبب بالتأكيد في استغراق مزيدا من الوقت.&lt;/p&gt;', '1.jpg', 55, 20, '', '&lt;p&gt;[l[l&lt;/p&gt;', '&lt;p&gt;[l[l&lt;/p&gt;', '[\"8\"]', 0, 1, NULL, 1),
-(7, 43, 'اندرويد', '&lt;h1 id=&quot;firstHeading&quot; class=&quot;firstHeading&quot; style=&quot;margin: 60px 0px 10px; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 300; line-height: 30px; color: #6c336d; text-rendering: optimizelegibility; font-size: 30px; background-color: #ffffff;&quot;&gt;View source for TinyMCE editor&lt;/h1&gt;\r\n&lt;div id=&quot;bodyContent&quot; style=&quot;color: #212121; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; background-color: #ffffff;&quot;&gt;\r\n&lt;div id=&quot;contentSub&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&amp;larr;&amp;nbsp;&lt;a style=&quot;color: #005685; text-decoration-line: none;&quot; title=&quot;TinyMCE editor&quot; href=&quot;https://docs.moodle.org/38/en/TinyMCE_editor&quot;&gt;TinyMCE editor&lt;/a&gt;&lt;/div&gt;\r\n&lt;div id=&quot;jump-to-nav&quot; style=&quot;overflow: hidden; height: 0px; zoom: 1; user-select: none;&quot;&gt;&amp;nbsp;&lt;/div&gt;\r\n&lt;div id=&quot;mw-content-text&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You do not have permission to edit this page, for the following reason:&lt;/p&gt;\r\n&lt;div class=&quot;permissions-errors&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;The action you have requested is limited to users in the group:&amp;nbsp;&lt;a class=&quot;new&quot; style=&quot;color: #ba0000; text-decoration-line: none;&quot; title=&quot;MoodleDocs:Users (page does not exist)&quot; href=&quot;https://docs.moodle.org/38/en/index.php?title=MoodleDocs:Users&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;Users&lt;/a&gt;.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;hr style=&quot;margin: 20px 0px; border-bottom-width: 1px; border-right-style: initial; border-left-style: initial; border-image: initial; border-color: #eeeeee initial #ffffff initial;&quot; /&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You can view and copy the source of this page.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;/div&gt;', '/images/courses/1580993929‏‏لقطة الشاشة (8).png', 150, 100, '', '&lt;h1 id=&quot;firstHeading&quot; class=&quot;firstHeading&quot; style=&quot;margin: 60px 0px 10px; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 300; line-height: 30px; color: #6c336d; text-rendering: optimizelegibility; font-size: 30px; background-color: #ffffff;&quot;&gt;View source for TinyMCE editor&lt;/h1&gt;\r\n&lt;div id=&quot;bodyContent&quot; style=&quot;color: #212121; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; background-color: #ffffff;&quot;&gt;\r\n&lt;div id=&quot;contentSub&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&amp;larr;&amp;nbsp;&lt;a style=&quot;color: #005685; text-decoration-line: none;&quot; title=&quot;TinyMCE editor&quot; href=&quot;https://docs.moodle.org/38/en/TinyMCE_editor&quot;&gt;TinyMCE editor&lt;/a&gt;&lt;/div&gt;\r\n&lt;div id=&quot;jump-to-nav&quot; style=&quot;overflow: hidden; height: 0px; zoom: 1; user-select: none;&quot;&gt;&amp;nbsp;&lt;/div&gt;\r\n&lt;div id=&quot;mw-content-text&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You do not have permission to edit this page, for the following reason:&lt;/p&gt;\r\n&lt;div class=&quot;permissions-errors&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;The action you have requested is limited to users in the group:&amp;nbsp;&lt;a class=&quot;new&quot; style=&quot;color: #ba0000; text-decoration-line: none;&quot; title=&quot;MoodleDocs:Users (page does not exist)&quot; href=&quot;https://docs.moodle.org/38/en/index.php?title=MoodleDocs:Users&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;Users&lt;/a&gt;.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;hr style=&quot;margin: 20px 0px; border-bottom-width: 1px; border-right-style: initial; border-left-style: initial; border-image: initial; border-color: #eeeeee initial #ffffff initial;&quot; /&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You can view and copy the source of this page.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;/div&gt;', '&lt;h1 id=&quot;firstHeading&quot; class=&quot;firstHeading&quot; style=&quot;margin: 60px 0px 10px; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 300; line-height: 30px; color: #6c336d; text-rendering: optimizelegibility; font-size: 30px; background-color: #ffffff;&quot;&gt;View source for TinyMCE editor&lt;/h1&gt;\r\n&lt;div id=&quot;bodyContent&quot; style=&quot;color: #212121; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; background-color: #ffffff;&quot;&gt;\r\n&lt;div id=&quot;contentSub&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&amp;larr;&amp;nbsp;&lt;a style=&quot;color: #005685; text-decoration-line: none;&quot; title=&quot;TinyMCE editor&quot; href=&quot;https://docs.moodle.org/38/en/TinyMCE_editor&quot;&gt;TinyMCE editor&lt;/a&gt;&lt;/div&gt;\r\n&lt;div id=&quot;jump-to-nav&quot; style=&quot;overflow: hidden; height: 0px; zoom: 1; user-select: none;&quot;&gt;&amp;nbsp;&lt;/div&gt;\r\n&lt;div id=&quot;mw-content-text&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You do not have permission to edit this page, for the following reason:&lt;/p&gt;\r\n&lt;div class=&quot;permissions-errors&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;The action you have requested is limited to users in the group:&amp;nbsp;&lt;a class=&quot;new&quot; style=&quot;color: #ba0000; text-decoration-line: none;&quot; title=&quot;MoodleDocs:Users (page does not exist)&quot; href=&quot;https://docs.moodle.org/38/en/index.php?title=MoodleDocs:Users&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;Users&lt;/a&gt;.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;hr style=&quot;margin: 20px 0px; border-bottom-width: 1px; border-right-style: initial; border-left-style: initial; border-image: initial; border-color: #eeeeee initial #ffffff initial;&quot; /&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You can view and copy the source of this page.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;/div&gt;', '[\"10\"]', 0, 1, NULL, 1);
+(5, 36, 'github', '&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;strong dir=&quot;rtl&quot;&gt;2. محول WebM إلى MP4 على شبكة الانترنت&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;هناك بعض المواقع الإلكترونية التي يمكنك زيارتها حيث تحصل على محول على شبكة الانترنت يسمح لك بتحويل WebM إلى MP4. يمكنك كذلك الاستفادة من العديد من الخيارات عندما يتعلق الأمر باستخدام محول WebM إلى MP4 من على شبكة الانترنت:&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.zamzar.com/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;Zamzar&lt;/a&gt;&amp;nbsp;هو محول مجاني على شبكة الانترنت يسمح لك بتحويل الملفات إلى تنسيق mp4 عبر الانترنت مجانا. كل ما عليك فعله هو الحصول على اتصال جيد بشبكة الانترنت لتحويل الملفات بنجاح. يمكن استخدام Zamzar لتحويل ملفات WebM إلى مختلف التنسيقات مثل 3gp, 3g2, aac, ac3, avi, flv, flac, gif, mp3, mp4, mpg, ogg, wav و wmv. لاستخدامه، عليك زيارة الموقع الرسمي Zamzar والاتصال بالانترنت لبدء تحويل الملفات. واحد من أفضل الأمور التي عليك معرفتها حول هذا المحول هو أنه يمكنه تحويل الملفات بسرعة كبيرة للغاية. هو برنامج مجاني وسهل الاستخدام. المشكلة الوحيدة هو أنه لا يمكنك استخدامه قط إن لم تكن متصلا بالانترنت.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.apowersoft.com/free-online-video-converter&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;أبوويرسوفت&lt;/a&gt;&amp;nbsp;هو خيار آخر رائع لتحويل الملفات عبر شبكة الانترنت. هو محول قوي من تنسيق webm إلى MP4 يمكن استخدامه لتحويل الملفات عبر الانترنت مجانا. هذه الأداة عبر الانترنت لن تحتاج إلى تنزيل برنامج لها لاستخدامها. يوفر لك تحويل سريع للملفات بسرعة كبيرة للغاية. يدعم نطاق واسع من تنسيقات الفيديو والصوت مثل VCD, DVD, PSP, آي باد وآي فون. الخصائص الأخرى التي يقدمها هي التحويل السريع والجودة العالية التي تتراوح بين 144p حتى 1080p وتنسيقات المخرج الكثيرة وكذلك الإعدادات وسهولة الاستخدام. مثل تطبيق Zamzar، العيب الوحيد بهذا المحول هو أنه عليك الاتصال بالانترنت لاستخدامه.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;strong dir=&quot;rtl&quot;&gt;3. محول WebM إلى MP4 المجاني&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;ماذا عن تحويل الملفات دون الاتصال بالانترنت؟ هذا ممكن بالتأكيد! يمكنك القيام بذلك عبر تحميل محول يمكنه تحويل الملفات دون الاتصال بالإنترنت. الانترنت يوفر لك العديد من الخيارات للاختيار من بينها بما فيها:&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.apowersoft.com/video-converter-studio.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;محول فيديو ستوديو&lt;/a&gt;&amp;nbsp;هو محول عالي الكفاءة الذي صمم خصيصا لتحويل كافة تنسيقات الفيديو والصوت. يقدم لك المحول خصائص متقدمة وكذلك مميزات مثل تحرير الفيديو التي تشمل قص مقاطع الفيديو وضبط تأثيرات الفيديو وقص حجم الفيديو واستيراد الترجمة الخارجية ودمج عدة مقاطع من الفيديو وكذلك تحويل الفيديو إلى تنسيقات متوافقة مع الأجهزة المحمولة مثل أندرويد. من السهل استخدامه كما ترغب ولا تحتاج إلى الاتصال بالانترنت حتى تبدأ تحويل الملفات. المشكلة التي ربما تواجهك هي سرعة التحويل حيث يستغرق وقتا أطول بالمقارنة مع التطبيقات عبر الانترنت.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;يمكنك كذلك استخدام&amp;nbsp;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.any-video-converter.com/products/for_video_free/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;إني فيديو كوفيرتر&lt;/a&gt;&amp;nbsp;لتحويل الملفات إلى mp4 اليوم. تماما مثلما ذكرنا، هذا المحول يوفر لك سهولة الاستخدام ودعم نطاق واسع من تنسيقات الملفات عند التحويل. يمكنك استخدام محول الفيديو أني لتحويل ملفات webm إلى كافة التنسيقات المتوافرة تقريبا. المشكلة الوحيد هو أنه يستغرق أكثر من ساعة لتحويل الملف. تحويل الملفات سوف يتسبب بالتأكيد في استغراق مزيدا من الوقت.&lt;/p&gt;', '/images/site/1.jpg', 55, 20, '', '&lt;p&gt;[l[l&lt;/p&gt;', '&lt;p&gt;[l[l&lt;/p&gt;', '[\"8\"]', 0, 1, NULL, 1),
+(7, 43, 'اندرويد', '&lt;h1 id=&quot;firstHeading&quot; class=&quot;firstHeading&quot; style=&quot;margin: 60px 0px 10px; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 300; line-height: 30px; color: #6c336d; text-rendering: optimizelegibility; font-size: 30px; background-color: #ffffff;&quot;&gt;View source for TinyMCE editor&lt;/h1&gt;\r\n&lt;div id=&quot;bodyContent&quot; style=&quot;color: #212121; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; background-color: #ffffff;&quot;&gt;\r\n&lt;div id=&quot;contentSub&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&amp;larr;&amp;nbsp;&lt;a style=&quot;color: #005685; text-decoration-line: none;&quot; title=&quot;TinyMCE editor&quot; href=&quot;https://docs.moodle.org/38/en/TinyMCE_editor&quot;&gt;TinyMCE editor&lt;/a&gt;&lt;/div&gt;\r\n&lt;div id=&quot;jump-to-nav&quot; style=&quot;overflow: hidden; height: 0px; zoom: 1; user-select: none;&quot;&gt;&amp;nbsp;&lt;/div&gt;\r\n&lt;div id=&quot;mw-content-text&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You do not have permission to edit this page, for the following reason:&lt;/p&gt;\r\n&lt;div class=&quot;permissions-errors&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;The action you have requested is limited to users in the group:&amp;nbsp;&lt;a class=&quot;new&quot; style=&quot;color: #ba0000; text-decoration-line: none;&quot; title=&quot;MoodleDocs:Users (page does not exist)&quot; href=&quot;https://docs.moodle.org/38/en/index.php?title=MoodleDocs:Users&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;Users&lt;/a&gt;.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;hr style=&quot;margin: 20px 0px; border-bottom-width: 1px; border-right-style: initial; border-left-style: initial; border-image: initial; border-color: #eeeeee initial #ffffff initial;&quot; /&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You can view and copy the source of this page.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;/div&gt;', '/images/site/1.jpg', 150, 100, '', '&lt;h1 id=&quot;firstHeading&quot; class=&quot;firstHeading&quot; style=&quot;margin: 60px 0px 10px; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 300; line-height: 30px; color: #6c336d; text-rendering: optimizelegibility; font-size: 30px; background-color: #ffffff;&quot;&gt;View source for TinyMCE editor&lt;/h1&gt;\r\n&lt;div id=&quot;bodyContent&quot; style=&quot;color: #212121; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; background-color: #ffffff;&quot;&gt;\r\n&lt;div id=&quot;contentSub&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&amp;larr;&amp;nbsp;&lt;a style=&quot;color: #005685; text-decoration-line: none;&quot; title=&quot;TinyMCE editor&quot; href=&quot;https://docs.moodle.org/38/en/TinyMCE_editor&quot;&gt;TinyMCE editor&lt;/a&gt;&lt;/div&gt;\r\n&lt;div id=&quot;jump-to-nav&quot; style=&quot;overflow: hidden; height: 0px; zoom: 1; user-select: none;&quot;&gt;&amp;nbsp;&lt;/div&gt;\r\n&lt;div id=&quot;mw-content-text&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You do not have permission to edit this page, for the following reason:&lt;/p&gt;\r\n&lt;div class=&quot;permissions-errors&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;The action you have requested is limited to users in the group:&amp;nbsp;&lt;a class=&quot;new&quot; style=&quot;color: #ba0000; text-decoration-line: none;&quot; title=&quot;MoodleDocs:Users (page does not exist)&quot; href=&quot;https://docs.moodle.org/38/en/index.php?title=MoodleDocs:Users&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;Users&lt;/a&gt;.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;hr style=&quot;margin: 20px 0px; border-bottom-width: 1px; border-right-style: initial; border-left-style: initial; border-image: initial; border-color: #eeeeee initial #ffffff initial;&quot; /&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You can view and copy the source of this page.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;/div&gt;', '&lt;h1 id=&quot;firstHeading&quot; class=&quot;firstHeading&quot; style=&quot;margin: 60px 0px 10px; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 300; line-height: 30px; color: #6c336d; text-rendering: optimizelegibility; font-size: 30px; background-color: #ffffff;&quot;&gt;View source for TinyMCE editor&lt;/h1&gt;\r\n&lt;div id=&quot;bodyContent&quot; style=&quot;color: #212121; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; background-color: #ffffff;&quot;&gt;\r\n&lt;div id=&quot;contentSub&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&amp;larr;&amp;nbsp;&lt;a style=&quot;color: #005685; text-decoration-line: none;&quot; title=&quot;TinyMCE editor&quot; href=&quot;https://docs.moodle.org/38/en/TinyMCE_editor&quot;&gt;TinyMCE editor&lt;/a&gt;&lt;/div&gt;\r\n&lt;div id=&quot;jump-to-nav&quot; style=&quot;overflow: hidden; height: 0px; zoom: 1; user-select: none;&quot;&gt;&amp;nbsp;&lt;/div&gt;\r\n&lt;div id=&quot;mw-content-text&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You do not have permission to edit this page, for the following reason:&lt;/p&gt;\r\n&lt;div class=&quot;permissions-errors&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;The action you have requested is limited to users in the group:&amp;nbsp;&lt;a class=&quot;new&quot; style=&quot;color: #ba0000; text-decoration-line: none;&quot; title=&quot;MoodleDocs:Users (page does not exist)&quot; href=&quot;https://docs.moodle.org/38/en/index.php?title=MoodleDocs:Users&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;Users&lt;/a&gt;.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;hr style=&quot;margin: 20px 0px; border-bottom-width: 1px; border-right-style: initial; border-left-style: initial; border-image: initial; border-color: #eeeeee initial #ffffff initial;&quot; /&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You can view and copy the source of this page.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;/div&gt;', '[\"10\"]', 0, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -150,30 +135,16 @@ CREATE TABLE `course_resources` (
 --
 
 INSERT INTO `course_resources` (`resources_id`, `resources_video`, `resources_file`, `resources_chapter`, `course_id`, `resources_date`, `resources_status`, `resources_updates`) VALUES
-(16, '/videos/1580884294______What is GitHub.webm', '', 'chapter3', 5, '0000-00-00 00:00:00', 0, ''),
-(17, '/videos/1580885180______What Is Version Control- - YouTube.webm', '', 'chapter3', 5, '0000-00-00 00:00:00', 0, ''),
-(18, '/videos/1580885377______What is GitHub.webm', '', 'chapter4', 5, '0000-00-00 00:00:00', 0, ''),
-(19, '/videos/1580884294______What is GitHub.webm', '', 'chapter4', 5, '0000-00-00 00:00:00', 0, ''),
-(20, '/videos/1580903859______What Is Version Control- - YouTube.webm', '', 'chapter5', 5, '0000-00-00 00:00:00', 0, ''),
-(21, '/videos/1580932663______What is GitHub.mp4.webm', '', 'chapter3', 5, '0000-00-00 00:00:00', 0, ''),
-(22, '/videos/1580932891______اصابك عشق نجوى فاروق_زهرات♡حديقتي   (اغار عليها من.mp4.webm', '', 'chapter1', 5, '0000-00-00 00:00:00', 0, ''),
-(23, '/videos/1580993588______موشح أندلسي _ يامليح اللمى.mp4.webm', '', 'مرحلة التقسيم ', 5, '0000-00-00 00:00:00', 0, ''),
-(24, '/videos/1580994042______يا من هواه - عبدالرحمن محمد وغسان ابو حلتم.mp4.webm', '', 'مقدمة', 7, '0000-00-00 00:00:00', 0, ''),
-(25, '/videos/1580994191______يا من هواه - عبدالرحمن محمد وغسان ابو حلتم.mp4.webm', '', 'الفصل الاول', 7, '0000-00-00 00:00:00', 0, '');
-
--- --------------------------------------------------------
-
---
--- بنية الجدول `evaluations`
---
-
-CREATE TABLE `evaluations` (
-  `evaluation_id` int(11) NOT NULL,
-  `evaluation_number` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `course_id` int(11) NOT NULL,
-  `evaluation_status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(16, '/videos/videoplayback (3).mp4', '', 'chapter3', 5, '0000-00-00 00:00:00', 0, ''),
+(17, '/videos/videoplayback (3).mp4', '', 'chapter3', 5, '0000-00-00 00:00:00', 0, ''),
+(18, '/videos/videoplayback (3).mp4', '', 'chapter4', 5, '0000-00-00 00:00:00', 0, ''),
+(19, '/videos/videoplayback (3).mp4', '', 'chapter4', 5, '0000-00-00 00:00:00', 0, ''),
+(20, '/videos/videoplayback (3).mp4', '', 'chapter5', 5, '0000-00-00 00:00:00', 0, ''),
+(21, '/videos/videoplayback (3).mp4', '', 'chapter3', 5, '0000-00-00 00:00:00', 0, ''),
+(22, '/videos/videoplayback (3).mp4', '', 'chapter1', 5, '0000-00-00 00:00:00', 0, ''),
+(23, '/videos/videoplayback (3).mp4', '', 'مرحلة التقسيم ', 5, '0000-00-00 00:00:00', 0, ''),
+(24, '/videos/videoplayback (3).mp4', '', 'مقدمة', 7, '0000-00-00 00:00:00', 0, ''),
+(25, '/videos/videoplayback (3).mp4', '', 'الفصل الاول', 7, '0000-00-00 00:00:00', 0, '');
 
 -- --------------------------------------------------------
 
@@ -310,7 +281,7 @@ CREATE TABLE `profiles` (
   `user_gender` varchar(255) DEFAULT NULL,
   `user_qualification` varchar(255) DEFAULT NULL,
   `user_register_date` datetime NOT NULL,
-  `user_updates` text DEFAULT NULL
+  `user_updates` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -337,6 +308,22 @@ INSERT INTO `profiles` (`profile_id`, `user_id`, `user_full_name`, `user_image`,
 (20, 43, 'hitam almaqtari', '/images/users/profiles/15801973954.jpg', '', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (21, 44, '', '/images/users/profiles/default.png', '/images/universities/document/default.png', '6619188912', '', '', '0000-00-00 00:00:00', NULL),
 (22, 45, 'طاهر ', '/images/users/profiles/default.png', '', '773871', 'male', '1', '0000-00-00 00:00:00', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- بنية الجدول `rating`
+--
+
+CREATE TABLE `rating` (
+  `comment_id` int(11) NOT NULL,
+  `comment_text` text NOT NULL,
+  `rating_number` int(2) NOT NULL,
+  `comment_date` datetime NOT NULL,
+  `user_id` int(10) NOT NULL,
+  `comment_status` int(10) NOT NULL,
+  `course_id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -370,7 +357,7 @@ INSERT INTO `roles` (`role_id`, `role_name`, `role_description`, `role_status`) 
 
 CREATE TABLE `users` (
   `user_id` int(255) NOT NULL,
-  `university_id` int(11) DEFAULT 0,
+  `university_id` int(11) DEFAULT '0',
   `user_email` varchar(255) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `user_password` text NOT NULL,
@@ -383,7 +370,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `university_id`, `user_email`, `user_name`, `user_password`, `user_activation_key`, `user_status`) VALUES
-(1, 0, 'thamar@gmail.com', 'thamar', '28707e14e88523777d295deaad67407b', '123', 0),
+(1, 0, 'thamar@gmail.com', 'thamar', '28707e14e88523777d295deaad67407b', '123', 1),
 (5, 0, 'ali2@gmail.com', 'ali2', '28707e14e88523777d295deaad67407b', '123', 1),
 (29, 0, 'mmmkkkmm@f.ff', 'ali', '28707e14e88523777d295deaad67407b', '6025', 1),
 (30, 0, 'll@e.s', 'njkj njikn hjbkj', 'e8836edf9ff4213a9f3c4588a116db21', '3496', 0),
@@ -415,6 +402,14 @@ CREATE TABLE `users_courses` (
   `couces_buy` text NOT NULL,
   `user_wish_list` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `users_courses`
+--
+
+INSERT INTO `users_courses` (`users_courses_id`, `user_id`, `couces_buy`, `user_wish_list`) VALUES
+(13, 1, '', '5,7'),
+(14, 1, '', '5,7');
 
 -- --------------------------------------------------------
 
@@ -463,14 +458,6 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`category_id`);
 
 --
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `course_id` (`course_id`);
-
---
 -- Indexes for table `coupons`
 --
 ALTER TABLE `coupons`
@@ -489,14 +476,6 @@ ALTER TABLE `courses`
 --
 ALTER TABLE `course_resources`
   ADD PRIMARY KEY (`resources_id`),
-  ADD KEY `course_id` (`course_id`);
-
---
--- Indexes for table `evaluations`
---
-ALTER TABLE `evaluations`
-  ADD PRIMARY KEY (`evaluation_id`),
-  ADD KEY `user_id` (`user_id`),
   ADD KEY `course_id` (`course_id`);
 
 --
@@ -528,6 +507,14 @@ ALTER TABLE `profiles`
   ADD KEY `user_profile` (`user_id`);
 
 --
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`comment_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `course_id` (`course_id`);
+
+--
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -546,6 +533,7 @@ ALTER TABLE `users`
 -- Indexes for table `users_courses`
 --
 ALTER TABLE `users_courses`
+  ADD PRIMARY KEY (`users_courses_id`),
   ADD KEY `user_id` (`user_id`);
 
 --
@@ -567,12 +555,6 @@ ALTER TABLE `categories`
   MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
@@ -589,12 +571,6 @@ ALTER TABLE `courses`
 --
 ALTER TABLE `course_resources`
   MODIFY `resources_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-
---
--- AUTO_INCREMENT for table `evaluations`
---
-ALTER TABLE `evaluations`
-  MODIFY `evaluation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -615,6 +591,12 @@ ALTER TABLE `profiles`
   MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
@@ -627,6 +609,12 @@ ALTER TABLE `users`
   MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
+-- AUTO_INCREMENT for table `users_courses`
+--
+ALTER TABLE `users_courses`
+  MODIFY `users_courses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
@@ -635,13 +623,6 @@ ALTER TABLE `user_role`
 --
 -- قيود الجداول المحفوظة
 --
-
---
--- القيود للجدول `comments`
---
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`);
 
 --
 -- القيود للجدول `coupons`
@@ -660,13 +641,6 @@ ALTER TABLE `courses`
 --
 ALTER TABLE `course_resources`
   ADD CONSTRAINT `course_resources_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`);
-
---
--- القيود للجدول `evaluations`
---
-ALTER TABLE `evaluations`
-  ADD CONSTRAINT `evaluations_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `evaluations_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`);
 
 --
 -- القيود للجدول `notifications`
@@ -688,23 +662,17 @@ ALTER TABLE `profiles`
   ADD CONSTRAINT `user_profile` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- القيود للجدول `users`
+-- القيود للجدول `rating`
 --
-ALTER TABLE `users`
-  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`university_id`) REFERENCES `users` (`user_id`);
+ALTER TABLE `rating`
+  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`);
 
 --
 -- القيود للجدول `users_courses`
 --
 ALTER TABLE `users_courses`
   ADD CONSTRAINT `users_courses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
-
---
--- القيود للجدول `user_role`
---
-ALTER TABLE `user_role`
-  ADD CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
