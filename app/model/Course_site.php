@@ -29,6 +29,10 @@ class Course_site
         return $this->db->query("SELECT * FROM courses ORDER BY course_id DESC LIMIT 6
 ");
     }
-
+    public function wishListCourseUser($id)
+    {
+        return $this->db->query("SELECT * FROM `users_courses` INNER JOIN courses on find_in_set(courses.course_id, replace(users_courses.user_wish_list, ';', ',')) WHERE users_courses.user_id=$id
+");
+    }
 }
 ?>

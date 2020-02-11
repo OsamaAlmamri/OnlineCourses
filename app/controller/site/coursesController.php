@@ -32,8 +32,6 @@ public function insertCourseUser(){
     );
    $userCourse->insertInToUsersCourses($userInfoCourse);
 echo 1;
-
-
     }
 
 //public function addCoursesId(){
