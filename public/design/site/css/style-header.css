@@ -338,7 +338,7 @@ a{
 }
 .imgedit{
     position: absolute;
-    margin-top: -6%;
+    margin-top: 10%;
     margin-left: -45%;
     font-size: 215%;
 }
@@ -348,10 +348,4 @@ a{
 label{
     float: right !important;
     font-weight: bold;
-}
-#img{
-    position: absolute;
-    top: -94px;
-    align-items: center;
-    right: 43%;
 }

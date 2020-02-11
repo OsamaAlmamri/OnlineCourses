@@ -1,9 +1,8 @@
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'header.phtml' ?>
 
-<div class="container" style="margin-top: 10%;margin-bottom: 6%;">
-    <?php include VIEW . 'messages.phtml' ?>
+<div class="container" style="margin-top: 4%;margin-bottom: 6%;">
     <figure class="intro">
-        <img src="/images/profile.jpg" alt="" />
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/46992/diver2.jpg" alt="" />
         <figcaption class="caption">
             <h1>Welcome to my profile </h1>
         </figcaption>
@@ -15,14 +14,14 @@
 </svg>
   </span>
     </figure>
-
+    <?php include VIEW . 'messages.phtml' ?>
     <div class="row" style="background: white; width: 100%; margin-left: 0%;">
         <div class="col-lg-12" style="background: white">
             <?php if (array_key_exists('profile', $this->view_data)) {
             foreach ($this->view_data['profile'] as $course) {
             ?>
             <form method="post" action="/profile/EditUser" class="my-login-validation" novalidate=""
-                  enctype="multipart/form-data" style="    margin-top: 8%;">
+                  enctype="multipart/form-data">
                 <center>
 
                     <img src="<?php echo $course['user_image']; ?>"  id="img" class="rounded-circle mt-2 profile-pic" alt="Cinque Terre" width="150" height="150">
