@@ -206,15 +206,15 @@
                         </div>
                         <hr>
 
-                        <div class="reviews-container list_comment">
+                        <div class="reviews-container list_rating">
 
                              <?php
 
-                             foreach($this->view_data['comments'] as $k => $comment) {?>
+                             foreach($this->view_data['AllRatings'] as $rating) {?>
                             <div class="review-box clearfix">
                                 <figure class="rev-thumb">
                                     <img
-                                            src="<?php echo $comment['user_image'];?>" alt="">
+                                            src="<?php echo $rating['user_image'];?>" alt="">
                                 </figure>
                                 <div class="rev-content">
                                     <div class="rating mb-1">
@@ -223,10 +223,10 @@
                                                 class="icon_star"></i>
                                     </div>
                                     <div class="rev-info">
-                                        <?php echo $comment['user_full_name'] ." - " . $comment['comment_date'] ;?>
+                                        <?php echo $rating['user_full_name'] ." - " . $rating['rating_date'] ;?>
                                     </div>
                                     <div class="rev-text">
-                                        <p><?php echo $comment['comment_text'];?>
+                                        <p><?php echo $rating['comment_text'];?>
                                         </p>
                                     </div>
                                 </div>

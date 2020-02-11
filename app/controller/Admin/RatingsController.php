@@ -1,0 +1,45 @@
+<?php
+
+
+namespace Admin;
+
+use Controller;
+use Helper;
+
+class RatingsController extends Controller
+{
+
+    public function index(){
+        Helper::viewAdminFile();
+        $ratings= $this->model('Rating');
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'comments' . DIRECTORY_SEPARATOR . 'index', ['courses' => $Ratings->all(), 'deleted' => false]);
+        $this->view->pageTitle = 'Ratings';
+        $this->view->render();
+    }
+
+    public function addRatings()
+    {
+        $data = array(
+            ':comment_text' => htmlentities($_REQUEST['commentText']),
+            ':rating_number' => htmlentities($_REQUEST['rating_number']),
+            ':rating_date' => htmlentities($_REQUEST['rating_date']),
+            ':course_id' => htmlentities($_REQUEST['course_id']),
+            ':user_id' => htmlentities($_REQUEST['user_id']),
+
+        );
+        $rating = $this->model('Rating');
+        $idRating = $rating->addRating($data);
+        if ($idRating>0)
+        {
+            echo 1;
+        }
+        else
+            echo 0;
+
+//        $ratingData=$rating->getRatingById($idRating);
+//        $dataJson =  json_encode($ratingData);
+
+    }
+
+
+}

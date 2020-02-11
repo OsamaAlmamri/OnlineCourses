@@ -104,9 +104,9 @@ class homeController extends Controller
             );
         }
 
-        //get all comments of course
-          $commentModel =$this->model('Comment');
-          $comments =$commentModel->allCommentsOfCourse($id);
+        //get all Ratings of course
+          $RatingModel =$this->model('Rating');
+          $AllRatings =$RatingModel->allRatingsOfCourse($id);
 
         $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail',
             [
@@ -114,7 +114,7 @@ class homeController extends Controller
                 'lessons' => $chaptersLessons,
                 'course_count' => $course_count,
                 'course_duration' => gmdate("H:i:s", $courseDuration),
-                'comments'=>$comments
+                'AllRatings'=>$AllRatings,
             ]);
         $this->view->pageTitle = 'course list';
         $this->view->render();

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 11 فبراير 2020 الساعة 08:05
--- إصدار الخادم: 10.1.37-MariaDB
--- PHP Version: 7.3.1
+-- Generation Time: 11 فبراير 2020 الساعة 11:24
+-- إصدار الخادم: 10.1.34-MariaDB
+-- PHP Version: 7.2.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -290,7 +290,7 @@ CREATE TABLE `profiles` (
 
 INSERT INTO `profiles` (`profile_id`, `user_id`, `user_full_name`, `user_image`, `document`, `user_phone`, `user_gender`, `user_qualification`, `user_register_date`, `user_updates`) VALUES
 (1, 5, 'hkj', 'nk', 'kjk', 'kk', '4', '4', '2020-01-20 00:00:00', NULL),
-(5, 29, 'uhi iu inoi  iuh ', '/images/users/profiles/default.png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
+(5, 29, 'TaHer Al-SamAwi', '/images/users/profiles/taher.jpg', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (6, 30, '147147 oih dd ', '/images/users/profiles/1579783172echarts (25).png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (7, 31, '147147 oih dd ', '/images/users/profiles/default.png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (8, 32, 'iy kbjkj vdshl', '/images/users/profiles/1579783653echarts (25).png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
@@ -312,18 +312,27 @@ INSERT INTO `profiles` (`profile_id`, `user_id`, `user_full_name`, `user_image`,
 -- --------------------------------------------------------
 
 --
--- بنية الجدول `rating`
+-- بنية الجدول `ratings`
 --
 
-CREATE TABLE `rating` (
-  `comment_id` int(11) NOT NULL,
+CREATE TABLE `ratings` (
+  `rating_id` int(11) NOT NULL,
   `comment_text` text NOT NULL,
   `rating_number` int(2) NOT NULL,
-  `comment_date` datetime NOT NULL,
+  `rating_date` datetime NOT NULL,
   `user_id` int(10) NOT NULL,
-  `comment_status` int(10) NOT NULL,
+  `rating_status` int(10) NOT NULL,
   `course_id` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- إرجاع أو استيراد بيانات الجدول `ratings`
+--
+
+INSERT INTO `ratings` (`rating_id`, `comment_text`, `rating_number`, `rating_date`, `user_id`, `rating_status`, `course_id`) VALUES
+(1, 'جميل جدا', 5, '2020-02-24 00:00:00', 5, 1, 5),
+(2, 'سيء جدا', 1, '2020-02-24 00:00:00', 32, 1, 5),
+(3, 'تمام التمام', 3, '2020-02-24 00:00:00', 5, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -507,10 +516,10 @@ ALTER TABLE `profiles`
   ADD KEY `user_profile` (`user_id`);
 
 --
--- Indexes for table `rating`
+-- Indexes for table `ratings`
 --
-ALTER TABLE `rating`
-  ADD PRIMARY KEY (`comment_id`),
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`rating_id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `course_id` (`course_id`);
 
@@ -591,10 +600,10 @@ ALTER TABLE `profiles`
   MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT for table `rating`
+-- AUTO_INCREMENT for table `ratings`
 --
-ALTER TABLE `rating`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `ratings`
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -662,11 +671,11 @@ ALTER TABLE `profiles`
   ADD CONSTRAINT `user_profile` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`);
 
 --
--- القيود للجدول `rating`
+-- القيود للجدول `ratings`
 --
-ALTER TABLE `rating`
-  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`);
+ALTER TABLE `ratings`
+  ADD CONSTRAINT `ratings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `ratings_ibfk_2` FOREIGN KEY (`course_id`) REFERENCES `courses` (`course_id`);
 
 --
 -- القيود للجدول `users_courses`
