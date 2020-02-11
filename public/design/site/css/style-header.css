@@ -342,6 +342,9 @@ a{
     margin-left: -45%;
     font-size: 215%;
 }
+.file-upload{
+    display: none;
+}
 label{
     float: right !important;
     font-weight: bold;
