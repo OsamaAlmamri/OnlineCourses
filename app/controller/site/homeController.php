@@ -30,7 +30,7 @@ class homeController extends Controller
             $userWishList = [];
 
         $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['news' => [],
-            'latestCourses' => $course_site->latestCoursesWebsite(),
+            'courses' => $course_site->latestCoursesWebsite(),
             'userWishList' => $userWishList,
 
         ]);
@@ -53,7 +53,7 @@ class homeController extends Controller
         $course = $this->model('Course');
         $courses = [];
         if (isset($_COOKIE['cartElements'])) {
-            $cartElements = Helper::CookieElenments($_COOKIE['cartElements']);
+            $cartElements = Helper::prepareInMethodElement($_COOKIE['cartElements']);
             $courses = $course->cartElements($cartElements);
         }
         $total = 0;

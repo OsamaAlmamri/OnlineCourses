@@ -1,0 +1,49 @@
+<?php if (array_key_exists('courses', $this->view_data)) {
+    ?>
+    <div class="row">
+        <?php
+        foreach ($this->view_data['courses'] as $k => $course) { ?>
+            <div class="col-md-4 col-sm-6 col-xs-12" id="course_<?php echo $course['course_id'] ?>">
+                <div class="box_grid wow">
+                    <figure class="block-reveal">
+                        <div class="block-horizzontal"></div>
+                        <a <?php if (in_array($course['course_id'], $this->view_data['userWishList']))
+                            echo 'class="wish_bt_active addToWishList"    onclick="confirm(\'هل تريد الغاء هذا الكورس من المفضلة \')"  data-status="1"';
+                        else
+                            echo 'class="wish_bt addToWishList"   onclick="confirm(\'هل تريد اضافة هذا الكورس الى المفضلة \')"  data-status="0"'; ?>
+                                data-id="<?php echo $course['course_id'] ?>">
+                        </a>
+                        <a href="/home/course_detail/<?php echo $course['course_id'] ?>"><img
+                                    src="<?php echo $course['courses_image']; ?>"
+                                    class="img-fluid" alt=""></a>
+                        <div class="price"><?php echo $course['course_price'] ?>$
+                        </div>
+                        <div class="preview"><span>عرض الكورس  </span></div>
+                    </figure>
+                    <div class="wrapper">
+                        <small>الصنف</small>
+                        <h3> <?php echo Helper::Names($course['categories_ids'], 'Category') ?> </h3>
+                        <p><?php echo $course['course_title'] ?></p>
+                        <div class="rating"><i class="icon_star voted"></i><i
+                                    class="icon_star voted"></i><i
+                                    class="icon_star voted"></i><i
+                                    class="icon_star"></i><i
+                                    class="icon_star"></i>
+                            <small>(145)</small></div>
+                    </div>
+                    <ul>
+                        <li><i class="icon_clock_alt"></i> 1h 30min</li>
+                        <li><i class="icon_like"></i> 890</li>
+                        <li>
+                            <a href="/home/course_detail/<?php echo $course['course_id'] ?>">عرض</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        <?php } ?>
+    </div>
+
+
+<?php } ?>

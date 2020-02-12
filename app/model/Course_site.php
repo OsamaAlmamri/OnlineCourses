@@ -25,6 +25,10 @@ class Course_site
         return $this->db->lastInsertId();
 
     }
+    public function wishListElements($wishListElements)
+    {
+        return $this->db->query("select * from courses where course_id in $wishListElements");
+    }
 
     public function latestCoursesWebsite()
     {

@@ -1,12 +1,13 @@
 <script>
 
-    function AddToWish(controller) {
+    function AddToWish(controller, page = 'home') {
         $(document).on('click', '.addToWishList', function () {
-            var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&id=' + encodeURIComponent($(this).attr('data-id'));
+            var id = $(this).attr('data-id');
+            var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&id=' + encodeURIComponent(id);
 
             var url = controller + '/insertCourseUser';
             var _this = $(this);
-            // alert(url);
+            alert(url);
             $.ajax({
                 url: url,//   var url=$('#news').attr('action');
                 method: 'POST',
@@ -18,7 +19,8 @@
                             _this.attr('class', 'wish_bt addToWishList');
                             _this.attr('data-status', 0);
                             _this.attr('onclick', "confirm('هل تريد اضافة هذا الكورس الى المفضلة ')");
-
+                            if (page == 'whishList')
+                                $('#course_' + id).remove();
                         } else {
                             _this.attr('class', 'wish_bt_active addToWishList');
                             _this.attr('data-status', 1);

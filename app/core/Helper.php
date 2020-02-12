@@ -240,7 +240,7 @@ class Helper
 
     }
 
-    public static function CookieElenments($ids)
+    public static function prepareInMethodElement($ids)
     {
         $t = '(';
         foreach ($ids as $k => $id) {
