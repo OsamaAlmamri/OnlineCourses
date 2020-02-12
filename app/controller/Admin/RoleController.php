@@ -133,7 +133,6 @@ class RoleController extends Controller
 
     public function update()
     {
-//        return var_dump($_REQUEST['role_id']);
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $validate = Validation::validate([
@@ -142,6 +141,7 @@ class RoleController extends Controller
 
 
             ]);
+
             if (count($validate) == 0) {
                 $role = array(
 
@@ -151,10 +151,14 @@ class RoleController extends Controller
                 );
                 $this->model('Role');
                 $id = $this->model->update($role);
+
+
                 if ($id) {
                     if (isset($_REQUEST['permissions'])) {
                         $this->model->deleteOldPermission($_REQUEST['role_id']);
+
                         $this->storeRolePermission($_REQUEST['permissions'], $id);
+//                        return var_dump($_REQUEST['permissions'] );
                     }
                     Helper::back('/admin/role/index', 'تم التعديل بنجاح', 'success');
                     return;

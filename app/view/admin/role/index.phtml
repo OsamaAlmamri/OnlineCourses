@@ -1,4 +1,6 @@
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+<?php use auth\Permissions;
+
+include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 
@@ -10,7 +12,10 @@
     </div>
     <div class="row mb-4">
     <div class="col-6 text-right">
-        <a href="/admin/role/create" class="btn btn-success "><i class="fa fa-plus"> </i> إضافة دور جديد</a>
+        <?php if (Permissions::getInstaince()->hasPermision('role_create') == true) { ?>
+            <a href="/admin/role/create" class="btn btn-success "><i class="fa fa-plus"> </i> إضافة دور جديد</a>
+            جديد</a>
+        <?php } ?>
     </div>
         <div class="col-6 text-left">
 

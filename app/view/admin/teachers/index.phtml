@@ -1,4 +1,6 @@
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+<?php use auth\Permissions;
+
+include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 <!-- Start Main-content -->
@@ -24,7 +26,10 @@
             </div>
         </div>
         <div class="col-6 text-left">
-            <a href="/admin/teachers/create" class="btn btn-success "><i class="fa fa-plus"> </i> اضافة استاذ جديدة</a>
+            <?php if (Permissions::getInstaince()->hasPermision('teacher_create') == true) { ?>
+                <a href="/admin/teachers/create" class="btn btn-success "><i class="fa fa-plus"> </i> اضافة استاذ جديدة</a>
+                جديد</a>
+            <?php } ?>
         </div>
 
 
