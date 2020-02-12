@@ -77,7 +77,8 @@
                                         </ul>
                                     </div>
 
-                                    <div id="<?php echo $k ?>" class="collapse " role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion_lessons">
+                                    <div id="<?php echo $k ?>" class="collapse " role="tabpanel"
+                                         aria-labelledby="headingOne" data-parent="#accordion_lessons">
                                         <div class="card-body">
                                             <div class="list_lessons">
                                                 <ul>
@@ -208,30 +209,30 @@
 
                         <div class="reviews-container list_rating">
 
-                             <?php
+                            <?php
 
-                             foreach($this->view_data['AllRatings'] as $rating) {?>
-                            <div class="review-box clearfix">
-                                <figure class="rev-thumb">
-                                    <img
-                                            src="<?php echo $rating['user_image'];?>" alt="">
-                                </figure>
-                                <div class="rev-content">
-                                    <div class="rating mb-1">
-                                        <i class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                class="icon_star"></i>
-                                    </div>
-                                    <div class="rev-info">
-                                        <?php echo $rating['user_full_name'] ." - " . $rating['rating_date'] ;?>
-                                    </div>
-                                    <div class="rev-text">
-                                        <p><?php echo $rating['comment_text'];?>
-                                        </p>
+                            foreach ($this->view_data['AllRatings'] as $rating) { ?>
+                                <div class="review-box clearfix">
+                                    <figure class="rev-thumb">
+                                        <img
+                                                src="<?php echo $rating['user_image']; ?>" alt="">
+                                    </figure>
+                                    <div class="rev-content">
+                                        <div class="rating mb-1">
+                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i
+                                                    class="icon_star voted"></i><i class="icon_star voted"></i><i
+                                                    class="icon_star"></i>
+                                        </div>
+                                        <div class="rev-info">
+                                            <?php echo $rating['user_full_name'] . " - " . $rating['rating_date']; ?>
+                                        </div>
+                                        <div class="rev-text">
+                                            <p><?php echo $rating['comment_text']; ?>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <?php }?>
+                            <?php } ?>
                         </div>
                         <!-- /review-container -->
 
@@ -239,30 +240,37 @@
 
 
                         <div class="reviews-container">
-                                <div class="review-box clearfix">
-                                    <figure class="rev-thumb"><img
-                                                src="<?php echo Session::get('user')['user_image'];?>" alt="">
-                                    </figure>
-                                    <div class="rev-content">
-<!--                                        <div class="rating mb-1">-->
-<!--                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i-->
-<!--                                                    class="icon_star voted"></i><i class="icon_star voted"></i><i-->
-<!--                                                    class="icon_star"></i>-->
-<!--                                        </div>-->
-                                        <div class="rev-info">
-                                            <?php echo Session::get('user')['user_full_name']  ;?>
-                                        </div>
-                                        <div class="rev-text">
-                                            <div class="input-group mb-3">
-                                                <input type="text"  class="form-control comment_input" name="comment_text" data-course="<?php echo $course['course_id'];?>" data-image-user="<?php echo(Session::get('user')['user_image']) ?>" data-user-name="<?php echo(Session::get('user')['user_full_name']) ?>"  data-comment-date="<?php echo date("Y-m-d h:i:sa") ?>" data-user="<?php echo(Session::get('userID')) ?>" >
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-success" id="add_comment" name="add_comment" >تعليق</button>
-                                                </div>
+                            <div class="review-box clearfix">
+                                <figure class="rev-thumb"><img
+                                            src="<?php echo Session::get('user')['user_image']; ?>" alt="">
+                                </figure>
+                                <div class="rev-content">
+                                    <!--                                        <div class="rating mb-1">-->
+                                    <!--                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i-->
+                                    <!--                                                    class="icon_star voted"></i><i class="icon_star voted"></i><i-->
+                                    <!--                                                    class="icon_star"></i>-->
+                                    <!--                                        </div>-->
+                                    <div class="rev-info">
+                                        <?php echo Session::get('user')['user_full_name']; ?>
+                                    </div>
+                                    <div class="rev-text">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control comment_input" name="comment_text"
+                                                   data-course="<?php echo $course['course_id']; ?>"
+                                                   data-image-user="<?php echo(Session::get('user')['user_image']) ?>"
+                                                   data-user-name="<?php echo(Session::get('user')['user_full_name']) ?>"
+                                                   data-comment-date="<?php echo date("Y-m-d h:i:sa") ?>"
+                                                   data-user="<?php echo(Session::get('userID')) ?>">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-success" id="add_comment" name="add_comment">
+                                                    تعليق
+                                                </button>
                                             </div>
-
                                         </div>
+
                                     </div>
                                 </div>
+                            </div>
                         </div>
 
 
@@ -285,6 +293,10 @@
                                     class="original_price"><em>$<?php echo $course['course_price'] ?></em>60% <?php echo $course['course_price'] ?></span>
                         </div>
                         <a href="/home/cart1" class="btn_1 full-width">Purchase</a>
+                        <button class="btn_1 full-width outline"
+                                onclick="addToCart(<?php echo $course['course_id'] ?>)"><i class="icon_cart"></i> Add to
+                            Cart
+                        </button>
                         <a href="#0" class="btn_1 full-width outline"><i class="icon_heart"></i> Add to wishlist</a>
                         <div id="list_feat">
                             <h3>What's includes</h3>
@@ -309,6 +321,11 @@
 <script type=”text/javascript” src=”//cdn.jsdelivr.net/afterglow/latest/afterglow.min.js”></script>
 <script type="text/javascript" src="/design/dashboard/lib/html5gallery/html5gallery.js"></script>
 
+<script>
 
+    function addToCart(id) {
+        document.cookie = 'cartElements[' + id + ']=' + id + '; path=/';
+    }
+</script>
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'comments.phtml' ?>

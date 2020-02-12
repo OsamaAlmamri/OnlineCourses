@@ -127,7 +127,6 @@ class LessonsController extends Controller
                     ':resources_chapter' => htmlentities($_REQUEST['resources_chapter']),
                     ':course_id' => htmlentities($_REQUEST['course_id']),
                     ':resources_video' => htmlentities($_REQUEST['resources_video']),
-
                 );
                 $this->model('Lesson');
                 $id = $this->model->add($course);

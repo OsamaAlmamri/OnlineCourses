@@ -20,8 +20,8 @@ class homeController extends Controller
     {
         $news = $this->model('Course');
         $category = $this->model('Category');
-        $course_site=$this->model('Course_site');
-        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['news' => [], 'latestCourses' =>$course_site->latestCoursesWebsite()] );
+        $course_site = $this->model('Course_site');
+        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['news' => [], 'latestCourses' => $course_site->latestCoursesWebsite()]);
 
 //        $this->view('home' . DIRECTORY_SEPARATOR . 'index', ['news' => $news->all(), 'category' => $category->all()]);
         $this->view->pageTitle = 'home';
@@ -34,10 +34,17 @@ class homeController extends Controller
         $this->view->pageTitle = 'contact';
         $this->view->render();
     }
+    
 
     public function cart1()
     {
-        $this->view('website' . DIRECTORY_SEPARATOR . 'cart1', ['news' => [], 'category' => []]);
+        $course = $this->model('Course');
+        $courses = [];
+        if (isset($_COOKIE['cartElements'])) {
+            $cartElements = Helper::CookieElenments($_COOKIE['cartElements']);
+            $courses = $course->cartElements($cartElements);
+        }
+        $this->view('website' . DIRECTORY_SEPARATOR . 'cart1', ['cartElements' => $courses, 'category' => []]);
         $this->view->pageTitle = 'cart1';
         $this->view->render();
     }
@@ -92,7 +99,7 @@ class homeController extends Controller
         $courseDuration = 0;
         $chaptersLessons = [];
         $course_count = $lessons->count_lessons($id);
-        $chaptersName = $lessons->chapterNames($id) ;
+        $chaptersName = $lessons->chapterNames($id);
 
         foreach ($chaptersName as $chapter) {
             $videos = $lessons->chapterLessons($id, $chapter['resources_chapter']);
@@ -105,8 +112,8 @@ class homeController extends Controller
         }
 
         //get all Ratings of course
-          $RatingModel =$this->model('Rating');
-          $AllRatings =$RatingModel->allRatingsOfCourse($id);
+        $RatingModel = $this->model('Rating');
+        $AllRatings = $RatingModel->allRatingsOfCourse($id);
 
         $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail',
             [
@@ -114,7 +121,7 @@ class homeController extends Controller
                 'lessons' => $chaptersLessons,
                 'course_count' => $course_count,
                 'course_duration' => gmdate("H:i:s", $courseDuration),
-                'AllRatings'=>$AllRatings,
+                'AllRatings' => $AllRatings,
             ]);
         $this->view->pageTitle = 'course list';
         $this->view->render();
@@ -135,19 +142,19 @@ class homeController extends Controller
     }
 
 
-
     public function mycourses()
-{
-    $this->view('website' . DIRECTORY_SEPARATOR . 'mycourses', ['news' => [], 'category' => []]);
-    $this->view->pageTitle = ' home ';
-    $this->view->render();
-}
+    {
+        $this->view('website' . DIRECTORY_SEPARATOR . 'mycourses', ['news' => [], 'category' => []]);
+        $this->view->pageTitle = ' home ';
+        $this->view->render();
+    }
+
     public function fectchLatestCourses()
     {
-        $course_site=$this->model('Course_site');
+        $course_site = $this->model('Course_site');
 
-        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['homeCourses' => $course_site->latestCoursesWebsite(),'deleted' => false]);
-        $this->view->pageTitle ='Home';
+        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['homeCourses' => $course_site->latestCoursesWebsite(), 'deleted' => false]);
+        $this->view->pageTitle = 'Home';
         $this->view->render();
     }
 
@@ -170,7 +177,6 @@ class homeController extends Controller
         $auth = new Login;
         $auth->login('student');
     }
-
 
 
     public function register($type)

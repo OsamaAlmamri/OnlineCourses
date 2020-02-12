@@ -45,8 +45,10 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             <th>اسم القسم</th>
             <th>الوصف</th>
             <th>القسم الاب</th>
+            <th> الظهور</th>
+            <th> الحالة</th>
             <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true
-                or Permissions::getInstaince()->hasPermision('category_delete') == true ) { ?>
+                or Permissions::getInstaince()->hasPermision('category_delete') == true) { ?>
                 <th>الاعدادات</th>
             <?php } ?>
 
@@ -70,10 +72,11 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                            data-visibility="<?php echo $category['category_visibility'] ?>"
                            class="btn_visibility"><?php echo ($category['category_visibility'] == '1') ? ' <i class="fa fa-eye"> </i>' : '  <i class="fa fa-eye-slash"> </i>' ?> </a>
                     </td>
+
                     <td>
                         <a href="" data-id="<?php echo $category['category_id'] ?>"
                            data-status="<?php echo $category['category_status'] ?>"
-
+                           href=""><?php echo ($category['category_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
                     </td>
                     <?php if ($this->view_data['deleted'] == false) { ?>
                         <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true

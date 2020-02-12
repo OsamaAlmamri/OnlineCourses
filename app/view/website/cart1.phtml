@@ -1,4 +1,3 @@
-
 <!-- /main_menu -->
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'header.phtml' ?>
 
@@ -60,78 +59,29 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    <div class="thumb_cart">
-                                        <img src="http://via.placeholder.com/150x150/ccc/fff/thumb_cart_1.jpg"
-                                             alt="Image">
-                                    </div>
-                                    <span class="item_cart">Persius delenit has cu</span>
-                                </td>
-                                <td>
-                                    0%
-                                </td>
-                                <td>
-                                    <strong>24,71$</strong>
-                                </td>
-                                <td class="options" style="width:5%; text-align:center;">
-                                    <a href="#"><i class="icon-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="thumb_cart">
-                                        <img src="http://via.placeholder.com/150x150/ccc/fff/thumb_cart_2.jpg"
-                                             alt="Image">
-                                    </div>
-                                    <span class="item_cart">At deseruisse scriptorem</span>
-                                </td>
-                                <td>
-                                    0%
-                                </td>
-                                <td>
-                                    <strong>15,50$</strong>
-                                </td>
-                                <td class="options" style="width:5%; text-align:center;">
-                                    <a href="#"><i class="icon-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="thumb_cart">
-                                        <img src="http://via.placeholder.com/150x150/ccc/fff/thumb_cart_3.jpg"
-                                             alt="Image">
-                                    </div>
-                                    <span class="item_cart">Ea vel semper quaerendum</span>
-                                </td>
-                                <td>
-                                    0%
-                                </td>
-                                <td>
-                                    <strong>24,71$</strong>
-                                </td>
-                                <td class="options" style="width:5%; text-align:center;">
-                                    <a href="#"><i class="icon-trash"></i></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="thumb_cart">
-                                        <img src="http://via.placeholder.com/150x150/ccc/fff/thumb_cart_4.jpg"
-                                             alt="Image">
-                                    </div>
-                                    <span class="item_cart">Ei has exerci graecis</span>
-                                </td>
-                                <td>
-                                    0%
-                                </td>
-                                <td>
-                                    <strong>24,71$</strong>
-                                </td>
-                                <td class="options" style="width:5%; text-align:center;">
-                                    <a href="#"><i class="icon-trash"></i></a>
-                                </td>
-                            </tr>
+                            <?php $this->view_data ?>
+                            <?php foreach ($this->view_data['cartElements'] as $course) { ?>
+                                <tr id="cartElement<?php echo $course['course_id'] ?>">
+                                    <td>
+                                        <div class="thumb_cart">
+                                            <img src="<?php echo $course['courses_image'] ?>"
+                                                 alt="Image">
+                                        </div>
+                                        <span class="item_cart"><?php echo $course['course_title'] ?></span>
+                                    </td>
+                                    <td>
+                                        0%
+                                    </td>
+                                    <td>
+                                        <strong><?php echo $course['course_price'] ?>$</strong>
+                                    </td>
+                                    <td class="options" style="width:5%; text-align:center;">
+                                        <button onclick="deleteFromCart(<?php echo $course['course_id'] ?>)"><i
+                                                    class="icon-trash"></i></button>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
                             </tbody>
                         </table>
                         <div class="cart-options clearfix">
@@ -178,6 +128,16 @@
 </main>
 <!--/main-->
 
+<script>
+    function deleteFromCart(id) {
+        var name = 'cartElements[' + id + ']';
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+        $('#cartElement' + id).remove();
+        // document.cookie = name + '=; Max-Age=-99999999;';
+    }
+
+
+</script>
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 
 

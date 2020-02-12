@@ -1,7 +1,6 @@
 <?php
 //
 use admin\adminController;
-use auth\Permissions;
 use site\homeController;
 
 /*class Helper has functions that use every times*/
@@ -69,10 +68,11 @@ class Helper
             return false;
 
     }
+
     public static function buy($id)
     {
 
-         echo ($id);
+        echo($id);
     }
 
     public static function viewAdminFile()
@@ -219,6 +219,18 @@ class Helper
                 $t .= ' , ';
 
         }
+        $t .= ')';
+        return $t;
+
+    }
+
+    public static function CookieElenments($ids)
+    {
+        $t = '(';
+        foreach ($ids as $k => $id) {
+            $t .= $id.',';
+        }
+        $t= rtrim($t, ",");
         $t .= ')';
         return $t;
 

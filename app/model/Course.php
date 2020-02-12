@@ -19,6 +19,11 @@ class Course
         return $this->db->query("select * from courses");
     }
 
+    public function cartElements($cartElements)
+    {
+        return $this->db->query("select * from courses where course_id in $cartElements");
+    }
+
     public function page($id)
     {
         return $this->db->query("select * from courses where categories2 like '%\"$id\"%' ");
