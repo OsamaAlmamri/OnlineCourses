@@ -59,7 +59,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $this->view_data ?>
+
                             <?php foreach ($this->view_data['cartElements'] as $course) { ?>
                                 <tr id="cartElement<?php echo $course['course_id'] ?>">
                                     <td>
@@ -76,7 +76,8 @@
                                         <strong><?php echo $course['course_price'] ?>$</strong>
                                     </td>
                                     <td class="options" style="width:5%; text-align:center;">
-                                        <button onclick="deleteFromCart(<?php echo $course['course_id'] ?>)"><i
+                                        <button onclick="deleteFromCart('<?php echo $course['course_id'] ?>','<?php echo $course['course_price'] ?>')">
+                                            <i
                                                     class="icon-trash"></i></button>
                                     </td>
                                 </tr>
@@ -108,7 +109,9 @@
                 <aside class="col-lg-4" id="sidebar">
                     <div class="box_detail">
                         <div id="total_cart">
-                            Total <span class="float-right">69.00$</span>
+                            Total <span
+                                    class="float-right"><span
+                                        id="total_price"> <?php echo($this->view_data['total']); ?> </span> $</span>
                         </div>
                         <div class="add_bottom_30">Lorem ipsum dolor sit amet, sed vide <strong>moderatius</strong> ad.
                             Ex eius soleat sanctus pro, enim conceptam in quo, <a href="#0">brute convenire</a>
@@ -129,10 +132,12 @@
 <!--/main-->
 
 <script>
-    function deleteFromCart(id) {
+    function deleteFromCart(id, price) {
         var name = 'cartElements[' + id + ']';
         document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
         $('#cartElement' + id).remove();
+        $('#total_price').text(parseInt($('#total_price').text()) - parseInt(price));
+        $('#n_cart_items').text(parseInt($('#n_cart_items').text()) - 1);
         // document.cookie = name + '=; Max-Age=-99999999;';
     }
 

@@ -6,8 +6,8 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="/design/site/css/bootstrap.css">
-<!--    <link rel="stylesheet" href="/design/dashboard/css/bootstrap.css">-->
-<!--    <link rel="stylesheet" href="/design/dashboard/css/bootstrap-rtl.min.css">-->
+    <!--    <link rel="stylesheet" href="/design/dashboard/css/bootstrap.css">-->
+    <!--    <link rel="stylesheet" href="/design/dashboard/css/bootstrap-rtl.min.css">-->
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -97,10 +97,11 @@
 
             <?php if (!isset($_SESSION['user'])) { ?>
                 <li class="nav-item dropdown heart">
-                    <a class="nav-link  dropdown-toggle" title="my_cart" href="#" id="navbarDropdown" role="button"
+                    <a class="nav-link  dropdown-toggle " title="my_cart" href="#" id="navbarDropdown"
+                       role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="icon-cart mycart"></i>
-                        <span class="badge badge-danger badge-counter">3</span>
+                        <span class="badge badge-danger badge-counter">1</span>
                     </a>
                     <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Cart is empty <br></a>
@@ -136,8 +137,8 @@
                 <li class="nav-item dropdown heart">
                     <a class="nav-link  dropdown-toggle" title="wish list" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class=" icon_heart_alt  mycart"></i>
-                        <span class="badge badge-danger badge-counter">3</span>
+                        <i class="icon_heart_alt  mycart"></i>
+                        <span class="badge badge-danger badge-counter">8</span>
                     </a>
                     <div class="dropdown-menu dm dmheart" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">wishList is empty <br></a>
@@ -160,8 +161,9 @@
                 <li class="nav-item dropdown heart">
                     <a class="nav-link  dropdown-toggle" title="my_cart" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="icon-cart mycart"></i>
-                        <span class="badge badge-danger badge-counter">3</span>
+                        <i class="icon-cart mycart shopping-cart"></i>
+                        <span class="badge badge-danger badge-counter"
+                              id="n_cart_items"><?php echo isset($_COOKIE['cartElements'])?count($_COOKIE['cartElements']):0 ?></span>
                     </a>
                     <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Cart is empty <br></a>

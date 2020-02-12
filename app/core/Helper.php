@@ -124,6 +124,22 @@ class Helper
         return;
     }
 
+    public static function CartElementCount()
+    {
+        return isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0;
+
+    }
+
+    public static function inCart($id)
+    {
+        $c = 0;
+        if (isset($_COOKIE['cartElements']))
+            $c = in_array($id, $_COOKIE['cartElements']);
+        return $c;
+
+    }
+
+
     public static function backToLogin($message, $status)
     {
         $homeController = new homeController();
@@ -228,9 +244,9 @@ class Helper
     {
         $t = '(';
         foreach ($ids as $k => $id) {
-            $t .= $id.',';
+            $t .= $id . ',';
         }
-        $t= rtrim($t, ",");
+        $t = rtrim($t, ",");
         $t .= ')';
         return $t;
 

@@ -34,7 +34,7 @@ class homeController extends Controller
         $this->view->pageTitle = 'contact';
         $this->view->render();
     }
-    
+
 
     public function cart1()
     {
@@ -44,7 +44,15 @@ class homeController extends Controller
             $cartElements = Helper::CookieElenments($_COOKIE['cartElements']);
             $courses = $course->cartElements($cartElements);
         }
-        $this->view('website' . DIRECTORY_SEPARATOR . 'cart1', ['cartElements' => $courses, 'category' => []]);
+        $total = 0;
+        if (count($courses) > 0) {
+            foreach ($courses as $s)
+                $total += $s['course_price'];
+        }
+        $this->view('website' . DIRECTORY_SEPARATOR . 'cart1', [
+            'cartElements' => $courses,
+            'total' => $total,
+            'category' => []]);
         $this->view->pageTitle = 'cart1';
         $this->view->render();
     }

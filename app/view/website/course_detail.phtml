@@ -208,105 +208,103 @@
                         <hr>
                         <div class="reviews-container list_rating">
 
-                             <?php
-                             foreach($this->view_data['AllRatings'] as $rating) {?>
-                            <div class="review-box clearfix">
-                                <figure class="rev-thumb">
-                                    <img
-                                            src="<?php echo $rating['user_image'];?>" alt="">
+                            <?php
+                            foreach ($this->view_data['AllRatings'] as $rating) { ?>
+                                <div class="review-box clearfix">
+                                    <figure class="rev-thumb">
+                                        <img
+                                                src="<?php echo $rating['user_image']; ?>" alt="">
 
-                                </figure>
-                                <div class="rev-content">
-                                    <div class="rating-stars  mb-1">
-                                        <?php
-                                        if ($rating['rating_number'] ==1)
-                                        {
-                                            echo '    <i class="fa fa-star rating-done "></i>
+                                    </figure>
+                                    <div class="rev-content">
+                                        <div class="rating-stars  mb-1">
+                                            <?php
+                                            if ($rating['rating_number'] == 1) {
+                                                echo '    <i class="fa fa-star rating-done "></i>
                                                         <i class="fa fa-star "></i>
                                                         <i class="fa fa-star "></i>
                                                         <i class="fa fa-star "></i>
                                                         <i  class="fa fa-star"></i>';
 
-                                        }
-                                        elseif ($rating['rating_number'] == 2) {
-                                          echo '    <i class="fa fa-star rating-done"></i>
+                                            } elseif ($rating['rating_number'] == 2) {
+                                                echo '    <i class="fa fa-star rating-done"></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i  class="fa fa-star rating-done"></i>';
-                                        }
-                                        elseif ($rating['rating_number'] == 3) {
-                                          echo '    <i class="fa fa-star rating-done"></i>
+                                            } elseif ($rating['rating_number'] == 3) {
+                                                echo '    <i class="fa fa-star rating-done"></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i class="fa fa-star "></i>
                                                         <i  class="fa fa-star"></i>';
-                                        }
-                                        elseif ($rating['rating_number'] == 4) {
-                                            echo '    <i class="fa fa-star rating-done"></i>
+                                            } elseif ($rating['rating_number'] == 4) {
+                                                echo '    <i class="fa fa-star rating-done"></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i  class="fa fa-star"></i>';
 
-                                        }
-                                        elseif ($rating['rating_number'] == 5) {
-                                            echo '    <i class="fa fa-star rating-done"></i>
+                                            } elseif ($rating['rating_number'] == 5) {
+                                                echo '    <i class="fa fa-star rating-done"></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i  class="fa fa-star rating-done"></i>';
-                                        }
+                                            }
                                             ?>
 
-                                    </div>
-                                    <div class="rev-info">
-                                        <?php echo $rating['user_full_name'] ." - " . $rating['rating_date'] ;?>
-                                    </div>
-                                    <div class="rev-text">
-                                        <p><?php echo $rating['comment_text'];?>
-                                        </p>
+                                        </div>
+                                        <div class="rev-info">
+                                            <?php echo $rating['user_full_name'] . " - " . $rating['rating_date']; ?>
+                                        </div>
+                                        <div class="rev-text">
+                                            <p><?php echo $rating['comment_text']; ?>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             <?php } ?>
-                        </div>
-                        <!-- /review-container -->
 
-                        <hr>
+                            <!-- /review-container -->
+
+                            <hr>
 
 
-                        <div class="reviews-container rating-input-container ">
+                            <div class="reviews-container rating-input-container ">
                                 <div class="review-box clearfix">
                                     <figure class="rev-thumb"><img
-                                                src="<?php echo Session::get('user')['user_image'];?>" alt="">
+                                                src="<?php echo Session::get('user')['user_image']; ?>" alt="">
                                     </figure>
                                     <div class="rev-content">
                                         <div class="rate">
-                                         <ul>
-                                            <i data-number-rating="1" class="btn-1 rate-btn fa fa-star"></i>
-                                            <i data-number-rating="2" class="btn-2 rate-btn fa fa-star"></i>
-                                            <i data-number-rating="3" class="btn-3 rate-btn fa fa-star"></i>
-                                            <i data-number-rating="4" class="btn-4 rate-btn fa fa-star "></i>
-                                            <i data-number-rating="5" class="btn-5 rate-btn fa fa-star "></i>
-                                        </ul>
+                                            <ul>
+                                                <i data-number-rating="1" class="btn-1 rate-btn fa fa-star"></i>
+                                                <i data-number-rating="2" class="btn-2 rate-btn fa fa-star"></i>
+                                                <i data-number-rating="3" class="btn-3 rate-btn fa fa-star"></i>
+                                                <i data-number-rating="4" class="btn-4 rate-btn fa fa-star "></i>
+                                                <i data-number-rating="5" class="btn-5 rate-btn fa fa-star "></i>
+                                            </ul>
                                         </div>
-
 
 
                                         <div class="rev-info">
-                                            <?php echo Session::get('user')['user_full_name']  ;?>
+                                            <?php echo Session::get('user')['user_full_name']; ?>
                                         </div>
                                         <div class="rev-text">
                                             <div class="input-group mb-3">
-                                                <input type="text" placeholder="اضف تقييمك حول الكورس(اختياري)"  class="form-control comment_input" name="comment_text"
-                                                       data-course="<?php echo $course['course_id'];?>"
+                                                <input type="text" placeholder="اضف تقييمك حول الكورس(اختياري)"
+                                                       class="form-control comment_input" name="comment_text"
+                                                       data-course="<?php echo $course['course_id']; ?>"
                                                        data-rating-number="5>"
                                                        data-image-user="<?php echo(Session::get('user')['user_image']) ?>"
                                                        data-user-name="<?php echo(Session::get('user')['user_full_name']) ?>"
                                                        data-rating-date="<?php echo date("Y-m-d h:i:sa") ?>"
-                                                       data-user-ID="<?php echo(Session::get('userID')) ?>" >
+                                                       data-user-ID="<?php echo(Session::get('userID')) ?>">
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-success" id="add_rating" name="add_rating" >اضافة تقييم</button>
+                                                    <button class="btn btn-success" id="add_rating" name="add_rating">
+                                                        اضافة تقييم
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -327,7 +325,8 @@
                         <figure>
                             <a class="video"><i
                                         class="arrow_triangle-right"></i>
-                                <img alt="" src="<?php echo $course['courses_image'] ?>"
+                                <img alt="" id="course_image_<?php echo $course['course_id'] ?>"
+                                     src="<?php echo $course['courses_image'] ?>"
                                      class="img-fluid"><span>View course preview</span></a>
                         </figure>
 
@@ -337,8 +336,9 @@
                         </div>
                         <a href="/home/cart1" class="btn_1 full-width">Purchase</a>
                         <button class="btn_1 full-width outline"
-                                onclick="addToCart(<?php echo $course['course_id'] ?>)"><i class="icon_cart"></i> Add to
-                            Cart
+                                data-inCart="<?php echo Helper::inCart($course['course_id']); ?>"
+                                onclick="addToCart($(this),'<?php echo $course['course_id'] ?>')"><i
+                                    class="icon_cart"></i> <?php echo (Helper::inCart($course['course_id']) == 1) ? 'Delete From Cart' : 'Add To Cart' ?>
                         </button>
                         <a href="#0" class="btn_1 full-width outline"><i class="icon_heart"></i> Add to wishlist</a>
                         <div id="list_feat">
@@ -366,9 +366,66 @@
 
 <script>
 
-    function addToCart(id) {
-        document.cookie = 'cartElements[' + id + ']=' + id + '; path=/';
+    function addToCart(e, id) {
+        var inCart = e.attr('data-inCart');
+        if (inCart == 0) {
+            document.cookie = 'cartElements[' + id + ']=' + id + '; path=/';
+            flyToCart(id);
+            $('#n_cart_items').text(parseInt($('#n_cart_items').text()) + 1);
+            e.attr('data-inCart', 1);
+            e.text('Delete from Cart');
+        } else {
+            var name = 'cartElements[' + id + ']';
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+            e.text('Add To Cart');
+            e.attr('data-inCart', 0);
+            $('#n_cart_items').text(parseInt($('#n_cart_items').text()) - 1);
+        }
+
+
     }
+
+    function flyToCart(id) {
+        var cart = $('.shopping-cart');
+        var imgtodrag = $('#course_image_' + id);
+        if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+                .offset({
+                    top: imgtodrag.offset().top,
+                    left: imgtodrag.offset().left
+                })
+                .css({
+                    'opacity': '0.5',
+                    'position': 'absolute',
+                    'height': '150px',
+                    'width': '150px',
+                    'z-index': '100'
+                })
+                .appendTo($('body'))
+                .animate({
+                    'top': cart.offset().top + 10,
+                    'left': cart.offset().left + 10,
+                    'width': 75,
+                    'height': 75
+                }, 1000, 'easeInOutExpo');
+
+            setTimeout(function () {
+                cart.effect("shake", {
+                    times: 2
+                }, 200);
+            }, 1500);
+
+            imgclone.animate({
+                'width': 0,
+                'height': 0
+            }, function () {
+                $(this).detach()
+            });
+        }
+
+
+    }
+
 </script>
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'ratings.phtml' ?>
