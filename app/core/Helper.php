@@ -139,6 +139,18 @@ class Helper
 
     }
 
+    public static function wishListCount()
+    {
+        $id = Session::get('user')['user_id'];
+        $WishList = DB::init()->query("SELECT `user_wish_list` FROM `users_courses` WHERE user_id=$id")['user_wish_list'];
+        $userWishList = [];
+        $WishList=trim($WishList,',');
+        if (($WishList) != '')
+            $userWishList = (explode(',', $WishList));
+        return count($userWishList);
+
+    }
+
 
     public static function backToLogin($message, $status)
     {

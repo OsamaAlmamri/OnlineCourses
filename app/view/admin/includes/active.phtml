@@ -7,7 +7,6 @@
 
             var url = controller + '/insertCourseUser';
             var _this = $(this);
-            alert(url);
             $.ajax({
                 url: url,//   var url=$('#news').attr('action');
                 method: 'POST',
@@ -19,12 +18,14 @@
                             _this.attr('class', 'wish_bt addToWishList');
                             _this.attr('data-status', 0);
                             _this.attr('onclick', "confirm('هل تريد اضافة هذا الكورس الى المفضلة ')");
+                            $('#n_whishList_items').text(parseInt($('#n_whishList_items').text()) - 1);
                             if (page == 'whishList')
                                 $('#course_' + id).remove();
                         } else {
                             _this.attr('class', 'wish_bt_active addToWishList');
                             _this.attr('data-status', 1);
                             _this.attr('onclick', "confirm('هل تريد الغاء هذا الكورس من المفضلة ')");
+                            $('#n_whishList_items').text(parseInt($('#n_whishList_items').text()) + 1);
 
                         }
 

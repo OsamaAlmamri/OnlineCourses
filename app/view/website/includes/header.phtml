@@ -138,11 +138,11 @@
                     <a class="nav-link  dropdown-toggle" title="wish list" href="#" id="navbarDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="icon_heart_alt  mycart"></i>
-                        <span class="badge badge-danger badge-counter">8</span>
+                        <span class="badge badge-danger badge-counter" id="n_whishList_items"><?php echo Helper::wishListCount() ?></span>
                     </a>
                     <div class="dropdown-menu dm dmheart" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">wishList is empty <br></a>
-                        <a class="dropdown-item" id="link" href="/home/wish-list">Wish List</a>
+                        <a class="dropdown-item" id="link" href="/wishList">Wish List</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown heart">
@@ -163,7 +163,7 @@
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="icon-cart mycart shopping-cart"></i>
                         <span class="badge badge-danger badge-counter"
-                              id="n_cart_items"><?php echo isset($_COOKIE['cartElements'])?count($_COOKIE['cartElements']):0 ?></span>
+                              id="n_cart_items"><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
                     </a>
                     <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Cart is empty <br></a>
