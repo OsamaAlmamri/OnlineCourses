@@ -12,6 +12,8 @@ class wishListController extends Controller {
     {
         $wish_list=$this->model('Course_site');
         $user_id=Session::get('user')['user_id'];
+
+      //  return var_dump( $wish_list->wishListCourseUser($user_id));
         $this->view('website' . DIRECTORY_SEPARATOR . 'wish_list', ['wish_list' => $wish_list->wishListCourseUser($user_id) ,'deleted' => false]);
         $this->view->pageTitle ='قائمة مفضلاتي';
         $this->view->render();

@@ -43,7 +43,14 @@
                         <div class="box_grid wow">
                             <figure class="block-reveal">
                                 <div class="block-horizzontal"></div>
-                                <a class="wish_bt" data-id="<?php echo $course['course_id']?>" onclick="addToWhishLish(<?php echo $course['course_id']?>)"></a>
+                                <a
+                                   <?php if(in_array($course['course_id'],$this->view_data['userWishList'] ))
+                                       echo 'class="wish_bt"  data-status="0"';
+                                       else
+                                           echo 'class="wish_bt"  data-status="1"';
+                                       ?>
+
+                                        data-id="<?php echo $course['course_id']?>" ></a>
                                 <a href="/home/course_detail"><img src="<?php echo $course['courses_image']?>" class="img-fluid" alt=""></a>
                                 <div class="price"><?php echo $course['course_price']; ?></div>
                                 <div class="preview"><span>عرض الكورس</span></div>
@@ -111,5 +118,6 @@ function addToCart(id)
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
 <script>
+
     AddToWish('courses');
 </script>

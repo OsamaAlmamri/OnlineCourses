@@ -2932,6 +2932,10 @@ a.box_feat h3 {
   font-family: 'ElegantIcons';
   content: "\e030";
 }
+.box_grid a.wish_bt_light:after {
+  font-family: 'ElegantIcons';
+  content: "\e030";
+}
 .box_grid a.wish_bt:hover:after {
   content: "\e089";
   color: #fff;

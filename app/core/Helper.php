@@ -170,7 +170,10 @@ class Helper
 //                            " / Dimensions: " . $file['video']['resolution_x'] . " wide by " . $file['video']['resolution_y'] . " tall" .
 //                            " / Filesize: " . $file['filesize'] . " bytes<br />");
     }
-
+    public static function wishList($arg=array(),$id)
+    {
+      return array_push($arg,$id);
+    }
 
     public static function getVideoDuartion($url)
     {
