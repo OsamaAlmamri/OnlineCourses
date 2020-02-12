@@ -32,8 +32,6 @@ class Course
     public function find($id)
     {
         return $this->db->query("select * from courses WHERE course_id =$id");
-
-
     }
 
     public function activeByAdmin(array $aData)

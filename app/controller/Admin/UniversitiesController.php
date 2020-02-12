@@ -5,6 +5,7 @@
  */
 namespace Admin;
 
+use auth\Permissions;
 use auth\Register;
 use Controller;
 use Helper;
@@ -16,7 +17,7 @@ class UniversitiesController extends Controller
 
     public function index()
     {
-        Helper::viewAdminFile();
+       Permissions::getInstaince()->allow('university_index');
 
         $role = $this->model('Role');
         $role_id = ($role->getRoleByName('university'));
@@ -41,7 +42,7 @@ class UniversitiesController extends Controller
     public function create()
     {
 
-        Helper::viewAdminFile();
+       Permissions::getInstaince()->allow('university_create');
 
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'universities' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
@@ -53,7 +54,7 @@ class UniversitiesController extends Controller
     public function edit($id)
     {
 
-        Helper::viewAdminFile();
+       Permissions::getInstaince()->allow('university_edit');
 
         $CatModel = $this->model('Category');
         $category = $CatModel->find($id)[0];
@@ -68,6 +69,7 @@ class UniversitiesController extends Controller
     public function addTeacher()
     {
 //        return var_dump($_REQUEST);
+       Permissions::getInstaince()->allow('university_addTeacher');
         $auth = new Register($_REQUEST,1,'teacher');
         $auth->signUp('teacher', 0);
 
@@ -75,7 +77,7 @@ class UniversitiesController extends Controller
 
     public function delete($id)
     {
-        Helper::viewAdminFile();
+       Permissions::getInstaince()->allow('university_delete');
         $this->model('Category');
         $c = $this->model->delete($id);
 

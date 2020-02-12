@@ -7,6 +7,7 @@ namespace admin;
 
 use auth\Login;
 use auth\LogOut;
+use auth\Permissions;
 use auth\Register;
 use Controller;
 use Helper;
@@ -17,7 +18,7 @@ class adminController extends Controller
 
     public function index()
     {
-        Helper::viewAdminFile();
+        Permissions::getInstaince()->allow('admin_index');
         $this->model('Course');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'index', ['news' => $this->model->all()]);
         $this->view->pageTitle = 'admin index';

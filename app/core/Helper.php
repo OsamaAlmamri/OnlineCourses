@@ -4,6 +4,7 @@ use admin\adminController;
 use site\homeController;
 
 /*class Helper has functions that use every times*/
+
 class Helper
 {
 //    public static function getMainMenu($type)
@@ -68,6 +69,12 @@ class Helper
 
     }
 
+    public static function buy($id)
+    {
+
+        echo($id);
+    }
+
     public static function viewAdminFile()
     {
         if (Helper::isAdmin())
@@ -80,7 +87,7 @@ class Helper
 
     public static function siteName()
     {
-        return "كورسات";
+        return "StepForword";
 
     }
 
@@ -96,7 +103,7 @@ class Helper
 
     public static function getVideoName($name)
     {
-     return   explode( '.',explode('______',$name )[1] )[0];
+        return explode('.', explode('______', $name)[1])[0];
     }
 
 
@@ -145,16 +152,13 @@ class Helper
     public static function old($key)
     {
 //        echo isset($_REQUEST[$key]) ? $_REQUEST[$key] : '';
-        if (Session::has('oldFormData'))
-        {
-            if (isset($_SESSION['oldFormData'][$key] ) and is_array($_SESSION['oldFormData'][$key]))
+        if (Session::has('oldFormData')) {
+            if (isset($_SESSION['oldFormData'][$key]) and is_array($_SESSION['oldFormData'][$key]))
                 return $_SESSION['oldFormData'][$key];
             else
 //                echo $_SESSION['oldFormData'][$key];
-            echo isset($_SESSION['oldFormData'][$key]) ?$_SESSION['oldFormData'][$key] : '';
-        }
-
-        else
+                echo isset($_SESSION['oldFormData'][$key]) ? $_SESSION['oldFormData'][$key] : '';
+        } else
             echo '';
 
     }
@@ -170,10 +174,7 @@ class Helper
 //                            " / Dimensions: " . $file['video']['resolution_x'] . " wide by " . $file['video']['resolution_y'] . " tall" .
 //                            " / Filesize: " . $file['filesize'] . " bytes<br />");
     }
-    public static function wishList($arg=array(),$id)
-    {
-      return array_push($arg,$id);
-    }
+
 
     public static function getVideoDuartion($url)
     {
@@ -259,7 +260,7 @@ class Helper
 
         $cat_name = DB::init()->query("SELECT *  FROM categories WHERE category_id = $id ");
         if (!empty($cat_name)) {
-            return $cat_name[0]['category_name'];
+            return $cat_name['category_name'];
         }
 
     }
