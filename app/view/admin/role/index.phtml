@@ -1,17 +1,22 @@
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+<?php use auth\Permissions;
+
+include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 
 <div class="container">
     <div class="row bg-white mb-4 ">
         <div class="text-right  mt-auto col-6">
-    <h2 ><i class="fa fa fa-user-cog" style="color:#ec3901"></i>إدارة الادوار في الحسابات</h2>
+            <h2><i class="fa fa fa-user-cog" style="color:#ec3901"></i>إدارة الادوار في الحسابات</h2>
         </div>
     </div>
     <div class="row mb-4">
-    <div class="col-6 text-right">
-        <a href="/admin/role/create" class="btn btn-success "><i class="fa fa-plus"> </i> إضافة دور جديد</a>
-    </div>
+        <div class="col-6 text-right">
+            <?php if (Permissions::getInstaince()->hasPermision('role_create') == true) { ?>
+                <a href="/admin/role/create" class="btn btn-success "><i class="fa fa-plus"> </i> إضافة دور جديد</a>
+                جديد</a>
+            <?php } ?>
+        </div>
         <div class="col-6 text-left">
 
             <div class="dropdown">
@@ -36,7 +41,10 @@
             <th>اسم الدور</th>
             <th>وصف الدور</th>
             <th>حالة الدور</th>
-            <th>الاعدادت</th>
+            <?php if (Permissions::getInstaince()->hasPermision('role_edit') == true
+                or Permissions::getInstaince()->hasPermision('role_delete') == true) { ?>
+                <th>الاعدادات</th>
+            <?php } ?>
         </tr>
         </thead>
 
@@ -48,6 +56,7 @@
                 <tr>
                     <td><?php echo $role['role_name'] ?></td>
                     <td><?php echo $role['role_description'] ?></td>
+
                     <td><?php echo ($role['role_status'] == '1') ? 'Active' : 'Disactive' ?></td>
                     <?php if ($this->view_data['deleted'] == false) { ?>
                         <td><a href="/admin/role/edit/<?php echo $role['id'] ?>"><i class="fa fa-edit"></i></a>
@@ -55,11 +64,31 @@
                                data-status="<?php echo $role['role_status'] ?>"
                            href="" ><?php echo ($role['role_status'] == '1') ?  '<i class=\'fas fa-check\'></i>' :'<i class=\'ion ion-close\'></i>'  ?> </a>
 
-                            <a href="/admin/role/delete/<?php echo $role['id'] ?>"
-                               onclick="return confirm('هل أنت متأكد من الحذف');"><i
-                                        class="fa fa-trash-restore"></i></a>
+                    <td>
+                        <a class="active" data-id="<?php echo $role['role_id'] ?>"
+                           data-status="<?php echo $role['role_status'] ?>"
+                           href=""><?php echo ($role['role_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
 
-                        </td>
+
+                    </td>
+
+
+                    <?php if ($this->view_data['deleted'] == false) { ?>
+                        <?php if (Permissions::getInstaince()->hasPermision('role_edit') == true
+                            or Permissions::getInstaince()->hasPermision('role_delete') == true
+                        ) { ?>
+                            <td>
+                                <?php if (Permissions::getInstaince()->hasPermision('role_edit') == true) { ?>
+                                    <a href="/admin/role/edit/<?php echo $role['role_id'] ?>"><i class="fa fa-edit"></i></a>
+                                <?php } ?>
+                                <?php if (Permissions::getInstaince()->hasPermision('role_delete') == true) { ?>
+
+                                    <a href="/admin/role/delete/<?php echo $role['id'] ?>"
+                                       onclick="return confirm('هل أنت متأكد من الحذف');"><i
+                                                class="fa fa-trash-restore"></i></a>
+                                <?php } ?>
+                            </td>
+                        <?php } ?>
                     <?php } else { ?>
                         <th>{{getUserName( $role['deleted_by'] )?></th>
                         <td><?php echo $role['deleted_at'] ?></td>

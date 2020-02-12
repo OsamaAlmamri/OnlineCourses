@@ -28,6 +28,7 @@
                         </a>
                     </li>
 
+
                     <li>
                         <a href="/admin/courses/index">
                             <i class="fas fa-list"></i>
@@ -69,6 +70,64 @@
                             </li>
                         </ul>
                     </li>
+
+                        <li>
+                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                                <i class="fa fa-users-cog "></i>
+                                الحسابات
+                            </a>
+                            <ul class="collapse list-unstyled" id="pageSubmenu">
+
+
+                                <li>
+                                    <a href="#"><i class="fa fa-users-cog "></i>المدراء الفرعين </a>
+                                </li>
+                                <?php if (Permissions::getInstaince()->hasPermision('university_index') == true) { ?>
+                                    <li>
+                                        <a href="/admin/universities/index"><i class="ion ion-university  "></i>الجامعات</a>
+                                    </li>
+                                <?php } ?>
+                                <?php if (Permissions::getInstaince()->hasPermision('teacher_index') == true) { ?>
+
+                                    <li>
+                                        <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>المدرسين
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </li>
+                    <?php } ?>
+                    <?php if (Permissions::getInstaince()->hasPermision('teacher_index') == true
+                        or Permissions::getInstaince()->hasPermision('permission_index') == true
+                        or Permissions::getInstaince()->hasPermision('role_index') == true
+                    ) { ?>
+                        <li>
+                            <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false"
+                               class="dropdown-toggle">
+                                <i class="fa fa-users-cog "></i>
+                                الادارة
+                            </a>
+                            <ul class="collapse list-unstyled" id="pageSubmenu2">
+                                <?php if (Permissions::getInstaince()->hasPermision('role_index') == true) { ?>
+                                    <li>
+                                        <a href="/admin/role/index"><i class="fa fa-users-cog "></i>الادوار </a>
+                                    </li>
+                                <?php } ?>
+                                <?php if (Permissions::getInstaince()->hasPermision('permission_index') == true) { ?>
+
+                                    <li>
+                                        <a href="/admin/permision/index"><i class="fa fa-users-cogs "></i>الصلاحيات</a>
+                                    </li>
+                                <?php } ?>
+                                <?php if (Permissions::getInstaince()->hasPermision('teacher_index') == true) { ?>
+                                    <li>
+                                        <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>المدرسين
+                                        </a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </li>
+                    <?php } ?>
 
                 </ul>
             </nav>

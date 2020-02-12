@@ -1,36 +1,40 @@
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+<?php use auth\Permissions;
+
+include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
 
 <div class="container">
     <div class="row bg-white mb-4 ">
         <div class="text-right  mt-auto col-6">
-    <h2 ><i class="fa fa fa-cogs" style="color:#ec3901"></i> إدارة الصلاحيات</h2>
+            <h2><i class="fa fa fa-cogs" style="color:#ec3901"></i> إدارة الصلاحيات</h2>
         </div>
     </div>
     <div class="row mb-4">
         <div class="col-6 text-right">
-            <a href="/admin/permision/create" class="btn btn-success "><i class="fa fa-plus"> </i> إصافة صلاحية جديدة</a>
+            <?php if (Permissions::getInstaince()->hasPermision('permission_create') == true) { ?>
+                <a href="/admin/permision/create" class="btn btn-success "><i class="fa fa-plus"> </i> إصافة صلاحية
+                    جديدة</a>
+                جديد</a>
+            <?php } ?>
         </div>
         <div class="col-6 text-left">
 
-                <div class="dropdown">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                            id="dashboard_daterangepicker">
-                        <i class="	fas fa-bullseye"></i>ترتيب حسب
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">اليوم</a>
-                        <a class="dropdown-item" href="#">الاسبوع</a>
-                        <a class="dropdown-item" href="#">الشهر</a>
-                        <a class="dropdown-item" href="#">المدة</a>
-                    </div>
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                        id="dashboard_daterangepicker">
+                    <i class="	fas fa-bullseye"></i>ترتيب حسب
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">اليوم</a>
+                    <a class="dropdown-item" href="#">الاسبوع</a>
+                    <a class="dropdown-item" href="#">الشهر</a>
+                    <a class="dropdown-item" href="#">المدة</a>
                 </div>
+            </div>
 
         </div>
     </div>
-
-
 
 
     <table id="example1" class="table table-bordered table-striped">
@@ -39,7 +43,11 @@
             <th>اسم الصلاحية</th>
             <th>وصف الصلاحية</th>
             <th>حالة الصلاحية</th>
-            <th>الاعدادات</th>
+            <?php if (Permissions::getInstaince()->hasPermision('permission_edit') == true
+                or Permissions::getInstaince()->hasPermision('permission_delete') == true) { ?>
+                <th>الاعدادات</th>
+            <?php } ?>
+
         </tr>
         </thead>
 
@@ -51,27 +59,32 @@
                 <tr>
                     <td><?php echo $role['permission_name'] ?></td>
                     <td><?php echo $role['permissions_description'] ?></td>
-                    <td><?php echo ($role['permission_status'] == '1') ? 'Active' : 'Disactive' ?></td>
-
 
                     <td>
-                        <a href="/admin/permision/edit/<?php echo $role['permission_id'] ?>"><i class="fa fa-edit"></i></a>
+
                         <a class="active" data-id="<?php echo $role['permission_id'] ?>"
-                         href="" data-status="<?php echo $role['permission_status'] ?>"
-                        ><?php echo ($role['permission_status'] == '1') ?  '<i class=\'fas fa-check\'></i>' :'<i class=\'ion ion-close\'></i>'  ?> </a>
-                        <a href="/admin/permision/delete/<?php echo $role['permission_id'] ?>"
-                           onclick="return confirm('هل أنت متأكد من الحذف');"><i
-                                    class="fa fa-trash-restore"></i></a>
+                           href="" data-status="<?php echo $role['permission_status'] ?>"
+                        ><?php echo ($role['permission_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
+                    </td>
+                    <?php if ($this->view_data['deleted'] == false) { ?>
+                        <?php if (Permissions::getInstaince()->hasPermision('permission_edit') == true
+                            or Permissions::getInstaince()->hasPermision('permission_delete') == true
+                        ) { ?>
+                            <td>
+                                <?php if (Permissions::getInstaince()->hasPermision('permission_edit') == true) { ?>
+                                    <a href="/admin/permision/edit/<?php echo $role['permission_id'] ?>"><i
+                                                class="fa fa-edit"></i></a>
+                                <?php } ?>
+                                <?php if (Permissions::getInstaince()->hasPermision('permission_delete') == true) { ?>
 
-
-
-                        <?php if ($this->view_data['deleted'] == false) { ?>
-
-
-
-
-                        </td>
+                                    <a href="/admin/permision/delete/<?php echo $role['permission_id'] ?>"
+                                       onclick="return confirm('هل أنت متأكد من الحذف');"><i
+                                                class="fa fa-trash-restore"></i></a>
+                                <?php } ?>
+                            </td>
+                        <?php } ?>
                     <?php } else { ?>
+
                         <th>{{getUserName( $role['deleted_by'] )?></th>
                         <td><?php echo $role['deleted_at'] ?></td>
 
