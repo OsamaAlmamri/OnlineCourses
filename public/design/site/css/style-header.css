@@ -336,16 +336,9 @@ a{
     right: 0;
     z-index: 3;
 }
-.imgedit{
-    position: absolute;
-    margin-top: 10%;
-    margin-left: -45%;
-    font-size: 215%;
-}
-.file-upload{
-    display: none;
-}
+
 label{
     float: right !important;
     font-weight: bold;
 }
+

@@ -13,7 +13,21 @@ class Profile
     {
         $this->db = new Model();
     }
+    public function ProfileUser($id)
+    {
 
+        return $this->db->query("select * from profiles INNER JOIN users ON profiles.user_id = users.user_id where users.`user_id`=$id");
+
+    }
+    public function UpdateData(array $args)
+    {
+
+        $data = $this->db->preparation('update profiles  inner join  users on profiles.user_id = users.user_id
+                                 set user_full_name=:full,user_image=:image,document=:document,user_phone=:phone,user_email=:email,user_name=:user_name,user_password=:pass 
+                                WHERE users.`user_id`=:id');
+
+        return   $data->execute($args);
+    }
 
 //add new row to users table
     public function add(array $aData)

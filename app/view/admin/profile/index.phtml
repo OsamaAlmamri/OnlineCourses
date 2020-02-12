@@ -1,0 +1,153 @@
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
+
+<div class="container">
+
+<!--    <figure class="intro">-->
+<!--        <img src="/images/unnamed (1).jpg" alt="" />-->
+<!--        <figcaption class="caption">-->
+<!--            <h1> My Profile </h1>-->
+<!--        </figcaption>-->
+<!--        <span class="overlay">-->
+<!--        <svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"-->
+<!--<!-            viewBox="0 0 500 250" enable-background="new 0 0 500 250" xml:space="preserve" PreserveAspectRatio="none">
+<!--<!<path fill="#FFFFFF" d="M250,246.5c-97.85,0-186.344-40.044-250-104.633V250h500V141.867C436.344,206.456,347.85,246.5,250,246.5z"
+<!--<!/>-->
+<!--</svg>-->
+<!--  </span>-->
+<!--    </figure>-->
+<div class="row form-profile">
+    <div class="col-lg-12" style="background: white">
+        <?php if (array_key_exists('profile', $this->view_data)) {
+        foreach ($this->view_data['profile'] as $course) {
+       ?>
+        <?php include VIEW . 'messages.phtml' ?>
+        <form method="post" action="EditProfile" class="my-login-validation" novalidate=""
+              enctype="multipart/form-data">
+            <center>
+
+                <img src="<?php echo $course['user_image']; ?>"  id="img" class="rounded-circle mt-2 profile-pic" alt="Cinque Terre" width="150" height="150">
+                <label for="file">
+                    <i class="fa fa-camera imgedit upload-button" id="btn"></i>
+                    <input type="hidden" value="<?php echo $course['user_image']; ?>" name="old_image">
+                    <input type="file" id="file" class="file-upload" name="image" accept="image/gif,image/jpeg,image/jpg,image/png" multiple="" data-original-title="upload photos">
+                </label>
+                <!--            <i class="icon-edit imgedit" onclick="showimages()" ></i></center>-->
+                <!--        <input hidden type="file" class="custom-file-input" name="user_image"-->
+                <!--               id="user_image">-->
+                <div class="form">
+                    <div class="form-group">
+                        <label for="user_email" class="float-right">البريد الالكتروني</label>
+                        <input type="email" class="form-control" placeholder="ادخل البريد الالكتروني الخاص بك" id="user_email" value="<?php echo $course['user_email']; ?>" name="user_email">
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="user_password" class="float-right">كلمة المرور</label>
+
+                                <input type="hidden" class="form-control" value="<?php  echo $course['user_password']; ?>" placeholder="أدخــل كلمــة الســر" id="user_password" name="old_user_password" >
+                                <input type="password" class="form-control" placeholder="أدخــل كلمــة الســر" id="user_password" name="new_user_password" >
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="user_password" class="float-right">تأكيـد كلـمة المرور</label>
+                                <input type="password" class="form-control"
+                                       placeholder="تأكيــد كلمــة السر"
+                                       id="password_confirmation" name="password_confirmation"
+                                       data-eye value="">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="user_full_name" class="float-right">الأســم كــامل</label>
+                            <input type="text" class="form-control"
+                                   placeholder="يرجى إدخال الاسم كاملآ"
+                                   value="<?php echo $course['user_full_name']; ?>"
+                                   id="user_full_name" name="user_full_name">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <label for="user_name fl" class="float-right">إسم المستــخدم</label>
+                            <input type="text" class="form-control"
+                                   placeholder="يرجى إخال إسم المستخدم"
+                                   id="user_name"
+                                   value="<?php echo $course['user_name']; ?>"
+                                   name="user_name" required>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="user_phone" class="float-right">رقم الهاتف</label>
+                    <input type="phone" class="form-control" placeholder="يرجى إدراج رقم الهاتف"
+                           value="<?php echo $course['user_phone']; ?>"
+                           id="user_phone" name="user_phone" required>
+                </div>
+
+
+                <div class="form-group">
+                <input type="hidden" name="role_name" value="university">
+                <label for="user_image" class="float-right">وثيقة دليل الجامعة</label>
+
+                <div class="custom-file ">
+
+                    <input type="file" class="custom-file-input" name="document"
+                           id="document" required>
+                    <label class="custom-file-label" for="user_image">Choose
+                        file</label>
+                </div>
+                </div>
+                <button type="submit" class="btn btn-danger probtn">حفظ التغيرات</button>
+                <button type="submit" class="btn btn-warning probtn ">الغاء</button>
+
+    </div>
+
+    </form>
+    <?php
+        }
+        }
+        ?>
+</div>
+</div>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+<script>
+    $(document).ready(function() {
+
+
+        var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.profile-pic').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+
+        $(".file-upload").on('change', function(){
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function() {
+            $(".file-upload").hide();
+        });
+    });
+
+
+</script>
