@@ -15,20 +15,30 @@ class rating
        return $this->db->query("select * from ratings");
     }
 
+
+    public function averageRating($id){
+        return $this->db->query("SELECT 
+                                            COUNT(rating_number) AS rating_number,
+                                            FORMAT(SUM(ratings.rating_number)/COUNT(ratings.rating_number), 0)  AS average_rating 
+                                    FROM 
+                                            ratings 
+                                    WHERE
+                                            course_id=$id 
+                                          
+        ");
+    }
+
+
     public function allRatingsOfCourse($id)
     {
-        return $this->db->query("  SELECT 
-                                            ratings.*,
-                                            profiles.*,
-                                            COUNT(ratings.rating_number) AS rating_number,
-                                            FORMAT(SUM(ratings.rating_number)/COUNT(ratings.rating_number), 0)  AS average_rating 
+        return $this->db->query("  SELECT *
                                     FROM 
                                             ratings inner join profiles
                                     on
                                             ratings.user_id = profiles.user_id 
                                     WHERE
-                                            course_id=5
-        
+                                             ratings.course_id=$id 
+                                       
         ");
     }
 
