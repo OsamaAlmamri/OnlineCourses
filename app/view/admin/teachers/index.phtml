@@ -44,7 +44,10 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             <th>صورة المستخدم</th>
             <th>رقم الهاتف</th>
             <th>تاريخ التسجيل</th>
-            <th>الاعدادات</th>
+            <?php if (Permissions::getInstaince()->hasPermision('teacher_edit') == true
+                or Permissions::getInstaince()->hasPermision('teacher_delete') == true) { ?>
+                <th>الاعدادات</th>
+            <?php } ?>
 
         </tr>
         </thead>
@@ -67,16 +70,23 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
 
 
                         <?php if ($this->view_data['deleted'] == false) { ?>
-                        <a href="/admin/universities/edit/<?php echo $university['id'] ?>"><i
-                                    class="fa fa-edit"></i></a>
-
-
-                        <a href="/admin/universities/delete/<?php echo $university['id'] ?>"
-                           onclick="return confirm('هل أنت متأكد من الحذف');"><i
-                                    class="fa fa-trash-restore"></i></a>
-
+                        <?php if (Permissions::getInstaince()->hasPermision('teacher_edit') == true
+                        or Permissions::getInstaince()->hasPermision('teacher_delete') == true
+                        ) { ?>
+                    <td>
+                        <?php if (Permissions::getInstaince()->hasPermision('teacher_edit') == true) { ?>
+                            <a href="/admin/universities/edit/<?php echo $university['id'] ?>"><i
+                                        class="fa fa-edit"></i></a>
+                        <?php } ?>
+                        <?php if (Permissions::getInstaince()->hasPermision('teacher_delete') == true) { ?>
+                            <a href="/admin/universities/delete/<?php echo $university['id'] ?>"
+                               onclick="return confirm('هل أنت متأكد من الحذف');"><i
+                                        class="fa fa-trash-restore"></i></a>
+                        <?php } ?>
                     </td>
+                    <?php } ?>
                     <?php } else { ?>
+
                         <th>{{getUserName( $university['deleted_by'] )?></th>
                         <td><?php echo $university['deleted_at'] ?></td>
 

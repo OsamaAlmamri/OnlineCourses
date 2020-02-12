@@ -46,8 +46,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             <th>الوصف</th>
             <th>القسم الاب</th>
             <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true
-                or Permissions::getInstaince()->hasPermision('category_delete') == true
-            ) { ?>
+                or Permissions::getInstaince()->hasPermision('category_delete') == true ) { ?>
                 <th>الاعدادات</th>
             <?php } ?>
 
@@ -77,7 +76,6 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
 
                     </td>
                     <?php if ($this->view_data['deleted'] == false) { ?>
-
                         <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true
                             or Permissions::getInstaince()->hasPermision('category_delete') == true
                         ) { ?>
