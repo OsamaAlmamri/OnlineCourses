@@ -7,12 +7,14 @@
                 <div class="box_grid wow">
                     <figure class="block-reveal">
                         <div class="block-horizzontal"></div>
-                        <a <?php if (in_array($course['course_id'], $this->view_data['userWishList']))
-                            echo 'class="wish_bt_active addToWishList"    onclick="confirm(\'هل تريد الغاء هذا الكورس من المفضلة \')"  data-status="1"';
-                        else
-                            echo 'class="wish_bt addToWishList"   onclick="confirm(\'هل تريد اضافة هذا الكورس الى المفضلة \')"  data-status="0"'; ?>
-                                data-id="<?php echo $course['course_id'] ?>">
-                        </a>
+                        <?php if (isset($_SESSION['user'])) { ?>
+                            <a <?php if (in_array($course['course_id'], $this->view_data['userWishList']))
+                                echo 'class="wish_bt_active addToWishList"    onclick="confirm(\'هل تريد الغاء هذا الكورس من المفضلة \')"  data-status="1"';
+                            else
+                                echo 'class="wish_bt addToWishList"   onclick="confirm(\'هل تريد اضافة هذا الكورس الى المفضلة \')"  data-status="0"'; ?>
+                                    data-id="<?php echo $course['course_id'] ?>">
+                            </a>
+                        <?php } ?>
                         <a href="/home/course_detail/<?php echo $course['course_id'] ?>"><img
                                     src="<?php echo $course['courses_image']; ?>"
                                     class="img-fluid" alt=""></a>

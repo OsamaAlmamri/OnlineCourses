@@ -96,18 +96,18 @@
 
 
             <?php if (!isset($_SESSION['user'])) { ?>
-                <li class="nav-item dropdown heart">
-                    <a class="nav-link  dropdown-toggle " title="my_cart" href="#" id="navbarDropdown"
-                       role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="icon-cart mycart"></i>
-                        <span class="badge badge-danger badge-counter">1</span>
-                    </a>
-                    <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Cart is empty <br></a>
-                        <a class="dropdown-item" id="link" href="/home/cart1">Keep Shopping</a>
-                    </div>
-                </li>
+<!--                <li class="nav-item dropdown heart">-->
+<!--                    <a class="nav-link  dropdown-toggle " title="my_cart" href="#" id="navbarDropdown"-->
+<!--                       role="button"-->
+<!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+<!--                        <i class="icon-cart mycart"></i>-->
+<!--                        <span class="badge badge-danger badge-counter">1</span>-->
+<!--                    </a>-->
+<!--                    <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">-->
+<!--                        <a class="dropdown-item" href="#">Cart is empty <br></a>-->
+<!--                        <a class="dropdown-item" id="link" href="/home/cart1">Keep Shopping</a>-->
+<!--                    </div>-->
+<!--                </li>-->
                 <li class="nav-item">
                     <!--        <a href="#" class="nav-link"><button  type="submit" class="btn  btn-quaternary" data-toggle="modal" data-target="#loginModal">Log In</button>-->
                     <!--        </a>-->
@@ -134,42 +134,47 @@
                         <a class=" btn dropdown-item btn-primary" href="/home/mycourses">see</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown heart">
-                    <a class="nav-link  dropdown-toggle" title="wish list" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="icon_heart_alt  mycart"></i>
-                        <span class="badge badge-danger badge-counter" id="n_whishList_items"><?php echo Helper::wishListCount() ?></span>
-                    </a>
-                    <div class="dropdown-menu dm dmheart" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">wishList is empty <br></a>
-                        <a class="dropdown-item" id="link" href="/wishList">Wish List</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown heart">
-                    <a class="nav-link  dropdown-toggle" title="notification" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="icon-bell-alt mycart"></i>
-                        <span class="badge badge-danger badge-counter">3</span>
-                    </a>
-                    <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
-                        <i class=" icon_setting"></i>
-                        <a class="dropdown-item" href="#">notification</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item">No notification</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown heart">
-                    <a class="nav-link  dropdown-toggle" title="my_cart" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="icon-cart mycart shopping-cart"></i>
-                        <span class="badge badge-danger badge-counter"
-                              id="n_cart_items"><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
-                    </a>
-                    <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Cart is empty <br></a>
-                        <a class="dropdown-item" id="link" href="/home/cart1">Keep Shopping</a>
-                    </div>
-                </li>
+                <?php if (isset($_SESSION['user'])) { ?>
+                    <li class="nav-item dropdown heart">
+                        <a class="nav-link  dropdown-toggle" title="wish list" href="#" id="navbarDropdown"
+                           role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon_heart_alt  mycart"></i>
+                            <span class="badge badge-danger badge-counter"
+                                  id="n_whishList_items"><?php echo Helper::wishListCount() ?></span>
+                        </a>
+                        <div class="dropdown-menu dm dmheart" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">wishList is empty <br></a>
+                            <a class="dropdown-item" id="link" href="/wishList">Wish List</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown heart">
+                        <a class="nav-link  dropdown-toggle" title="notification" href="#" id="navbarDropdown"
+                           role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-bell-alt mycart"></i>
+                            <span class="badge badge-danger badge-counter">3</span>
+                        </a>
+                        <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
+                            <i class=" icon_setting"></i>
+                            <a class="dropdown-item" href="#">notification</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item">No notification</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown heart">
+                        <a class="nav-link  dropdown-toggle" title="my_cart" href="#" id="navbarDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon-cart mycart shopping-cart"></i>
+                            <span class="badge badge-danger badge-counter"
+                                  id="n_cart_items"><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
+                        </a>
+                        <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Cart is empty <br></a>
+                            <a class="dropdown-item" id="link" href="/home/cart1">Keep Shopping</a>
+                        </div>
+                    </li>
+                <?php } ?>
                 <li class="nav-item dropdown heart">
                     <a class="nav-link  dropdown-toggle" title="information user" href="#" id="navbarDropdown"
                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -20,7 +20,7 @@ class homeController extends Controller
     public function index($id = '', $name = '')
     {
         $course_site = $this->model('Course_site');
-        $user_id = Session::get('user')['user_id'];
+        $user_id = (isset($_SESSION['iser'])) ? Session::get('user')['user_id'] : 0;
         $userWishList = $course_site->wishListUser($user_id);
 //        return var_dump();
         if (count($userWishList) > 0) {
