@@ -2,8 +2,9 @@
 
     function AddToWish(controller) {
         $(document).on('click', '.wish_bt', function () {
-            var data = encodeURIComponent($(this).attr('data-id'));
-            var url =  controller + '/insertCourseUser';
+            var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&id=' + encodeURIComponent($(this).attr('data-id'));
+
+            var url = controller + '/insertCourseUser';
             var _this = $(this);
             $.ajax({
                 url: url,//   var url=$('#news').attr('action');
@@ -11,13 +12,13 @@
                 dataType: 'json',// data type that i want to return
                 data: data,// var form=$('#news').serialize();
                 success: function (data) {
+                    alert(data);
                     if (data == 1) {
                         alert("sucees");
                     }
                 },
                 error: function (xhr, status, error) {
-                    // window.location.href="/admin/login";
-                    //  alert(error.responseText);
+                    alert(xhr.responseText);
                 }
             });
             return (false);
