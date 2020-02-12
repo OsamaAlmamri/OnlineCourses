@@ -2936,6 +2936,43 @@ a.box_feat h3 {
   content: "\e089";
   color: #fff;
 }
+
+.box_grid a.wish_bt_active {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  z-index: 1;
+  background-color: black;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 9px 10px;
+  display: inline-block;
+  animation: color .3s ease-in-out;
+  animation-delay: 1s;
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  opacity: 0;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  color: #fff;
+  line-height: 1;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  opacity: 0;
+}
+.box_grid a.wish_bt_active:after {
+  font-family: 'ElegantIcons';
+  content: "\e089";
+}
+.box_grid a.wish_bt_active:hover:after {
+
+  content: "\e030";
+  color: #fff;
+}
+
+
 .box_grid figure {
   margin-bottom: 0;
   overflow: hidden;

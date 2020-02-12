@@ -1,20 +1,31 @@
 <script>
 
     function AddToWish(controller) {
-        $(document).on('click', '.wish_bt', function () {
+        $(document).on('click', '.addToWishList', function () {
             var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&id=' + encodeURIComponent($(this).attr('data-id'));
 
             var url = controller + '/insertCourseUser';
             var _this = $(this);
-            alert(url);
+            // alert(url);
             $.ajax({
                 url: url,//   var url=$('#news').attr('action');
                 method: 'POST',
                 dataType: 'json',// data type that i want to return
                 data: data,// var form=$('#news').serialize();
                 success: function (data) {
-                    if (data >0) {
-                      _this
+                    if (data > 0) {
+                        if (_this.attr('data-status') == 1) {
+                            _this.attr('class', 'wish_bt addToWishList');
+                            _this.attr('data-status', 0);
+                            _this.attr('onclick', "confirm('هل تريد اضافة هذا الكورس الى المفضلة ')");
+
+                        } else {
+                            _this.attr('class', 'wish_bt_active addToWishList');
+                            _this.attr('data-status', 1);
+                            _this.attr('onclick', "confirm('هل تريد الغاء هذا الكورس من المفضلة ')");
+
+                        }
+
                     }
                 },
                 error: function (xhr, status, error) {
