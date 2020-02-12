@@ -13,9 +13,8 @@
                 dataType: 'json',// data type that i want to return
                 data: data,// var form=$('#news').serialize();
                 success: function (data) {
-                    alert(data);
-                    if (data == 1) {
-                        alert("sucees");
+                    if (data >0) {
+                      _this
                     }
                 },
                 error: function (xhr, status, error) {

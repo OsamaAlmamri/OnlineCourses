@@ -7,7 +7,7 @@ class Course_site
 
     function __construct()
     {
-        $this->db= new Model();
+        $this->db = new Model();
     }
 
 // return all row of table of courses
@@ -15,6 +15,7 @@ class Course_site
     {
         return $this->db->query("select * from courses");
     }
+
     public function insertInToUsersCourses(array $aData)
     {
 
@@ -24,9 +25,20 @@ class Course_site
         return $this->db->lastInsertId();
 
     }
+
     public function latestCoursesWebsite()
     {
         return $this->db->query("SELECT * FROM courses ORDER BY course_id DESC LIMIT 6");
+    }
+
+    public function userHasCourses($id)
+    {
+        $t = true;
+        $course = $this->db->query("SELECT * FROM users_courses WHERE user_id=$id ");
+        if (count($course) < 1)
+            $t = false;
+        return $t;
+
     }
 
     public function wishListCourseUser($id)
@@ -40,6 +52,7 @@ find_in_set(courses.course_id, replace(users_courses.user_wish_list, ';', ',')) 
 //        return $this->db->query("select * from courses");
         return $this->db->query("SELECT `user_wish_list` FROM `users_courses` WHERE user_id=$id");
     }
+
     public function updateFromthewishlist($aData)
     {
         $insertIntoUserCourses = $this->db->preparation('UPDATE `users_courses` SET `user_wish_list`=:user_wish_list
@@ -50,4 +63,5 @@ find_in_set(courses.course_id, replace(users_courses.user_wish_list, ';', ',')) 
     }
 
 }
+
 ?>

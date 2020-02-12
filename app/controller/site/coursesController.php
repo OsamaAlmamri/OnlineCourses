@@ -37,12 +37,17 @@ class coursesController extends \Controller
     public function insertCourseUser()
     {
 
+
         $userCourse = $this->model('Course_site');
         $user_id = Session::get('user')['user_id'];
+        if ($userCourse->userHasCourses($user_id) == false) {
+            $userCourse->insertInToUsersCourses(array(
+                ":user_wish_list" => '',
+                ":user_id" => $user_id
+            ));
+        }
         $userWishList = $userCourse->wishListUser($user_id);
         $userWishList = explode(',', $userWishList[0]['user_wish_list']);
-//        var_dump('sta =>' . $_REQUEST['status']);
-//        var_dump('id =>' . $_REQUEST['id']);
         if ($_REQUEST['status'] == 1) {
             if (($key = array_search($_REQUEST['id'], $userWishList)) !== false)
                 unset($userWishList[$key]);
@@ -53,12 +58,11 @@ class coursesController extends \Controller
             $userWishList = implode(',', $userWishList);
         } else
             $userWishList = '';
-        var_dump($userWishList);
         $userCourse->updateFromthewishlist(array(
             ":user_wish_list" => $userWishList,
             ":user_id" => $user_id
         ));
-        echo '1';
+        echo $_REQUEST['id'];
 
 
     }
