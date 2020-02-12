@@ -7,7 +7,7 @@ class Profile_site
 
     function __construct()
     {
-        $this->db= new Model();
+        $this->db = new Model();
     }
 
 // return all row of table of courses
@@ -18,6 +18,8 @@ class Profile_site
         return $this->db->query("select * from profiles INNER JOIN users ON profiles.user_id = users.user_id where users.`user_id`=$id");
 
     }
+
+
     public function UpdateDataUser(array $args)
     {
 
@@ -26,6 +28,9 @@ class Profile_site
                                 user_qualification=:qualification,user_email=:email,user_name=:user_name,user_password=:pass 
                                 WHERE users.`user_id`=:id');
 
-        return   $data->execute($args);
+        return $data->execute($args);
     }
+
+
+
 }

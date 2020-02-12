@@ -22,7 +22,14 @@ class coursesController extends \Controller
     {
 
         $course_site = $this->model('Course_site');
-        $this->view('website' . DIRECTORY_SEPARATOR . 'courses', ['courses' => $course_site->all(), 'deleted' => false]);
+        $user_id = Session::get('user')['user_id'];
+        $userWishList = $course_site->wishListUser($user_id);
+        $userWishList = (explode(',', $userWishList[0]['user_wish_list']));
+        $this->view('website' . DIRECTORY_SEPARATOR . 'courses',
+            ['courses' => $course_site->all(),
+                'userWishList' => $userWishList,
+                'deleted' => false,
+            ]);
         $this->view->pageTitle = 'Course_site';
         $this->view->render();
     }
@@ -31,14 +38,28 @@ class coursesController extends \Controller
     {
 
         $userCourse = $this->model('Course_site');
-        $userInfoCourse = array(
-            ":user_id" => Session::get('user')['user_id'],
-//   ":couces_buy"=>implode(",",$_COOKIE['item_id']),
-            ":user_wish_list" => implode(",", $_COOKIE['item_whishlish_id'])
-        );
-        $userCourse->insertInToUsersCourses($userInfoCourse);
-        echo 1;
-        // Helper::back('/cousres' , 'add successfully', 'success');
+        $user_id = Session::get('user')['user_id'];
+        $userWishList = $userCourse->wishListUser($user_id);
+        $userWishList = explode(',', $userWishList[0]['user_wish_list']);
+//        var_dump('sta =>' . $_REQUEST['status']);
+//        var_dump('id =>' . $_REQUEST['id']);
+        if ($_REQUEST['status'] == 1) {
+            if (($key = array_search($_REQUEST['id'], $userWishList)) !== false)
+                unset($userWishList[$key]);
+        } else
+            $userWishList[] = $_REQUEST['id'];
+
+        if (count($userWishList) > 0) {
+            $userWishList = implode(',', $userWishList);
+        } else
+            $userWishList = '';
+        var_dump($userWishList);
+        $userCourse->updateFromthewishlist(array(
+            ":user_wish_list" => $userWishList,
+            ":user_id" => $user_id
+        ));
+        echo '1';
+
 
     }
 

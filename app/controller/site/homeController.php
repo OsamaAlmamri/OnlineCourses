@@ -11,6 +11,7 @@ use auth\LogOut;
 use auth\Register;
 use Controller;
 use Helper;
+use Session;
 
 class homeController extends Controller
 {
@@ -18,10 +19,21 @@ class homeController extends Controller
 
     public function index($id = '', $name = '')
     {
-        $news = $this->model('Course');
-        $category = $this->model('Category');
         $course_site = $this->model('Course_site');
-        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['news' => [], 'latestCourses' => $course_site->latestCoursesWebsite()]);
+        $user_id = Session::get('user')['user_id'];
+        $userWishList = $course_site->wishListUser($user_id);
+//        return var_dump();
+        if (count($userWishList) > 0) {
+            $userWishList = (explode(',', $userWishList[0]['user_wish_list']));
+
+        } else
+            $userWishList = [];
+
+        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['news' => [],
+            'latestCourses' => $course_site->latestCoursesWebsite(),
+            'userWishList' => $userWishList,
+
+        ]);
 
 //        $this->view('home' . DIRECTORY_SEPARATOR . 'index', ['news' => $news->all(), 'category' => $category->all()]);
         $this->view->pageTitle = 'home';
