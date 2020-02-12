@@ -8,15 +8,6 @@
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <main>
 
-    <!--    <section id="hero_in" class="courses">-->
-    <!--        <div class="wrapper">-->
-    <!--            <div class="container">-->
-    <!--               <img src="/img/1.jpg">-->
-    <!--                <h1 class="fadeInUp"><span></span>Online courses</h1>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </section>-->
-    <!--/hero_in-->
 
     <div class="filters_listing">
         <div class="container head-courses">
@@ -37,40 +28,37 @@
                         <a href="/home/courses_list"><i class="icon-th-list"></i></a>
                     </div>
                 </li>
-                <!--                <li>-->
-                <!--                    <select name="orderby" class="selectbox">-->
-                <!--                        <option value="category">Category</option>-->
-                <!--                        <option value="category 2">Literature</option>-->
-                <!--                        <option value="category 3">Architecture</option>-->
-                <!--                        <option value="category 4">Economy</option>-->
-                <!--                    </select>-->
-                <!--                </li>-->
+
             </ul>
         </div>
-        <!-- /container -->
+
     </div>
-    <!-- /filters -->
+
 
     <div class="container margin_61_35">
         <div class="row">
             <?php if (array_key_exists('courses', $this->view_data)) {
                 foreach ($this->view_data['courses'] as $course) { ?>
-                    <div class="col-xl-4 col-lg-6 col-md-6" id="savedLinkHTML">
+                    <div class="col-xl-4 col-lg-6 col-md-6" id="wishlist">
                         <div class="box_grid wow">
                             <figure class="block-reveal">
                                 <div class="block-horizzontal"></div>
-                                <a class="wish_bt" data-id="<?php echo $course['course_id'] ?>"
-                                   onclick="addToWhishLish(<?php echo $course['course_id'] ?>)"></a>
-                                <a href="/home/course_detail"><img
-                                            src="<?php echo $course['courses_image'] ?>" class="img-fluid"
-                                            alt=""></a>
+                                <a
+                                   <?php if(in_array($course['course_id'],$this->view_data['userWishList'] ))
+                                       echo 'class="wish_bt"  data-status="0"';
+                                       else
+                                           echo 'class="wish_bt"  data-status="1"';
+                                       ?>
+
+                                        data-id="<?php echo $course['course_id']?>" ></a>
+                                <a href="/home/course_detail"><img src="<?php echo $course['courses_image']?>" class="img-fluid" alt=""></a>
                                 <div class="price"><?php echo $course['course_price']; ?></div>
-                                <div class="preview"><span>Preview course</span></div>
+                                <div class="preview"><span>عرض الكورس</span></div>
                             </figure>
                             <div class="wrapper">
-                                <small>Category</small>
+                                <small>الصنف</small>
                                 <h3><?php echo $course['course_title']; ?></h3>
-                                <p><?php echo $course['course_description']; ?></p>
+
                                 <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i
                                             class="icon_star voted"></i><i class="icon_star"></i><i
                                             class="icon_star"></i> <small>(145)</small></div>
@@ -80,9 +68,9 @@
                                 <!--                                <li><i class="icon_like"></i> 890</li>-->
                                 <!--                                onclick="addToCat(-->
                                 <?php //echo $course['course_id']; ?><!--)"-->
-                                <button href="" onclick="addToCart(<?php echo $course['course_id']; ?>)"> buy</button>
-                                <li><a href="/home/course_detail/<?php echo $course['course_id']; ?>" id="courseItems">Enroll
-                                        now</a></li>
+                                <button href="" onclick="addToCart(<?php echo $course['course_id'];?>)"> شراء</button>
+                                <li><a href="/home/course_detail/<?php echo $course['course_id']; ?>" id="courseItems">
+                                        تسجيل في الكورس</a></li>
                             </ul>
                         </div>
                     </div>
@@ -110,18 +98,19 @@
 
 <script>
 
-    function addToCart(id) {
-        document.cookie = 'item_id[' + id + ']=' + id;
-        alert(id);
+function addToCart(id)
+{
+    document.cookie ='item_id['+id+']='+id;
+    alert(id);
 
 
-    }
+}
+ function addToWhishLish(id)
+{  document.cookie ='item_whishlish_id['+id+']='+id;
+     alert(id);
 
-    function addToWhishLish(id) {
-        document.cookie = 'item_whishlish_id[' + id + ']=' + id;
-        alert(id);
+}
 
-    }
 
 
 </script>
@@ -129,6 +118,6 @@
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
 <script>
-    AddToWish('/courses');
 
+    AddToWish('courses');
 </script>

@@ -56,10 +56,19 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                 <tr>
                     <td><?php echo $role['role_name'] ?></td>
                     <td><?php echo $role['role_description'] ?></td>
+
+                    <td><?php echo ($role['role_status'] == '1') ? 'Active' : 'Disactive' ?></td>
+                    <?php if ($this->view_data['deleted'] == false) { ?>
+                        <td><a href="/admin/role/edit/<?php echo $role['id'] ?>"><i class="fa fa-edit"></i></a>
+                            <a class="active" data-id="<?php echo $role['role_id'] ?>"
+                               data-status="<?php echo $role['role_status'] ?>"
+                           href="" ><?php echo ($role['role_status'] == '1') ?  '<i class=\'fas fa-check\'></i>' :'<i class=\'ion ion-close\'></i>'  ?> </a>
+
                     <td>
                         <a class="active" data-id="<?php echo $role['role_id'] ?>"
                            data-status="<?php echo $role['role_status'] ?>"
                            href=""><?php echo ($role['role_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
+
 
                     </td>
 

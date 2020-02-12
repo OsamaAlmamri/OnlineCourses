@@ -2,6 +2,8 @@
 
 class Model
 {
+
+
     protected $pdoObject;
     protected $dsn;
 
@@ -14,10 +16,12 @@ class Model
         try {
             $this->dsn = "mysql:host=localhost;dbname=e-learning";
             $this->pdoObject = new PDO($this->dsn, Model::DB_USER, Model::DB_PASS);
+
             $this->pdoObject->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo 'Connection failed: ' . $e->getMessage();
         }
+
 
         $this->pdoObject->exec("SET NAMES utf8");
 
@@ -73,11 +77,6 @@ class Model
 
         return $stmt;
 
-    }
-    public function Insert($sql,$args=array())
-    {
-        $data=$this->pdoObject->prepare($sql);
-        $data->execute($args);
     }
 
 }

@@ -2,7 +2,7 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <!--  Start Sidebar  -->
+        <!--  Start Sidebar -->
         <div class="col-2 p-0 ">
             <nav id="sidebar" class="">
                 <div class="sidebar-header">
@@ -11,42 +11,66 @@
                 </div>
 
                 <div class="userImage text-center">
-                    <img src="<?php
-
-                    use auth\Permissions;
-
-                    echo(Session::get('user')['user_image']) ?>" class="rounded-circle" width="30">
+                    <img src="<?php echo(Session::get('user')['user_image']) ?>" class="rounded-circle" width="30">
                 </div>
                 <ul class="list-unstyled components">
-                    <?php if (Permissions::getInstaince()->hasPermision('admin_index') == true) { ?>
-                        <li>
-                            <a href="/admin/index">
-                                <i class="fas fa-home a2"></i>
-                                الصفحة الرئيسية
-                            </a>
-                        </li>
-                    <?php } ?>
+                    <li>
+                        <a href="/admin/index">
+                            <i class="fas fa-home a2"></i>
+                            الصفحة الرئيسية
+                        </a>
+                    </li>
 
-                    <?php if (Permissions::getInstaince()->hasPermision('category_index') == true) { ?>
-                        <li>
-                            <a href="/admin/categories/index">
-                                <i class="fas fa-list"></i>
-                                الاقسام
-                            </a>
-                        </li>
-                    <?php } ?>
-                    <?php if (Permissions::getInstaince()->hasPermision('course_index') == true) { ?>
-                        <li>
-                            <a href="/admin/courses/index">
-                                <i class="fas fa-list"></i>
-                                الكورسات
-                            </a>
-                        </li>
-                    <?php } ?>
-                    <?php if (Permissions::getInstaince()->hasPermision('university_index') == true
-                        or Permissions::getInstaince()->hasPermision('teacher_index') == true
+                    <li>
+                        <a href="/admin/categories/index">
+                            <i class="fas fa-list"></i>
+                            الاقسام
+                        </a>
+                    </li>
 
-                    ) { ?>
+
+                    <li>
+                        <a href="/admin/courses/index">
+                            <i class="fas fa-list"></i>
+                           الكورسات
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <i class="fa fa-users-cog "></i>
+                            الحسابات
+                        </a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="#"><i class="fa fa-users-cog "></i>المدراء الفرعين  </a>
+                            </li>
+                            <li>
+                                <a href="/admin/universities/index"><i class="ion ion-university  "></i>الجامعات</a>
+                            </li>
+                            <li>
+                                <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>المدرسين </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <i class="fa fa-users-cog "></i>
+                            الادارة
+                        </a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu2">
+                            <li>
+                                <a href="/admin/role/index"><i class="fa fa-users-cog "></i>الادوار </a>
+                            </li>
+                            <li>
+                                <a href="/admin/permision/index"><i class="fa fa-users-cogs "></i>الصلاحيات</a>
+                            </li>
+                            <li>
+                                <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>المدرسين </a>
+                            </li>
+                        </ul>
+                    </li>
+
                         <li>
                             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                                 <i class="fa fa-users-cog "></i>

@@ -2,8 +2,10 @@
 
     function AddToWish(controller) {
         $(document).on('click', '.wish_bt', function () {
-            var data = encodeURIComponent($(this).attr('data-id'));
+            var data = 'wishListstatus=' + encodeURIComponent($(this).attr('data-status')) + '&data_id_wishList=' +  encodeURIComponent($(this).attr('data-id'));
             var url =  controller + '/insertCourseUser';
+            // alert($(this).attr('data-status'));
+            // alert($(this).attr('data-id'));
             var _this = $(this);
             $.ajax({
                 url: url,//   var url=$('#news').attr('action');
@@ -11,21 +13,22 @@
                 dataType: 'json',// data type that i want to return
                 data: data,// var form=$('#news').serialize();
                 success: function (data) {
+                    // alert('data');
+                    // alert(data);
                     if (data == 1) {
-                        alert("sucees");
+
                     }
                 },
                 error: function (xhr, status, error) {
                     // window.location.href="/admin/login";
-                    //  alert(error.responseText);
+                   alert(xhr.responseText);
                 }
             });
             return (false);
         });
-    }
-
+       }
     function Active(controller) {
-        $('.active').on('click', function () {
+        $(document).on('click', '.active', function () {
             var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&data_id=' + encodeURIComponent($(this).attr('data-id'));
             var url = '/admin/' + controller + '/active';
             var _this = $(this);
@@ -36,7 +39,7 @@
                 data: data,// var form=$('#news').serialize();
                 success: function (data) {
                     if (data == 1) {
-                        _this.html("<i class='fa fa-check'></i>");
+                        _this.html("<i class='fas fa-check'></i>");
                         _this.attr("data-status", data);
                     } else {
                         _this.html("<i class='ion ion-close'></i>");

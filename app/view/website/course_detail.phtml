@@ -144,8 +144,8 @@
                                         <strong>4.7</strong>
                                         <div class="rating">
                                             <i class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                    class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                    class="icon_star"></i>
+                                                class="icon_star voted"></i><i class="icon_star voted"></i><i
+                                                class="icon_star"></i>
                                         </div>
                                         <small>Based on 4 reviews</small>
                                     </div>
@@ -211,28 +211,28 @@
 
                             <?php
 
-                            foreach ($this->view_data['AllRatings'] as $rating) { ?>
+                            foreach($this->view_data['AllRatings'] as $rating) {?>
                                 <div class="review-box clearfix">
                                     <figure class="rev-thumb">
                                         <img
-                                                src="<?php echo $rating['user_image']; ?>" alt="">
+                                            src="<?php echo $rating['user_image'];?>" alt="">
                                     </figure>
                                     <div class="rev-content">
                                         <div class="rating mb-1">
                                             <i class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                    class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                    class="icon_star"></i>
+                                                class="icon_star voted"></i><i class="icon_star voted"></i><i
+                                                class="icon_star"></i>
                                         </div>
                                         <div class="rev-info">
-                                            <?php echo $rating['user_full_name'] . " - " . $rating['rating_date']; ?>
+                                            <?php echo $rating['user_full_name'] ." - " . $rating['rating_date'] ;?>
                                         </div>
                                         <div class="rev-text">
-                                            <p><?php echo $rating['comment_text']; ?>
+                                            <p><?php echo $rating['comment_text'];?>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                            <?php } ?>
+                            <?php }?>
                         </div>
                         <!-- /review-container -->
 
@@ -242,7 +242,7 @@
                         <div class="reviews-container">
                             <div class="review-box clearfix">
                                 <figure class="rev-thumb"><img
-                                            src="<?php echo Session::get('user')['user_image']; ?>" alt="">
+                                        src="<?php echo Session::get('user')['user_image'];?>" alt="">
                                 </figure>
                                 <div class="rev-content">
                                     <!--                                        <div class="rating mb-1">-->
@@ -251,20 +251,13 @@
                                     <!--                                                    class="icon_star"></i>-->
                                     <!--                                        </div>-->
                                     <div class="rev-info">
-                                        <?php echo Session::get('user')['user_full_name']; ?>
+                                        <?php echo Session::get('user')['user_full_name']  ;?>
                                     </div>
                                     <div class="rev-text">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control comment_input" name="comment_text"
-                                                   data-course="<?php echo $course['course_id']; ?>"
-                                                   data-image-user="<?php echo(Session::get('user')['user_image']) ?>"
-                                                   data-user-name="<?php echo(Session::get('user')['user_full_name']) ?>"
-                                                   data-comment-date="<?php echo date("Y-m-d h:i:sa") ?>"
-                                                   data-user="<?php echo(Session::get('userID')) ?>">
+                                            <input type="text"  class="form-control comment_input" name="comment_text" data-course="<?php echo $course['course_id'];?>" data-image-user="<?php echo(Session::get('user')['user_image']) ?>" data-user-name="<?php echo(Session::get('user')['user_full_name']) ?>"  data-comment-date="<?php echo date("Y-m-d h:i:sa") ?>" data-user="<?php echo(Session::get('userID')) ?>" >
                                             <div class="input-group-append">
-                                                <button class="btn btn-success" id="add_comment" name="add_comment">
-                                                    تعليق
-                                                </button>
+                                                <button class="btn btn-success" id="add_comment" name="add_comment" >تعليق</button>
                                             </div>
                                         </div>
 
@@ -283,14 +276,14 @@
                     <div class="box_detail">
                         <figure>
                             <a class="video"><i
-                                        class="arrow_triangle-right"></i>
+                                    class="arrow_triangle-right"></i>
                                 <img alt="" src="<?php echo $course['courses_image'] ?>"
                                      class="img-fluid"><span>View course preview</span></a>
                         </figure>
 
                         <div class="price">
                             $ <?php echo $course['course_price'] ?> <span
-                                    class="original_price"><em>$<?php echo $course['course_price'] ?></em>60% <?php echo $course['course_price'] ?></span>
+                                class="original_price"><em>$<?php echo $course['course_price'] ?></em>60% <?php echo $course['course_price'] ?></span>
                         </div>
                         <a href="/home/cart1" class="btn_1 full-width">Purchase</a>
                         <button class="btn_1 full-width outline"

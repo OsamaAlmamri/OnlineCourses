@@ -3,7 +3,8 @@
 include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-<div class="content">
+<!-- Start Main-content -->
+<div class="container">
     <?php include VIEW . 'messages.phtml' ?>
     <div class="row bg-white mb-4 ">
         <div class="text-right mt-auto col-6">
@@ -21,22 +22,105 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                         id="dashboard_daterangepicker">
-                    <i class="	fas fa-bullseye"></i> sorting data by
+                    <i class="	fas fa-bullseye"></i> ترنيب حسب
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Day</a>
-                    <a class="dropdown-item" href="#">Week</a>
-                    <a class="dropdown-item" href="#">Month</a>
-                    <a class="dropdown-item" href="#">Range</a>
+                    <a class="dropdown-item" href="#">اليوم</a>
+                    <a class="dropdown-item" href="#">الاسبوع</a>
+                    <a class="dropdown-item" href="#">الشهر</a>
+                    <a class="dropdown-item" href="#">الفترة</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <table id="example1" class="table table-bordered table-striped">
-                <thead class="thead-dark font-size-10">
+    <table id="example1" class="table table-bordered table-striped">
+        <thead class="thead-dark font-size-18">
+
+        <tr>
+
+            <th>#الرقم المميز</th>
+            <th>عنوان الكورس</th>
+<!--            <th>وصف الكورس</th>-->
+            <th>صورة الكورس</th>
+            <th>سعر الكورس</th>
+            <th> السعر بعد التحفيض</th>
+<!--            <th>الطلاب المسهدفين</th>-->
+<!--            <th>أهداف الكورس</th>-->
+            <th>اسم الصنف</th>
+            <th>حالة الكورس</th>
+            <th>الدروس</th>
+            <th>إظهار الكورس</th>
+
+            <th>الاعدادات</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <?php if (array_key_exists('courses', $this->view_data)) {
+            foreach ($this->view_data['courses'] as $k => $course) { ?>
                 <tr>
+
+                    <td><?php echo $k ?></td>
+                    <td><?php echo $course['course_title'] ?></td>
+<!--                    <td>--><?php //echo html_entity_decode($course['course_description']) ?><!--</td>-->
+                    <td><img src="<?php echo $course['courses_image'] ?>" width="100px"></td>
+                    <td><?php echo $course['course_price'] ?></td>
+                    <td><?php echo $course['course_price_afterDiscount'] ?></td>
+
+<!--                    <td>--><?php //echo html_entity_decode($course['course_students_target']) ?><!--</td>-->
+<!--                    <td>--><?php //echo html_entity_decode($course['course_goals']) ?><!--</td>-->
+                    <!--                    <td>--><?php //echo ($course['categories_ids']) ?><!--</td>-->
+                    <td><?php echo Helper::Names($course['categories_ids'], 'Category') ?></td>
+
+
+                    <td>
+                        <button data-id="<?php echo $course['course_id'] ?>"
+                                data-status="<?php echo $course['course_status'] ?>"
+                                class="btn btn-success active"><?php echo ($course['course_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </button>
+                    </td>
+                    <td>
+                        <a href="/admin/lessons/index/<?php echo $course['course_id'] ?>"
+                           class="btn btn-info"><i
+                                    class="fa fa-eye"></i></a>
+
+                    </td>
+                    <td>
+                        <button data-id="<?php echo $course['course_id'] ?>"
+                                data-visibility="<?php echo $course['course_visibility'] ?>"
+                                class="btn btn-success btn_visibility"><?php echo ($course['course_visibility'] == '1') ? ' <i class="fa fa-eye"> </i>' : '  <i class="fa fa-eye-slash"> </i>' ?> </button>
+                    </td>
+
+                    <?php if ($this->view_data['deleted'] == false) { ?>
+                        <td><a href="Categories.php?do=edit" class="btn btn-success"><i class="fa fa-edit"></i></a></td>
+
+                        <td>
+                            <a href="/admin/universities/delete/<?php echo $course['id'] ?>"
+                               onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
+                                        class="fa fa-trash"></i></a>
+
+                        </td>
+                    <?php } else { ?>
+                        <th>{{getUserName( $course['deleted_by'] )?></th>
+                        <td><?php echo $course['deleted_at'] ?></td>
+
+
+                        <td class="text-center">
+                            <a href="{{  route('admin.universities.restore',encrypt( $course['']id)) }}"
+                               class="btn btn-primary"><i
+                                        class="fa fa-arrow-up"></i></a>
+                        </td>
+
+                    <?php } ?>
+
+
+                </tr>
+            <?php }
+        } ?>
+    </table>
+</div>
+
                     <th>#الرقم</th>
                     <th>عنوان الكورس</th>
                     <th>صورة الكورس</th>
@@ -118,6 +202,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             </table>
         </div>
 
+
         <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
         <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
         <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
@@ -128,21 +213,23 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             Active('courses');
             Visible('courses');
 
-            $(function () {
-                $('#example1').DataTable({
-                    language: {url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Arabic.json"},
-                    dom: "Blfrtip",
-                    buttons: [{extend: "copy", text: "نسخ", className: "btn-sm"}, {
-                        extend: "csv",
-                        text: "ملف CSV",
-                        className: "btn-sm"
-                    }, {extend: "excel", text: "اکسل", className: "btn-sm"}, {
-                        extend: "pdfHtml5",
-                        text: "ملف PDF",
-                        className: "btn-sm"
-                    }, {extend: "print", text: "طباعة", className: "btn-sm"}],
-                    responsive: !0
-                });
-            });
-        </script>
-        <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+    $(function () {
+        $('#example1').DataTable({
+            language: {url: "//cdn.datatables.net/plug-ins/1.10.19/i18n/Arabic.json"},
+            dom: "Blfrtip",
+            buttons: [{extend: "copy", text: "نسخ", className: "btn-sm"}, {
+                extend: "csv",
+                text: "ملف CSV",
+                className: "btn-sm"
+            }, {extend: "excel", text: "اکسل", className: "btn-sm"}, {
+                extend: "pdfHtml5",
+                text: "ملف PDF",
+                className: "btn-sm"
+            }, {extend: "print", text: "طباعة", className: "btn-sm"}],
+            responsive: !0
+        });
+    });
+</script>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+
+

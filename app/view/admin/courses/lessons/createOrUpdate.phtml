@@ -12,7 +12,7 @@
 
     <div id="video_details">
         <form id="upload_form" enctype="multipart/form-data" method="post">
-            <input type="file" accept="video/*" name="file1" id="file1"><br>
+            <input type="file" name="file1" id="file1"><br>
             <input type="button" value="Upload File" onclick="uploadFile()">
             <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
             <h3 id="status"></h3>
@@ -40,7 +40,7 @@
 
                 <?php echo Message::getInputErrorMessage('categories_ids') ?>
             </div>
-            <button type="submit" disabled id="btn_submit" name="submit" class="btn btn-primary btn-block">إرسال الاستعلام</button>
+            <button type="submit" name="submit" class="btn btn-primary btn-block">إرسال الاستعلام</button>
         </form>
 
     </div>
@@ -125,7 +125,6 @@
     }
 
     function completeHandler(event) {
-        $("#btn_submit").removeAttr('disabled') ;
         _("status").innerHTML = event.target.responseText;
         $('#video_info').html('<input type="hidden"  name="resources_video" value="' + event.target.responseText + '"> ')
         _("progressBar").value = 0;

@@ -3,95 +3,111 @@
 <main>
     <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
-    </section>
-    <div class="container">
-        <div class="row wish_list">
-            <div class="col-lg-12 col-md-12 col-ms-12">
-                <h2>My Wish List</h2>
 
-            </div>
+
+        <div class="container margin_60_35">
+
+            <?php include VIEW . 'messages.phtml' ?>
+
+<div class="container">
+    <div class="row">
+
+        <div class=" card col-lg-12 col-md-12 col-ms-12" style="border-bottom: red">
+            <h2>Popular Courses</h2>
+
         </div>
+        <div class="col-lg-12 col-md-12 col-ms-12">
+
+            <?php if (array_key_exists('wish_list', $this->view_data)) {
+                ?>
+                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row">
+                                <?php      foreach ($this->view_data['wish_list'] as $k=> $course) { ?>
+
+                                    <?php if($k<3){
+                                        ?>
+                                        <div class="col-md-4 col-sm-2 col-4" id="wishlist">
+                                            <div class="box_grid wow">
+                                                <figure class="block-reveal">
+                                                    <div class="block-horizzontal"></div>
+                                                    <a href="#0" class="wish_bt"></a>
+                                                    <a href="/home/course_detail/<?php echo $course['course_id']?>"><img src="<?php echo $course['courses_image'];?>" class="img-fluid" alt=""></a>
+                                                    <div class="price"><?php echo $course['course_price']?> $</div>
+                                                    <div class="preview"><span>عرض الكورس  </span></div>
+                                                </figure>
+                                                <div class="wrapper">
+                                                    <small>الصنف</small>
+                                                    <h3> <?php echo Helper::Names($course['categories_ids'], 'Category') ?> </h3>
+                                                    <p><?php echo $course['course_title']?></p>
+                                                    <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
+                                                </div>
+                                                <ul>
+                                                    <li><i class="icon_clock_alt"></i> 1h 30min</li>
+                                                    <li><i class="icon_like"></i> 890</li>
+                                                    <li><a href="/home/course_detail/<?php echo $course['course_id']?>"> تسجيل الان</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    <?php }?>
+
+
+                                <?php }?>
+                            </div>
+                        </div>
+                        <div class="carousel-item ">
+                            <div class="row">
+                                <?php      foreach ($this->view_data['wish_list'] as $k=> $course) { ?>
+                                    <?php
+                                    if($k>2 && $k<6){
+
+                                        ?>
+                                        <div class="col-md-4 col-sm-6 col-12">
+                                            <div class="box_grid wow">
+                                                <figure class="block-reveal">
+                                                    <div class="block-horizzontal"></div>
+                                                    <a  class="icon icon_heart" style=""></a>
+                                                    <a href="home/course_detail/<?php $course['course_id']?>"><img src="<?php echo $course['courses_image']; ?>" class="img-fluid" alt=""></a>
+                                                    <div class="price">$<?php echo $course['course_price']?></div>
+                                                    <div class="preview"><span>عرض الكورس</span></div>
+                                                </figure>
+                                                <div class="wrapper">
+                                                    <small>الصنف</small>
+                                                    <h3><?php echo $course['course_title']?></h3>
+
+                                                    <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i> <small>(145)</small></div>
+                                                </div>
+                                                <ul>
+                                                    <li><i class="icon_clock_alt"></i> 1h 30min</li>
+                                                    <li><i class="icon_like"></i> 890</li>
+                                                    <li><a href="/home/course_detail">Enroll now</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    <?php }
+                                }?>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            <?php }?>
+        </div>
+
     </div>
-
-    <div class="container margin_61_35">
-        <div class="row">
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <div class="box_grid wow">
-                    <figure class="block-reveal">
-                        <div class="block-horizzontal"></div>
-                        <a href="#0" class="wish_bt"></a>
-                        <a href="/home/course_detail"><img src="/img/1.jpg" class="img-fluid" alt=""></a>
-                        <div class="price">$54</div>
-                        <div class="preview"><span>Preview course</span></div>
-                    </figure>
-                    <div class="wrapper">
-                        <small>Category</small>
-                        <h3>Persius delenit has cu</h3>
-                        <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-                        <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                    class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i>
-                            <small>(145)</small></div>
-                    </div>
-                    <ul>
-                        <li><i class="icon_clock_alt"></i> 1h 30min</li>
-                        <li><i class="icon_like"></i> 890</li>
-                        <li><a href="/home/course_detail">Enroll now</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /box_grid -->
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <div class="box_grid wow">
-                    <figure class="block-reveal">
-                        <div class="block-horizzontal"></div>
-                        <a href="#0" class="wish_bt"></a>
-                        <a href="/home/course_detail"><img src="/img/1.jpg" class="img-fluid" alt=""></a>
-                        <div class="price">$45</div>
-                        <div class="preview"><span>Preview course</span></div>
-                    </figure>
-                    <div class="wrapper">
-                        <small>Category</small>
-                        <h3>At deseruisse scriptorem</h3>
-                        <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-                        <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                    class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i>
-                            <small>(145)</small></div>
-                    </div>
-                    <ul>
-                        <li><i class="icon_clock_alt"></i> 1h 30min</li>
-                        <li><i class="icon_like"></i> 890</li>
-                        <li><a href="/home/course_detail">Enroll now</a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /box_grid -->
-            <div class="col-xl-4 col-lg-6 col-md-6">
-                <div class="box_grid wow">
-                    <figure class="block-reveal">
-                        <div class="block-horizzontal"></div>
-                        <a href="#0" class="wish_bt"></a>
-                        <a href="/home/course_detail"><img src="/img/1.jpg" class="img-fluid" alt=""></a>
-                        <div class="price">$39</div>
-                        <div class="preview"><span>Preview course</span></div>
-                    </figure>
-                    <div class="wrapper">
-                        <small>Category</small>
-                        <h3>Ea vel semper quaerendum</h3>
-                        <p>Id placerat tacimates definitionem sea, prima quidam vim no. Duo nobis persecuti cu.</p>
-                        <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                    class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i>
-                            <small>(145)</small></div>
-                    </div>
-                    <ul>
-                        <li><i class="icon_clock_alt"></i> 1h 30min</li>
-                        <li><i class="icon_like"></i> 890</li>
-                        <li><a href="/home/course_detail">Enroll now</a></li>
-                    </ul>
-                </div>
-            </div>
+</div>
 
 
-        </div>
+
 
 
 </main>
@@ -99,3 +115,8 @@
 
 
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
+<script>
+    $("#wishlist").on("click",function () {
+        $('.wish_bt').attr('style','left: 300px');
+    })
+</script>
