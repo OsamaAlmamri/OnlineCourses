@@ -17,14 +17,14 @@ class RatingsController extends Controller
         $this->view->render();
     }
 
-    public function addRatings()
+    public function addRating()
     {
         $data = array(
-            ':comment_text' => htmlentities($_REQUEST['commentText']),
-            ':rating_number' => htmlentities($_REQUEST['rating_number']),
-            ':rating_date' => htmlentities($_REQUEST['rating_date']),
-            ':course_id' => htmlentities($_REQUEST['course_id']),
-            ':user_id' => htmlentities($_REQUEST['user_id']),
+            ':comment_text' => $_REQUEST['commentText'],
+            ':rating_number' => $_REQUEST['rating_number'],
+            ':rating_date' => $_REQUEST['rating_date'],
+            ':course_id' => $_REQUEST['course_id'],
+            ':user_id' => $_REQUEST['user_id'],
 
         );
         $rating = $this->model('Rating');

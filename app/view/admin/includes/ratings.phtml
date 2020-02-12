@@ -1,0 +1,135 @@
+<script>
+    $(function () {
+        var numberRate =0;
+            $('.rate-btn').hover(function(){
+                //remove the hover previous
+                $('.rate-btn').removeClass('rate-btn-hover');
+                numberRate= $(this).attr('data-number-rating');
+                for(var i=numberRate; i>=0 ;i--)
+                {
+                    $('.btn-'+i).addClass('rate-btn-hover')
+                };
+            });
+
+            $('.rate-btn').click(function(){
+                //remove the active previous
+                $('.rate-btn').removeClass('rate-btn-active');
+                 numberRate = $(this).attr('data-number-rating');
+                console.log(numberRate);
+                for(var i=numberRate; i>=0 ;i--)
+                {
+                    $('.btn-'+i).addClass('rate-btn-active')
+                };
+            });
+
+        $('#add_rating').on('click', function () {
+
+
+            // data that come from user
+            var userID           =   $('.comment_input').attr('data-user-ID');
+            var user_name        =   $('.comment_input').attr('data-user-name');
+            var image            =   $('.comment_input').attr('data-image-user');
+            var course           =   $('.comment_input').attr('data-course');
+            var rating_date      =   $('.comment_input').attr('data-rating-date');
+            var comment          =   $('.comment_input').val();
+            var rating_number    =   numberRate;
+
+
+            $('.rating-input-container').hide();
+
+
+            // data that sent to /admin/Comments/addComment to add to DB
+            var data = 'commentText=' + comment +
+                '&user_id=' + userID +
+                '&course_id=' + course +
+                '&rating_number=' + rating_number +
+                '&rating_date=' + rating_date;
+
+
+            //  sent data to /admin/Comments/addComment and add to DB
+            var url = '/admin/Ratings/addRating';
+            $.ajax({
+                url: url,
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: data,
+                success: function (data, status, xhr) {
+                    //Function To Run When Request Is Succeeded
+                    if (data == 1) {
+                        var stars ='';
+                        if(rating_number ==1){
+                            stars= '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star  "></i>' +
+                                '<i class="fa fa-star  "></i>' +
+                                '<i class="fa fa-star  "></i>' +
+                                '<i class="fa fa-star  "></i>' ;
+                        }
+
+                        else if(rating_number ==2){
+                            stars= '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star  "></i>' +
+                                '<i class="fa fa-star  "></i>' +
+                                '<i class="fa fa-star  "></i>' ;
+                        }
+                        else if(rating_number ==3){
+                            stars= '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star  "></i>' +
+                                '<i class="fa fa-star  "></i>' ;
+                        }
+                        else if(rating_number ==4){
+                            stars= '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star  "></i>' ;
+                        }
+                        else if(rating_number ==5){
+                            stars= '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star rating-done "></i>' +
+                                '<i class="fa fa-star rating-done "></i>' ;
+                        }
+                        else {
+                            stars= '<i class="fa fa-star  "></i>' +
+                                '<i class="fa fa-star  "></i>' +
+                                '<i class="fa fa-star  "></i>' +
+                                '<i class="fa fa-star  "></i>' +
+                                '<i class="fa fa-star  "></i>' ;
+                        }
+
+
+                        $('.list_rating').append(
+                            ' <div class="review-box clearfix">\n' +
+                            '                                <figure class="rev-thumb"><img\n' +
+                            '                                            src=' + image + ' alt="">\n' +
+                            '                                </figure>\n' +
+                            '                                <div class="rev-content">\n' +
+                            '                                    <div class="rating-stars mb-1">\n'+
+                                                                            stars +
+                            '                                     </div>\n' +
+                            '                                    <div class="rev-info">' + rating_date + ' - ' + user_name + '</div>\n' +
+                            '                                    <div class="rev-text">\n' +
+                            '                                        <p>' + comment + '</p>\n' +
+                            '                                    </div>\n' +
+                            '                                </div>\n' +
+                            '                            </div>'
+                        );
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            return (false);
+        });
+
+    });
+
+</script>
+
+
