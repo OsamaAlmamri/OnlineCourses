@@ -141,66 +141,76 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div id="review_summary">
-                                        <strong>4.7</strong>
+
+                                        <strong>
+                                          <?php
+                                          $numberStarts=$this->view_data['averageRating'][0]['average_rating'];
+                                          echo isset($numberStarts)? $numberStarts:"0";
+                                          ?>
+
+
+                                        </strong>
                                         <div class="rating">
-                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                    class="icon_star voted"></i><i class="icon_star voted"></i><i
-                                                    class="icon_star"></i>
+                                                <?php
+                                            if ($numberStarts >=0 && $numberStarts <=1.4) {
+                                                echo '    <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i  class="fa fa-star"></i>';
+
+                                            } elseif ($numberStarts >=1.5 && $numberStarts <=2.4) {
+                                                echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i  class="fa fa-star "></i>';
+                                            } elseif ($numberStarts >=2.5 && $numberStarts <=3.4) {
+                                                echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i  class="fa fa-star"></i>';
+                                            } elseif ($numberStarts >=3.5 && $numberStarts <=3.4) {
+                                                echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i  class="fa fa-star"></i>';
+
+                                            } elseif ($numberStarts >=4.5 && $numberStarts <=5) {
+                                                echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i  class="fa fa-star rating-done"></i>';
+                                            }
+                                            ?>
+
                                         </div>
-                                        <small>Based on 4 reviews</small>
+                                        <small>من اجمالي
+                                           <?php  echo isset($this->view_data['averageRating'][0]['total_rating'])? $this->view_data['averageRating'][0]['total_rating']:"0";   ?>
+                                            تقييم
+                                    </small>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-9">
-                                    <div class="row">
+                                    <?php
+                                    for($i= 5 ;$i>0;$i--)
+                                        {?>
+                                            <div class="row">
                                         <div class="col-lg-10 col-9">
                                             <div class="progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 90%"
-                                                     aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width:<?php echo $this->view_data['percentageRating'][$i]?>%"
+                                                     aria-valuemin="0" ></div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-2 col-3"><small><strong>5 stars</strong></small></div>
+                                        <div class="col-lg-2 col-3"><small><strong><?php echo $i?> stars</strong></small></div>
                                     </div>
                                     <!-- /row -->
-                                    <div class="row">
-                                        <div class="col-lg-10 col-9">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 95%"
-                                                     aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-3"><small><strong>4 stars</strong></small></div>
-                                    </div>
-                                    <!-- /row -->
-                                    <div class="row">
-                                        <div class="col-lg-10 col-9">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 60%"
-                                                     aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-3"><small><strong>3 stars</strong></small></div>
-                                    </div>
-                                    <!-- /row -->
-                                    <div class="row">
-                                        <div class="col-lg-10 col-9">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 20%"
-                                                     aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-3"><small><strong>2 stars</strong></small></div>
-                                    </div>
-                                    <!-- /row -->
-                                    <div class="row">
-                                        <div class="col-lg-10 col-9">
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" style="width: 0"
-                                                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 col-3"><small><strong>1 stars</strong></small></div>
-                                    </div>
-                                    <!-- /row -->
+                                           <?php }
+                                    ?>
                                 </div>
                             </div>
                             <!-- /row -->
@@ -229,9 +239,9 @@
                                             } elseif ($rating['rating_number'] == 2) {
                                                 echo '    <i class="fa fa-star rating-done"></i>
                                                         <i class="fa fa-star rating-done "></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i  class="fa fa-star rating-done"></i>';
+                                                        <i class="fa fa-star  "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i  class="fa fa-star "></i>';
                                             } elseif ($rating['rating_number'] == 3) {
                                                 echo '    <i class="fa fa-star rating-done"></i>
                                                         <i class="fa fa-star rating-done "></i>
@@ -255,8 +265,11 @@
                                             ?>
 
                                         </div>
-                                        <div class="rev-info">
+                                        <div class="rev-info rou">
                                             <?php echo $rating['user_full_name'] . " - " . $rating['rating_date']; ?>
+                                            <div>
+
+                                             </div>
                                         </div>
                                         <div class="rev-text">
                                             <p><?php echo $rating['comment_text']; ?>
@@ -268,9 +281,16 @@
 
                             <!-- /review-container -->
 
-                            <hr>
+                        </div>
 
-                            <?php if (isset($_SESSION['user'])) { ?>
+
+                            <?php if (isset($_SESSION['user'])) {// if user log in .. show input form
+
+                                // if user has not rating .. show input form
+                                $ID_UserHasRated = isset($this->view_data['checkIfUserHasRated'][0]['user_id']);
+                                if(!($ID_UserHasRated == Session::get('userID')) ){
+                                    ?>
+
                                 <div class="reviews-container rating-input-container ">
                                     <div class="review-box clearfix">
                                         <figure class="rev-thumb"><img
@@ -313,8 +333,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            <?php } ?>
-                        </div>
+                            <?php }}; ?>
 
 
                     </section>
