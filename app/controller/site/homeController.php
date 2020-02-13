@@ -108,6 +108,23 @@ class homeController extends Controller
 
     }
 
+    public  function getPercentageForEachRating_For_SpecificCourse($id)
+    {
+        //get all Ratings of course
+        $percentage =[];
+        $RatingModel = $this->model;
+        $total_rating = isset($RatingModel->averageRating($id)[0]['total_rating'])?$RatingModel->averageRating($id)[0]['total_rating']:0;
+
+        $total_for_each_rating = $RatingModel->getTotalForEachRating_For_SpecificCourse($id);
+        foreach ($total_for_each_rating as $Rating){
+            $percentage[$Rating['rating_number']]=($Rating['total_for_each_rating']/ $total_rating)*100;
+
+        }
+
+    return $percentage;
+
+    }
+
     public function course_detail($id)
     {
         //get all details for course
@@ -144,6 +161,9 @@ class homeController extends Controller
         //get all Ratings of course
         $RatingModel = $this->model('Rating');
         $AllRatings = $RatingModel->allRatingsOfCourse($id);
+        $averageRating = $RatingModel->averageRating($id);
+        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id);
+
 
         $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail',
             [
@@ -153,6 +173,10 @@ class homeController extends Controller
                 'userWishList' => $userWishList,
                 'course_duration' => gmdate("H:i:s", $courseDuration),
                 'AllRatings' => $AllRatings,
+                'averageRating' => $averageRating,
+                'checkIfUserHasRated'=>$checkIfUserHasRated,
+                'percentageRating'=>$this->getPercentageForEachRating_For_SpecificCourse($id),
+
             ]);
         $this->view->pageTitle = 'course list';
         $this->view->render();
@@ -164,6 +188,7 @@ class homeController extends Controller
         $this->view->pageTitle = 'course list';
         $this->view->render();
     }
+
 
     public function courses_list_sidebar()
     {
