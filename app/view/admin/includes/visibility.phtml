@@ -12,10 +12,10 @@
                 data: data,// var form=$('#news').serialize();
                 success: function (data) {
                     if (data == 1) {
-                        _this.html("<i class=\"fa fa-eye\"> </i>");
+                        _this.html("<i class=\"fa fa-eye text-dark\"> </i>");
                         _this.attr("data-visibility", data);
                     } else {
-                        _this.html("<i class=\"fa fa-eye-slash\"> </i>");
+                        _this.html("<i class=\"fa fa-eye-slash text-dark\"> </i>");
                         _this.attr("data-visibility", data);
                     }
                 },

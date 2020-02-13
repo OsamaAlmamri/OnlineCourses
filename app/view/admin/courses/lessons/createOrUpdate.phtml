@@ -4,19 +4,38 @@
 <!-- Switchery -->
 <link rel="stylesheet" href="/design/dashboard/lib/jquery-ui/jquery-ui.css">
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-<div class="content">
+<div class="container">
     <?php include VIEW . 'messages.phtml';
     //    resources_video	resources_file	resources_chapter	course_id	resources_date	resources_status	resources_updates?>
-    <h2 class="text-center"><i class="fa  fa-book-open"></i> إضافة درس</h2>
+    <div class="row bg-white mb-4 ">
+        <div class="text-right mt-auto col-6">
+            <h3 ><i class="fa  fa-book-open" style="color:#ec3901"></i> إضافة درس</h3>
+
+        </div>
+    </div>
+
 
 
     <div id="video_details">
         <form id="upload_form" enctype="multipart/form-data" method="post">
-            <input type="file" accept="video/*" name="file1" id="file1"><br>
-            <input type="button" value="Upload File" onclick="uploadFile()">
-            <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
-            <h3 id="status"></h3>
-            <p id="loaded_n_total"></p>
+            <div class="form-group">
+                <label >اختيار الفيديو :</label>
+            <div class="custom-file">
+
+                <input type="file" class="custom-file-input" accept="video/*" name="file1" id="file1">
+                <label class="custom-file-label" for="user_image">Choose file</label>
+
+            </div>
+            </div>
+            <div class="form-group">
+                <label >عملية تحميل الفيديو :</label>
+<br>
+                <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+                <input type="button" class="btn btn-success" value="Upload File" onclick="uploadFile()">
+                <h3 id="status"></h3>
+                <p id="loaded_n_total"></p>
+            </div>
+
         </form>
     </div>
     <div id="lesson_details">
@@ -32,15 +51,13 @@
                        value="" placeholder="اسم الشباتر"
                        class="form-control" id="chapter" name="resources_chapter">
                 <div id="categories_ids" class="well well-sm"
-                     style="height: 50px; overflow: auto;">
+                  >
                     <?php echo Message::getInputErrorMessage('resources_chapter') ?>
-
-
                 </div>
 
                 <?php echo Message::getInputErrorMessage('categories_ids') ?>
             </div>
-            <button type="submit" disabled id="btn_submit" name="submit" class="btn btn-primary btn-block">إرسال الاستعلام</button>
+            <button type="submit" disabled id="btn_submit" name="submit" class="btn btn-success btn-block">إرسال الاستعلام</button>
         </form>
 
     </div>

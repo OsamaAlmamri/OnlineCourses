@@ -8,10 +8,15 @@
 
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-<div class="content">
+<div class="container">
     <?php include VIEW . 'messages.phtml';
     ?>
-    <h2 class="text-center"><i class="fa  fa-book"></i>إضافة كورس</h2>
+    <div class="row bg-white mb-4 ">
+        <div class="text-right  mt-auto col-6">
+            <h2 ><i class="fa  fa-book" style="color:#ec3901"></i>إضافة كورس </h2>
+        </div>
+    </div>
+
     <form action="/admin/courses/store" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
@@ -128,7 +133,7 @@
     </form>
     <br>
 
-</div>
+
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <script src="/design/dashboard/lib/jquery.tagsinput/src/jquery.tagsinput.js"></script>
