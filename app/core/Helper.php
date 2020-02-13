@@ -39,8 +39,8 @@ class Helper
 
         $like = $data['input'] . " like '%" . $data['data'] . "%' ";
         $counter = DB::init()->query("SELECT COUNT(*)  As count FROM " . $data['table'] . " WHERE user_id <>" . $data['id'] . " and " . $like);
-        return ($counter[0]['count']) > 0 ? true : false;
-        return false;
+        return @($counter[0]['count'] > 0) ? true : false;
+//        return false;
     }
 //
 //    public static function returnChild($id)
@@ -144,7 +144,7 @@ class Helper
         $id = Session::get('user')['user_id'];
         $WishList = DB::init()->query("SELECT `user_wish_list` FROM `users_courses` WHERE user_id=$id")['user_wish_list'];
         $userWishList = [];
-        $WishList=trim($WishList,',');
+        $WishList = trim($WishList, ',');
         if (($WishList) != '')
             $userWishList = (explode(',', $WishList));
         return count($userWishList);
@@ -177,17 +177,21 @@ class Helper
         return;
     }
 
-    public static function old($key)
+    public static function old($key, $type = 'public')
     {
-//        echo isset($_REQUEST[$key]) ? $_REQUEST[$key] : '';
-        if (Session::has('oldFormData')) {
-            if (isset($_SESSION['oldFormData'][$key]) and is_array($_SESSION['oldFormData'][$key]))
-                return $_SESSION['oldFormData'][$key];
-            else
+        if ($type == 'auth')
+            echo isset($_REQUEST[$key]) ? $_REQUEST[$key] : '';
+        else {
+            if (Session::has('oldFormData')) {
+                if (isset($_SESSION['oldFormData'][$key]) and is_array($_SESSION['oldFormData'][$key]))
+                    return $_SESSION['oldFormData'][$key];
+                else
 //                echo $_SESSION['oldFormData'][$key];
-                echo isset($_SESSION['oldFormData'][$key]) ? $_SESSION['oldFormData'][$key] : '';
-        } else
-            echo '';
+                    echo isset($_SESSION['oldFormData'][$key]) ? $_SESSION['oldFormData'][$key] : '';
+            } else
+                echo '';
+        }
+
 
     }
 

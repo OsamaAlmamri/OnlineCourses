@@ -25,32 +25,39 @@
                                             <label for="user_email">البريد الالكتروني</label>
                                             <input type="email" class="form-control"
                                                    placeholder="ادخل البريد الالكتروني الخاص بك" id="user_email"
-                                                   value="<?php Helper::old('user_email'); ?>"
+                                                   value="<?php Helper::old('user_email','auth'); ?>"
                                                    name="user_email"; onchange="if(this.value != '') callAjax('checkEmail', this.value, this.id);>
-                                            
+                                            <?php echo Message::getInputErrorMessage('user_email') ?>
 
                                             <label for="user_password">كلمة المرور:</label>
                                             <input type="password" class="form-control" placeholder="أدخــل كلمــة الســر"
                                                    id="user_password" name="user_password" data-eye>
+                                            <?php echo Message::getInputErrorMessage('user_password') ?>
                                             
 
                                             <label for="user_password">تأكيـد كلـمة المرور</label>
                                             <input type="password" class="form-control" placeholder="تأكيــد كلمــة السر"
                                                    id="password_confirmation" name="password_confirmation"
                                                    data-eye>
-                                            
+                                            <?php echo Message::getInputErrorMessage('password_confirmation') ?>
+
+
 
                                             <label for="user_full_name">الأســم كــامل</label>
                                             <input type="text" class="form-control" placeholder="يرجى إدخال الاسم كاملآ"
-                                                   value="<?php Helper::old('user_full_name'); ?>"
+                                                   value="<?php Helper::old('user_full_name','auth'); ?>"
                                                    id="user_full_name" name="user_full_name">
-                                            
+                                            <?php echo Message::getInputErrorMessage('user_full_name') ?>
+
+
                                             <label for="user_name">إسم المستــخدم</label>
                                             <input type="text" class="form-control" placeholder="يرجى إخال إسم المستخدم"
                                                    id="user_name"
-                                                   value="<?php Helper::old('user_name'); ?>"
+                                                   value="<?php Helper::old('user_name','auth',); ?>"
                                                    name="user_name" required>
-                                            
+                                            <?php echo Message::getInputErrorMessage('user_name') ?>
+
+
 
                                         </div>
 
@@ -70,12 +77,16 @@
                                                     <?php } ?>
                                                 </div>
                                             </div>
-                                            
+                                            <?php echo Message::getInputErrorMessage('document') ?>
+
+
 
                                             <label for="user_phone">رقم الهاتف</label>
                                             <input type="phone" class="form-control" placeholder="يرجى إدراج رقم الهاتف"
-                                                   value="<?php Helper::old('user_phone'); ?>"
+                                                   value="<?php Helper::old('user_phone','auth'); ?>"
                                                    id="user_phone" name="user_phone" required>
+                                            <?php echo Message::getInputErrorMessage('user_phone') ?>
+
 
                                             <?php if (array_key_exists('type', $this->view_data)) {
                                                 if ($this->view_data['type'] == 'student') { ?>
@@ -96,10 +107,12 @@
                                                             <input type="text" class="form-control"
                                                                    placeholder="يرجى إدراج المؤهل العلمي"
                                                                    id="user_qualification" name="user_qualification"
-                                                                   value="<?php Helper::old('user_qualification'); ?>"
+                                                                   value="<?php Helper::old('user_qualification','auth'); ?>"
                                                                    required>
                                                         </div>
                                                     </div>
+                                                    <?php echo Message::getInputErrorMessage('user_qualification') ?>
+
                                                     <?php
 
                                                 }
@@ -118,6 +131,7 @@
                                                            id="document" required>
                                                     <label class="custom-file-label" for="user_image">Choose
                                                         file</label>
+                                                    <?php echo Message::getInputErrorMessage('document') ?>
 
                                                     <div id="university_document_dev">
                                                     <?php if (array_key_exists('user', $this->view_data)) { ?>
