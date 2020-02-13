@@ -92,12 +92,12 @@
                                 <?php if (Permissions::getInstaince()->hasPermision('permission_index') == true) { ?>
 
                                     <li>
-                                        <a href="/admin/permision/index"><i class="fa fa-users-cogs "></i>الصلاحيات</a>
+                                        <a href="/admin/permision/index"><i class="fa fa-cogs "></i>  الصلاحيات</a>
                                     </li>
                                 <?php } ?>
                                 <?php if (Permissions::getInstaince()->hasPermision('teacher_index') == true) { ?>
                                     <li>
-                                        <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>المدرسين
+                                        <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>  المدرسين
                                         </a>
                                     </li>
                                 <?php } ?>

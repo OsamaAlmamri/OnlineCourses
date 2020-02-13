@@ -32,82 +32,81 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             </div>
         </div>
     </div>
-    <br>
-    <table id="example1" class="table table-bordered table-striped">
-        <thead class="thead-dark font-size-16">
-        <tr>
-            <th>الاسم</th>
-            <th>الايميل</th>
-            <th>اسم المستخدم</th>
-            <th>صورة المستخدم</th>
-            <th>رقم الهاتف</th>
-            <th>تاريخ التسجيل</th>
-            <th>الحالة</th>
-            <?php if (Permissions::getInstaince()->hasPermision('university_edit') == true
-                or Permissions::getInstaince()->hasPermision('university_delete') == true) { ?>
-                <th>الاعدادات</th>
-            <?php } ?>
-        </tr>
-        </thead>
-
-        <tbody>
-        <?php if (array_key_exists('universities', $this->view_data)) {
-            foreach ($this->view_data['universities'] as $university) { ?>
-
+    <div class="row ">
+        <div class="col-12 ">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead class="thead-dark font-size-16">
                 <tr>
-                    <td><?php echo $university['user_name'] ?></td>
-                    <td><?php echo $university['user_email'] ?></td>
-                    <td><?php echo $university['user_full_name'] ?></td>
-                    <td><?php echo $university['user_image'] ?></td>
-                    <td><?php echo $university['user_phone'] ?></td>
-                    <td><?php echo $university['user_register_date'] ?></td>
-                    <td>
-                        <a href="" data-id="<?php echo $university['user_id'] ?>"
-                           data-status="<?php echo $university['user_status'] ?>"
-                           class=" active"><?php echo ($university['user_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
-
-
-                    </td>
-                    <?php if ($this->view_data['deleted'] == false) { ?>
-                        <?php if (Permissions::getInstaince()->hasPermision('university_edit') == true
-                            or Permissions::getInstaince()->hasPermision('university_delete') == true
-                        ) { ?>
-                            <td>
-                                <?php if (Permissions::getInstaince()->hasPermision('university_edit') == true) { ?>
-                                    <a href="/admin/universities/edit/<?php echo $university['id'] ?>"><i
-                                                class="fa fa-edit"></i></a>
-                                <?php } ?>
-                                <?php if (Permissions::getInstaince()->hasPermision('university_delete') == true) { ?>
-                                    <a href="/admin/universities/delete/<?php echo $university['id'] ?>"
-                                       onclick="return confirm('هل أنت متأكد من الحذف');"><i
-                                                class="fa fa-trash-restore"></i></a>
-                                <?php } ?>
-                            </td>
-                        <?php } ?>
-                    <?php } else { ?>
-                        <th>{{getUserName( $university['deleted_by'] )?></th>
-                        <td><?php echo $university['deleted_at'] ?></td>
-
-
-                        <td class="text-center">
-                            <a href="{{  route('admin.universities.restore',encrypt( $university['']id)) }}"
-                               class="btn btn-primary"><i
-                                        class="fa fa-arrow-up"></i></a>
-                        </td>
-
+                    <th>الاسم</th>
+                    <th>الايميل</th>
+                    <th>اسم المستخدم</th>
+                    <th>صورة المستخدم</th>
+                    <th>رقم الهاتف</th>
+                    <th>تاريخ التسجيل</th>
+                    <th>الحالة</th>
+                    <?php if (Permissions::getInstaince()->hasPermision('university_edit') == true
+                        or Permissions::getInstaince()->hasPermision('university_delete') == true) { ?>
+                        <th>الاعدادات</th>
                     <?php } ?>
-
-
                 </tr>
-            <?php }
-        } ?>
-    </table>
-</div>
-<!-- End Main-content -->
-</div>
-<!-- End Content -->
-</div>
-</div>
+                </thead>
+
+                <tbody>
+                <?php if (array_key_exists('universities', $this->view_data)) {
+                    foreach ($this->view_data['universities'] as $university) { ?>
+
+                        <tr>
+                            <td><?php echo $university['user_name'] ?></td>
+                            <td><?php echo $university['user_email'] ?></td>
+                            <td><?php echo $university['user_full_name'] ?></td>
+                            <td><?php echo $university['user_image'] ?></td>
+                            <td><?php echo $university['user_phone'] ?></td>
+                            <td><?php echo $university['user_register_date'] ?></td>
+                            <td>
+                                <a href="" data-id="<?php echo $university['user_id'] ?>"
+                                   data-status="<?php echo $university['user_status'] ?>"
+                                   class=" active"><?php echo ($university['user_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
+
+
+                            </td>
+                            <?php if ($this->view_data['deleted'] == false) { ?>
+                                <?php if (Permissions::getInstaince()->hasPermision('university_edit') == true
+                                    or Permissions::getInstaince()->hasPermision('university_delete') == true
+                                ) { ?>
+                                    <td>
+                                        <?php if (Permissions::getInstaince()->hasPermision('university_edit') == true) { ?>
+                                            <a href="/admin/universities/edit/<?php echo $university['id'] ?>"><i
+                                                        class="fa fa-edit"></i></a>
+                                        <?php } ?>
+                                        <?php if (Permissions::getInstaince()->hasPermision('university_delete') == true) { ?>
+                                            <a href="/admin/universities/delete/<?php echo $university['id'] ?>"
+                                               onclick="return confirm('هل أنت متأكد من الحذف');"><i
+                                                        class="fa fa-trash-restore"></i></a>
+                                        <?php } ?>
+                                    </td>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <th>{{getUserName( $university['deleted_by'] )?></th>
+                                <td><?php echo $university['deleted_at'] ?></td>
+
+
+                                <td class="text-center">
+                                    <a href="{{  route('admin.universities.restore',encrypt( $university['']id)) }}"
+                                       class="btn btn-primary"><i
+                                                class="fa fa-arrow-up"></i></a>
+                                </td>
+
+                            <?php } ?>
+
+
+                        </tr>
+                    <?php }
+                } ?>
+            </table>
+        </div>
+    </div>
+
+
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>

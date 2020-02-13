@@ -47,7 +47,7 @@ a:hover, a:focus {
     text-align: right;
     padding: 10px;
 }
-input[type='text'] ,input[type='password']{
+input[type='text'] ,input[type='password'],input[type='email'],input[type='phone'],select{
     text-align: right;
     padding: 11px 15px;
     border-radius: 6px;

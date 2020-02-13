@@ -51,10 +51,10 @@
                 data: data,// var form=$('#news').serialize();
                 success: function (data) {
                     if (data == 1) {
-                        _this.html("<i class='fa fa-check'></i>");
+                        _this.html("<i class='fa fa-check text-primary'></i>");
                         _this.attr("data-status", data);
                     } else {
-                        _this.html("<i class='ion ion-close'></i>");
+                        _this.html("<i class='ion ion-close text-danger'></i>");
                         _this.attr("data-status", data);
                     }
                 },

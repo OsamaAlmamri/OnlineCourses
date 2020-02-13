@@ -3,25 +3,26 @@
 include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-<div class="content">
+<div class="container">
     <?php include VIEW . 'messages.phtml' ?>
     <div class="row bg-white mb-4 ">
         <div class="text-right mt-auto col-6">
             <h3><i class="fa fa-book-open" style="color:#ec3901"></i>ادارة الكورسات </h3>
         </div>
     </div>
+
     <div class="row mb-4">
         <div class="col-6 text-right">
-            <?php if (Permissions::getInstaince()->hasPermision('course_create') == true) { ?>
-                <a href="/admin/courses/create" class="btn btn-success "><i class="fa fa-plus"> </i> اضافة كورس جديد</a>
-                </a>
-            <?php } ?>
+        <?php if (Permissions::getInstaince()->hasPermision('course_create') == true) { ?>
+            <a href="/admin/courses/create" class="btn btn-success "><i class="fa fa-plus"> </i> اضافة كورس جديد</a>
+            </a>
+        <?php } ?>
         </div>
         <div class="col-6 text-left">
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                         id="dashboard_daterangepicker">
-                    <i class="	fas fa-bullseye"></i> sorting data by
+                    <i class="	fas fa-bullseye"></i> ترتيب حسب
                 </button>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="#">Day</a>
@@ -32,91 +33,94 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <table id="example1" class="table table-bordered table-striped">
-                <thead class="thead-dark font-size-10">
-                <tr>
-                    <th>#الرقم</th>
-                    <th>عنوان الكورس</th>
-                    <th>صورة الكورس</th>
-                    <th>سعر الكورس</th>
-                    <th> السعر بعد التحفيض</th>
-                    <th>اسم القسم</th>
-                    <th>حالة الكورس</th>
-                    <th>الدروس</th>
-                    <th>إظهار الكورس</th>
-                    <?php if (Permissions::getInstaince()->hasPermision('course_edit') == true
-                        or Permissions::getInstaince()->hasPermision('course_delete') == true) { ?>
-                        <th>الاعدادات</th>
-                    <?php } ?>
+<div class="row ">
+   <div class="col-12 ">
+       <table id="example1" class="table table-bordered table-striped">
+           <thead class="thead-dark font-size-12">
+           <tr>
+               <th>#الرقم</th>
+               <th>عنوان الكورس</th>
+               <th>صورة الكورس</th>
+               <th>سعر الكورس</th>
+               <th> السعر بعد التحفيض</th>
+               <th>اسم القسم</th>
 
-                </tr>
-                </thead>
-                <tbody>
+               <th>الدروس</th>
+               <th>إظهار الكورس</th>
+               <?php if (Permissions::getInstaince()->hasPermision('course_edit') == true
+                   or Permissions::getInstaince()->hasPermision('course_delete') == true) { ?>
+                   <th>الاعدادات</th>
+               <?php } ?>
 
-                <?php if (array_key_exists('courses', $this->view_data)) {
-                    foreach ($this->view_data['courses'] as $k => $course) {
+           </tr>
+           </thead>
+           <tbody>
+
+           <?php if (array_key_exists('courses', $this->view_data)) {
+               foreach ($this->view_data['courses'] as $k => $course) {
 //                        echo "<pre>";
 //                        var_dump($this->view_data['courses'][0]['course_id']);
 //                        echo "</pre>";
-                        ?>
-                        <tr>
-                            <td><?php echo $course['course_id'] ?></td>
-                            <td><?php echo $course['course_title'] ?></td>
-                            <td><img src="<?php echo $course['courses_image'] ?>" width="100px"></td>
-                            <td><?php echo '$' . $course['course_price'] ?></td>
-                            <td><?php echo '$' . $course['course_price_afterDiscount'] ?></td>
-                            <td><?php echo Helper::Names($course['categories_ids'], 'Category') ?></td>
-                            <td>
-                                <button data-id="<?php echo $course['course_id'] ?>"
-                                        data-status="<?php echo $course['course_status'] ?>"
-                                        class="btn btn-success active">
-                                    <?php echo ($course['course_status'] == '1') ? '<i class="fas fa-check"></i>' : '<i class="ion ion-close"></i>' ?>
-                                </button>
-                            </td>
-                            <td><a href="/admin/lessons/index/<?php echo $course['course_id'] ?>"
-                                   class="btn btn-info"><i
-                                            class="fa fa-eye"></i></a></td>
-                            <td>
-                                <button data-id="<?php echo $course['course_id'] ?>"
-                                        data-visibility="<?php echo $course['course_visibility'] ?>"
-                                        class="btn btn-success btn_visibility"><?php echo ($course['course_visibility'] == '1') ? ' <i class="fa fa-eye"> </i>' : '  <i class="fa fa-eye-slash"> </i>' ?> </button>
-                            </td>
+                   ?>
+                   <tr>
+                       <td><?php echo $course['course_id'] ?></td>
+                       <td><?php echo $course['course_title'] ?></td>
+                       <td><img src="<?php echo $course['courses_image'] ?>" width="100px"></td>
+                       <td><?php echo '$' . $course['course_price'] ?></td>
+                       <td><?php echo '$' . $course['course_price_afterDiscount'] ?></td>
+                       <td><?php echo Helper::Names($course['categories_ids'], 'Category') ?></td>
 
-                            <?php if ($this->view_data['deleted'] == false) { ?>
-                                <?php if (Permissions::getInstaince()->hasPermision('course_edit') == true
-                                    or Permissions::getInstaince()->hasPermision('course_delete') == true
-                                ) { ?>
-                                    <td>
-                                        <?php if (Permissions::getInstaince()->hasPermision('course_edit') == true) { ?>
-                                            <a href="Categories.php?do=edit" class="btn btn-success"><i
-                                                        class="fa fa-edit"></i></a>
-                                        <?php } ?>
-                                        <?php if (Permissions::getInstaince()->hasPermision('course_delete') == true) { ?>
+                       <td><a href="/admin/lessons/index/<?php echo $course['course_id'] ?>"
+                           "><i
+                               class="fa fa-eye text-dark"></i></a></td>
+                       <td>
+                           <a data-id="<?php echo $course['course_id'] ?>"
+                              data-visibility="<?php echo $course['course_visibility'] ?>"
+                              class=" btn_visibility"><?php echo ($course['course_visibility'] == '1') ? ' <i class="fa fa-eye text-dark"> </i>' : '  <i class="fa fa-eye-slash text-dark"> </i>' ?> </a>
+                       </td>
 
-                                            <a href="/admin/universities/delete/<?php echo $course['id'] ?>"
-                                               onclick="return confirm('هل أنت متأكد من الحذف');"
-                                               class="btn btn-danger"><i
-                                                        class="fa fa-trash"></i></a>
-                                        <?php } ?>
-                                    </td>
-                                <?php } ?>
-                            <?php } else { ?>
-                                <td><?php echo $course['deleted_at'] ?></td>
+                       <?php if ($this->view_data['deleted'] == false) { ?>
+                           <?php if (Permissions::getInstaince()->hasPermision('course_edit') == true
+                               or Permissions::getInstaince()->hasPermision('course_delete') == true
+                           ) { ?>
+                               <td>
+                                   <?php if (Permissions::getInstaince()->hasPermision('course_edit') == true) { ?>
+                                       <a data-id="<?php echo $course['course_id'] ?>"
+                                          data-status="<?php echo $course['course_status'] ?>"
+                                          class="active">
+                                           <?php echo ($course['course_status'] == '1') ? '<i class="fas fa-check text-primary"></i>' : '<i class="ion ion-close text-danger"></i>' ?>
+                                       </a>
+                                       <a href="Categories.php?do=edit" class=""><i
+                                               class="fa fa-edit"></i></a>
+                                   <?php } ?>
+                                   <?php if (Permissions::getInstaince()->hasPermision('course_delete') == true) { ?>
 
-                            <?php } ?>
-                        </tr>
-                    <?php }
-                } ?>
-                <tbody>
-            </table>
+                                       <a href="/admin/universities/delete/<?php echo $course['id'] ?>"
+                                          onclick="return confirm('هل أنت متأكد من الحذف');"
+                                       ><i
+                                               class="fa fa-trash-restore"></i></a>
+                                   <?php } ?>
+                               </td>
+                           <?php } ?>
+                       <?php } else { ?>
+                           <td><?php echo $course['deleted_at'] ?></td>
+
+                       <?php } ?>
+                   </tr>
+               <?php }
+           } ?>
+           <tbody>
+       </table>
+   </div>
+
+</div>
 
 
-            </tr>
-            >
-            </table>
-        </div>
+
+
+
+
+
 
         <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
         <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>
@@ -145,4 +149,6 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                 });
             });
         </script>
-        <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+        <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?></div>
+    </div>
+

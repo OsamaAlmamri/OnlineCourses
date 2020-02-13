@@ -25,11 +25,21 @@ font: 18px Arial, Helvetica, sans-serif;
 </style>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableCss.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'navbar.php' ?>
-<div class="content">
+<div class="container">
     <?php include VIEW . 'messages.phtml' ?>
-    <h2 class="text-center"><i class="fa fa-list"></i> Courses Lessons </h2>
-    <div class="row fa-pull-right">
-        <div class="col-8">
+    <div class="row bg-white mb-4 ">
+        <div class="text-right  mt-auto col-6">
+            <h2><i class="fa fa fa-book-open" style="color:#ec3901"></i> دروس الكورس</h2>
+        </div>
+    </div>
+
+    <div class="row  mb-4 ">
+        <div class="col-6 text-right">
+            <a href="/admin/lessons/create/<?php echo $this->view_data['course_id'] ?>"
+               class="btn btn-success "><i class="fa fa-plus"> </i> Add</a>
+        </div>
+
+        <div class="col-6 text-left">
             <div class="dropdown">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
                         id="dashboard_daterangepicker">
@@ -43,26 +53,20 @@ font: 18px Arial, Helvetica, sans-serif;
                 </div>
             </div>
         </div>
+
     </div>
-    <div class="col-4"><a href="/admin/lessons/create/<?php echo $this->view_data['course_id'] ?>"
-                          class="btn btn-primary "><i class="fa fa-plus"> </i> Add</a>
-    </div>
+
     <table id="example1" class="table table-bordered table-striped">
         <thead class="thead-dark font-size-18">
         <tr>
-            <td>#</td>
-            <td>عنوان الدرس</td>
-            <td>الشبابتر</td>
-            <td>الفيديو</td>
-            <td>المدة</td>
-            <td>الحجم</td>
+            <th>#</th>
+            <th>عنوان الدرس</th>
+            <th>الشبابتر</th>
+            <th>الفيديو</th>
+            <th>المدة</th>
+            <th>الحجم</th>
 
-            <!--            resources_id-->
-            <!--            resources_video-->
-            <!--            resources_file-->
-            <!--            resources_chapter-->
-            <!--            course_id-->
-            <!--            resources_date-->
+
 
             <th>عمليات</th>
 
@@ -85,20 +89,19 @@ font: 18px Arial, Helvetica, sans-serif;
                      data-width="340" data-height="172" data-resizemode="fill" data-showsocialmedia="false"
                      data-src="<?php echo $course['resources_video'] ?>"
                      data-webm="<?php echo $course['resources_video'] ?>"
-</div>
-    </td>
+
     <!--    <td> --><?php //echo $file['playtime_string'] ?><!--</td>-->
     <td> <?php echo gmdate("H:i:s", $file['playtime_seconds']) ?></td>
     <td> <?php echo round($file['filesize'] / 1014 / 1024, 2) . 'MB' ?></td>
 
 
 <?php if ($this->view_data['deleted'] == false) { ?>
-    <td><a href="/admin/lessons/edit/" class="btn btn-success"><i class="fa fa-edit"></i></a>
+    <td><a href="/admin/lessons/edit/" ><i class="fa fa-edit"></i></a>
 
 
         <a href="/admin/lessons/delete/<?php echo $course['id'] ?>"
-           onclick="return confirm('هل أنت متأكد من الحذف');" class="btn btn-danger"><i
-                    class="fa fa-trash"></i></a>
+           onclick="return confirm('هل أنت متأكد من الحذف');" ><i
+                    class="fa fa-trash-restore"></i></a>
 
     </td>
 <?php } else { ?>
@@ -116,7 +119,7 @@ font: 18px Arial, Helvetica, sans-serif;
 <?php }
 } ?>
 </table>
-</div>
+
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'dataTableJs.phtml' ?>

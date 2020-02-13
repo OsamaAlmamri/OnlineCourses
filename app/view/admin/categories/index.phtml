@@ -35,92 +35,90 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             </div>
         </div>
     </div>
-
-
-    <br>
-    <table id="example1" class="table table-bordered table-striped">
-        <thead class="thead-dark font-size-16">
-        <tr>
-            <th> #</th>
-            <th>اسم القسم</th>
-            <th>الوصف</th>
-            <th>القسم الاب</th>
-            <th> الظهور</th>
-            <th> الحالة</th>
-            <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true
-                or Permissions::getInstaince()->hasPermision('category_delete') == true) { ?>
-                <th>الاعدادات</th>
-            <?php } ?>
-
-        </tr>
-        </thead>
-
-        <tbody>
-        <?php if (array_key_exists('categories', $this->view_data)) {
-            foreach ($this->view_data['categories'] as $k => $category) { ?>
-
-
+    <div class="row ">
+        <div class="col-12 ">
+            <table id="example1" class="table table-bordered table-striped">
+                <thead class="thead-dark font-size-16">
                 <tr>
-                    <td><?php echo $k ?></td>
-                    <td><?php echo $category['category_name'] ?></td>
-                    <td><?php echo $category['category_description'] ?></td>
+                    <th> #</th>
+                    <th>اسم القسم</th>
+                    <th>الوصف</th>
+                    <th>القسم الاب</th>
 
-                    <td> <?php echo Helper::getCategoryName(str_replace('level3_', '', $category['category_parents'])) ?></td>
-
-                    <td>
-                        <a href="" data-id="<?php echo $category['category_id'] ?>"
-                           data-visibility="<?php echo $category['category_visibility'] ?>"
-                           class="btn_visibility"><?php echo ($category['category_visibility'] == '1') ? ' <i class="fa fa-eye"> </i>' : '  <i class="fa fa-eye-slash"> </i>' ?> </a>
-                    </td>
-
-                    <td>
-                        <a href="" data-id="<?php echo $category['category_id'] ?>"
-                           data-status="<?php echo $category['category_status'] ?>"
-                           href=""><?php echo ($category['category_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
-                    </td>
-                    <?php if ($this->view_data['deleted'] == false) { ?>
-                        <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true
-                            or Permissions::getInstaince()->hasPermision('category_delete') == true
-                        ) { ?>
-                            <td>
-                                <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true) { ?>
-                                    <a href="/admin/categories/edit/<?php echo $category['id'] ?>"><i
-                                                class="fa fa-edit"></i></a>
-                                <?php } ?>
-                                <?php if (Permissions::getInstaince()->hasPermision('category_delete') == true) { ?>
-
-                                    <a href="/admin/categories/delete/<?php echo $category['id'] ?>"
-                                       onclick="return confirm('هل أنت متأكد من الحذف');"><i
-                                                class="fa fa-trash-restore"></i></a>
-                                <?php } ?>
-                            </td>
-                        <?php } ?>
-
-                    <?php } else { ?>
-
-                        <!--                        <th>{{getUserName( $category['deleted_by'] )?></th>-->
-                        <!--                        <td>--><?php //echo $category['deleted_at'] ?><!--</td>-->
-
-                        <td class="text-center">
-                            <a href="{{  route('admin.universities.restore',encrypt( $category['']id)) }}"
-                               class="btn btn-primary"><i
-                                        class="fa fa-arrow-up"></i></a>
-                        </td>
-
+                    <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true
+                        or Permissions::getInstaince()->hasPermision('category_delete') == true) { ?>
+                        <th>الاعدادات</th>
                     <?php } ?>
 
-
                 </tr>
-            <?php }
-        } ?>
-    </table>
-</div>
-<!-- End Main-content -->
+                </thead>
 
-</div>
-<!-- End Content -->
-</div>
-</div>
+                <tbody>
+                <?php if (array_key_exists('categories', $this->view_data)) {
+                    foreach ($this->view_data['categories'] as $k => $category) { ?>
+
+
+                        <tr>
+                            <td><?php echo $k ?></td>
+                            <td><?php echo $category['category_name'] ?></td>
+                            <td><?php echo $category['category_description'] ?></td>
+
+                            <td> <?php echo Helper::getCategoryName(str_replace('level3_', '', $category['category_parents'])) ?></td>
+
+
+
+
+                            <?php if ($this->view_data['deleted'] == false) { ?>
+                                <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true
+                                    or Permissions::getInstaince()->hasPermision('category_delete') == true
+                                ) { ?>
+                                    <td>
+                                        <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true) { ?>
+                                            <a data-id="<?php echo $category['category_id'] ?>"
+                                               data-status="<?php echo $category['category_status'] ?>"
+                                               class="active" >
+                                                <?php echo ($category['category_status'] == '1') ? '<i class="fas fa-check text-primary"></i>' : '<i class="ion ion-close text-danger"></i>' ?>
+                                            </a>
+                                            <a href="" data-id="<?php echo $category['category_id'] ?>"
+                                               data-visibility="<?php echo $category['category_visibility'] ?>"
+                                               class="btn_visibility"><?php echo ($category['category_visibility'] == '1') ? ' <i class="fa fa-eye"> </i>' : '  <i class="fa fa-eye-slash"> </i>' ?> </a>
+
+                                            <a href="/admin/categories/edit/<?php echo $category['id'] ?>"><i
+                                                        class="fa fa-edit"></i></a>
+                                        <?php } ?>
+                                        <?php if (Permissions::getInstaince()->hasPermision('category_delete') == true) { ?>
+
+                                            <a href="/admin/categories/delete/<?php echo $category['id'] ?>"
+                                               onclick="return confirm('هل أنت متأكد من الحذف');"><i
+                                                        class="fa fa-trash-restore"></i></a>
+                                        <?php } ?>
+                                    </td>
+                                <?php } ?>
+
+                            <?php } else { ?>
+
+                                <!--                        <th>{{getUserName( $category['deleted_by'] )?></th>-->
+                                <!--                        <td>--><?php //echo $category['deleted_at'] ?><!--</td>-->
+
+                                <td class="text-center">
+                                    <a href="{{  route('admin.universities.restore',encrypt( $category['']id)) }}"
+                                       class="btn btn-primary"><i
+                                                class="fa fa-arrow-up"></i></a>
+                                </td>
+
+                            <?php } ?>
+
+
+                        </tr>
+                    <?php }
+                } ?>
+            </table>
+        </div>
+    </div>
+
+
+
+
 
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
