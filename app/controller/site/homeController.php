@@ -111,6 +111,16 @@ class homeController extends Controller
     public function course_detail($id)
     {
         //get all details for course
+        $course_site = $this->model('Course_site');
+        $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
+        $userWishList = $course_site->wishListUser($user_id);
+//        return var_dump($userWishList);
+        if (count($userWishList) > 0) {
+            $userWishList = (explode(',', $userWishList[0]['user_wish_list']));
+
+        } else
+            $userWishList = [];
+
         $courseModel = $this->model('Course');
         $course = $courseModel->find($id);
 
@@ -140,6 +150,7 @@ class homeController extends Controller
                 'course' => $course,
                 'lessons' => $chaptersLessons,
                 'course_count' => $course_count,
+                'userWishList' => $userWishList,
                 'course_duration' => gmdate("H:i:s", $courseDuration),
                 'AllRatings' => $AllRatings,
             ]);
