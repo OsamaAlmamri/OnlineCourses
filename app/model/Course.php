@@ -59,7 +59,10 @@ class Course
         return $this->db->lastInsertId();
 
     }
-
+    public function countItems($item ,$table)
+    {
+        return $this->db->query("SELECT COUNT($item) FROM $table");
+    }
 }
 
 

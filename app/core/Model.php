@@ -56,6 +56,12 @@ class Model
         return $row;
     }
 
+    public function selectFromtableColumn($sql){
+        $stmt = $this->pdoObject->query($sql);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+
+    }
     public function escape($str)
     {
         return $this->pdoObject->quote($str);

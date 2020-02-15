@@ -4,7 +4,7 @@
         <!-- End Row -->
 </div>
         <!-- End Container -->
-
+</div>
 <script src="/design/dashboard/js/jquery-3.3.1.min.js"></script>
 <script src="/design/dashboard/js/popper.min.js"></script>
 <script src="/design/dashboard/js/bootstrap.min.js"></script>
@@ -16,7 +16,7 @@
 <script src="/design/dashboard/js/main.js"></script>
 <script src="/design/dashboard/js/my-login.js"></script>
 <script src="/design/dashboard/lib/tinymce/jquery.tinymce.min.js" referrerpolicy="origin"></script>
-<script src="/design/dashboard/lib/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+<script src="/design/dashboard/lib/tinymce/tinymce.min.js" referrerpolicy="origin"></script><script src="../build/js/custom.min.js"></script>
 <script>
 
     tinymce.init({
@@ -58,6 +58,23 @@
             xhr.send(formData);
         },
     });
+
+</script>
+<script>
+    $(document).ready(function () {
+        $('#tog').click(function() {
+            if ($(window).width() > 500) { //your chosen mobile res
+                $('.text').toggle(300);
+
+            } else {
+                $('#sidebar').animate({
+                    width: 'toggle'
+                }, 350);
+
+            }
+        });
+    });
+
 </script>
 <?php
 $url = array(

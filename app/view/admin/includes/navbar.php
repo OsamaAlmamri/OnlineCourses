@@ -1,13 +1,14 @@
 </head>
 <body>
+<div class="wrapper">
 <div class="container-fluid">
     <div class="row">
         <!--  Start Sidebar  -->
         <div class="col-2 p-0 ">
             <nav id="sidebar" class="">
                 <div class="sidebar-header">
-                    <img src="/images/logo.png">
-                    <strong>كورسات</strong>
+                    <img src="/images/logo.png" class="col-md-12">
+
                 </div>
 
                 <div class="userImage text-center">
@@ -22,7 +23,7 @@
                         <li>
                             <a href="/admin/index">
                                 <i class="fas fa-home a2"></i>
-                                الصفحة الرئيسية
+                              <label class="text">  الصفحة الرئيسية</label>
                             </a>
                         </li>
                     <?php } ?>
@@ -31,7 +32,8 @@
                         <li>
                             <a href="/admin/categories/index">
                                 <i class="fas fa-list"></i>
-                                الاقسام
+                                <label class="text">   الاقسام</label>
+
                             </a>
                         </li>
                     <?php } ?>
@@ -39,7 +41,7 @@
                         <li>
                             <a href="/admin/courses/index">
                                 <i class="fas fa-list"></i>
-                                الكورسات
+                                <label class="text">   الكورسات</label>
                             </a>
                         </li>
                     <?php } ?>
@@ -48,25 +50,27 @@
 
                     ) { ?>
                         <li>
-                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle ">
                                 <i class="fa fa-users-cog "></i>
-                                الحسابات
+                                <label class="text">   الحسابات</label>
                             </a>
                             <ul class="collapse list-unstyled" id="pageSubmenu">
 
 
                                 <li>
-                                    <a href="#"><i class="fa fa-users-cog "></i>المدراء الفرعين </a>
+                                    <a href="#"><i class="fa fa-users-cog "></i>
+                                        <label class="text">   المدراء الفرعين</label>                                    </a>
                                 </li>
                                 <?php if (Permissions::getInstaince()->hasPermision('university_index') == true) { ?>
                                     <li>
-                                        <a href="/admin/universities/index"><i class="ion ion-university  "></i>الجامعات</a>
+                                        <a href="/admin/universities/index"><i class="ion ion-university  "></i>       <label class="text">   الجامعات</label>
+                                        </a>
                                     </li>
                                 <?php } ?>
                                 <?php if (Permissions::getInstaince()->hasPermision('teacher_index') == true) { ?>
 
                                     <li>
-                                        <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>المدرسين
+                                        <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>  <label class="text">   المدرسين</label>
                                         </a>
                                     </li>
                                 <?php } ?>
@@ -80,24 +84,26 @@
                         <li>
                             <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false"
                                class="dropdown-toggle">
-                                <i class="fa fa-users-cog "></i>
-                                الادارة
+                                <i class="fa fa-cogs "></i>
+                                <label class="text">   الادارة</label>
                             </a>
                             <ul class="collapse list-unstyled" id="pageSubmenu2">
                                 <?php if (Permissions::getInstaince()->hasPermision('role_index') == true) { ?>
                                     <li>
-                                        <a href="/admin/role/index"><i class="fa fa-users-cog "></i>الادوار </a>
+                                        <a href="/admin/role/index"><i class="fa fa-users-cog "></i>  <label class="text">   الادوار</label>
+
+                                        </a>
                                     </li>
                                 <?php } ?>
                                 <?php if (Permissions::getInstaince()->hasPermision('permission_index') == true) { ?>
 
                                     <li>
-                                        <a href="/admin/permision/index"><i class="fa fa-cogs "></i>  الصلاحيات</a>
+                                        <a href="/admin/permision/index"><i class="fa fa-cogs "></i>    <label class="text">   الصلاحيات</label></a>
                                     </li>
                                 <?php } ?>
                                 <?php if (Permissions::getInstaince()->hasPermision('teacher_index') == true) { ?>
                                     <li>
-                                        <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>  المدرسين
+                                        <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>    <label class="text">   المدرسين</label>
                                         </a>
                                     </li>
                                 <?php } ?>
@@ -111,7 +117,7 @@
         <!--  End Sidebar   -->
 
         <!-- Start Content -->
-        <div class="col-10 p-0">
+        <div class="col-10 p-0" id="side">
 
             <!-- Start navBar -->
             <div class="row-cols-1 mb-4">
@@ -119,7 +125,7 @@
                     <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
                         <!-- Brand -->
                         <div class="col-6 text-right">
-                            <!--                            <a class="text-white" href="#"> لوحة التحكم</a>-->
+                      <a class="text-white" href="#" id="tog"> لوحة التحكم</a>
                         </div>
                         <!-- Links -->
                         <div class="col-6 text-left">

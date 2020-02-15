@@ -8,7 +8,7 @@
     <?php include VIEW . 'messages.phtml' ?>
     <div class="row bg-white mb-4 ">
             <div class="text-right  mt-auto col-6">
-                <h3 class=""><i class="fa fa-home"></i>  الصفحة الرئيسية</h3>
+                <h3 class=""><i class="fa fa-home" style="color:#ec3901"></i>  الصفحة الرئيسية</h3>
             </div>
             <div class="text-left m-auto col-6">
 					<span class="subheader_daterange " id="dashboard_daterangepicker">
@@ -27,45 +27,94 @@
     <div class="row">
         <div class="col-xl-4 col-12">
             <div class="card">
-                <div class="card-body">
-                    <h6 class="text-uppercase">عدد الكورسات</h6>
+<?php
+if (array_key_exists('cousres', $this->view_data)) {
+foreach ($this->view_data['cousres'] as $cousre) {
+    ?>
+
+                <div class="card-body" >
+
                     <div class="flexcard mt-2">
-                        <span class=" font-size-50 ">85,987</span>
-                        <span class="ion ion-person text-danger font-size-40 fa-pull-right"></span>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <h6 class="text-uppercase font-size-20 text-dark">عدد الكورسات</h6>
+                                <span class=" font-size-20 text-dark">
+                                    <?php echo $cousre[0];?></span>
+                            </div>
+                            <div class="col-3 text-center mt-1">
+                                <span class="ion ion-ios-book text-danger font-size-60 "></span>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
         <!-- /.col -->
-
+<?php }}?>
         <div class="col-xl-4 col-12">
             <div class="card">
-                <div class="card-body">
-                    <h6 class="text-uppercase">عدد الكورسات</h6>
+                <?php
+                if (array_key_exists('users', $this->view_data)) {
+                foreach ($this->view_data['users'] as $cousre) {
+                ?>
+
+                <div class="card-body" >
+
                     <div class="flexcard mt-2">
-                        <span class=" font-size-50 ">85,987</span>
-                        <span class="ion ion-person text-danger font-size-40 fa-pull-right"></span>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <h6 class="text-uppercase font-size-20 text-dark">عدد المستخدمين</h6>
+                                <span class=" font-size-20 text-dark">
+                                    <?php echo $cousre[0];?></span>
+                            </div>
+                            <div class="col-3 text-center mt-1">
+                                <span class="ion ion-ios-person text-primary font-size-60 "></span>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
         <!-- /.col -->
+    <?php }}?>
+        <!-- /.col -->
 
         <div class="col-xl-4 col-12">
             <div class="card">
-                <div class="card-body">
-                    <h6 class="text-uppercase">عدد الكورسات</h6>
+                <?php
+                if (array_key_exists('categories', $this->view_data)) {
+                foreach ($this->view_data['categories'] as $cousre) {
+                ?>
+
+                <div class="card-body" >
+
                     <div class="flexcard mt-2">
-                        <span class=" font-size-50 ">85,987</span>
-                        <span class="ion ion-person text-danger font-size-40 fa-pull-right"></span>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <h6 class="text-uppercase font-size-20 text-dark">عدد الاصناف</h6>
+                                <span class=" font-size-20 text-dark">
+                                    <?php echo $cousre[0];?></span>
+                            </div>
+                            <div class="col-3 text-center mt-1">
+                                <span class="ion ion-android-list text-warning font-size-50 "></span>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
+        <!-- /.col -->
+    <?php }}?>
         <!-- /.col -->
     </div>
     <div class="row">
-
+<!---->
 <!--        <div class="col-xl-8">-->
 <!--            <div class="card">-->
 <!--                <div class="card-body analytics-info">-->
@@ -74,11 +123,11 @@
 <!--                </div>-->
 <!--            </div>-->
 <!--        </div>-->
-
+<!---->
 <!--        <div class="col-xl-4 col-lg-3">-->
 <!--            <div class="card">-->
 <!--                <div class="card-header">-->
-<!--                    <h4 class="card-title">Recent Buyers</h4>-->
+<!--                    <h4 class="card-title">إخر الاعضاء المسجلين</h4>-->
 <!--                </div>-->
 <!--                <div class="card-body px-1">-->
 <!--                    <div id="recent-buyers" class="media-list">-->

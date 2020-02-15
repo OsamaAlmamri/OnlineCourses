@@ -51,7 +51,7 @@ input[type='text'] ,input[type='password'],input[type='email'],input[type='phone
     text-align: right;
     padding: 11px 15px;
     border-radius: 6px;
-    background-color: transparent;
+
 }
 
 
@@ -80,6 +80,7 @@ body.login-page{
     box-shadow: 0 5px 20px 5px rgba(60,63,64,0.3);
 
 }
+
 .login-box .logo-login
 {
     overflow: hidden;
@@ -221,8 +222,8 @@ body.login-page{
 }
 
 #sidebar {
-    min-height: 1000px;
-    background: #1c2026;
+   height:100%;
+    background: #343a40;
     color: #fff;
     transition: all 0.3s;
 }
@@ -233,10 +234,19 @@ body.login-page{
     text-align: center;
 }
 #sidebar .sidebar-header {
-    max-width: 250px;
+    max-width: 300px;
     height:70px;
-    background-color: #F1603F;
+    background-color: #E75457;
 }
+​.wrapper { width: 100% }
+
+
+
+
+
+
+
+
 #sidebar .sidebar-header img{
     height: 100%;
 }
@@ -307,7 +317,9 @@ ul ul a {
 /* ---------------------------------------------------
    Start NavBar style
 ----------------------------------------------------- */
-
+.mynav{
+    background-color: #E75457;
+}
 .navbar-dark .navbar-nav .show > .nav-link:hover {
     background-color: #f84938;
 }
@@ -457,7 +469,9 @@ label {
         height: auto;
         position: relative;
     }
-
+    .text{
+        display: none;
+    }
     .sidebar a {
     }
 
@@ -489,7 +503,9 @@ label {
     .sidebar a {
         text-align: center;
     }
-
+.text{
+    display: none;
+}
     div.content {
         margin-left: 0;
     }

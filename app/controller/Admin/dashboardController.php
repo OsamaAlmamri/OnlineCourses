@@ -18,4 +18,5 @@ class dashboardController extends \Controller
         $this->view->render();
 
     }
+
 }
