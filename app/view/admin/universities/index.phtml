@@ -7,7 +7,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
 <div class="container">
     <div class="row bg-white mb-4 ">
         <div class="text-right  mt-auto col-6">
-            <h3><i class="fa fa-university" style="color:#ec3901"></i> ادارة حسابات الجامعات </h3>
+            <h3><i class="fa fa-university" style="color:#b23e4a  "></i> ادارة حسابات الجامعات </h3>
         </div>
     </div>
     <div class="row mb-4">
@@ -37,13 +37,14 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             <table id="example1" class="table table-bordered table-striped">
                 <thead class="thead-dark font-size-16">
                 <tr>
+                   <th># الرقم</th>
                     <th>الاسم</th>
                     <th>الايميل</th>
                     <th>اسم المستخدم</th>
                     <th>صورة المستخدم</th>
                     <th>رقم الهاتف</th>
                     <th>تاريخ التسجيل</th>
-                    <th>الحالة</th>
+                    <th>حالة الحساب</th>
                     <?php if (Permissions::getInstaince()->hasPermision('university_edit') == true
                         or Permissions::getInstaince()->hasPermision('university_delete') == true) { ?>
                         <th>الاعدادات</th>
@@ -56,6 +57,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                     foreach ($this->view_data['universities'] as $university) { ?>
 
                         <tr>
+                            <td><?php echo $university['user_id'] ?></td>
                             <td><?php echo $university['user_name'] ?></td>
                             <td><?php echo $university['user_email'] ?></td>
                             <td><?php echo $university['user_full_name'] ?></td>
@@ -65,7 +67,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                             <td>
                                 <a href="" data-id="<?php echo $university['user_id'] ?>"
                                    data-status="<?php echo $university['user_status'] ?>"
-                                   class=" active"><?php echo ($university['user_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
+                                   class=" active"><?php echo ($university['user_status'] == '1') ? '<i class=\'fas fa-check text-primary\'></i>' : '<i class=\'ion ion-close text-danger\'></i>' ?> </a>
 
 
                             </td>

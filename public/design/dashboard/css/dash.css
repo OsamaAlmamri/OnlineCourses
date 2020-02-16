@@ -205,8 +205,9 @@ body.login-page{
 }
 
 .sidebar a:hover:not(.active) {
-    background-color: #ec3901;
+    background-color: #D14654;
     color: white;
+
 }
 
 .hrefLabel {
@@ -216,16 +217,27 @@ body.login-page{
 }
 
 
-.wrapper {
-    display: flex;
-    align-items: stretch;
+::-webkit-scrollbar {
+    width: 12px;
 }
 
+::-webkit-scrollbar-track {
+
+    -webkit-box-shadow: inset 0 0 6px ;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D14654;
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px ;
+}
 #sidebar {
-   height:100%;
-    background: #343a40;
+
+    background: #3f1f30;
     color: #fff;
     transition: all 0.3s;
+    height:2416px
 }
 
 #sidebar .active {
@@ -236,9 +248,13 @@ body.login-page{
 #sidebar .sidebar-header {
     max-width: 300px;
     height:70px;
-    background-color: #E75457;
+    background-color: #b23e4a  ;
+    z-index: 1;
 }
-​.wrapper { width: 100% }
+.bg-dark {
+    background-color: #b23e4a  !important;
+}
+
 
 
 
@@ -284,9 +300,9 @@ body.login-page{
 
 #sidebar ul li a:hover{
     padding: 15px;
-    border-right: 7px solid #F1603F ;
-    color: #e1e1e1;
-    background: #1e1e1e;
+    border-right: 7px solid #D14654 ;
+    color: #ffffff;
+    background: #a7a7a7;
 }
 
 #sidebar i {
@@ -296,7 +312,10 @@ body.login-page{
 a[data-toggle="collapse"] {
     position: relative;
 }
-
+.table .thead-dark th {
+    color: #fff;
+    background-color: #3f1f30 !important;
+}
 .dropdown-toggle::after {
     display: block;
     position: absolute;
@@ -305,7 +324,7 @@ a[data-toggle="collapse"] {
 
 ul ul a {
     padding-left: 30px !important;
-    background: #F1603F;
+    background: #b23e4a  ;
 }
 
 /* ---------------------------------------------------
@@ -321,15 +340,18 @@ ul ul a {
     background-color: #E75457;
 }
 .navbar-dark .navbar-nav .show > .nav-link:hover {
-    background-color: #f84938;
+    background-color: #e793a8;
+    color:white;
 }
 
 .navbar-nav > .nav-item > .nav-link:hover {
-    background-color: #f84938;
+    background-color: #e793a8;
+    color:white;
 }
 
 .navbar-nav > .nav-item > .nav-link:focus {
-    background-color: #ec3901;
+    background-color: #e793a8;
+    color:white;
 }
 a,
 a:hover,

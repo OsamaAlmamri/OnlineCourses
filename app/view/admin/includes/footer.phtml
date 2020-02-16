@@ -65,14 +65,28 @@
         $('#tog').click(function() {
             if ($(window).width() > 500) { //your chosen mobile res
                 $('.text').toggle(300);
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+
 
             } else {
                 $('#sidebar').animate({
                     width: 'toggle'
                 }, 350);
 
+
             }
         });
+      $('#pageSubmenu')
+        $('#pageSubmenu').collapse({
+            show:true
+
+        })
+        $('#pageSubmenu2').collapse({
+            show:true
+
+        })
     });
 
 </script>

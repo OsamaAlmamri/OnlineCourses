@@ -7,7 +7,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
 <div class="container">
     <div class="row bg-white mb-4 ">
         <div class="text-right  mt-auto col-6">
-            <h3><i class="fa fa-list" style="color:#ec3901"></i> ادارة الاقسام </h3>
+            <h3><i class="fa fa-list" style="color:#b23e4a "></i> ادارة الاقسام </h3>
         </div>
     </div>
     <?php include VIEW . 'messages.phtml' ?>
@@ -44,7 +44,8 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                     <th>اسم القسم</th>
                     <th>الوصف</th>
                     <th>القسم الاب</th>
-
+                     <th>حالة القسم</th>
+                     <th>إظهار القسم</th>
                     <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true
                         or Permissions::getInstaince()->hasPermision('category_delete') == true) { ?>
                         <th>الاعدادات</th>
@@ -65,7 +66,17 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
 
                             <td> <?php echo Helper::getCategoryName(str_replace('level3_', '', $category['category_parents'])) ?></td>
 
+<td> <a data-id="<?php echo $category['category_id'] ?>"
+        data-status="<?php echo $category['category_status'] ?>"
+        class="active" >
+        <?php echo ($category['category_status'] == '1') ? '<i class="fas fa-check text-primary"></i>' : '<i class="ion ion-close text-danger"></i>' ?>
+    </a></td>
+                            <td>
+                                <a href="" data-id="<?php echo $category['category_id'] ?>"
+                                   data-visibility="<?php echo $category['category_visibility'] ?>"
+                                   class="btn_visibility"><?php echo ($category['category_visibility'] == '1') ? ' <i class="fa fa-eye"> </i>' : '  <i class="fa fa-eye-slash"> </i>' ?> </a>
 
+                            </td>
 
 
                             <?php if ($this->view_data['deleted'] == false) { ?>
@@ -74,14 +85,8 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                                 ) { ?>
                                     <td>
                                         <?php if (Permissions::getInstaince()->hasPermision('category_edit') == true) { ?>
-                                            <a data-id="<?php echo $category['category_id'] ?>"
-                                               data-status="<?php echo $category['category_status'] ?>"
-                                               class="active" >
-                                                <?php echo ($category['category_status'] == '1') ? '<i class="fas fa-check text-primary"></i>' : '<i class="ion ion-close text-danger"></i>' ?>
-                                            </a>
-                                            <a href="" data-id="<?php echo $category['category_id'] ?>"
-                                               data-visibility="<?php echo $category['category_visibility'] ?>"
-                                               class="btn_visibility"><?php echo ($category['category_visibility'] == '1') ? ' <i class="fa fa-eye"> </i>' : '  <i class="fa fa-eye-slash"> </i>' ?> </a>
+
+
 
                                             <a href="/admin/categories/edit/<?php echo $category['id'] ?>"><i
                                                         class="fa fa-edit"></i></a>
