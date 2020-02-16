@@ -25,6 +25,7 @@ class ProfileController extends Controller
 
 
             $id=Session::get('user')['user_id'];
+
             $logo="";
             $logo=empty($_FILES['image']['name'])?$logo=$_REQUEST['old_image']: Helper::saveImage('image', 'images/users/profiles/');
 

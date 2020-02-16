@@ -94,19 +94,25 @@
                            id="user_phone" name="user_phone" required>
                 </div>
 
+<?php $role_name=$_SESSION['role_name'];
+if($role_name == 'university'){
+    ?>
+    <div class="form-group">
+        <input type="hidden" name="role_name" value="university">
+        <label for="user_image" class="float-right">وثيقة دليل الجامعة</label>
 
-                <div class="form-group">
-                <input type="hidden" name="role_name" value="university">
-                <label for="user_image" class="float-right">وثيقة دليل الجامعة</label>
+        <div class="custom-file ">
 
-                <div class="custom-file ">
+            <input type="file" class="custom-file-input" name="document"
+                   id="document" required>
+            <label class="custom-file-label" for="user_image">Choose
+                file</label>
+        </div>
+    </div>
+   <?php
+}?>
 
-                    <input type="file" class="custom-file-input" name="document"
-                           id="document" required>
-                    <label class="custom-file-label" for="user_image">Choose
-                        file</label>
-                </div>
-                </div>
+
                 <button type="submit" class="btn btn-danger probtn">حفظ التغيرات</button>
                 <button type="submit" class="btn btn-warning probtn ">الغاء</button>
 
