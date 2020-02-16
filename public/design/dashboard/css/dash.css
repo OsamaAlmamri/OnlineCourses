@@ -226,12 +226,12 @@ body.login-page{
 ::-webkit-scrollbar-track {
 
     -webkit-box-shadow: inset 0 0 6px ;
-    border-radius: 10px;
+
 }
 
 ::-webkit-scrollbar-thumb {
     background: #D14654;
-    border-radius: 10px;
+
     -webkit-box-shadow: inset 0 0 6px ;
 }
 #sidebar {
