@@ -25,27 +25,29 @@
                                             <label for="user_email">البريد الالكتروني</label>
                                             <input type="email" class="form-control"
                                                    placeholder="ادخل البريد الالكتروني الخاص بك" id="user_email"
-                                                   value="<?php Helper::old('user_email','auth'); ?>"
-                                                   name="user_email"; onchange="if(this.value != '') callAjax('checkEmail', this.value, this.id);>
-                                            <?php echo Message::getInputErrorMessage('user_email') ?>
+                                                   value="<?php Helper::old('user_email', 'auth'); ?>"
+                                                   name="user_email" ;
+                                                   onchange="if(this.value != '') callAjax('checkEmail', this.value, this.id);>
+                                                   <?php echo Message::getInputErrorMessage('user_email') ?>
 
-                                            <label for="user_password">كلمة المرور:</label>
-                                            <input type="password" class="form-control" placeholder="أدخــل كلمــة الســر"
+                                                           <label for=" user_password">كلمة المرور:</label>
+                                            <input type="password" class="form-control"
+                                                   placeholder="أدخــل كلمــة الســر"
                                                    id="user_password" name="user_password" data-eye>
                                             <?php echo Message::getInputErrorMessage('user_password') ?>
-                                            
+
 
                                             <label for="user_password">تأكيـد كلـمة المرور</label>
-                                            <input type="password" class="form-control" placeholder="تأكيــد كلمــة السر"
+                                            <input type="password" class="form-control"
+                                                   placeholder="تأكيــد كلمــة السر"
                                                    id="password_confirmation" name="password_confirmation"
                                                    data-eye>
                                             <?php echo Message::getInputErrorMessage('password_confirmation') ?>
 
 
-
                                             <label for="user_full_name">الأســم كــامل</label>
                                             <input type="text" class="form-control" placeholder="يرجى إدخال الاسم كاملآ"
-                                                   value="<?php Helper::old('user_full_name','auth'); ?>"
+                                                   value="<?php Helper::old('user_full_name', 'auth'); ?>"
                                                    id="user_full_name" name="user_full_name">
                                             <?php echo Message::getInputErrorMessage('user_full_name') ?>
 
@@ -53,10 +55,9 @@
                                             <label for="user_name">إسم المستــخدم</label>
                                             <input type="text" class="form-control" placeholder="يرجى إخال إسم المستخدم"
                                                    id="user_name"
-                                                   value="<?php Helper::old('user_name','auth',); ?>"
+                                                   value="<?php Helper::old('user_name', 'auth',); ?>"
                                                    name="user_name" required>
                                             <?php echo Message::getInputErrorMessage('user_name') ?>
-
 
 
                                         </div>
@@ -71,19 +72,18 @@
 
                                                 <div id="user_image_dev">
                                                     <?php if (array_key_exists('user', $this->view_data)) { ?>
-                                                        <img src="<?php echo($this->view_data['user']['document']); ?>"
+                                                        <img src="<?php echo($this->view_data['user']['user_image']); ?>"
                                                              width="100px">
 
                                                     <?php } ?>
                                                 </div>
                                             </div>
-                                            <?php echo Message::getInputErrorMessage('document') ?>
-
+                                            <?php echo Message::getInputErrorMessage('user_image') ?>
 
 
                                             <label for="user_phone">رقم الهاتف</label>
                                             <input type="phone" class="form-control" placeholder="يرجى إدراج رقم الهاتف"
-                                                   value="<?php Helper::old('user_phone','auth'); ?>"
+                                                   value="<?php Helper::old('user_phone', 'auth'); ?>"
                                                    id="user_phone" name="user_phone" required>
                                             <?php echo Message::getInputErrorMessage('user_phone') ?>
 
@@ -107,7 +107,7 @@
                                                             <input type="text" class="form-control"
                                                                    placeholder="يرجى إدراج المؤهل العلمي"
                                                                    id="user_qualification" name="user_qualification"
-                                                                   value="<?php Helper::old('user_qualification','auth'); ?>"
+                                                                   value="<?php Helper::old('user_qualification', 'auth'); ?>"
                                                                    required>
                                                         </div>
                                                     </div>
@@ -119,57 +119,60 @@
                                             }
 
                                             if (array_key_exists('type', $this->view_data)) {
-                                                if ($this->view_data['type'] == 'university') {
-                                                    ?>
+                                            if ($this->view_data['type'] == 'university') {
+                                            ?>
 
-                                                    <input type="hidden" name="role_name" value="university">
-                                                    <label for="user_image">وثيقة دليل الجامعة</label>
+                                            <input type="hidden" name="role_name" value="university">
+                                            <label for="user_image">وثيقة دليل الجامعة</label>
 
-                                                    <div class="custom-file ">
+                                            <div class="custom-file ">
 
-                                                    <input type="file" class="custom-file-input" name="document"
-                                                           id="document" required>
-                                                    <label class="custom-file-label" for="user_image">Choose
-                                                        file</label>
-                                                    <?php echo Message::getInputErrorMessage('document') ?>
+                                                <input type="file" class="custom-file-input" name="document"
+                                                       id="document" required>
+                                                <label class="custom-file-label" for="user_image">Choose
+                                                    file</label>
+                                                <?php echo Message::getInputErrorMessage('document') ?>
 
-                                                    <div id="university_document_dev">
+                                                <div id="university_document_dev">
                                                     <?php if (array_key_exists('user', $this->view_data)) { ?>
                                                         <img src="<?php echo($this->view_data['user']['user_image']); ?>"
                                                              width="100px">
 
                                                     <?php }
-                                                } ?>
-                                                <div class="row">
-                                                    <div class="col-md-12" style="margin-top: 25px">
-                                                        <div class="form-group ">
-                                                            <button type="submit" class="btn btn-primary btn-block">
-                                                                Register
-                                                            </button>
-                                                        </div>
-                                                        <div class="mt-4 text-center">
-                                                            Already have an account? <a href="/home/login">Login</a>
-                                                        </div>
-                                                        <div class="footer text-center">
-                                                            Copyright &copy; 2020 &mdash; StepForward
+                                                    } ?>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="margin-top: 25px">
+                                                            <div class="form-group ">
+                                                                <button type="submit" class="btn btn-primary btn-block">
+                                                                    Register
+                                                                </button>
+                                                            </div>
+                                                            <div class="mt-4 text-center">
+                                                                Already have an account? <a href="/home/login">Login</a>
+                                                            </div>
+                                                            <div class="footer text-center">
+                                                                Copyright &copy; 2020 &mdash; StepForward
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                </div>
-                                                </div> <?php
-                                            } ?>
-                                        </div>
+                                            </div>
+                                        </div> <?php
+                                        } ?>
                                     </div>
-
-                                </form>
-
                             </div>
+
+                            </form>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'readImageFile.phtml' ?>
@@ -200,142 +203,138 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
 
 
+// For Validate Using JS
 
-// For Validate Using JS 
 
-<!--                        
 <script type="text/javascript">
 
-  function checkForm(form)
-  {
-    if(this.user_email.value == "") {
-      alert("Please enter your Name in the form");
-      this.user_email.focus();
-      return false;
+    function checkForm(form) {
+        if (this.user_email.value == "") {
+            alert("Please enter your Name in the form");
+            this.user_email.focus();
+            return false;
+        }
+        if (this.user_password.value == "" || !this.valid_email.checked) {
+            alert("Please enter a valid Email address");
+            this.user_password.focus();
+            return false;
+        }
+        if (this.password_confirmation.value == "" || !this.valid_age.checked) {
+            alert("Please enter an Password Conformation");
+            this.password_confirmation.focus();
+            return false;
+        }
+        if (this.user_full_name.value == "" || !this.valid_age.checked) {
+            alert("Please enter an User Full Name");
+            this.user_full_name.focus();
+            return false;
+        }
+        if (this.user_name.value == "" || !this.valid_age.checked) {
+            alert("Please enter an User Name");
+            this.user_name.focus();
+            return false;
+        }
+        if (this.user_image.value == "" || !this.valid_age.checked) {
+            alert("Please enter an User Image");
+            this.user_image.focus();
+            return false;
+        }
+        if (this.user_phone.value == "" || !this.valid_age.checked) {
+            alert("Please enter an User Phone");
+            this.user_phone.focus();
+            return false;
+        }
+        if (this.role_name.value == "" || !this.valid_age.checked) {
+            alert("Please enter an Role Name");
+            this.role_name.focus();
+            return false;
+        }
+        if (this.user_gender.value == "" || !this.valid_age.checked) {
+            alert("Please enter an User Gender");
+            this.user_gender.focus();
+            return false;
+        }
+        if (this.user_qualification.value == "" || !this.valid_age.checked) {
+            alert("Please enter an User qualification");
+            this.user_qualification.focus();
+            return false;
+        }
+        if (this.document.value == "" || !this.valid_age.checked) {
+            alert("Please enter an Documenet");
+            this.document.focus();
+            return false;
+        }
+        alert("Success!  The form has been completed, validated and is ready to be submitted...");
+        return false;
     }
-    if(this.user_password.value == "" || !this.valid_email.checked) {
-      alert("Please enter a valid Email address");
-      this.user_password.focus();
-      return false;
-    }
-    if(this.password_confirmation.value == "" || !this.valid_age.checked) {
-      alert("Please enter an Password Conformation");
-      this.password_confirmation.focus();
-      return false;
-    }
-      if(this.user_full_name.value == "" || !this.valid_age.checked) {
-      alert("Please enter an User Full Name");
-      this.user_full_name.focus();
-      return false;
-    }
-      if(this.user_name.value == "" || !this.valid_age.checked) {
-      alert("Please enter an User Name");
-      this.user_name.focus();
-      return false;
-    }
-      if(this.user_image.value == "" || !this.valid_age.checked) {
-      alert("Please enter an User Image");
-      this.user_image.focus();
-      return false;
-    }
-      if(this.user_phone.value == "" || !this.valid_age.checked) {
-      alert("Please enter an User Phone");
-      this.user_phone.focus();
-      return false;
-    }
-      if(this.role_name.value == "" || !this.valid_age.checked) {
-      alert("Please enter an Role Name");
-      this.role_name.focus();
-      return false;
-    }
-      if(this.user_gender.value == "" || !this.valid_age.checked) {
-      alert("Please enter an User Gender");
-      this.user_gender.focus();
-      return false;
-    }
-      if(this.user_qualification.value == "" || !this.valid_age.checked) {
-      alert("Please enter an User qualification");
-      this.user_qualification.focus();
-      return false;
-    }
-      if(this.document.value == "" || !this.valid_age.checked) {
-      alert("Please enter an Documenet");
-      this.document.focus();
-      return false;
-    }
-    alert("Success!  The form has been completed, validated and is ready to be submitted...");
-    return false;
-  }
 
 </script>
--->
 
-                                                                                            
+
 <script>
-$(document).ready(function() {
+    $(document).ready(function () {
 
-  $('#first_form').submit(function(e) {
-    //e.preventDefault();
-    var user_email = $('#user_email').val();
-    var user_password = $('#user_password').val();
-    var password_confirmation = $('#password_confirmation').val();
-    var user_full_name = $('#user_full_name').val();
-    var user_name = $('#user_name').val();
-    var user_image = $('#user_image').val();
-    var user_phone = $('#user_phone').val();
-    var role_name = $('#role_name').val();
-    var user_gender = $('#user_gender').val();
-    var user_qualification = $('#user_qualification').val();
-    var document = $('#document').val();
+        $('#first_form').submit(function (e) {
+            //e.preventDefault();
+            var user_email = $('#user_email').val();
+            var user_password = $('#user_password').val();
+            var password_confirmation = $('#password_confirmation').val();
+            var user_full_name = $('#user_full_name').val();
+            var user_name = $('#user_name').val();
+            var user_image = $('#user_image').val();
+            var user_phone = $('#user_phone').val();
+            var role_name = $('#role_name').val();
+            var user_gender = $('#user_gender').val();
+            var user_qualification = $('#user_qualification').val();
+            var document = $('#document').val();
 
-    $(".error").remove();
+            $(".error").remove();
 
-    if (user_email.length < 1) {
-      $('#user_email').after('<span class="error" style=background-color:red;>يرجى إدراج البريد الالكتروني</span>');
-    }
-    if (user_password.length < 1) {
-      $('#user_password').after('<span class="error" style=background-color:red;>يرجى إدراج كلمة السر</span>' );
-    }
-    if (password_confirmation.length < 1) {
-      $('#password_confirmation').after('<span class="error" style=background-color:red;>يرجى تأكيد كلمة السر</span>');
-    }
-    if (user_full_name.length < 1) {
-      $('#user_full_name').after('<span class="error" style=background-color:red;>يرجى إدراج الاسم كاملا</span>' );
-    }
-    if (user_name.length < 1) {
-      $('#user_name').after('<span class="error" style=background-color:red;>يرجى إدراج إسم المستحدم</span>');
-    }
-    if (user_image.length < 1) {
-      $('#user_image').after('<span class="error" style=background-color:red;>يرجى إدراج الصورة الشخصية</span>' );
-    }
-    if (user_phone.length < 1) {
-      $('#user_phone').after('<span class="error" style=background-color:red;>يرجى إدراج رقم الهاتف</span>');
-    }
-    if (role_name.length < 1) {
-      $('#role_name').after('<span class="error" style=background-color:red;>يرجى ادخال اسم الاشتراك</span>');
-    }
-    if (user_gender.length < 1) {
-      $('#user_gender').after('<span class="error" style=background-color:red;>يرجى إدراج الجنس</span>');
-    }
-    if (user_qualification.length < 1) {
-      $('#user_qualification').after('<span class="error" style=background-color:red;>يرجى إدراج المؤهل العلمي</span>');
-    }
-    if (document.length < 1) {
-      $('#document').after('<span class="error">يرجى إدراج الوثائق المطلوبه</span>' + "<br>");
-    }
-    else {
-      var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
-      var validEmail = regEx.test(email);
-      if (!validEmail) {
-        $('#email').after('<span class="error">Enter a valid email</span>');
-      }
-    }
-    if (password.length < 8) {
-      $('#password').after('<span class="error">كلمة السر يجب ان تكون اطول من 8 حروف</span>');
-    }
-  });
+            if (user_email.length < 1) {
+                $('#user_email').after('<span class="error" style=background-color:red;>يرجى إدراج البريد الالكتروني</span>');
+            }
+            if (user_password.length < 1) {
+                $('#user_password').after('<span class="error" style=background-color:red;>يرجى إدراج كلمة السر</span>');
+            }
+            if (password_confirmation.length < 1) {
+                $('#password_confirmation').after('<span class="error" style=background-color:red;>يرجى تأكيد كلمة السر</span>');
+            }
+            if (user_full_name.length < 1) {
+                $('#user_full_name').after('<span class="error" style=background-color:red;>يرجى إدراج الاسم كاملا</span>');
+            }
+            if (user_name.length < 1) {
+                $('#user_name').after('<span class="error" style=background-color:red;>يرجى إدراج إسم المستحدم</span>');
+            }
+            if (user_image.length < 1) {
+                $('#user_image').after('<span class="error" style=background-color:red;>يرجى إدراج الصورة الشخصية</span>');
+            }
+            if (user_phone.length < 1) {
+                $('#user_phone').after('<span class="error" style=background-color:red;>يرجى إدراج رقم الهاتف</span>');
+            }
+            if (role_name.length < 1) {
+                $('#role_name').after('<span class="error" style=background-color:red;>يرجى ادخال اسم الاشتراك</span>');
+            }
+            if (user_gender.length < 1) {
+                $('#user_gender').after('<span class="error" style=background-color:red;>يرجى إدراج الجنس</span>');
+            }
+            if (user_qualification.length < 1) {
+                $('#user_qualification').after('<span class="error" style=background-color:red;>يرجى إدراج المؤهل العلمي</span>');
+            }
+            if (document.length < 1) {
+                $('#document').after('<span class="error">يرجى إدراج الوثائق المطلوبه</span>' + "<br>");
+            } else {
+                var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
+                var validEmail = regEx.test(email);
+                if (!validEmail) {
+                    $('#email').after('<span class="error">Enter a valid email</span>');
+                }
+            }
+            if (password.length < 8) {
+                $('#password').after('<span class="error">كلمة السر يجب ان تكون اطول من 8 حروف</span>');
+            }
+        });
 
-});                                        
+    });
 </script>
 
                                                                                             

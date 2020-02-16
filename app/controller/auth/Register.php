@@ -60,7 +60,7 @@ class Register extends Controller
             $validate = \Validation::validate(array_merge($universityRequired, [
                 'user_password' => array(['required' => 'required', 'min' => '6', 'confirmed' => 'password_confirmation']),
                 'user_email' => array(['required' => 'required', 'unique' => array('users', 'user_email')]),
-                'user_full_name' => array(['required' => 'required', 'minWords' => 2, 'maxWords' => 5]),
+                'user_full_name' => array(['required' => 'required']),
                 'user_name' => array(['required' => 'required', 'unique' => array('users', 'user_name')]),
             ]));
             if (count($validate) == 0) {
