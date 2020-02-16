@@ -65,7 +65,9 @@ body {
     font-family: 'DroidKufi-Regular', sans-serif;
     background-color: #f9f9f9;
 }
-
+.container-fluid{
+    width: 100% !important;
+}
 /* ---------------------------------------------------
    Start Login
 ----------------------------------------------------- */
@@ -224,12 +226,12 @@ body.login-page{
 ::-webkit-scrollbar-track {
 
     -webkit-box-shadow: inset 0 0 6px ;
-    border-radius: 10px;
+
 }
 
 ::-webkit-scrollbar-thumb {
     background: #D14654;
-    border-radius: 10px;
+
     -webkit-box-shadow: inset 0 0 6px ;
 }
 #sidebar {
@@ -240,7 +242,7 @@ body.login-page{
     height:2416px
 }
 
-#sidebar .active {
+#sidebar.active {
     min-width: 80px;
     max-width: 80px;
     text-align: center;
@@ -296,13 +298,20 @@ body.login-page{
     padding: 15px;
     font-size: 14px;
     display: block;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
+.navbar-nav > .nav-item > .dropdown-menu {
+    margin-top: -5px !important;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
 #sidebar ul li a:hover{
     padding: 15px;
     border-right: 7px solid #D14654 ;
     color: #ffffff;
     background: #a7a7a7;
+    transition:0.5s;
+
 }
 
 #sidebar i {

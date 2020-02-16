@@ -20,7 +20,7 @@
                 </div>
                 <ul class="list-unstyled components">
                     <?php if (Permissions::getInstaince()->hasPermision('admin_index') == true) { ?>
-                        <li>
+                        <li class="active">
                             <a href="/admin/index">
                                 <i class="fas fa-home a2"></i>
                               <label class="text">  الصفحة الرئيسية</label>
@@ -92,7 +92,7 @@
                                     </label>
                                 <i class="ion ion-chevron-down mt-10" style="float:left"></i>
                             </a>
-                            <ul class="collapse  list-unstyled" id="pageSubmenu2" aria-labelledby="headingOne" >
+                            <ul class="collapse show list-unstyled" id="pageSubmenu2" aria-labelledby="headingOne" >
                                 <?php if (Permissions::getInstaince()->hasPermision('role_index') == true) { ?>
                                     <li>
                                         <a href="/admin/role/index"><i class="fa fa-users-cog "></i>  <label class="text">   الادوار</label>
@@ -122,7 +122,7 @@
         <!--  End Sidebar   -->
 
         <!-- Start Content -->
-        <div class="col-10 p-0" id="side">
+        <div class="col-10 p-0" >
 
             <!-- Start navBar -->
             <div class="row-cols-1 mb-4">
@@ -130,6 +130,7 @@
                     <nav class="navbar navbar-expand-sm bg-dark navbar-dark ">
                         <!-- Brand -->
                         <div class="col-6 text-right">
+
                       <a class="text-white" href="#" id="tog"><span class="fas fa-list"></span></a>
                         </div>
                         <!-- Links -->
