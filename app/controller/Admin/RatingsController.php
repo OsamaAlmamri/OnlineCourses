@@ -39,10 +39,19 @@ class RatingsController extends Controller
 
     }
 
-    public function deleteRating($id_user,$course)
+    public function deleteRating()
     {
+        $data =[
+            'user_id'=>$_REQUEST['user_id'],
+            'course_id'=>$_REQUEST['course_id']
+        ];
+
         $rating= $this->model('Rating');
-        $rating->deleteRating($id_user,$course);
+        if($rating->deleteRating($data))
+        {
+          echo 1;
+        }
+        else 0;
     }
 
 
