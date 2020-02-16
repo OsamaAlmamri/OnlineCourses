@@ -20,8 +20,11 @@ class adminController extends Controller
     {
         Permissions::getInstaince()->allow('admin_index');
         $this->model('Course');
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'index', ['news' => $this->model->all()]);
-        $this->view->pageTitle = 'admin index';
+
+         $this->view('admin' . DIRECTORY_SEPARATOR . 'index', ['news' => $this->model->all(),"cousres"=>  $this->model->countItems("course_id","courses"),
+             "users"=>  $this->model->countItems("user_id","users"),
+             "categories"=>  $this->model->countItems("category_id","categories")]);
+        $this->view->pageTitle = "لوحة التحكم";
         $this->view->render();
 
     }
@@ -55,11 +58,22 @@ class adminController extends Controller
 
 
     }
+    public function fetchCountTable()
+    {
 
+        $countTable = $this->model('Count');
+
+        $countTableToView= $countTable->countItems("course_id","courses");
+
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'index', ['courses' => $this->model->all()]);
+        $this->view->render();
+
+    }
     public function PostLogin()
     {
         $auth = new login;
         $auth->login('admin');
+
     }
 
 
@@ -75,6 +89,7 @@ class adminController extends Controller
         $auth = new Register($_REQUEST);
         $auth->signUp('student', 0);
     }
+
 
 }
 

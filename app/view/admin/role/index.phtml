@@ -7,7 +7,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
 <div class="container">
     <div class="row bg-white mb-4 ">
         <div class="text-right  mt-auto col-6">
-            <h2><i class="fa fa fa-user-cog" style="color:#ec3901"></i>إدارة الادوار في الحسابات</h2>
+            <h2><i class="fa fa fa-user-cog" style="color:#b23e4a  "></i>إدارة الادوار في الحسابات</h2>
         </div>
     </div>
     <div class="row mb-4">
@@ -39,8 +39,10 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             <table id="example1" class="table table-bordered table-striped">
                 <thead class="thead-dark font-size-18">
                 <tr>
+                    <th># الرقم</th>
                     <th>اسم الدور</th>
                     <th>وصف الدور</th>
+                    <th>حالة الدور</th>
 
                     <?php if (Permissions::getInstaince()->hasPermision('role_edit') == true
                         or Permissions::getInstaince()->hasPermision('role_delete') == true) { ?>
@@ -55,8 +57,13 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
 
 
                         <tr>
+                            <td><?php echo $role['role_id'] ?></td>
                             <td><?php echo $role['role_name'] ?></td>
                             <td><?php echo html_entity_decode($role['role_description']); ?></td>
+                            <td> <a class="active" data-id="<?php echo $role['role_id'] ?>"
+                                    data-status="<?php echo $role['role_status'] ?>"
+                                    href=""><?php echo ($role['role_status'] == '1') ? '<i class=\'fas fa-check text-primary\'></i>' : '<i class=\'ion ion-close text-danger\'></i>' ?> </a>
+                            </td>
 
 
                             <?php if ($this->view_data['deleted'] == false) { ?>
@@ -65,9 +72,6 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                                 ) { ?>
                                     <td>
                                         <?php if (Permissions::getInstaince()->hasPermision('role_edit') == true) { ?>
-                                            <a class="active" data-id="<?php echo $role['role_id'] ?>"
-                                               data-status="<?php echo $role['role_status'] ?>"
-                                               href=""><?php echo ($role['role_status'] == '1') ? '<i class=\'fas fa-check text-primary\'></i>' : '<i class=\'ion ion-close text-danger\'></i>' ?> </a>
 
                                             <a href="/admin/role/edit/<?php echo $role['role_id'] ?>"><i class="fa fa-edit"></i></a>
                                         <?php } ?>

@@ -7,7 +7,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
 <div class="container">
     <div class="row bg-light mb-4 ">
         <div class="text-right  mt-auto col-6">
-            <h3><i class="fa fa-university" style="color:#ec3901"></i> ادارة حسابات المدرسين </h3>
+            <h3><i class="fa fa-university" style="color:#b23e4a  "></i> ادارة حسابات المدرسين </h3>
         </div>
     </div>
     <div class="row mb-4">
@@ -39,6 +39,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
             <table id="example1" class="table table-bordered table-striped">
                 <thead class="thead-dark font-size-14">
                 <tr>
+                    <th># الرقم</th>
                     <th>الاسم</th>
                     <th>الايميل</th>
                     <th>اسم المستخدم</th>
@@ -58,6 +59,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                     foreach ($this->view_data['universities'] as $university) { ?>
 
                         <tr>
+                            <td><?php echo $university['user_id'] ?></td>
                             <td><?php echo $university['user_name'] ?></td>
                             <td><?php echo $university['user_email'] ?></td>
                             <td><?php echo $university['user_full_name'] ?></td>
