@@ -53,6 +53,16 @@ class DB
         }
         return $data;
     }
+    public function query2($sql)
+    {
+        if (!self::$PDO_OBJECT) {
+            return false;
+        }
+
+        $result = self::$PDO_OBJECT->query($sql);
+
+        return $result->fetch();
+    }
 
     public function escape($str)
     {

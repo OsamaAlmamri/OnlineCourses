@@ -18,7 +18,7 @@ class Category
     {
         $sql = "select * from categories";
         if ($parent != '')
-            $sql = "select * from categories where category_parents like '%" . $parent . "%'";
+            $sql = "select * from categories where category_parents like '" . $parent . "'";
         return $this->db->query($sql);
     }
 

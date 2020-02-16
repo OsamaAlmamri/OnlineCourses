@@ -7,17 +7,12 @@ use site\homeController;
 
 class Helper
 {
-//    public static function getMainMenu($type)
-//    {
-//        if ($type == 'main') {
-//            $c = DB::init()->query("SELECT *  FROM categories2 WHERE parent =0 and isMain=1 order by sort");
-//
-//
-//        } else
-//            $c = DB::init()->query("SELECT *  FROM categories2 WHERE parent =0 and isMain=0 order by sort ");
-////            $c = Category::all()->where('parent', '')->where('isMain', 0)->sortBy('sort');
-//        return ($c);
-//    }
+    public static function getMainMenu($parent ='0')
+    {
+
+        $c = new Category();
+        return ($c->all($parent));
+    }
 
 //    public static function getCategories()
 //    {

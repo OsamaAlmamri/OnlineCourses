@@ -16,6 +16,11 @@ class Course_site
         return $this->db->query("select * from courses");
     }
 
+    public function getCoursesById($id)
+    {
+        return $this->db->query("select * from courses where categories_ids like '%\"$id\"%'");
+    }
+
     public function insertInToUsersCourses(array $aData)
     {
         $insertIntoUserCourses = $this->db->preparation('INSERT INTO `users_courses`( `user_id`,user_wish_list) 

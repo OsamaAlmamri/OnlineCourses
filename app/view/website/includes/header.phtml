@@ -101,21 +101,27 @@
                 <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown" aria-haspopup="true"
                    aria-expanded="false"> <i class="icon-th"></i> Categories</a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown1">
-                    <li class="dropdown-item" href="#"><a>Action 1</a></li>
-                    <li class="dropdown-item dropdown">
-                        <a class="dropdown-toggle" id="dropdown1-1" data-toggle="dropdown" aria-haspopup="true"
-                           aria-expanded="false">Dropdown1.1</a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdown1-1">
-                            <li class="dropdown-item" href="#"><a>Action 1.1</a></li>
-                            <li class="dropdown-item dropdown">
-                                <a class="dropdown-toggle" id="dropdown1-1-1" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">Dropdown1.1.1</a>
-                                <ul class="dropdown-menu" aria-labelledby="dropdown1-1-1">
-                                    <li class="dropdown-item" href="#"><a>Action 1.1.1</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                    <?php foreach (Helper::getMainMenu() as $main) { ?>
+                        <li class="dropdown-item dropdown">
+                            <a class="dropdown-toggle" id="dropdown1-1" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false"><?php echo($main['category_name']) ?></a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown1-1">
+                                <?php foreach (Helper::getMainMenu($main['category_id']) as $main_level2) { ?>
+                                    <li class="dropdown-item dropdown">
+                                        <a class="dropdown-toggle" id="dropdown1-1-1" data-toggle="dropdown"
+                                           aria-haspopup="true"
+                                           aria-expanded="false"><?php echo($main_level2['category_name']) ?></a>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdown1-1-1">
+                                            <?php foreach (Helper::getMainMenu('level3_' . $main_level2['category_id']) as $main_level3) { ?>
+                                                <a class="dropdown-item"
+                                                   href="/courses/getCourse/<?php echo($main_level3['category_id']) ?>"> <?php echo($main_level3['category_name']) ?> </a>
+                                            <?php } ?>
+                                        </ul>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </li>
+                    <?php } ?>
                 </ul>
             </li>
 
@@ -379,4 +385,3 @@
         </div>
     </div>
 </div>
-</body>
