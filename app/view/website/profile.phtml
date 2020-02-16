@@ -1,243 +1,164 @@
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'header.phtml' ?>
-<!--<div class="container h-100">-->
-<!--    <div class="row justify-content-lg-center h-100 " style="margin-top: 12%">-->
-<!--        <div class="card-wrapper col-md-12">-->
-<!--            <div class="card">-->
-<!--                <div class="card-body">-->
-<!--                    <div class="row">-->
-<!--                        --><?php //if (array_key_exists('profile', $this->view_data)) {
-//                        foreach ($this->view_data['profile'] as $course) {
-//                            ?>
-<!--                            <div class="col-md-6">-->
-<!--                                <center><h4 class="card-title">إنشاء حساب جديد</h4>-->
-<!--                                    <form method="post" action="#" class="my-login-validation" novalidate="" enctype="multipart/form-data" id='first_form'>-->
-<!--                                        <div class="row">-->
-<!--                                            <div class="col-md-6">-->
-<!--                                                <label for="user_email">البريد الالكتروني</label>-->
-<!--                                                <input type="email" class="form-control"-->
-<!--                                                       placeholder="ادخل البريد الالكتروني الخاص بك" id="user_email"-->
-<!--                                                       value="--><?php //echo $course['user_email']; ?><!--"-->
-<!--                                                       name="user_email">-->
-<!---->
-<!---->
-<!--                                                <label for="user_password">كلمة المرور:</label>-->
-<!--                                                <input type="password" class="form-control"-->
-<!--                                                       placeholder="أدخــل كلمــة الســر"-->
-<!--                                                       id="user_password" name="user_password" data-eye value="--><?php //echo $course['user_password']; ?><!--">-->
-<!---->
-<!---->
-<!--                                                <label for="user_password">تأكيـد كلـمة المرور</label>-->
-<!--                                                <input type="password" class="form-control"-->
-<!--                                                       placeholder="تأكيــد كلمــة السر"-->
-<!--                                                       id="password_confirmation" name="password_confirmation"-->
-<!--                                                       data-eye value="--><?php //echo $course['user_password']; ?><!--">-->
-<!---->
-<!---->
-<!--                                                <label for="user_full_name">الأســم كــامل</label>-->
-<!--                                                <input type="text" class="form-control"-->
-<!--                                                       placeholder="يرجى إدخال الاسم كاملآ"-->
-<!--                                                       value="--><?php //echo $course['user_full_name']; ?><!--"-->
-<!--                                                       id="user_full_name" name="user_full_name">-->
-<!---->
-<!--                                                <label for="user_name">إسم المستــخدم</label>-->
-<!--                                                <input type="text" class="form-control"-->
-<!--                                                       placeholder="يرجى إخال إسم المستخدم"-->
-<!--                                                       id="user_name"-->
-<!--                                                       value="--><?php //echo $course['user_name']; ?><!--"-->
-<!--                                                       name="user_name" required>-->
-<!---->
-<!---->
-<!--                                            </div>-->
-<!---->
-<!---->
-<!--                                            <label for="user_image">صورة المستخدم</label>-->
-<!--                                            <div class="custom-file">-->
-<!---->
-<!--                                                <input type="file" class="custom-file-input" name="user_image"-->
-<!--                                                       id="user_image">-->
-<!--                                                <label class="custom-file-label" for="user_image">Choose file</label>-->
-<!---->
-<!--                                                <!--                                            <div id="user_image_dev">-->-->
-<!--                                                <!---->-->
-<!--                                                <!--                                                    <img src="/img/1.jpg"-->-->
-<!--                                                <!--                                                         width="100px">-->-->
-<!--                                                <!---->-->
-<!--                                                <!---->-->
-<!--                                                <!--                                            </div>-->-->
-<!--                                            </div>-->
-<!---->
-<!---->
-<!--                                            <label for="user_phone">رقم الهاتف</label>-->
-<!--                                            <input type="phone" class="form-control" placeholder="يرجى إدراج رقم الهاتف"-->
-<!--                                                   value="--><?php //echo $course['user_phone']; ?><!--"-->
-<!--                                                   id="user_phone" name="user_phone" required>-->
-<!---->
-<!---->
-<!--                                            <div id="student">-->
-<!--                                                <input type="hidden" name="role_name" value="student">-->
-<!---->
-<!--                                                <label for="user_gender">الجنس:</label>-->
-<!---->
-<!--                                                <select class="form-control" id="user_gender"-->
-<!--                                                        name="user_gender">-->
-<!--                                                    <option value="male" selected>ذكر</option>-->
-<!--                                                    <option value="female">انثى</option>-->
-<!---->
-<!--                                                </select>-->
-<!---->
-<!---->
-<!--                                                    <label for="user_qualification">المؤهل العلمي</label>-->
-<!--                                                    <input type="text" class="form-control"-->
-<!---->
-<!--                                                           id="user_qualification" name="user_qualification"-->
-<!--                                                           value="--><?php //echo $course['user_qualification']; ?><!--"-->
-<!--                                                           required>-->
-<!---->
-<!--                                            </div>-->
-<!---->
-<!--                                        </div>-->
-<!--                            </div>-->
-<!--                            --><?php
-//                        }}
-//                        ?>
-<!--                                        </div>-->
-<!--                                        </div>-->
-<!--                                        </div>-->
-<!--                                        </div>-->
-<!--                                        </div>-->
-<!--                                        </div>-->
-<div class="container" style="margin-top: 9%;margin-bottom: 6%;">
+
+<div class="container" style="margin-top: 8%;margin-bottom: 6%;">
     <?php include VIEW . 'messages.phtml' ?>
-<div class="row" style="background: white">
-<div class="col-lg-12" style="background: white">
-    <?php if (array_key_exists('profile', $this->view_data)) {
-                            foreach ($this->view_data['profile'] as $course) {
-                                ?>
-    <form method="post" action="/profile/EditUser" class="my-login-validation" novalidate=""
-          enctype="multipart/form-data">
-        <center>
+    <figure class="intro">
+        <img src="/images/unnamed (1).jpg" alt="" />
+        <figcaption class="caption">
+            <h1> My Profile </h1>
+        </figcaption>
+        <span class="overlay">
+        <svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+             viewBox="0 0 500 250" enable-background="new 0 0 500 250" xml:space="preserve" PreserveAspectRatio="none">
+<path fill="#FFFFFF" d="M250,246.5c-97.85,0-186.344-40.044-250-104.633V250h500V141.867C436.344,206.456,347.85,246.5,250,246.5z"
+/>
+</svg>
+  </span>
+    </figure>
 
-            <img src="<?php echo $course['user_image']; ?>"  id="blah" class="rounded-circle mt-2" alt="Cinque Terre" width="150" height="150">
-            <label for="file">
-                <i class="icon-edit imgedit"></i>
-                <input type="file" id="file"  id="imgInp" style="display: none" name="image" accept="image/gif,image/jpeg,image/jpg,image/png" multiple="" data-original-title="upload photos">
-            </label>
-<!--            <i class="icon-edit imgedit" onclick="showimages()" ></i></center>-->
-<!--        <input hidden type="file" class="custom-file-input" name="user_image"-->
-<!--               id="user_image">-->
-        <div class="form">
-            <div class="form-group">
-                <label for="user_email">البريد الالكتروني</label>
-                <input type="email" class="form-control" placeholder="ادخل البريد الالكتروني الخاص بك" id="user_email" value="<?php echo $course['user_email']; ?>" name="user_email">
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-            <div class="form-group">
-                <label for="user_password">كلمة المرور</label>
+    <div class="row" style="background: white; width: 100%; margin-left: 0%;">
+        <div class="col-lg-12" style="background: white">
+            <?php if (array_key_exists('profile', $this->view_data)) {
+            foreach ($this->view_data['profile'] as $course) {
+            ?>
+            <form method="post" action="/profile/EditUser" class="my-login-validation" novalidate=""
+                  enctype="multipart/form-data" style="    margin-top: 8%;">
+                <center>
 
-                <input type="password" class="form-control" placeholder="أدخــل كلمــة الســر" id="user_password" name="user_password" data-eye value="<?php echo $course['user_password']; ?>">
-            </div>
-            </div>
+                    <img src="<?php echo $course['user_image']; ?>"  id="img" class="rounded-circle mt-2 profile-pic" alt="Cinque Terre" width="150" height="150">
+                    <label for="file">
+                        <i class="icon-camera imgedit upload-button" id="btn"></i>
+                        <input type="hidden" value="<?php echo $course['user_image']; ?>" name="old_image">
+                        <input type="file" id="file" class="file-upload" name="image" accept="image/gif,image/jpeg,image/jpg,image/png" multiple="" data-original-title="upload photos">
+                    </label>
+                    <!--            <i class="icon-edit imgedit" onclick="showimages()" ></i></center>-->
+                    <!--        <input hidden type="file" class="custom-file-input" name="user_image"-->
+                    <!--               id="user_image">-->
+                    <div class="form">
+                        <div class="form-group">
+                            <label for="user_email">البريد الالكتروني</label>
+                            <input type="email" class="form-control" placeholder="ادخل البريد الالكتروني الخاص بك" id="user_email" value="<?php echo $course['user_email']; ?>" name="user_email">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="user_password">كلمة المرور</label>
 
-                <div class="col-lg-6">
-        <div class="form-group">
-            <label for="user_password">تأكيـد كلـمة المرور</label>
-                                                            <input type="password" class="form-control"
-                                                                   placeholder="تأكيــد كلمــة السر"
-                                                                   id="password_confirmation" name="password_confirmation"
-                                                                   data-eye value="<?php echo $course['user_password']; ?>">
+                                    <input type="hidden" class="form-control" value="<?php  echo $course['user_password']; ?>" placeholder="أدخــل كلمــة الســر" id="user_password" name="old_user_password" >
+                                    <input type="password" class="form-control" placeholder="أدخــل كلمــة الســر" id="user_password" name="new_user_password" >
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="user_password">تأكيـد كلـمة المرور</label>
+                                    <input type="password" class="form-control"
+                                           placeholder="تأكيــد كلمــة السر"
+                                           id="password_confirmation" name="password_confirmation"
+                                           data-eye value="">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--            <div id="user_image_dev">-->
+                        <!--                --><?php //if (array_key_exists('user', $this->view_data)) { ?>
+                        <!--                    <img src="--><?php //echo($this->view_data['user']['document']); ?><!--"-->
+                        <!--                         width="100px">-->
+                        <!---->
+                        <!--                --><?php //} ?>
+                        <!--            </div>-->
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="user_full_name">الأســم كــامل</label>
+                                <input type="text" class="form-control"
+                                       placeholder="يرجى إدخال الاسم كاملآ"
+                                       value="<?php echo $course['user_full_name']; ?>"
+                                       id="user_full_name" name="user_full_name">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="form-group">
+                                <label for="user_name">إسم المستــخدم</label>
+                                <input type="text" class="form-control"
+                                       placeholder="يرجى إخال إسم المستخدم"
+                                       id="user_name"
+                                       value="<?php echo $course['user_name']; ?>"
+                                       name="user_name" required>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_phone">رقم الهاتف</label>
+                        <input type="phone" class="form-control" placeholder="يرجى إدراج رقم الهاتف"
+                               value="<?php echo $course['user_phone']; ?>"
+                               id="user_phone" name="user_phone" required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="user_gender">الجنس</label>
+
+                        <select class="form-control" id="user_gender"
+                                name="user_gender">
+                            <option value="" selected><?php echo $course['user_gender']; ?></option>
+                            <option value="male">ذكر</option>
+                            <option value="female">انثى</option>
+
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="user_qualification">المؤهل العلمي</label>
+                        <input type="text" class="form-control"
+
+                               id="user_qualification" name="user_qualification"
+                               value="<?php echo $course['user_qualification']; ?>"
+                               required>
+                    </div>
+                    <button type="submit" class="btn btn-warning probtn ">الغاء</button>
+                    <button type="submit" class="btn btn-danger probtn">حفظ التغيرات</button>
         </div>
-        </div>
-        </div>
+        </form>
+        <?php
+        }
+        }
 
+        ?>
 
-<!--            <div id="user_image_dev">-->
-<!--                --><?php //if (array_key_exists('user', $this->view_data)) { ?>
-<!--                    <img src="--><?php //echo($this->view_data['user']['document']); ?><!--"-->
-<!--                         width="100px">-->
-<!---->
-<!--                --><?php //} ?>
-<!--            </div>-->
-        </div>
-        <div class="row">
-        <div class="col-lg-6">
-        <div class="form-group">
-           <label for="user_full_name">الأســم كــامل</label>
-                                                            <input type="text" class="form-control"
-                                                                   placeholder="يرجى إدخال الاسم كاملآ"
-                                                                   value="<?php echo $course['user_full_name']; ?>"
-                                                                   id="user_full_name" name="user_full_name">
-        </div>
-        </div>
-            <div class="col-lg-6">
-
-            <div class="form-group">
-                <label for="user_name">إسم المستــخدم</label>
-                                                                <input type="text" class="form-control"
-                                                                       placeholder="يرجى إخال إسم المستخدم"
-                                                                       id="user_name"
-                                                                       value="<?php echo $course['user_name']; ?>"
-                                                                       name="user_name" required>
-
-            </div>
-            </div>
-            </div>
-            <div class="form-group">
-                <label for="user_phone">رقم الهاتف</label>
-                                                            <input type="phone" class="form-control" placeholder="يرجى إدراج رقم الهاتف"
-                                                                   value="<?php echo $course['user_phone']; ?>"
-                                                                   id="user_phone" name="user_phone" required>
-            </div>
-
-
-        <div class="form-group">
-            <label for="user_gender">الجنس</label>
-
-                                                            <select class="form-control" id="user_gender"
-                                                                    name="user_gender">
-                                                                <option value="" selected><?php echo $course['user_gender']; ?></option>
-                                                                <option value="male">ذكر</option>
-                                                                <option value="female">انثى</option>
-
-                                                            </select>
-
-        </div>
-        <div class="form-group">
-        <label for="user_qualification">المؤهل العلمي</label>
-                                                            <input type="text" class="form-control"
-
-                                                                   id="user_qualification" name="user_qualification"
-                                                                   value="<?php echo $course['user_qualification']; ?>"
-                                                                   required>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block" style="margin-bottom: 3%;">Save Changes</button>
-        </div>
-    </form>
-    <?php
-                            }
-                            }
-
-    ?>
-
+    </div>
 </div>
-</div>
-</div>
+
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <script>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+    $(document).ready(function() {
 
-            reader.onload = function(e) {
-                $('#blah').attr('src', e.target.result);
+
+        var readURL = function(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.profile-pic').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
             }
-
-            reader.readAsDataURL(input.files[0]);
         }
-    }
 
-    $("#imgInp").change(function() {
-        readURL(this);
+
+        $(".file-upload").on('change', function(){
+            readURL(this);
+        });
+
+        $(".upload-button").on('click', function() {
+            $(".file-upload").hide();
+        });
     });
+
 
 </script>

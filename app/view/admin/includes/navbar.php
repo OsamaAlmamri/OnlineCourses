@@ -139,13 +139,15 @@
                                 <!-- Dropdown -->
                                 <li class="nav-item dropdown ">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                        <img src="<?php echo(Session::get('user')['user_image']); ?>"
+
+                                        <?php echo (Session::get('user')['user_name']) ?>
+                                        <img src="<?php echo (Session::get('user')['user_image']); ?>"
                                              class="rounded-circle"
-                                             width="25px"> <?php echo(Session::get('user')['user_name']) ?>
+                                             width="25px">
                                     </a>
 
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#"><i class="ion ion-edit"></i> تعديل الملف
+                                        <a href="/admin/profile/index" class="dropdown-item" ><i class="ion ion-edit"></i> تعديل الملف
                                             الشخصي </a>
                                         <a class="dropdown-item" href="/admin/logout"><i class="ion ion-log-out"></i>
                                             تسجيل
@@ -161,7 +163,3 @@
             </div>
 
             <!-- End navBar -->
-
-
-
-

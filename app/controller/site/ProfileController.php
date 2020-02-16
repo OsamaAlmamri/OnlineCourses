@@ -18,7 +18,7 @@ class ProfileController  extends \Controller
     public function index()
     {
         $profile_student= $this->model('Profile_site');
-       //return var_dump( $profile_student->all() )
+        //return var_dump( $profile_student->all() )
         $id=Session::get('user')['user_id'];
 
         $this->view('website' . DIRECTORY_SEPARATOR . 'profile', ['profile' => $profile_student->ProfileUser($id), 'deleted' => false]);
@@ -39,8 +39,11 @@ class ProfileController  extends \Controller
 //            ]);
 //            if (count($validate) == 0) {
             $id=Session::get('user')['user_id'];
-                if (isset($_FILES['image']['name']))
-                    $logo = Helper::saveImage('image', 'images/users/profiles/');
+            $logo="";
+            $logo=empty($_FILES['image']['name'])?$logo=$_REQUEST['old_image']: Helper::saveImage('image', 'images/users/profiles/');
+
+            $pass="";
+            $pass=empty($_REQUEST['new_user_password'])?$pass=$_REQUEST['old_user_password']:\Hashing::init($_REQUEST['new_user_password']);
             $proileStudentInfo= array(
                 ':full'=>htmlentities($_REQUEST['user_full_name']),
                 ':image'=>$logo,
@@ -49,19 +52,19 @@ class ProfileController  extends \Controller
                 ':qualification'=>$_REQUEST['user_qualification'],
                 ':email'=>htmlentities($_REQUEST['user_email']),
                 ':user_name'=>htmlentities($_REQUEST['user_name']),
-                ':pass'=>\Hashing::init($_REQUEST['user_password']),
+                ':pass'=>$pass,
                 ':id'=>$id
 
             );
-                $pefileUserModel= $this->model('Profile_site');
-                $profileInfo=  $pefileUserModel->UpdateDataUser($proileStudentInfo);
-               // $profileInfo= $pefileUserModel->UpdateDataUser($proileStudentInfo);
+            $pefileUserModel= $this->model('Profile_site');
+            $profileInfo=  $pefileUserModel->UpdateDataUser($proileStudentInfo);
+            // $profileInfo= $pefileUserModel->UpdateDataUser($proileStudentInfo);
 
-       // return var_dump($profileInfo);
+            // return var_dump($profileInfo);
 
-                if ($profileInfo) {
-                    Helper::back('/profile/', 'Update data successfully', 'success');
-                    return;
+            if ($profileInfo) {
+                Helper::back('/profile/', 'Update data successfully', 'success');
+                return;
 
             } else {
                 Helper::back('/profile/', 'error in required input', 'danger');
@@ -70,8 +73,8 @@ class ProfileController  extends \Controller
 
 
         }
-        }
-       // }
+    }
+    // }
 
 
 

@@ -1592,3 +1592,6 @@
 .slideOutUp {
     animation-name: slideOutUp;
 }
+.dropdown-toggle::after {
+    content: none;
+}
