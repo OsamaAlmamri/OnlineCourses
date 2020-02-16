@@ -102,9 +102,11 @@ class rating
 
     }
 
-    public function deleteRating($user_id,$course_id)
+    public function deleteRating($data)
     {
-        return $this->db->query("delete ratings where user_id=$user_id & course_id=$course_id");
+        $Stmt = $this->db->preparation("DELETE FROM ratings where user_id=:user_id AND course_id=:course_id");
+        $Stmt->execute($data);
+        return ;
     }
 
 

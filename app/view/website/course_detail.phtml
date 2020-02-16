@@ -265,14 +265,26 @@
                                             ?>
 
                                         </div>
-                                        <div class="rev-info rou">
+                                        <div class="rev-info ">
                                             <?php echo $rating['user_full_name'] . " - " . $rating['rating_date']; ?>
-                                            <div>
+                                            <div class="ratings-setting text-right">
+                                                              <?php
+                                                              if(Session::get('userID') == $rating['user_id']) {?>
 
+                                                         <span class="fa fa-remove" id="remove-rating"
+                                                            data-course-ID="<?php echo $course['course_id']; ?>"
+                                                            data-user-ID="<?php echo Session::get('userID') ;?>" >
+                                                          </span>
+                                                         <span class="fa fa-edit" id="edit-rating"
+                                                         data-course-ID="<?php echo $course['course_id']; ?> "
+                                                         data-user-ID="<?php echo Session::get('userID'); ?>" >
+                                                        </span>
+                                                       <?php }  ?>
                                              </div>
                                         </div>
                                         <div class="rev-text">
-                                            <p><?php echo $rating['comment_text']; ?>
+                                            <p>
+                                            <?php echo $rating['comment_text']; ?>
                                             </p>
                                         </div>
                                     </div>
@@ -454,5 +466,6 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'ratings.phtml' ?>
 
 <script>
-
+       addRating();
+       deleteRating();
 </script>
