@@ -62,19 +62,38 @@
 </script>
 <script>
     $(document).ready(function () {
+
+        // $( "#tog" ).bind({
+        //     mouseup: function() {
+        //         $('#sidebar').toggleClass('active');
+        //         $('.text').css('display', 'none');
+        //     },
+        // });
+
+
         $('#tog').click(function() {
             if ($(window).width() > 500) { //your chosen mobile res
                 $('.text').toggle(300);
-                $('#sidebarCollapse').on('click', function () {
-                    $('#sidebar').toggleClass('active');
-                });
+                $('#sidebar').toggleClass('active');
+
+                var fullHeight = function() {
+
+                    $('.js-fullheight').css('height', $(window).height());
+                    $(window).resize(function(){
+                        $('.js-fullheight').css('height', $(window).height());
+                    });
+
+                };
+                fullHeight();
 
 
-            } else {
+
+
+            }
+            else {
                 $('#sidebar').animate({
                     width: 'toggle'
-                }, 350);
-
+                }, 200);
 
             }
         });
