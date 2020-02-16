@@ -64,11 +64,12 @@
 
                                         <div class="col-md-6">
                                             <label for="user_image">صورة المستخدم</label>
-                                            <div class="custom-file">
+                                            <div class="custom-file" style="height: auto">
 
                                                 <input type="file" class="custom-file-input" name="user_image"
                                                        id="user_image">
-                                                <label class="custom-file-label" for="user_image">Choose file</label>
+                                                <label class="custom-file-label" for="user_image">Choose
+                                                    file</label>
 
                                                 <div id="user_image_dev">
                                                     <?php if (array_key_exists('user', $this->view_data)) { ?>
@@ -135,7 +136,7 @@
 
                                                 <div id="university_document_dev">
                                                     <?php if (array_key_exists('user', $this->view_data)) { ?>
-                                                        <img src="<?php echo($this->view_data['user']['user_image']); ?>"
+                                                        <img src="<?php echo($this->view_data['user']['document']); ?>"
                                                              width="100px">
 
                                                     <?php }

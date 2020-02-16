@@ -49,6 +49,36 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" href="/design/site/css/style-header.css">
     <link rel="stylesheet" href="/design/site/css/styleprofile.css">
+    <style>
+        .navbar .dropdown-toggle, .navbar .dropdown-menu a {
+            cursor: pointer;
+        }
+
+        .navbar .dropdown-item.active, .navbar .dropdown-item:active {
+            color: inherit;
+            text-decoration: none;
+            background-color: inherit;
+        }
+
+        .navbar .dropdown-item:focus, .navbar .dropdown-item:hover {
+            color: #16181b;
+            text-decoration: none;
+            background-color: #f8f9fa;
+        }
+
+        @media (min-width: 767px) {
+            .navbar .dropdown-toggle:not(.nav-link)::after {
+                display: inline-block;
+                width: 0;
+                height: 0;
+                margin-left: .5em;
+                vertical-align: 0;
+                border-bottom: .3em solid transparent;
+                border-top: .3em solid transparent;
+                border-left: .3em solid;
+            }
+        }
+    </style>
 
 </head>
 
@@ -67,13 +97,28 @@
             <li class="nav-item active">
                 <a class="nav-link navmy" href="/home/home"><i class="icon-home"></i>Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item ">
-                <a class="nav-link navmy" href="#" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                   aria-expanded="false">
-                    <i class="icon-th"></i>Categories
-                </a>
-
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown" aria-haspopup="true"
+                   aria-expanded="false"> <i class="icon-th"></i> Categories</a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown1">
+                    <li class="dropdown-item" href="#"><a>Action 1</a></li>
+                    <li class="dropdown-item dropdown">
+                        <a class="dropdown-toggle" id="dropdown1-1" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">Dropdown1.1</a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdown1-1">
+                            <li class="dropdown-item" href="#"><a>Action 1.1</a></li>
+                            <li class="dropdown-item dropdown">
+                                <a class="dropdown-toggle" id="dropdown1-1-1" data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">Dropdown1.1.1</a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown1-1-1">
+                                    <li class="dropdown-item" href="#"><a>Action 1.1.1</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </li>
+
 
             <!--            <li class="nav-item">-->
             <!---->
@@ -83,14 +128,14 @@
 
         </ul>
         <div class="visible-lg-block visible-xl-block header-right-divider"></div>
-<!--        <form class="navbar-form search">-->
-<!--            <div class="form-group">-->
-<!--                <div class="input-icons">-->
-<!--                    <i class="icon-search icon"></i>-->
-<!--                    <input class="form-control sea" type="text" placeholder="search any thing">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
+        <!--        <form class="navbar-form search">-->
+        <!--            <div class="form-group">-->
+        <!--                <div class="input-icons">-->
+        <!--                    <i class="icon-search icon"></i>-->
+        <!--                    <input class="form-control sea" type="text" placeholder="search any thing">-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </form>-->
         <form class="form-inline my-2 my-lg-0 mr-lg-2">
             <div class="input-group">
                 <input class="form-control search-top" type="text" placeholder="Search for...">
@@ -107,18 +152,18 @@
 
 
             <?php if (!isset($_SESSION['user'])) { ?>
-<!--                <li class="nav-item dropdown heart">-->
-<!--                    <a class="nav-link  dropdown-toggle " title="my_cart" href="#" id="navbarDropdown"-->
-<!--                       role="button"-->
-<!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-<!--                        <i class="icon-cart mycart"></i>-->
-<!--                        <span class="badge badge-danger badge-counter">1</span>-->
-<!--                    </a>-->
-<!--                    <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">-->
-<!--                        <a class="dropdown-item" href="#">Cart is empty <br></a>-->
-<!--                        <a class="dropdown-item" id="link" href="/home/cart1">Keep Shopping</a>-->
-<!--                    </div>-->
-<!--                </li>-->
+                <!--                <li class="nav-item dropdown heart">-->
+                <!--                    <a class="nav-link  dropdown-toggle " title="my_cart" href="#" id="navbarDropdown"-->
+                <!--                       role="button"-->
+                <!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--                        <i class="icon-cart mycart"></i>-->
+                <!--                        <span class="badge badge-danger badge-counter">1</span>-->
+                <!--                    </a>-->
+                <!--                    <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">-->
+                <!--                        <a class="dropdown-item" href="#">Cart is empty <br></a>-->
+                <!--                        <a class="dropdown-item" id="link" href="/home/cart1">Keep Shopping</a>-->
+                <!--                    </div>-->
+                <!--                </li>-->
                 <li class="nav-item">
                     <!--        <a href="#" class="nav-link"><button  type="submit" class="btn  btn-quaternary" data-toggle="modal" data-target="#loginModal">Log In</button>-->
                     <!--        </a>-->
@@ -190,7 +235,7 @@
                     <a class="nav-link  dropdown-toggle" title="information user" href="#" id="navbarDropdown"
                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="icon-user mycart"></i>
-<!--                        <span class="badge badge-danger badge-counter">3</span>-->
+                        <!--                        <span class="badge badge-danger badge-counter">3</span>-->
                     </a>
                     <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
 

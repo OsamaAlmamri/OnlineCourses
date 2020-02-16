@@ -144,7 +144,7 @@
 
                                         <strong>
                                           <?php
-                                          $numberStarts=$this->view_data['averageRating'][0]['average_rating'];
+                                          $numberStarts=isset($this->view_data['averageRating'][0]['average_rating'])?$this->view_data['averageRating'][0]['average_rating']:0;
                                           echo isset($numberStarts)? $numberStarts:"0";
                                           ?>
 
