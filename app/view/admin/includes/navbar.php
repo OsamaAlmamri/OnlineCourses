@@ -92,7 +92,7 @@
                                     </label>
                                 <i class="ion ion-chevron-down mt-10" style="float:left"></i>
                             </a>
-                            <ul class="collapse  list-unstyled" id="pageSubmenu2" aria-labelledby="headingOne" >
+                            <ul class="collapse show list-unstyled" id="pageSubmenu2" aria-labelledby="headingOne" >
                                 <?php if (Permissions::getInstaince()->hasPermision('role_index') == true) { ?>
                                     <li>
                                         <a href="/admin/role/index"><i class="fa fa-users-cog "></i>  <label class="text">   الادوار</label>
