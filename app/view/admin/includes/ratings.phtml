@@ -1,5 +1,6 @@
 <script>
     function addRating() {
+        deleteRating();
         var numberRate = 0;
         $('.rate-btn').hover(function () {
             //remove the hover previous
@@ -105,7 +106,20 @@
                             '                                    <div class="rating-stars mb-1">\n' +
                             stars +
                             '                                     </div>\n' +
-                            '                                    <div class="rev-info">' + rating_date + ' - ' + user_name + '</div>\n' +
+                            '                                    <div class="rev-info">'
+                                                                    + rating_date + ' - ' + user_name +
+
+                            '                                            <div class="ratings-setting text-right">\n' +
+                            '                                                                    <span class="fa fa-remove" id="remove-rating"\n' +
+                            '                                                                data-course-ID='+ course +
+                            '                                                                data-user-ID='+userID +
+                            '                                                                    ></span>\n' +
+                            '                                                                <span class="fa fa-edit" id="edit-rating"\n' +
+                            '                                                                data-course-ID='+ course +
+                            '                                                                data-user-ID ='+userID +
+                            '                                                                    ></span>\n' +
+                            '                                                                    </div>' +
+                            '                           </div>\n' +
                             '                                    <div class="rev-text">\n' +
                             '                                        <p>' + comment + '</p>\n' +
                             '                                    </div>\n' +
@@ -125,8 +139,6 @@
 
     function deleteRating() {
         $('#remove-rating').on('click', function () {
-
-
             // data that come from user
             var userID = $('#remove-rating').attr('data-user-ID');
             var courseID = $('#remove-rating').attr('data-course-ID');
@@ -145,8 +157,8 @@
                     //Function To Run When Request Is Succeeded
                     if (data == 1) {
 
-                       alert(data);
-                    }
+                        $('#remove-rating').remove();
+
                 },
                 error: function (xhr, status, error) {
                     alert(xhr.responseText);
