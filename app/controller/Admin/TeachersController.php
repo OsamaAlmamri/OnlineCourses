@@ -29,6 +29,8 @@ class TeachersController extends Controller
         else
             $Allteachers = $teachers->all($role_id);
 
+//        return var_dump($Allteachers);
+
 //        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
         $this->view('admin' . DIRECTORY_SEPARATOR . 'teachers' . DIRECTORY_SEPARATOR . 'index', ['teachers' => $Allteachers, 'deleted' => false]);
         $this->view->pageTitle = 'teachers';

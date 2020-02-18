@@ -46,6 +46,7 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                     <th>صورة المستخدم</th>
                     <th>رقم الهاتف</th>
                     <th>تاريخ التسجيل</th>
+                    <th> الحالة</th>
                     <?php if (Permissions::getInstaince()->hasPermision('teacher_edit') == true
                         or Permissions::getInstaince()->hasPermision('teacher_delete') == true) { ?>
                         <th>الاعدادات</th>
@@ -55,21 +56,21 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                 </thead>
 
                 <tbody>
-                <?php if (array_key_exists('universities', $this->view_data)) {
-                    foreach ($this->view_data['universities'] as $university) { ?>
+                <?php if (array_key_exists('teachers', $this->view_data)) {
+                    foreach ($this->view_data['teachers'] as $teacher) { ?>
 
                         <tr>
-                            <td><?php echo $university['user_id'] ?></td>
-                            <td><?php echo $university['user_name'] ?></td>
-                            <td><?php echo $university['user_email'] ?></td>
-                            <td><?php echo $university['user_full_name'] ?></td>
-                            <td><?php echo $university['user_image'] ?></td>
-                            <td><?php echo $university['user_phone'] ?></td>
-                            <td><?php echo $university['user_register_date'] ?></td>
+                            <td><?php echo $teacher['user_id'] ?></td>
+                            <td><?php echo $teacher['user_name'] ?></td>
+                            <td><?php echo $teacher['user_email'] ?></td>
+                            <td><?php echo $teacher['user_full_name'] ?></td>
+                            <td><?php echo $teacher['user_image'] ?></td>
+                            <td><?php echo $teacher['user_phone'] ?></td>
+                            <td><?php echo $teacher['user_register_date'] ?></td>
                             <td>
-                                <a href="" data-id="<?php echo $university['user_id'] ?>"
-                                   data-status="<?php echo $university['user_status'] ?>"
-                                   class=" active"><?php echo ($university['user_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
+                                <a href="" data-id="<?php echo $teacher['user_id'] ?>"
+                                   data-status="<?php echo $teacher['user_status'] ?>"
+                                   class=" active"><?php echo ($teacher['user_status'] == '1') ? '<i class=\'fas fa-check\'></i>' : '<i class=\'ion ion-close\'></i>' ?> </a>
 
 
                                 <?php if ($this->view_data['deleted'] == false) { ?>
@@ -78,11 +79,11 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                                 ) { ?>
                             <td>
                                 <?php if (Permissions::getInstaince()->hasPermision('teacher_edit') == true) { ?>
-                                    <a href="/admin/universities/edit/<?php echo $university['id'] ?>"><i
+                                    <a href="/admin/universities/edit/<?php echo $teacher['id'] ?>"><i
                                                 class="fa fa-edit"></i></a>
                                 <?php } ?>
                                 <?php if (Permissions::getInstaince()->hasPermision('teacher_delete') == true) { ?>
-                                    <a href="/admin/universities/delete/<?php echo $university['id'] ?>"
+                                    <a href="/admin/universities/delete/<?php echo $teacher['id'] ?>"
                                        onclick="return confirm('هل أنت متأكد من الحذف');"><i
                                                 class="fa fa-trash-restore"></i></a>
                                 <?php } ?>
@@ -90,12 +91,12 @@ include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR 
                             <?php } ?>
                             <?php } else { ?>
 
-                                <th>{{getUserName( $university['deleted_by'] )?></th>
-                                <td><?php echo $university['deleted_at'] ?></td>
+                                <th>{{getUserName( $teacher['deleted_by'] )?></th>
+                                <td><?php echo $teacher['deleted_at'] ?></td>
 
 
                                 <td class="text-center">
-                                    <a href="{{  route('admin.universities.restore',encrypt( $university['']id)) }}"
+                                    <a href="{{  route('admin.universities.restore',encrypt( $teacher['']id)) }}"
                                        class="btn btn-primary"><i
                                                 class="fa fa-arrow-up"></i></a>
                                 </td>
