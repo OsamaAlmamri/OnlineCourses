@@ -23,7 +23,11 @@ class coursesController extends \Controller
         $course_site = $this->model('Course_site');
         $user_id = Session::get('user')['user_id'];
         $userWishList = $course_site->wishListUser($user_id);
+
+        if ($userWishList)
         $userWishList = (explode(',', $userWishList[0]['user_wish_list']));
+        else
+            $userWishList=[];
         $this->view('website' . DIRECTORY_SEPARATOR . 'courses',
             [
                 'courses' => $course_site->getCoursesById($id),
