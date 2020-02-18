@@ -32,7 +32,8 @@ class Permissions extends Controller
         if ($this->model == null)
             $this->model('PermissionRole');
         $p = $this->model->getPermissionByName($name);
-        return (in_array($p, $_SESSION['user_permissions']));
+//        return (in_array($p, $_SESSION['user_permissions']));
+        return (in_array($p, $this->getPermission()));
     }
 
     public
@@ -44,6 +45,20 @@ class Permissions extends Controller
     }
 
 
+    public function getPermission()
+    {
+//        if ($this->model == 'Usres')
+//            $per = $this->model;
+//        else
+//        $per = new \Users();
+        $per = $this->model->getPermissions($_SESSION['role_id']);
+
+        $permissions = [];
+        foreach ($per as $p) {
+            $permissions[] = $p['permission_id'];
+        }
+        return $permissions;
+    }
 
 
 }

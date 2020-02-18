@@ -100,12 +100,14 @@ class RoleController extends Controller
 
     private function storeRolePermission($permissions, $role_id)
     {
+
+//        return var_dump('mmmmmmm');
         foreach ($permissions as $p) {
             $role = array(
                 ':role_id' => $role_id,
                 ':permission_id' => $p,
             );
-//            return var_dump()
+
             $id = $this->model->addPermissionRole($role);
         }
         return;
@@ -142,6 +144,7 @@ class RoleController extends Controller
 
             ]);
 
+
             if (count($validate) == 0) {
                 $role = array(
 
@@ -152,13 +155,13 @@ class RoleController extends Controller
                 $this->model('Role');
                 $id = $this->model->update($role);
 
-
                 if ($id) {
+
                     if (isset($_REQUEST['permissions'])) {
+
                         $this->model->deleteOldPermission($_REQUEST['role_id']);
 
-                        $this->storeRolePermission($_REQUEST['permissions'], $id);
-//                        return var_dump($_REQUEST['permissions'] );
+                        $this->storeRolePermission($_REQUEST['permissions'], $_REQUEST['role_id']);
                     }
                     Helper::back('/admin/role/index', 'تم التعديل بنجاح', 'success');
                     return;

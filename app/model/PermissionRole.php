@@ -16,6 +16,11 @@ class PermissionRole
 
 
 //
+    public function getPermissions($id)
+    {
+        $per = $this->db->query("select permission_id from permission_role WHERE role_id  =$id");
+        return ($per);
+    }
 
 
     public function getPermissionByName($name)
