@@ -25,11 +25,13 @@ p {
     color: #757575;
     font-size: 14px;
     line-height: 1.4;
+    font-family: 'DroidKufi-Bold';
 }
 
 a {
     text-decoration: none;
     font-size:16px ;
+
 
 }
 
@@ -62,12 +64,13 @@ input[type='text'] ,input[type='password'],input[type='email'],input[type='phone
 
 body {
     direction: rtl;
-    font-family: 'DroidKufi-Regular', sans-serif;
+   font-family: 'DroidKufi-Bold';
     background-color: #f9f9f9;
 }
 .container-fluid{
     width: 100% !important;
 }
+
 /* ---------------------------------------------------
    Start Login
 ----------------------------------------------------- */
@@ -75,6 +78,28 @@ body.login-page{
     min-height: 590px;
     background: radial-gradient( circle 1023.6px at 40.4% -16.4%,  rgba(228,80,83,1) 0%, rgba(121,32,82,1) 90% );
     background-size: auto 2000px;
+}
+.bg-img{
+    background-image: url('/images/bg-01.jpg');
+    height: auto;
+    padding: 10px;
+    text-align: center;position: relative;
+    top: -7px;
+}
+li.header, .navbar-nav>.notifications-menu>.dropdown-menu>li.header, .navbar-nav>.tasks-menu>.dropdown-menu>li.header {
+    background-color: #fff;
+    border-bottom: 1px solid #f4f4f4;
+    color: #455a64;
+    font-size: 14px;
+    border-radius: 4px 4px 0 0;
+    padding: 0;
+}
+
+.notifications-menu>.dropdown-menu>li .menu>li>a {
+    color: #455a64;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px;
 }
 .login-page .login-box{
     margin: 85px auto;
@@ -238,8 +263,11 @@ body.login-page{
 
     background: #3f1f30;
     color: #fff;
+
+    overflow: auto;
+    width:20%;
     transition: all 0.3s;
-    height:2416px
+
 }
 
 #sidebar.active {
@@ -256,7 +284,9 @@ body.login-page{
 .bg-dark {
     background-color: #b23e4a  !important;
 }
+label{
 
+}
 
 
 
@@ -558,7 +588,21 @@ label {
 
 
 }
-
+#example1{
+    width: 100% !important;
+    padding: 0 !important;
+    min-height: 100vh;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+#content {
+    width: 100%;
+    padding: 0;
+    min-height: 100vh;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s; }
 /*end content page style*/
 
 
