@@ -64,7 +64,7 @@ class Login extends Controller
                     Session::loggIn($session_data);
 
                     if (Session::logged()) {
-                        if (Session::get('role_name') == 'admin')
+                        if (Session::get('role_name') != 'student')
                             Helper::backToDashboard('لقد تم تسجيل الدخول بنجاح', 'success');
                         else
                             Helper::backToHome('لقد تم تسجيل الدخول بنجاح', 'success');
