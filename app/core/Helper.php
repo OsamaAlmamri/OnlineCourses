@@ -7,7 +7,7 @@ use site\homeController;
 
 class Helper
 {
-    public static function getMainMenu($parent ='0')
+    public static function getMainMenu($parent = '0')
     {
 
         $c = new Category();
@@ -137,12 +137,19 @@ class Helper
     public static function wishListCount()
     {
         $id = Session::get('user')['user_id'];
-        $WishList = DB::init()->query("SELECT `user_wish_list` FROM `users_courses` WHERE user_id=$id")['user_wish_list'];
         $userWishList = [];
-        $WishList = trim($WishList, ',');
-        if (($WishList) != '')
-            $userWishList = (explode(',', $WishList));
-        return count($userWishList);
+        $WishList = DB::init()->query("SELECT `user_wish_list` FROM `users_courses` WHERE user_id=$id");
+        if (isset($WishList['user_wish_list']))
+        {
+            $WishList=$WishList['user_wish_list'] ;
+            $WishList = trim($WishList, ',');
+            if (($WishList) != '')
+                $userWishList = (explode(',', $WishList));
+            return count($userWishList);
+        }
+        return 0;
+
+
 
     }
 
