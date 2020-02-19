@@ -14,11 +14,17 @@ class Course
     }
 
 // return all row of table of courses
-    public function all()
+    public function all($id = 0, $type = '')
     {
-        return $this->db->query("select * from courses");
-    }
+        if ($type == 'university')
+            return $this->db->query("select * from courses where course_owner in (select user_id from users where university_id=$id)");
+        else if ($type == 'teacher')
+            return $this->db->query("select * from courses where course_owner =$id ");
+        else
+            return $this->db->query("select * from courses");
 
+
+    }
 
 
     public function cartElements($cartElements)
