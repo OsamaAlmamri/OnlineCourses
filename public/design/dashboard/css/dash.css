@@ -78,7 +78,29 @@ body.login-page{
     min-height: 590px;
     background: radial-gradient( circle 1023.6px at 40.4% -16.4%,  rgba(228,80,83,1) 0%, rgba(121,32,82,1) 90% );
     background-size: auto 2000px;
+
 }
+.user-notification{
+
+    height: 200px;
+}
+.user-notification::-webkit-scrollbar {
+   border-radius: 20px;
+    width: 10px;
+}
+
+.user-notification::-webkit-scrollbar-track {
+
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2);
+
+}
+
+.user-notification::-webkit-scrollbar-thumb {
+    background: #a7a7a7;
+
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.08);
+}
+
 .bg-img{
     background-image: url('/images/bg-01.jpg');
     height: auto;

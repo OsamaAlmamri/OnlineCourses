@@ -39,55 +39,67 @@
                     <?php if (array_key_exists('role', $this->view_data)) echo($this->view_data['role'][0]['role_description']); else   echo ''; ?>
                     </textarea>
             </div>
-            <div class="form-group">
-                <div class="clearfix"></div>
-                <li><label><input type="checkbox" id="select_all"/> Select all </label></li>
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <div class="form-group">
+                                <div class="clearfix"></div>
+                                <li><label><input type="checkbox" id="select_all"/> Select all </label></li>
+                            </div>
+                        </h2>
+                    </div>
 
-                <?php if (array_key_exists('permissions', $this->view_data)) {
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <?php if (array_key_exists('permissions', $this->view_data)) {
 
 
-                    foreach ($this->view_data['permissions'] as $k => $sub_permission) {
-                        ?>
+                                foreach ($this->view_data['permissions'] as $k => $sub_permission) {
+                                    ?>
 
-                        <label class="col-md-3 col-sm-3 col-xs-12 control-label"
-                        <label><input type="checkbox" onclick="selectSub($(this),'<?php echo $k ?>')"
-                                      data-selected="0"/> Select all <?php echo $k ?></label>
-                        <br>
-                        </label>
+                                    <label class="col-md-3 col-sm-3 col-xs-12 control-label"
+                                    <label><input type="checkbox" onclick="selectSub($(this),'<?php echo $k ?>')"
+                                                  data-selected="0"/> Select all <?php echo $k ?></label>
+                                    <br>
+                                    </label>
 
-                        <div class="form-group row">
+                                    <div class="form-group row">
 
-                            <br>
-                            <?php
-                            foreach ($sub_permission[0] as $k_sub => $permission) { ?>
-                                <div class="col-md-3 col-sm-4 col-xs-12">
-                                    <div class="checkbox">
-                                        <label class="">
-                                            <input type="checkbox" name="permissions[]"
-                                                <?php if (array_key_exists('role', $this->view_data) and in_array($permission['permission_id'], $this->view_data['oldRolePermission']))
-                                                    echo 'checked' ?>
-                                                   class="selectAll select-message<?php echo $k ?>"
-                                                   value="<?php echo $permission['permission_id'] ?>">
-                                            <ins class="iCheck-helper"
-                                                 style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
-                                            <?php echo $permission['permissions_description'] ?>
-                                        </label>
+                                        <br>
+                                        <?php
+                                        foreach ($sub_permission[0] as $k_sub => $permission) { ?>
+                                            <div class="col-md-3 col-sm-4 col-xs-12">
+                                                <div class="checkbox">
+                                                    <label class="">
+                                                        <input type="checkbox" name="permissions[]"
+                                                            <?php if (array_key_exists('role', $this->view_data) and in_array($permission['permission_id'], $this->view_data['oldRolePermission']))
+                                                                echo 'checked' ?>
+                                                               class="selectAll select-message<?php echo $k ?>"
+                                                               value="<?php echo $permission['permission_id'] ?>">
+                                                        <ins class="iCheck-helper"
+                                                             style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins>
+                                                        <?php echo $permission['permissions_description'] ?>
+                                                    </label>
+                                                </div>
+
+                                            </div>
+
+                                        <?php }
+                                        ?>
+                                        <!--                        @error('categories') <span class="btn-block badge badge-danger">{{ $message }}</span> @enderror-->
+
                                     </div>
-
-                                </div>
-
-                            <?php }
+                                <?php }
+                            }
                             ?>
-                            <!--                        @error('categories') <span class="btn-block badge badge-danger">{{ $message }}</span> @enderror-->
-
                         </div>
-                    <?php }
-                }
-                ?>
+                    </div>
+                </div>
 
-                <div class="clearfix"></div>
-                <div class="clearfix"></div>
+
             </div>
+
             <br>
             <div class="col-md-12">
                 <br>

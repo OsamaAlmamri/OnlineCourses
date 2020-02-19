@@ -99,7 +99,16 @@
         //     },
         // });
 
+        $('#notification-users').mouseover(function () {
+           $("#notification-users").css({"overflow-y": "auto"});
+        });
+        $('#notification-users').mouseleave(function () {
+           $("#notification-users").css({"overflow-y": "hidden"});
+        });
 
+        $("#notf,#notf1,#notf2,#notf3,#notf4,#notf5,#notf6").text(function(index, currentText) {
+           // return currentText.substr(0, 20);
+        });
         $('#tog').click(function() {
             if ($(window).width() > 500) { //your chosen mobile res
                 $('.text').toggle(300);

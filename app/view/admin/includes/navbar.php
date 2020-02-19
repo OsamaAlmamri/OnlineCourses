@@ -131,27 +131,30 @@
 
             <span class="ion ion-android-notifications font-size-24"></span>
         </a>
-        <ul class="dropdown-menu animated flipOutX">
+        <ul class="dropdown-menu animated bounceIn ">
             <!-- User image -->
-            <li class="header"   data-overlay="5">
-                <div class="bg-light p-20">
-                    <div class="d-flex justify-content-center">
 
-                            <h4 class="ml-xl-80" style="  ">Notifications</h4>
-                        <a href="#" class="">Clear All</a>
+            <li   class="header bg-light ">
+                <div class="row">
 
-                    </div>
+                    <div class="col-md-5 text-center">الإشعارات</div>
+                    <div class="col-md-6 text-left text-danger"><a href="" style="background: none">محو الكل</a></div>
+
 
                 </div>
-            </li>
+      </li>
             <!-- Menu Body -->
-            <li class="user-body">
-                <a class="dropdown-item" href="javascript:void(0)"> <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit </a>
-                <a class="dropdown-item" href="javascript:void(0)"> <i class="fa fa-warning text-warning"></i> Duis malesuada justo eu sapien elementum, in semper diam posuere.</a>
-                <div class="dropdown-divider"></div>
-                <div class="dropdown-divider"></div>
+            <li class="user-notification" id="notification-users">
+                <label class="dropdown-item" id="notf"> <i class="fa fa-users text-info"></i> Curabitur id eros quis nunc suscipit </label>
+                <label class="dropdown-item"id="notf1"> <i class="ion ion-android-warning text-warning"></i> Duis malesuada justo </label>
+                <label class="dropdown-item" id="notf2"><i class="fa fa-shopping-cart text-success"></i> In gravida mauris et nisi</label>
+                <label class="dropdown-item" id="notf3">  <i class="fa fa-user text-danger"></i> Praesent eu lacus in libero d</label>
+                <label class="dropdown-item" id="notf4">  <i class="fa fa-user text-primary"></i> Nunc fringilla lorem </label>
+                <label class="dropdown-item" id="notf5">  <i class="fa fa-user text-primary"></i> Nunc fringilla lorem </label>
+                <label class="dropdown-item" id="notf6 ">  <i class="fa fa-user text-primary"></i> Nunc fringilla lorem </label>
+
             <li class="footer">
-                <a href="#" class="bg-light">View all</a>
+                <a href="#" class="btn-block bg-light text-center">عرض الكل</a>
             </li>
             </li>
         </ul>
