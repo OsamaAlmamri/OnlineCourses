@@ -31,7 +31,7 @@ class TeachersController extends Controller
 
 //        $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
         $this->view('admin' . DIRECTORY_SEPARATOR . 'teachers' . DIRECTORY_SEPARATOR . 'index', ['teachers' => $Allteachers, 'deleted' => false]);
-        $this->view->pageTitle = 'teachers';
+        $this->view->pageTitle = 'الاساتذه';
         $this->view->render();
     }
 
@@ -42,7 +42,7 @@ class TeachersController extends Controller
 
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'teachers' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
-        $this->view->pageTitle = 'Teacher';
+        $this->view->pageTitle = 'الاساتذه';
         $this->view->render();
     }
 
@@ -58,7 +58,7 @@ class TeachersController extends Controller
         $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'create', ['category' => $category, 'type' => 'update']);
 
 //        $this->view('admin' . DIRECTORY_SEPARATOR . 'news' . DIRECTORY_SEPARATOR . 'create', ['news' => $news]);
-        $this->view->pageTitle = 'الاصناف';
+        $this->view->pageTitle = 'الاساتذه';
         $this->view->render();
     }
 

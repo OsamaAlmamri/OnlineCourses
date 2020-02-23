@@ -24,7 +24,7 @@ class UniversitiesController extends Controller
         $users = $this->model('Users');
 //        return var_dump( $users->all($role_id));
         $this->view('admin' . DIRECTORY_SEPARATOR . 'universities' . DIRECTORY_SEPARATOR . 'index', ['universities' => $users->all($role_id), 'deleted' => false]);
-        $this->view->pageTitle = 'universities';
+        $this->view->pageTitle = 'الجامعات';
         $this->view->render();
     }
 
@@ -46,7 +46,7 @@ class UniversitiesController extends Controller
 
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'universities' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['categories']);
-        $this->view->pageTitle = 'universities';
+        $this->view->pageTitle = 'إضافة الجامعات';
         $this->view->render();
     }
 
@@ -62,7 +62,7 @@ class UniversitiesController extends Controller
         $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'create', ['category' => $category, 'type' => 'update']);
 
 //        $this->view('admin' . DIRECTORY_SEPARATOR . 'news' . DIRECTORY_SEPARATOR . 'create', ['news' => $news]);
-        $this->view->pageTitle = 'الاصناف';
+        $this->view->pageTitle = 'تعديل الجامعات ';
         $this->view->render();
     }
 
@@ -94,7 +94,7 @@ class UniversitiesController extends Controller
 
         $category = $this->model;
         $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-        $this->view->pageTitle = 'الاصناف';
+        $this->view->pageTitle = 'الاساتذه';
         $this->view->render();
     }
 

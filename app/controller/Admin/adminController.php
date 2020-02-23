@@ -48,7 +48,7 @@ class adminController extends Controller
 //        $auth->register('admin');
         if (!isset($_SESSION['user'])) {
             $this->view('home' . DIRECTORY_SEPARATOR . 'login', ['active' => "singUP"]);
-            $this->view->pageTitle = 'SingUp';
+            $this->view->pageTitle = 'تسجيل دخول';
             $this->view->render();
 
         } else {

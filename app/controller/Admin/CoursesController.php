@@ -19,7 +19,7 @@ class CoursesController extends Controller
 
         $course = $this->model('Course');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
-        $this->view->pageTitle = 'courses';
+        $this->view->pageTitle = 'الكورسات';
         $this->view->render();
     }
 
@@ -29,7 +29,7 @@ class CoursesController extends Controller
 
         $course = $this->model('Course');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'lessons' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
-        $this->view->pageTitle = 'courses';
+        $this->view->pageTitle = 'الكورسات';
         $this->view->render();
     }
 
@@ -72,7 +72,7 @@ class CoursesController extends Controller
 
 
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['teachers' => $Allteachers]);
-        $this->view->pageTitle = 'Courses';
+        $this->view->pageTitle = 'إضافة الكورسات';
         $this->view->render();
     }
 

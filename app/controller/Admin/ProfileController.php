@@ -15,7 +15,7 @@ class ProfileController extends Controller
         $id=Session::get('user')['user_id'];
         $profileInfo = $this->model('Profile');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'profile' . DIRECTORY_SEPARATOR . 'index', ['profile' => $profileInfo->ProfileUser($id), 'deleted' => false]);
-        $this->view->pageTitle = 'Profile';
+        $this->view->pageTitle = 'تعديل الملف الشخصي';
         $this->view->render();
     }
     public  function EditProfile()

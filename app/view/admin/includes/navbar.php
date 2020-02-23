@@ -119,7 +119,7 @@
             <div class="container-fluid">
                 <div class="col-6 text-right">
 
-                    <a class="text-white" href="#" id="tog"><span class="fas fa-list"></span></a>
+                    <a class="text-white" href="#" id="tog"><span class="fas fa-bars"></span></a>
                 </div>
                 <div class="col-6 text-left">
 

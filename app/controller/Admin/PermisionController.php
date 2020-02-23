@@ -22,7 +22,7 @@ class PermisionController extends Controller
         if ($this->model != 'Permision')
         $permision = $this->model('Permision');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'permision' . DIRECTORY_SEPARATOR . 'index', ['permision' => $permision->all(), 'deleted' => false]);
-        $this->view->pageTitle = 'Permision';
+        $this->view->pageTitle = 'الصلاحيات';
         $this->view->render();
     }
 
@@ -45,7 +45,7 @@ class PermisionController extends Controller
         Permissions::getInstaince()->allow('permission_create');
         $Permision = $this->model('Permision');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'permision' . DIRECTORY_SEPARATOR . 'createOrUpdate');
-        $this->view->pageTitle = 'Permision';
+        $this->view->pageTitle = 'أضافة التقييمات';
         $this->view->render();
     }
 
@@ -110,10 +110,10 @@ class PermisionController extends Controller
                 $this->model('Permision');
                 if ($this->model->update($cate)) {
                     Message::setMessage('msgState', 1);
-                    Message::setMessage('main', 'تم تعديل القسم  بنجاح');
+                    Message::setMessage('main', 'تم تعديل الصلاحية  بنجاح');
 //                    $news = $this->model('Course');
                     $this->view('admin' . DIRECTORY_SEPARATOR . 'permision' . DIRECTORY_SEPARATOR . 'index', ['permision' => $this->model->all(), 'deleted' => false]);
-                    $this->view->pageTitle = 'الاصناف';
+                    $this->view->pageTitle = 'الصلاحيات';
                     $this->view->render();
 
                 }
@@ -123,7 +123,7 @@ class PermisionController extends Controller
                 else
                     $Permision = $this->model('Permision');
                 $this->view('admin' . DIRECTORY_SEPARATOR . 'permision' . DIRECTORY_SEPARATOR . 'index', ['permision' => $Permision->all(), 'deleted' => false]);
-                $this->view->pageTitle = 'الاصناف';
+                $this->view->pageTitle = 'الصلاحيات';
                 $this->view->render();
             }
 

@@ -20,7 +20,7 @@ class Login extends Controller
     public function login($type)
     {
         $this->view('home' . DIRECTORY_SEPARATOR . 'login', ['active' => "Login"]);
-        $this->view->pageTitle = 'login';
+        $this->view->pageTitle = 'تسجيل دخول';
         $this->view->render();
     }
 

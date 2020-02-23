@@ -18,7 +18,7 @@ class CategoriesController extends Controller
         Permissions::getInstaince()->allow('category_index');
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'index', ['categories' => $category->all(), 'deleted' => false]);
-        $this->view->pageTitle = 'Category';
+        $this->view->pageTitle = 'لاصناف';
         $this->view->render();
     }
 
@@ -65,7 +65,7 @@ class CategoriesController extends Controller
 
         $category = $this->model('Category');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['MainCategories' => $category->all('0')]);
-        $this->view->pageTitle = 'Category';
+        $this->view->pageTitle = 'إضافة الاصناف';
         $this->view->render();
     }
 

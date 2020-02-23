@@ -20,7 +20,7 @@ class RoleController extends Controller
 
         $role = $this->model('Role');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'role' . DIRECTORY_SEPARATOR . 'index', ['Role' => $role->all(), 'deleted' => false]);
-        $this->view->pageTitle = 'Role';
+        $this->view->pageTitle = 'الادوار';
         $this->view->render();
     }
 
@@ -61,7 +61,7 @@ class RoleController extends Controller
 //return var_dump();
         $category = $this->model('Role');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'role' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['permissions' => $this->getPermission()]);
-        $this->view->pageTitle = 'Roles Add';
+        $this->view->pageTitle = 'أضافة الدور';
         $this->view->render();
     }
 

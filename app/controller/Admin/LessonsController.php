@@ -18,7 +18,7 @@ class LessonsController extends Controller
         Permissions::getInstaince()->allow('lesson_index');
         $lessons = $this->model('Lesson');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'lessons' . DIRECTORY_SEPARATOR . 'index', ['courses' => $lessons->course_lessons($id), 'course_id' => $id, 'deleted' => false]);
-        $this->view->pageTitle = 'courses';
+        $this->view->pageTitle = 'الدروس';
         $this->view->render();
     }
 
@@ -81,7 +81,7 @@ class LessonsController extends Controller
         Permissions::getInstaince()->allow('lesson_create');
 
         $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'lessons' . DIRECTORY_SEPARATOR . 'createOrUpdate', ['course_id' => $course_id]);
-        $this->view->pageTitle = 'Course Lessons';
+        $this->view->pageTitle = 'دروس الكورس';
         $this->view->render();
     }
 

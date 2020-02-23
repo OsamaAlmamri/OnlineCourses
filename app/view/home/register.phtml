@@ -1,33 +1,62 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 
 
-<body class="login-page">
+<body class="login-page1">
 <div class="container">
     <!-- signin form-->
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-6 col-sm-6 ">
-            <div class="login-box card mt-20">
+            <div class="login-box card mt-30">
 
                 <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <div class="logo-login">
+                                <div class="logo-login1">
                                     <img  src="/images/logo-color.png">
                                 </div>
                             <div class="alert-message">
                                 <?php include VIEW . 'messages.phtml' ?>
                             </div>
                             <div class="col-md-12">
-                                <h4 class="card-title">إنشاء حساب جديد</h4>
+
                                 <form method="post" action="/admin/singUp" class="my-login-validation" novalidate=""
                                       enctype="multipart/form-data" id='first_form'>
+                                    <div class="row">
+
+                                            <label for="user_image">صورة المستخدم</label>
+                                        <div class="col-6">
+                                            <div id="user_image_dev">
+                                                <?php if (array_key_exists('user', $this->view_data)) { ?>
+                                                    <img src="<?php echo($this->view_data['user']['user_image']); ?>"
+                                                         width="100px">
+
+
+                                                <?php }else{
+                                                    ?>
+                                                    <img src="/images/boss.png" class="rounded-circle mt-2 profile-pic"
+                                                         width="100px">
+                                                    <label for="user_image" id="imgedit">
+                                                        <i class="ion ion-android-camera text-left" id="image_button"></i>
+
+                                                        <input type="file" id="user_image" class="file-upload" name="user_image"
+                                                               accept="image/gif,image/jpeg,image/jpg,image/png" multiple="" data-original-title="upload photos">
+                                                    </label>
+                                                <?php
+                                                }?>
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label for="user_email">البريد الالكتروني</label>
                                             <input type="email" class="form-control"
                                                    placeholder="ادخل البريد الالكتروني الخاص بك" id="user_email"
                                                    value="<?php Helper::old('user_email', 'auth'); ?>"
-                                                   name="user_email" ;
+                                                   name="user_email"
                                                    onchange="if(this.value != '') callAjax('checkEmail', this.value, this.id);>
                                                    <?php echo Message::getInputErrorMessage('user_email') ?>
 
@@ -53,6 +82,12 @@
                                                    name="user_name" required>
                                             <?php echo Message::getInputErrorMessage('user_name') ?>
 
+
+
+
+                                        </div>
+
+                                        <div class="col-md-6">
                                             <label for="user_full_name">الأســم كــامل</label>
                                             <input type="text" class="form-control" placeholder="يرجى إدخال الاسم كاملآ"
                                                    value="<?php Helper::old('user_full_name', 'auth'); ?>"
@@ -60,26 +95,6 @@
                                             <?php echo Message::getInputErrorMessage('user_full_name') ?>
 
 
-
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <label for="user_image">صورة المستخدم</label>
-                                            <div class="custom-file" style="height: auto">
-
-                                                <input type="file" class="custom-file-input" name="user_image"
-                                                       id="user_image">
-                                                <label class="custom-file-label" for="user_image">Choose
-                                                    file</label>
-
-                                                <div id="user_image_dev">
-                                                    <?php if (array_key_exists('user', $this->view_data)) { ?>
-                                                        <img src="<?php echo($this->view_data['user']['user_image']); ?>"
-                                                             width="100px">
-
-                                                    <?php } ?>
-                                                </div>
-                                            </div>
                                             <?php echo Message::getInputErrorMessage('user_image') ?>
 
 
@@ -143,29 +158,28 @@
                                                     <?php }
                                                     } ?>
                                                 </div>
-                                                <div>
-                                                    <div class="col-md-12" >
-                                                        <div class="form-group ">
-                                                            <button type="submit" class="btn btn-primary btn-block">
-                                                                Register
-                                                            </button>
-                                                        </div>
-                                                        <div class="mt-4 text-center">
-                                                            Already have an account? <a href="/home/login">Login</a>
-                                                        </div>
-                                                        <div class="footer text-center">
-                                                            Copyright &copy; 2020 &mdash; StepForward
-                                                        </div>
-                                                    </div>
-                                                    
-                                                </div>
+
                                             </div>
-                                        </div>
+
                                         <?php
                                         } ?>
+                                    </div>
 
 
 
+                                            <div class="col-md-12" >
+                                                <div class="form-group ">
+                                                    <button type="submit" class="btn btn-primary btn-block">
+                                                       إنشاء حساب
+                                                    </button>
+                                                </div>
+                                                <div class="register-link">
+                                                   هل لديك حساب بالفعل؟ <a href="/home/login">تسجيل الدخول</a>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
                             </form>
 
                         </div>

@@ -45,13 +45,13 @@ class Register extends Controller
     public function register($type)
     {
         $this->view('home' . DIRECTORY_SEPARATOR . 'register', ['type' => $type]);
-        $this->view->pageTitle = 'SingUp';
+        $this->view->pageTitle = 'إنشاء حساب';
         $this->view->render();
     }
 
     public function signUp($type, $status)
     {
-//        return var_dump(($_FILES['document']['name'])!='');
+       // return var_dump(($_FILES['user_image']['name'])!='');
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $universityRequired = [];
