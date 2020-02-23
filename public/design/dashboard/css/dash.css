@@ -214,9 +214,12 @@ li.header, .navbar-nav>.notifications-menu>.dropdown-menu>li.header, .navbar-nav
     padding: 2px;
 }
 
-
+.userSide img{
+    padding: 20px;
+    width: 114%;
+}
 .userImage img {
-    padding: 24px;
+    padding: 20px;
     width: 50%;
 
 }
@@ -319,8 +322,12 @@ label{
 
 #sidebar .sidebar-header img{
     height: 100%;
+    width:100%;
 }
-
+.user_class{
+    max-width: 50px;
+    margin: 0 auto;
+}
 #sidebar .sidebar-header strong {
     display: none;
     font-size: 1.8em;

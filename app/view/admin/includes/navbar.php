@@ -4,8 +4,8 @@
             <img src="/images/logo.png" class="col-md-12">
 
         </div>
-        <div class="userImage text-center">
-            <img src="<?php
+        <div class="userImage text-center" >
+            <img id="userImage" src="<?php
 
             use auth\Permissions;
 
@@ -178,7 +178,7 @@
             </li>
             <!-- Menu Body -->
             <li class="user-body">
-                <a class="dropdown-item" href="javascript:void(0)"><i class="ion ion-person"></i> تعديل الملف الشخصي</a>
+                <a class="dropdown-item" href="/admin/profile/index"><i class="ion ion-person"></i> تعديل الملف الشخصي</a>
                 <a class="dropdown-item" href="javascript:void(0)"><i class="ion ion-email-unread"></i> الإيميل</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="javascript:void(0)"><i class="ion ion-settings"></i>إعدادات الحساب </a>
