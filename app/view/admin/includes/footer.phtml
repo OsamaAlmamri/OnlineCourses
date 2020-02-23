@@ -1,10 +1,7 @@
-        </div>
-        <!-- End Content -->
-    </div>
-        <!-- End Row -->
 </div>
-        <!-- End Container -->
 </div>
+</head>
+<body>
 <script src="/design/dashboard/js/jquery-3.3.1.min.js"></script>
 <script src="/design/dashboard/js/popper.min.js"></script>
 <script src="/design/dashboard/js/bootstrap.min.js"></script>
@@ -62,31 +59,24 @@
 
 </script>
 <script>
-    $(document).ready(function () {
+    (function($) {
 
-        // $( "#tog" ).bind({
-        //     mouseup: function() {
-        //         $('#sidebar').toggleClass('active');
-        //         $('.text').css('display', 'none');
-        //     },
-        // });
+        "use strict";
 
+        var fullHeight = function() {
 
-        $('#tog').click(function() {
+            $('.js-fullheight').css('height', $(window).height());
+            $(window).resize(function(){
+                $('.js-fullheight').css('height', $(window).height());
+            });
+
+        };
+        fullHeight();
+
+        $('#sidebarCollapse').on('click', function () {
             if ($(window).width() > 500) { //your chosen mobile res
                 $('.text').toggle(300);
                 $('#sidebar').toggleClass('active');
-
-                var fullHeight = function() {
-
-                    $('.js-fullheight').css('height', $(window).height());
-                    $(window).resize(function(){
-                        $('.js-fullheight').css('height', $(window).height());
-                    });
-
-                };
-                fullHeight();
-
 
 
 
@@ -98,15 +88,43 @@
 
             }
         });
-      $('#pageSubmenu')
-        $('#pageSubmenu').collapse({
-            show:true
 
-        })
-        $('#pageSubmenu2').collapse({
-            show:true
+    })(jQuery);
+    $(document).ready(function () {
 
-        })
+        // $( "#tog" ).bind({
+        //     mouseup: function() {
+        //         $('#sidebar').toggleClass('active');
+        //         $('.text').css('display', 'none');
+        //     },
+        // });
+
+        $('#notification-users').mouseover(function () {
+           $("#notification-users").css({"overflow-y": "auto"});
+        });
+        $('#notification-users').mouseleave(function () {
+           $("#notification-users").css({"overflow-y": "hidden"});
+        });
+
+        $("#notf,#notf1,#notf2,#notf3,#notf4,#notf5,#notf6").text(function(index, currentText) {
+           // return currentText.substr(0, 20);
+        });
+        $('#tog').click(function() {
+            if ($(window).width() > 500)
+            { //your chosen mobile res
+                $('.text').toggle(300);
+                $('#sidebar').toggleClass('active');
+
+
+            }
+            else {
+                $('#sidebar').animate({
+                    width: 'toggle'
+                }, 200);
+
+            }
+        });
+
     });
 
 </script>
@@ -145,6 +163,81 @@ if (isset($temp['tmp_name'])  and is_uploaded_file($temp['tmp_name'])) {
 (Message::getMessage('errors'));
  Session::delete('oldFormData');
  ?>
+<script>
+    $(function() {
+        // store a reference to the collapse div so that
+        // we don't have to keep looking it up in the dom
+        const collapseExample = $("#collapseExample");
 
+        // register a callback function to the collapse div that
+        // will be called every time the collapse is opened.
+        collapseExample.on("shown.bs.collapse", function() {
+            // since we know that that this function is called on
+            // open, we'll set the localStorage value to "show"
+            localStorage.setItem("collapseExample", "show");
+        });
+
+        // register a callback function to the collapse div that
+        // will be called every time the collapse is closed.
+        collapseExample.on("hidden.bs.collapse", function() {
+            // since we know that that this function is called on
+            // open, we'll set the localStorage value to "hide"
+            localStorage.setItem("collapseExample", "hide");
+        });
+
+        // Since this function runs on page load (meaning only once), we can
+        // check the value of localStorage from here and then call the
+        // bootstrap collapse methods ourselves:
+
+        // Check the value of the localStorage item
+        const showExampleCollapse = localStorage.getItem("collapseExample");
+
+        // Manipulate the collapse based on the value of the localStorage item.
+        // Note that the value is determined by lines 36 or 44. If you change those,
+        // then make sure to check that the comparison on the next line is still valid.
+        if (showExampleCollapse === "show") {
+            collapseExample.collapse("show");
+        } else {
+            collapseExample.collapse("hide");
+        }
+    });
+    $(function() {
+        // store a reference to the collapse div so that
+        // we don't have to keep looking it up in the dom
+        const collapseExample1 = $("#collapseExample1");
+
+        // register a callback function to the collapse div that
+        // will be called every time the collapse is opened.
+        collapseExample1.on("shown.bs.collapse", function() {
+            // since we know that that this function is called on
+            // open, we'll set the localStorage value to "show"
+            localStorage.setItem("collapseExample1", "show");
+        });
+
+        // register a callback function to the collapse div that
+        // will be called every time the collapse is closed.
+        collapseExample1.on("hidden.bs.collapse", function() {
+            // since we know that that this function is called on
+            // open, we'll set the localStorage value to "hide"
+            localStorage.setItem("collapseExample1", "hide");
+        });
+
+        // Since this function runs on page load (meaning only once), we can
+        // check the value of localStorage from here and then call the
+        // bootstrap collapse methods ourselves:
+
+        // Check the value of the localStorage item
+        const showExampleCollapse = localStorage.getItem("collapseExample1");
+
+        // Manipulate the collapse based on the value of the localStorage item.
+        // Note that the value is determined by lines 36 or 44. If you change those,
+        // then make sure to check that the comparison on the next line is still valid.
+        if (showExampleCollapse === "show") {
+            collapseExample1.collapse("show");
+        } else {
+            collapseExample1.collapse("hide");
+        }
+    });
+</script>
 </body>
 </html>
