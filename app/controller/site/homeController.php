@@ -15,7 +15,8 @@ use Session;
 
 class homeController extends Controller
 {
-    public function test($id=5){
+    public function test($id = 5)
+    {
         //get all details for course
         $course_site = $this->model('Course_site');
         $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
@@ -63,8 +64,8 @@ class homeController extends Controller
                 'course_duration' => gmdate("H:i:s", $courseDuration),
                 'AllRatings' => $AllRatings,
                 'averageRating' => $averageRating,
-                'checkIfUserHasRated'=>$checkIfUserHasRated,
-                'percentageRating'=>$this->getPercentageForEachRating_For_SpecificCourse($id),
+                'checkIfUserHasRated' => $checkIfUserHasRated,
+                'percentageRating' => $this->getPercentageForEachRating_For_SpecificCourse($id),
 
             ]);
         $this->view->pageTitle = 'course list';
@@ -74,6 +75,8 @@ class homeController extends Controller
 
     public function index($id = '', $name = '')
     {
+        return var_dump($this->course_info(43));
+
         $course_site = $this->model('Course_site');
         $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
         $userWishList = $course_site->wishListUser($user_id);
@@ -166,21 +169,47 @@ class homeController extends Controller
 
     }
 
-    public  function getPercentageForEachRating_For_SpecificCourse($id)
+    public function getPercentageForEachRating_For_SpecificCourse($id)
     {
         //get all Ratings of course
-        $percentage =[];
+        $percentage = [];
         $RatingModel = $this->model;
-        $total_rating = isset($RatingModel->averageRating($id)[0]['total_rating'])?$RatingModel->averageRating($id)[0]['total_rating']:0;
+        $total_rating = isset($RatingModel->averageRating($id)[0]['total_rating']) ? $RatingModel->averageRating($id)[0]['total_rating'] : 0;
 
         $total_for_each_rating = $RatingModel->getTotalForEachRating_For_SpecificCourse($id);
-        foreach ($total_for_each_rating as $Rating){
-            $percentage[$Rating['rating_number']]=($Rating['total_for_each_rating']/ $total_rating)*100;
+        foreach ($total_for_each_rating as $Rating) {
+            $percentage[$Rating['rating_number']] = ($Rating['total_for_each_rating'] / $total_rating) * 100;
 
         }
 
-    return $percentage;
+        return $percentage;
 
+    }
+
+
+    public function course_info($id)
+    {
+        $lessons = $this->model('Lesson');
+        $courseDuration = 0;
+        $chaptersLessons = [];
+        $course_count = $lessons->count_lessons($id);
+        $chaptersName = $lessons->chapterNames($id);
+        $chapterDuration=0;
+        foreach ($chaptersName as $chapter) {
+            $videos = $lessons->chapterLessons($id, $chapter['resources_chapter']);
+            $chapterDuration = $this->countDurationChapter($videos);
+            $courseDuration += $chapterDuration;
+            $chaptersLessons[$chapter['resources_chapter']] = array(
+                'duration' => gmdate("H:i:s", $chapterDuration),
+                'lessons' => $videos,
+            );
+        }
+        $info=array(
+            'duration'=>$chapterDuration,
+            'course_count'=>$course_count
+
+        );
+        return  $info ;
     }
 
     public function course_detail($id)
@@ -220,7 +249,7 @@ class homeController extends Controller
         $RatingModel = $this->model('Rating');
         $AllRatings = $RatingModel->allRatingsOfCourse($id);
         $averageRating = $RatingModel->averageRating($id);
-        $checkIfUserHasRated = $RatingModel->checkIfUserHasRated($user_id,$id);
+        $checkIfUserHasRated = $RatingModel->checkIfUserHasRated($user_id, $id);
 
 
         $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail',
@@ -232,8 +261,8 @@ class homeController extends Controller
                 'course_duration' => gmdate("H:i:s", $courseDuration),
                 'AllRatings' => $AllRatings,
                 'averageRating' => $averageRating,
-                'checkIfUserHasRated'=>$checkIfUserHasRated,
-                'percentageRating'=>$this->getPercentageForEachRating_For_SpecificCourse($id),
+                'checkIfUserHasRated' => $checkIfUserHasRated,
+                'percentageRating' => $this->getPercentageForEachRating_For_SpecificCourse($id),
 
             ]);
         $this->view->pageTitle = 'course list';

@@ -139,16 +139,14 @@ class Helper
         $id = Session::get('user')['user_id'];
         $userWishList = [];
         $WishList = DB::init()->query("SELECT `user_wish_list` FROM `users_courses` WHERE user_id=$id");
-        if (isset($WishList['user_wish_list']))
-        {
-            $WishList=$WishList['user_wish_list'] ;
+        if (isset($WishList['user_wish_list'])) {
+            $WishList = $WishList['user_wish_list'];
             $WishList = trim($WishList, ',');
             if (($WishList) != '')
                 $userWishList = (explode(',', $WishList));
             return count($userWishList);
         }
         return 0;
-
 
 
     }
@@ -162,19 +160,25 @@ class Helper
         return;
     }
 
+    public static function SITE_URL()
+    {
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+        return $actual_link;
+    }
+
 
     public static function readPermissionName($name)
     {
-     $names=array(
-         'admin'=>'المسوؤلين',
-         'course'=>'المواد',
-         'category'=>'الاصناف',
-         'lesson'=>'الدروس',
-         'permission'=>'الصلاحيات',
-         'role'=>'الادوار',
-         'teacher'=>'المدرسين',
-         'university'=>'الجامعات',
-     );
+        $names = array(
+            'admin' => 'المسوؤلين',
+            'course' => 'المواد',
+            'category' => 'الاصناف',
+            'lesson' => 'الدروس',
+            'permission' => 'الصلاحيات',
+            'role' => 'الادوار',
+            'teacher' => 'المدرسين',
+            'university' => 'الجامعات',
+        );
         return $names[$name];
     }
 

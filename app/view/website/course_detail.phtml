@@ -85,7 +85,7 @@
                                                     <?php foreach ($chapter['lessons'] as $lesson) {
                                                         $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1)); ?>
                                                         <li>
-                                                            <a href="http://127.0.0.1:800<?php echo $lesson['resources_video'] ?>"
+                                                            <a href="<?php echo Helper::SITE_URL().$lesson['resources_video'] ?>"
                                                                class="video"><?php echo Helper::getVideoName($lesson['resources_video']) ?>
                                                             </a>
                                                             <span> <?php echo gmdate("H:i:s", $file['playtime_seconds']) ?></span>
