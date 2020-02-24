@@ -162,6 +162,22 @@ class Helper
         return;
     }
 
+
+    public static function readPermissionName($name)
+    {
+     $names=array(
+         'admin'=>'المسوؤلين',
+         'course'=>'المواد',
+         'category'=>'الاصناف',
+         'lesson'=>'الدروس',
+         'permission'=>'الصلاحيات',
+         'role'=>'الادوار',
+         'teacher'=>'المدرسين',
+         'university'=>'الجامعات',
+     );
+        return $names[$name];
+    }
+
     public static function backToRegister($message, $status, $type = 'student')
     {
         $homeController = new homeController();

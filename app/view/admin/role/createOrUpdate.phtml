@@ -32,7 +32,7 @@
                 <input type="text" class="form-control" placeholder="اسم الدور" id="role_name"
                        value="<?php if (array_key_exists('role', $this->view_data)) echo($this->view_data['role'][0]['role_name']); else   echo ''; ?>"
                        name="role_name">
-                <label for="role_description">Role Description:</label>
+                <label for="role_description">وصف الدور:</label>
                 <textarea class="form-control" placeholder="Enter Role Description" id="role_description"
                           value="<?php if (array_key_exists('role', $this->view_data)) echo($this->view_data['role'][0]['role_description']); else   echo ''; ?>"
                           name="role_description">
@@ -51,9 +51,8 @@
                             <h2 class="mb-0">
                                 <a  data-toggle="collapse" data-target="#<?php echo $k ?>" aria-expanded="true" aria-controls="collapseOne">
                                     <label class="col-md-3 col-sm-3 col-xs-12 control-label"
-                                    <label><input type="checkbox" onclick="selectSub($(this),'<?php echo $k ?>')"
-                                                  data-selected="0"/> Select all <?php echo $k ?></label>
-                                    <br>
+                                    <label>
+                                        صلاحيــــــــــــات   <?php echo Helper::readPermissionName($k ) ?>
                                     </label>
                                 </a>
                             </h2>
@@ -67,7 +66,7 @@
                                         <label><input type="checkbox" class="selectGroup"
                                                       data-id="<?php echo $k ?>"
                                                       onclick="selectSub($(this),'<?php echo $k ?>')"
-                                                      data-selected="0"/> Select all <?php echo $k ?></label>
+                                                      data-selected="0"/> اختيار كافة الصلاحيات الخاصة بـــ <?php echo Helper::readPermissionName($k ) ?></label>
                                         <br>
                                         </label>
 
