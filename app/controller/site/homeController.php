@@ -15,10 +15,8 @@ use Session;
 
 class homeController extends Controller
 {
-
-
-    public function index($id = '', $name = '')
-    {
+    public function test($id=5){
+        //get all details for course
         $course_site = $this->model('Course_site');
         $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
         $userWishList = $course_site->wishListUser($user_id);
@@ -29,7 +27,67 @@ class homeController extends Controller
         } else
             $userWishList = [];
 
-        $this->view('website' . DIRECTORY_SEPARATOR . 'home', ['news' => [],
+        $courseModel = $this->model('Course');
+        $course = $courseModel->find($id);
+
+        //access to videos table and get all details
+        $lessons = $this->model('Lesson');
+        $courseDuration = 0;
+        $chaptersLessons = [];
+        $course_count = $lessons->count_lessons($id);
+        $chaptersName = $lessons->chapterNames($id);
+
+        foreach ($chaptersName as $chapter) {
+            $videos = $lessons->chapterLessons($id, $chapter['resources_chapter']);
+            $chapterDuration = $this->countDurationChapter($videos);
+            $courseDuration += $chapterDuration;
+            $chaptersLessons[$chapter['resources_chapter']] = array(
+                'duration' => gmdate("H:i:s", $chapterDuration),
+                'lessons' => $videos,
+            );
+        }
+
+        //get all Ratings of course
+        $RatingModel = $this->model('Rating');
+        $AllRatings = $RatingModel->allRatingsOfCourse($id);
+        $averageRating = $RatingModel->averageRating($id);
+        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id);
+
+
+        $this->view('website' . DIRECTORY_SEPARATOR . 'CourseDetails',
+            [
+                'course' => $course,
+                'lessons' => $chaptersLessons,
+                'course_count' => $course_count,
+                'userWishList' => $userWishList,
+                'course_duration' => gmdate("H:i:s", $courseDuration),
+                'AllRatings' => $AllRatings,
+                'averageRating' => $averageRating,
+                'checkIfUserHasRated'=>$checkIfUserHasRated,
+                'percentageRating'=>$this->getPercentageForEachRating_For_SpecificCourse($id),
+
+            ]);
+        $this->view->pageTitle = 'course list';
+        $this->view->render();
+    }
+
+
+    public function index($id = '', $name = '')
+    {
+        $course_site = $this->model('Course_site');
+        $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
+        $userWishList = $course_site->wishListUser($user_id);
+//        return var_dump($userWishList);
+
+        if (count($userWishList) > 0) {
+            $userWishList = (explode(',', $userWishList[0]['user_wish_list']));
+
+        } else
+            $userWishList = [];
+
+
+        $this->view('website' . DIRECTORY_SEPARATOR . 'index', [
+            'news' => [],
             'courses' => $course_site->latestCoursesWebsite(),
             'userWishList' => $userWishList,
 
