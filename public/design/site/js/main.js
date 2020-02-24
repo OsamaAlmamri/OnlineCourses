@@ -309,9 +309,9 @@ $(function () {
 	// });
 
 
-	$('.sidebar').hover(function () {
-		$('.content').toggleClass('collapse-content');
-	});
+	// $('.sidebar').hover(function () {
+	// 	$('.content').toggleClass('collapse-content');
+	// });
 
 
 	//show lessons of chapter
