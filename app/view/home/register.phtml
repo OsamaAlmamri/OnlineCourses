@@ -1,22 +1,23 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'head.phtml' ?>
 
-<div class="content1">
-    <?php include VIEW . 'messages.phtml';
 
-    ?>
+<body class="login-page">
+<div class="container">
+    <!-- signin form-->
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-6 col-sm-6 ">
+            <div class="login-box card mt-20">
 
-    <div class="container h-100">
-        <div class="row justify-content-lg-center h-100 mt-5">
-            <div class="card-wrapper col-md-12">
-                <div class="card">
-                    <div class="card-body">
+                <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="login100-pic js-tilt " style="margin-top: 10%" data-tilt>
-                                    <img src="/images/login.png" alt="IMG" width="117%" height="100%">
+                            <div class="col-12">
+                                <div class="logo-login">
+                                    <img  src="/images/logo-color.png">
                                 </div>
+                            <div class="alert-message">
+                                <?php include VIEW . 'messages.phtml' ?>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <h4 class="card-title">إنشاء حساب جديد</h4>
                                 <form method="post" action="/admin/singUp" class="my-login-validation" novalidate=""
                                       enctype="multipart/form-data" id='first_form'>
@@ -45,19 +46,19 @@
                                             <?php echo Message::getInputErrorMessage('password_confirmation') ?>
 
 
-                                            <label for="user_full_name">الأســم كــامل</label>
-                                            <input type="text" class="form-control" placeholder="يرجى إدخال الاسم كاملآ"
-                                                   value="<?php Helper::old('user_full_name', 'auth'); ?>"
-                                                   id="user_full_name" name="user_full_name">
-                                            <?php echo Message::getInputErrorMessage('user_full_name') ?>
-
-
                                             <label for="user_name">إسم المستــخدم</label>
                                             <input type="text" class="form-control" placeholder="يرجى إخال إسم المستخدم"
                                                    id="user_name"
                                                    value="<?php Helper::old('user_name', 'auth',); ?>"
                                                    name="user_name" required>
                                             <?php echo Message::getInputErrorMessage('user_name') ?>
+
+                                            <label for="user_full_name">الأســم كــامل</label>
+                                            <input type="text" class="form-control" placeholder="يرجى إدخال الاسم كاملآ"
+                                                   value="<?php Helper::old('user_full_name', 'auth'); ?>"
+                                                   id="user_full_name" name="user_full_name">
+                                            <?php echo Message::getInputErrorMessage('user_full_name') ?>
+
 
 
                                         </div>
@@ -143,27 +144,27 @@
                                                     } ?>
                                                 </div>
                                                 <div>
-                                                    <div class="row">
-                                                        <div class="col-md-12" style="margin-top: 25px">
-                                                            <div class="form-group ">
-                                                                <button type="submit" class="btn btn-primary btn-block">
-                                                                    Register
-                                                                </button>
-                                                            </div>
-                                                            <div class="mt-4 text-center">
-                                                                Already have an account? <a href="/home/login">Login</a>
-                                                            </div>
-                                                            <div class="footer text-center">
-                                                                Copyright &copy; 2020 &mdash; StepForward
-                                                            </div>
+                                                    <div class="col-md-12" >
+                                                        <div class="form-group ">
+                                                            <button type="submit" class="btn btn-primary btn-block">
+                                                                Register
+                                                            </button>
+                                                        </div>
+                                                        <div class="mt-4 text-center">
+                                                            Already have an account? <a href="/home/login">Login</a>
+                                                        </div>
+                                                        <div class="footer text-center">
+                                                            Copyright &copy; 2020 &mdash; StepForward
                                                         </div>
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
-                                        </div> <?php
+                                        </div>
+                                        <?php
                                         } ?>
-                                    </div>
-                            </div>
+
+
 
                             </form>
 
@@ -171,10 +172,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 </div>
-</div>
+</body>
+
+
+
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'readImageFile.phtml' ?>
 
@@ -204,7 +206,6 @@
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
 
 
-// For Validate Using JS
 
 
 <script type="text/javascript">

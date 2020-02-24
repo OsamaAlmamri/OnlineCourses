@@ -4,7 +4,6 @@
         $(document).on('click', '.addToWishList', function () {
             var id = $(this).attr('data-id');
             var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&id=' + encodeURIComponent(id);
-
             var url = controller + '/insertCourseUser';
             var _this = $(this);
             $.ajax({

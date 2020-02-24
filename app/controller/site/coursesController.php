@@ -18,15 +18,20 @@ class coursesController extends \Controller
         //return var_dump($_COOKIE['item_id']);
     }
 
-    public function index()
+    public function getCourse($id)
     {
-
         $course_site = $this->model('Course_site');
         $user_id = Session::get('user')['user_id'];
         $userWishList = $course_site->wishListUser($user_id);
+
+        if ($userWishList)
         $userWishList = (explode(',', $userWishList[0]['user_wish_list']));
+        else
+            $userWishList=[];
         $this->view('website' . DIRECTORY_SEPARATOR . 'courses',
-            ['courses' => $course_site->all(),
+            [
+                'courses' => $course_site->getCoursesById($id),
+                'category_id' => $id,
                 'userWishList' => $userWishList,
                 'deleted' => false,
             ]);

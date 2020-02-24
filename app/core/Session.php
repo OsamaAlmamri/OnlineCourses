@@ -22,7 +22,6 @@ abstract class Session
         $_SESSION['user'] = $sessionData['user'];
         $_SESSION['role_id'] = $sessionData['role_id'];
         $_SESSION['role_name'] = $sessionData['role_name'];
-        $_SESSION['user_permissions'] = $sessionData['user_permissions'];
 
 
     }

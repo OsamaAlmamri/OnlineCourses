@@ -17,8 +17,18 @@ class CoursesController extends Controller
     {
         Permissions::getInstaince()->allow('course_index');
 
+//        return var_dump($_SESSION['userID']);
+
+        $courses = [];
         $course = $this->model('Course');
-        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'index', ['courses' => $course->all(), 'deleted' => false]);
+        if ($_SESSION['role_name'] == 'university')
+            $courses = $course->all($_SESSION['userID'], 'university');
+        elseif ($_SESSION['role_name'] == 'teacher')
+            $courses = $course->all($_SESSION['userID'], 'teacher');
+        else
+            $courses = $course->all();
+
+        $this->view('admin' . DIRECTORY_SEPARATOR . 'courses' . DIRECTORY_SEPARATOR . 'index', ['courses' => $courses, 'deleted' => false]);
         $this->view->pageTitle = 'courses';
         $this->view->render();
     }
@@ -59,7 +69,7 @@ class CoursesController extends Controller
 
     public function create()
     {
-       Permissions::getInstaince()->allow('course_create');
+        Permissions::getInstaince()->allow('course_create');
 
         Helper::viewAdminFile();
         $this->model('Role');

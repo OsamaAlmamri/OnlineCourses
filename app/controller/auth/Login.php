@@ -47,24 +47,24 @@ class Login extends Controller
                         Helper::backToLogin('حسابك غير مفعل حاليا', 'warning');
                     return;
                 } else {
-                        $per=$this->model->getPermissions($user['role_id']);
-                        $permissions=[];
-                        foreach ($per as $p )
-                        {
-                            $permissions[]=$p['permission_id'];
-                        }
+//                        $per=$this->model->getPermissions($user['role_id']);
+//                        $permissions=[];
+//                        foreach ($per as $p )
+//                        {
+//                            $permissions[]=$p['permission_id'];
+//                        }
 
                     $session_data = array(
                         'user_id' => $user['user_id'],
                         'user' => $user,
                         'user_name' => $user['user_name'],
                         'role_id' => $user['role_id'],
-                        'user_permissions' => $permissions,
+//                        'user_permissions' => $permissions,
                         'role_name' => $this->model->roleName($user['user_id'])['role_name']);
                     Session::loggIn($session_data);
 
                     if (Session::logged()) {
-                        if (Session::get('role_name') == 'admin')
+                        if (Session::get('role_name') != 'student')
                             Helper::backToDashboard('لقد تم تسجيل الدخول بنجاح', 'success');
                         else
                             Helper::backToHome('لقد تم تسجيل الدخول بنجاح', 'success');

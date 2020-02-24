@@ -1,4 +1,4 @@
-<?php
+00<?php
 
 
 class rating
@@ -7,16 +7,18 @@ class rating
 
     function __construct()
     {
-       return $this->db = new Model();
+        return $this->db = new Model();
     }
 
     // get all row from rating Table
-   public function all(){
-       return $this->db->query("select * from ratings");
+    public function all()
+    {
+        return $this->db->query("select * from ratings");
     }
 
 
-    public function averageRating($id){
+    public function averageRating($id)
+    {
         return $this->db->query("SELECT 
                                             COUNT(rating_id) AS total_rating,
                                             FORMAT(SUM(rating_number)/COUNT(rating_number), 1)  AS average_rating 
@@ -30,7 +32,8 @@ class rating
         ");
     }
 
-    public function getTotalForEachRating_For_SpecificCourse($id){
+    public function getTotalForEachRating_For_SpecificCourse($id)
+    {
         return $this->db->query("SELECT 
                                             COUNT(rating_number) AS total_for_each_rating,
                                             rating_number
@@ -43,8 +46,6 @@ class rating
                                           
         ");
     }
-
-
 
 
     public function allRatingsOfCourse($id)
@@ -61,8 +62,7 @@ class rating
     }
 
 
-
-    public function getInFoTableByField($tableName,$filedName,$filedValue)
+    public function getInFoTableByField($tableName, $filedName, $filedValue)
     {
         return $this->db->query("select * from $tableName where course_id=$filedValue");
     }
@@ -74,9 +74,9 @@ class rating
     }
 
 
-    public function checkIfUserHasrated($id)
+    public function checkIfUserHasRated($user_id, $course_id)
     {
-        return $this->db->query("select * from ratings where user_id=$id");
+        return $this->db->query("select * from ratings where user_id=$user_id and course_id=$course_id");
     }
 
     public function addRating(array $Data)
@@ -96,7 +96,7 @@ class rating
                                             1,
                                             :course_id
                                             )'
-                                      );
+        );
         $Stmt->execute($Data);
         return $this->db->lastInsertId();
 
@@ -106,9 +106,8 @@ class rating
     {
         $Stmt = $this->db->preparation("DELETE FROM ratings where user_id=:user_id AND course_id=:course_id");
         $Stmt->execute($data);
-        return ;
+        return;
     }
-
 
 
 }

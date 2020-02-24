@@ -7,17 +7,12 @@ use site\homeController;
 
 class Helper
 {
-//    public static function getMainMenu($type)
-//    {
-//        if ($type == 'main') {
-//            $c = DB::init()->query("SELECT *  FROM categories2 WHERE parent =0 and isMain=1 order by sort");
-//
-//
-//        } else
-//            $c = DB::init()->query("SELECT *  FROM categories2 WHERE parent =0 and isMain=0 order by sort ");
-////            $c = Category::all()->where('parent', '')->where('isMain', 0)->sortBy('sort');
-//        return ($c);
-//    }
+    public static function getMainMenu($parent = '0')
+    {
+
+        $c = new Category();
+        return ($c->all($parent));
+    }
 
 //    public static function getCategories()
 //    {
@@ -142,12 +137,19 @@ class Helper
     public static function wishListCount()
     {
         $id = Session::get('user')['user_id'];
-        $WishList = DB::init()->query("SELECT `user_wish_list` FROM `users_courses` WHERE user_id=$id")['user_wish_list'];
         $userWishList = [];
-        $WishList = trim($WishList, ',');
-        if (($WishList) != '')
-            $userWishList = (explode(',', $WishList));
-        return count($userWishList);
+        $WishList = DB::init()->query("SELECT `user_wish_list` FROM `users_courses` WHERE user_id=$id");
+        if (isset($WishList['user_wish_list']))
+        {
+            $WishList=$WishList['user_wish_list'] ;
+            $WishList = trim($WishList, ',');
+            if (($WishList) != '')
+                $userWishList = (explode(',', $WishList));
+            return count($userWishList);
+        }
+        return 0;
+
+
 
     }
 
@@ -158,6 +160,22 @@ class Helper
         Message::setMessage('main', $message, $status);
         $homeController->login();
         return;
+    }
+
+
+    public static function readPermissionName($name)
+    {
+     $names=array(
+         'admin'=>'المسوؤلين',
+         'course'=>'المواد',
+         'category'=>'الاصناف',
+         'lesson'=>'الدروس',
+         'permission'=>'الصلاحيات',
+         'role'=>'الادوار',
+         'teacher'=>'المدرسين',
+         'university'=>'الجامعات',
+     );
+        return $names[$name];
     }
 
     public static function backToRegister($message, $status, $type = 'student')
