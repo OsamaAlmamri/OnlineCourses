@@ -320,7 +320,7 @@ body {
 
 
 .content .sidebar {
-    background: rgb(121, 32, 82);
+    background: #ec5525;
     border-radius: 10px;
     color: #fff;
     padding: 0;
@@ -733,8 +733,24 @@ padding: 10px;
     height: auto;
 }
 .video-section .video-details{
-    padding: 15px;
-}
+     padding: 15px;
+    position: relative;
+    margin: 30px 0;
+ }
+
+/*.video-section .video-details:after{*/
+/*    margin-top: 30px;*/
+/*    position: absolute;*/
+/*    content: "";*/
+/*    border-radius: 9px;*/
+/*    z-index: 0;*/
+/*    bottom: 0px;*/
+/*    right: 0;*/
+/*    width: 100%;*/
+/*    height: 1px;*/
+/*    text-align: center;*/
+/*    background-color: #dcdcdc;*/
+/*}*/
 .video-section .video-details .video-name{
     font-size: 1.6em;
     margin-bottom: 15px;
@@ -812,6 +828,16 @@ padding: 10px;
     color: #999;
 }
 
+.course-chapters .course-name {
+    margin-top: 15px;
+    margin-bottom: 25px ;
+    padding: 0px;
+    color: #9933cc;
+}
+.course-chapters .course-name h6{
+    font-size: 1.4em;
+
+}
 .course-chapters .list-chapters > .chapter-detail {
     display: block;
     justify-content: space-between;

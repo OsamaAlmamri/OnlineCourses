@@ -74,8 +74,16 @@ class rating
     }
 
 
-    public function checkIfUserHasRated($user_id, $course_id)
+//    public function checkIfUserHasRated($user_id, $course_id)
+//    {
+//        return 1;
+//        return $this->db->query("select * from ratings where user_id=$user_id and course_id=$course_id");
+//    }
+
+
+    public function checkIfUserHasRated($user_id)
     {
+        return 1;
         return $this->db->query("select * from ratings where user_id=$user_id and course_id=$course_id");
     }
 
