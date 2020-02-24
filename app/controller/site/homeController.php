@@ -75,28 +75,24 @@ class homeController extends Controller
 
     public function index($id = '', $name = '')
     {
-        return var_dump($this->course_info(43));
-
         $course_site = $this->model('Course_site');
         $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
         $userWishList = $course_site->wishListUser($user_id);
-//        return var_dump($userWishList);
-
         if (count($userWishList) > 0) {
             $userWishList = (explode(',', $userWishList[0]['user_wish_list']));
-
         } else
             $userWishList = [];
-
-
+        $lastCourses = [];
+        $this->model('Lesson');
+        foreach ($course_site->latestCoursesWebsite() as $course) {
+            $lastCourses[] = array_merge($course, $this->course_info($course['course_id']));
+        }
         $this->view('website' . DIRECTORY_SEPARATOR . 'index', [
             'news' => [],
-            'courses' => $course_site->latestCoursesWebsite(),
+            'courses' => $lastCourses,
             'userWishList' => $userWishList,
 
         ]);
-
-//        $this->view('home' . DIRECTORY_SEPARATOR . 'index', ['news' => $news->all(), 'category' => $category->all()]);
         $this->view->pageTitle = 'home';
         $this->view->render();
     }
@@ -189,12 +185,12 @@ class homeController extends Controller
 
     public function course_info($id)
     {
-        $lessons = $this->model('Lesson');
+//        $lessons = $this->model=null;
+        $lessons = $this->model;
         $courseDuration = 0;
         $chaptersLessons = [];
         $course_count = $lessons->count_lessons($id);
         $chaptersName = $lessons->chapterNames($id);
-        $chapterDuration=0;
         foreach ($chaptersName as $chapter) {
             $videos = $lessons->chapterLessons($id, $chapter['resources_chapter']);
             $chapterDuration = $this->countDurationChapter($videos);
@@ -204,12 +200,25 @@ class homeController extends Controller
                 'lessons' => $videos,
             );
         }
-        $info=array(
-            'duration'=>$chapterDuration,
-            'course_count'=>$course_count
-
+        $averageRating = $this->model->averageRating($id);
+        $info = array(
+            'duration' => gmdate("H:i:s", $courseDuration),
+            'course_count' => $course_count,
+            'averageRating' => isset($averageRating[0]['average_rating'])?$averageRating[0]['average_rating']:0,
+            'AllRatings' =>isset($averageRating[0]['total_rating'])? $averageRating[0]['total_rating']:0,
         );
-        return  $info ;
+        return $info;
+    }
+
+    public function course_rating_info($id)
+    {
+        $RatingModel = $this->model('Rating');
+        $averageRating = $RatingModel->averageRating($id);
+        $info = array(
+            'averageRating' => $averageRating[0]['average_rating'],
+            'AllRatings' => $averageRating[0]['total_rating'],
+        );
+        return $info;
     }
 
     public function course_detail($id)

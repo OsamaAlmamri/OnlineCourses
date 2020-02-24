@@ -19,6 +19,22 @@ class Lesson
         return $this->db->query("select * from course_resources");
     }
 
+    public function averageRating($id)
+    {
+        return $this->db->query("SELECT 
+                                            COUNT(rating_id) AS total_rating,
+                                            FORMAT(SUM(rating_number)/COUNT(rating_number), 1)  AS average_rating 
+                                    FROM 
+                                            ratings 
+                                    WHERE
+                                            course_id=$id 
+                                    GROUP by
+                                             course_id
+                                          
+        ");
+    }
+
+
     public function chapterLessons($id, $chapter)
     {
         return $this->db->query("select * from course_resources WHERE course_id =$id and resources_chapter like '$chapter' ");
