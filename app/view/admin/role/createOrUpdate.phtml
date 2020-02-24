@@ -51,7 +51,7 @@
                             <h2 class="mb-0">
                                 <a  data-toggle="collapse" data-target="#<?php echo $k ?>" aria-expanded="true" aria-controls="collapseOne">
                                     <label class="col-md-3 col-sm-3 col-xs-12 control-label"
-                                    <label><input type="checkbox" onclick="selectSub($(this),'<?php echo $k ?>')"
+                                    <label><input type="checkbox" class="selectGroup" onclick="selectSub($(this),'<?php echo $k ?>')"
                                                   data-selected="0"/> Select all <?php echo $k ?></label>
                                     <br>
                                     </label>
@@ -62,16 +62,7 @@
                         <div id="<?php echo $k ?>" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                             <div class="card-body">
 
-
-                                        <label class="col-md-3 col-sm-3 col-xs-12 control-label"
-                                        <label><input type="checkbox" class="selectGroup"
-                                                      data-id="<?php echo $k ?>"
-                                                      onclick="selectSub($(this),'<?php echo $k ?>')"
-                                                      data-selected="0"/> Select all <?php echo $k ?></label>
-                                        <br>
-                                        </label>
-
-                                        <div class="form-group row">
+                                <div class="form-group row">
 
                                             <br>
                                             <?php
