@@ -64,7 +64,9 @@ input[type='text'] ,input[type='password'],input[type='email'],input[type='phone
 
 body {
     direction: rtl;
-   font-family: 'DroidKufi-Bold' !important;
+
+    font-family: 'DroidKufi-Regular' !important;
+
     background-color: #f9f9f9;
 }
 .container-fluid{
@@ -76,6 +78,12 @@ body {
 ----------------------------------------------------- */
 body.login-page{
     min-height: 590px;
+    background: radial-gradient( circle 1023.6px at 40.4% -16.4%,  rgba(228,80,83,1) 0%, rgba(121,32,82,1) 90% );
+    background-size: auto 2000px;
+
+}
+body.login-page1{
+    min-height: 914px;
     background: radial-gradient( circle 1023.6px at 40.4% -16.4%,  rgba(228,80,83,1) 0%, rgba(121,32,82,1) 90% );
     background-size: auto 2000px;
 
@@ -108,6 +116,21 @@ body.login-page{
     text-align: center;position: relative;
     top: -7px;
 }
+#user_image{
+    position: absolute;
+    top: -94px;
+    align-items: center;
+    right: 43%;
+    border: 4px solid #FFFFFF;
+}
+#imgedit {
+    position: absolute;
+    margin-top: 21%;
+
+    font-size: 189%;
+    color: #be4448;
+    margin-right: -6%;
+}
 li.header, .navbar-nav>.notifications-menu>.dropdown-menu>li.header, .navbar-nav>.tasks-menu>.dropdown-menu>li.header {
     background-color: #fff;
     border-bottom: 1px solid #f4f4f4;
@@ -129,12 +152,24 @@ li.header, .navbar-nav>.notifications-menu>.dropdown-menu>li.header, .navbar-nav
     box-shadow: 0 5px 20px 5px rgba(60,63,64,0.3);
 
 }
+.login-page1 .login-box{
+
+    border-radius: 12px;
+    box-shadow: 0 5px 20px 5px rgba(60,63,64,0.3);
+
+}
 
 .login-box .logo-login
 {
     overflow: hidden;
     text-align: center;
     margin-bottom: 25px;
+}.login-box .logo-login1
+{
+
+    overflow: hidden;
+    text-align: center;
+
 }
 
 .login-box h4 {
@@ -240,6 +275,7 @@ li.header, .navbar-nav>.notifications-menu>.dropdown-menu>li.header, .navbar-nav
         position: relative;
         /* margin-left: 27px; */
     }
+
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -568,7 +604,12 @@ label {
     div.content {
         margin-left: 0;
     }
+    body.login-page1{
+        min-height: 914px;
+        background: radial-gradient( circle 1023.6px at 40.4% -16.4%,  rgba(228,80,83,1) 0%, rgba(121,32,82,1) 90% );
+        background-size: auto 2000px;
 
+    }
 
     .image_back {
         background-image: url(../../image/user-info2.jpg);
@@ -592,6 +633,12 @@ label {
 @media screen and (max-width: 400px) {
     .sidebar a {
         text-align: center;
+    }
+    body.login-page1{
+        min-height: 914px;
+        background: radial-gradient( circle 1023.6px at 40.4% -16.4%,  rgba(228,80,83,1) 0%, rgba(121,32,82,1) 90% );
+        background-size: auto 2000px;
+
     }
 .text{
     display: none;
@@ -633,13 +680,3 @@ label {
     -o-transition: all 0.3s;
     transition: all 0.3s; }
 /*end content page style*/
-
-
-
-
-
-
-
-
-
-
