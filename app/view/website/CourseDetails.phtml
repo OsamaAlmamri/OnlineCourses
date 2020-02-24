@@ -165,8 +165,9 @@
                         <div class="col">
                             <div class="view-video">
                                 <video controls>
-                                    <source src=http://127.0.0.1:5500<?php echo $lesson['resources_video'] ?>" type="video/mp4">
+                                    <source src="<?php echo Helper::SITE_URL() . $lesson['resources_video'] ?>" type="video/webm">
                                 </video>
+
                             </div>
 
                             <div class="video-details">
@@ -223,7 +224,8 @@
                             <?php foreach ($chapter['lessons'] as $lesson) {
                                 $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1)); ?>
                                 <li>
-                                <span class="video-name"><i class="fa fa-play-circle-o"></i><a href="#" data-video="http://127.0.0.1:5500<?php echo $lesson['resources_video'] ?>"
+                                <span class="video-name"><i class="fa fa-play-circle-o"></i>
+                                    <a href="#" data-video="<?php echo Helper::SITE_URL(). $lesson['resources_video'] ?>"
                                     ><?php echo Helper::getVideoName($lesson['resources_video']) ?>
                                 </a></span>
 
