@@ -64,7 +64,7 @@ input[type='text'] ,input[type='password'],input[type='email'],input[type='phone
 
 body {
     direction: rtl;
-   font-family: 'DroidKufi-Bold';
+   font-family: 'DroidKufi-Bold' !important;
     background-color: #f9f9f9;
 }
 .container-fluid{

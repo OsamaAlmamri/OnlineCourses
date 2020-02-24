@@ -201,24 +201,28 @@
             <!-- End main-content-->
 
 
-
-
             <div class="col-4">
                 <div class="course-chapters">
-                    <div class="chapter-head">
-                        <span class="">اقسام الدورة</span>
-                        <span><?php echo $this->view_data['course_count'] ?> محاضرات </span>
-                        <span>  اجمالي الوقت : <?php echo $this->view_data['course_duration'] ?></span>
+                    <div class="course-name">
+                        <h6><?php echo $course['course_title']?></h6>
                     </div>
+                    <div class="chapter-head">
+                        <span>تفاصيل الدورة</span>
+                        <span><i class="fa fa-play-circle-o"></i><?php echo $this->view_data['course_count'] ?> -
+                     <i class="fa fa-clock-o"></i> <?php echo $this->view_data['course_duration'] ?></span>
+                    </div>
+                    <hr>
+
                     <ul class="list-chapters">
                         <?php $num=1;
                         foreach ($this->view_data['lessons'] as $k => $chapter) { ?>
 
                         <li class="chapter-detail">
                             <span class="num"><?php echo $num?></span>
-                            <span class="chapter_name"><?php echo $k ?></span>
-                            <span class="chapter_number_lessons"> <?php echo count($chapter['lessons']) ?> فيديو</span>
-                            <span class="chapter_duration"><?php echo $chapter['duration'] ?> </span>
+                                <span class="chapter_name"><?php echo $k ?></span>
+                                <span class="chapter_number_lessons"><i class="fa fa-play-circle-o"></i> <?php echo count($chapter['lessons']) ?> </span>
+                                <span class="chapter_duration"><?php echo $chapter['duration'] ?> </span>
+                            <span class="show-video"><i class="fa fa-plus"></i></span>
                         </li>
                         <ul class="list-lessons">
                             <?php foreach ($chapter['lessons'] as $lesson) {
