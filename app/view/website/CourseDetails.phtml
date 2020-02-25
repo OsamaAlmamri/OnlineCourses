@@ -62,9 +62,9 @@
                 <div class="video-section">
                     <div class="row row-cols-1">
                         <div class="col">
-                            <div class="view-video">
-                                <video controls>
-                                    <source src="/videos/1580903859______What Is Version Control- - YouTube.webm" type="video/webm">
+                            <div class="view-video" id="video_countainer">
+                                <video controls  controlsList="nofullscreen nodownload">
+                                    <source src="/videos/1580903859______What Is Version Control- - YouTube.webm" id="video_source" type="video/webm">
                                 </video>
                             </div>
 
@@ -266,7 +266,7 @@
                                 $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1)); ?>
                                 <li>
                                 <span class="video-name"><i class="fa fa-play-circle-o"></i>
-                                    <a href="#" data-video="<?php echo Helper::SITE_URL(). $lesson['resources_video'] ?>"
+                                    <a href="#" data-video="<?php echo  $lesson['resources_video'] ?>"
                                     ><?php echo Helper::getVideoName($lesson['resources_video']) ?>
                                 </a></span>
 

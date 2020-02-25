@@ -258,74 +258,77 @@
 //
 
 
-
 $(function () {
 
-	$('.content').addClass('collapse-content');
+    $('.content').addClass('collapse-content');
 
 
+    //show user-settings
+    $('.user-name').click(function () {
+        $('.user-settings').toggle(300);
+    });
+
+    //show user-settings
+    $('.icon-login').click(function () {
+        $('.login-form').show(300);
+    });
 
 
-	//show user-settings
-	$('.user-name').click(function () {
-		$('.user-settings').toggle(300);
-	});
+    // Dynamic Tabs for show couses
 
-	//show user-settings
-	$('.icon-login').click(function () {
-		$('.login-form').show(300);
-	});
+    $('.tabs-list li').click(function () {
 
+        $(this).addClass('active').siblings().removeClass('active');
 
+        $('.top-courses .courses-list > div').fadeOut(0);
 
-	// Dynamic Tabs for show couses
-
-	$('.tabs-list li').click(function () {
-
-		$(this).addClass('active').siblings().removeClass('active');
-
-		$('.top-courses .courses-list > div').fadeOut(0);
-
-		$($(this).data('content')).fadeIn(0);
-	});
+        $($(this).data('content')).fadeIn(0);
+    });
 
 
-	$('.tabs-list li').click(function () {
+    $('.tabs-list li').click(function () {
 
-		$(this).addClass('active').siblings().removeClass('active');
+        $(this).addClass('active').siblings().removeClass('active');
 
-		$('.course-details  > div').fadeOut(0);
+        $('.course-details  > div').fadeOut(0);
 
-		$($(this).data('content')).fadeIn(0);
-	});
-
-
-	$('.sidebar ul li').click(function () {
-		$('.sidebar ul li ').addClass('active').sibling().removeClass('active');
-	});
-
-	// $('.hamburger').click(function () {
-	// 	$('.content').toggleClass('collapse-content');
-	// });
+        $($(this).data('content')).fadeIn(0);
+    });
 
 
-	// $('.sidebar').hover(function () {
-	// 	$('.content').toggleClass('collapse-content');
-	// });
+    $('.sidebar ul li').click(function () {
+        $('.sidebar ul li ').addClass('active').sibling().removeClass('active');
+    });
+
+    // $('.hamburger').click(function () {
+    // 	$('.content').toggleClass('collapse-content');
+    // });
 
 
-	//show lessons of chapter
-	// $('.list-lessons:first').css("display","block");
-	$('.chapter-detail').click(function () {
-		$(this).next().slideToggle(500);
-		 $('.list-lessons').not($(this).next()).slideUp(1000);//hide for any lesson is not in clickable chapter
+    // $('.sidebar').hover(function () {
+    // 	$('.content').toggleClass('collapse-content');
+    // });
 
-	});
 
-	$('.list-lessons li span a').click(function () {
-		// alert("Value: " + $(this).val());
-		$(".view-video video source").attr("src", $(this).attr("data-video"));
-		// $(".course-details span.video-name").val("$(this).val()");
-	})
+    //show lessons of chapter
+    // $('.list-lessons:first').css("display","block");
+    $('.chapter-detail').click(function () {
+        $(this).next().slideToggle(500);
+        $('.list-lessons').not($(this).next()).slideUp(1000);//hide for any lesson is not in clickable chapter
+
+    });
+
+    $('.list-lessons li span a').click(function () {
+        // alert("Value: " + $(this).val());
+        var sourse = $(".view-video video source");
+        // var video = $(".view-video video")[0].load();
+		sourse.attr("src", $(this).attr("data-video"));
+		$("#video_countainer video")[0].load();
+		$("#video_countainer video")[0].play();
+
+        // $(".course-details span.video-name").val("$(this).val()");
+
+    })
+
 
 });
