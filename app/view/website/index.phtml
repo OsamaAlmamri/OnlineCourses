@@ -71,7 +71,6 @@
                                 <span class="course-duration">60:00 AM</span>
                             </div>
                         </div>
-
                         <div class="col ">
                             <div class="general-courses-content">
                                 <img class="" src="/images/courses/photoshop.jpg">
@@ -96,7 +95,6 @@
                                 <span class="course-duration">60:00 AM</span>
                             </div>
                         </div>
-
                         <div class="col ">
                             <div class="general-courses-content">
                                 <img class="" src="/images/courses/photoshop.jpg">
@@ -133,9 +131,9 @@
 
                                             <?php if (isset($_SESSION['user'])) { ?>
                                                 <a <?php if (in_array($course['course_id'], $this->view_data['userWishList']))
-                                                    echo 'class="fa fa-heart addToWishList" onclick="confirm(\'هل تريد الغاء هذا الكورس من المفضلة \')"  data-status="1"';
+                                                    echo 'class="fa fa-heart addToWishList"  data-status="1"';
                                                 else
-                                                    echo 'class="fa fa-heart-o addToWishList"   onclick="confirm(\'هل تريد اضافة هذا الكورس الى المفضلة \')"  data-status="0"'; ?>
+                                                    echo 'class="fa fa-heart-o addToWishList"  data-status="0"'; ?>
                                                         data-id="<?php echo $course['course_id'] ?>">
                                                 </a>
                                             <?php } ?>
@@ -603,14 +601,44 @@
 
 
     $(document).ready(function(){
-
-        // $('.general-courses-content').slick({
-        //     infinite: true,
-        //     slidesToShow: 2,
-        //     slidesToScroll: 2
-        // });
+        $('.general-courses .row').slick({
+            dots: true,
+            infinite: false,
+            speed: 300,
+            slidesToShow: 5,
+            slidesToScroll: 5,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 3,
+                        infinite: true,
+                        dots: true
+                    }
+                },
+                {
+                    breakpoint: 600,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 2
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+                // You can unslick at a given breakpoint now by adding:
+                // settings: "unslick"
+                // instead of a settings object
+            ]
+        });
 
     });
+
 
 </script>
 <?php (Message::getMessage('errors')); ?>
