@@ -80,6 +80,22 @@
                                 <span class="course-duration">60:00 AM</span>
                             </div>
                         </div>
+                        <div class="col ">
+                            <div class="general-courses-content">
+                                <img class="" src="/images/courses/photoshop.jpg">
+                                <span class="icon-play-video"><i class="fa fa-play"></i></span>
+                                <span class="course-title">كورس تعلم البرمجة</span>
+                                <span class="course-duration">60:00 AM</span>
+                            </div>
+                        </div>
+                        <div class="col ">
+                            <div class="general-courses-content">
+                                <img class="" src="/images/courses/photoshop.jpg">
+                                <span class="icon-play-video"><i class="fa fa-play"></i></span>
+                                <span class="course-title">كورس تعلم البرمجة</span>
+                                <span class="course-duration">60:00 AM</span>
+                            </div>
+                        </div>
 
                         <div class="col ">
                             <div class="general-courses-content">
@@ -579,14 +595,28 @@
 <!-- End Content  -->
 
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
-
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
+
 
 <script>
     AddToWish('/courses');
+
+
+    $(document).ready(function(){
+
+        // $('.general-courses-content').slick({
+        //     infinite: true,
+        //     slidesToShow: 2,
+        //     slidesToScroll: 2
+        // });
+
+    });
+
 </script>
 <?php (Message::getMessage('errors')); ?>
 
 </body>
 
 </html>
+
+
