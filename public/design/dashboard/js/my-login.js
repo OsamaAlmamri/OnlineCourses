@@ -33,14 +33,16 @@ $(function() {
 			id: id
 		}));
 
-
+		$this.css({
+			paddingRight: 60
+		});
 		$this.after($("<div/>", {
-			html: '<span class="fas fa-eye"></span>',
-			class: ' ',
+			html: 'Show',
+			class: 'btn btn-primary btn-sm',
 			id: 'passeye-toggle-'+i,
 		}).css({
 				position: 'absolute',
-				left: 10,
+				right: 10,
 				top: ($this.outerHeight() / 2) - 12,
 				padding: '2px 7px',
 				fontSize: 12,
@@ -65,12 +67,12 @@ $(function() {
 			if($this.hasClass("show")) {
 				$this.attr('type', 'password');
 				$this.removeClass("show");
-				$(this).html("<span class='fas fa-eye'></span>");
+				$(this).removeClass("btn-outline-primary");
 			}else{
 				$this.attr('type', 'text');
 				$this.val($("#passeye-"+i).val());				
 				$this.addClass("show");
-				$(this).html("<span class='fas fa-eye-slash'></span>");
+				$(this).addClass("btn-outline-primary");
 			}
 		});
 	});

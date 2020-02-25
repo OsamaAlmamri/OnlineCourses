@@ -4,12 +4,12 @@
             <img src="/images/logo.png" class="col-md-12">
 
         </div>
-        <div class="userImage text-center" >
+        <div class="userImage text-center" style="border-radius: 100%" >
             <img id="userImage" src="<?php
 
             use auth\Permissions;
 
-            echo(Session::get('user')['user_image']) ?>" class="rounded-circle" width="30">
+            echo(Session::get('user')['user_image']) ?>" width="150" height="150">
         </div>
         <ul class="list-unstyled components">
             <?php if (Permissions::getInstaince()->hasPermision('admin_index') == true) { ?>
@@ -119,7 +119,7 @@
             <div class="container-fluid">
                 <div class="col-6 text-right">
 
-                    <a class="text-white" href="#" id="tog"><span class="fas fa-list"></span></a>
+                    <a class="text-white" href="#" id="tog"><span class="fas fa-bars"></span></a>
                 </div>
                 <div class="col-6 text-left">
 
