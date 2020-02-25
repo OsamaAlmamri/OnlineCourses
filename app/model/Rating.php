@@ -1,4 +1,4 @@
-00<?php
+<?php
 
 
 class rating

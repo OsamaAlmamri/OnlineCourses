@@ -216,7 +216,9 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="icon-cart mycart shopping-cart"></i>
                             <span class="badge badge-danger badge-counter"
-                                  id="n_cart_items"><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
+                                  id="n_cart_items">
+                                <?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?>
+                            </span>
                         </a>
                         <div class="dropdown-menu dm" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Cart is empty <br></a>

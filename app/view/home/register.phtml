@@ -78,7 +78,7 @@
                                             <label for="user_name">إسم المستــخدم</label>
                                             <input type="text" class="form-control" placeholder="يرجى إخال إسم المستخدم"
                                                    id="user_name"
-                                                   value="<?php Helper::old('user_name', 'auth',); ?>"
+                                                   value="<?php Helper::old('user_name', 'auth'); ?>"
                                                    name="user_name" required>
                                             <?php echo Message::getInputErrorMessage('user_name') ?>
 

@@ -98,39 +98,40 @@
 
 
                         $('.list_rating').append(
-                            ' <div class="review-box clearfix">\n' +
-                            '                                <figure class="rev-thumb"><img\n' +
-                            '                                            src=' + image + ' alt="">\n' +
-                            '                                </figure>\n' +
-                            '                                <div class="rev-content">\n' +
-                            '                                    <div class="rating-stars mb-1">\n' +
-                            stars +
-                            '                                     </div>\n' +
-                            '                                    <div class="rev-info">'
-                                                                    + rating_date + ' - ' + user_name +
+                            '   <div class="row">\n' +
+                            '   <div class="col-2">\n' +
+                            '       <div class="user-img"> <img' +
+                            '              src=' + image + ' alt="">\n' +
+                            '        </div>\n' +
+                            '    </div>\n  ' +
 
-                            '                                            <div class="ratings-setting text-right">\n' +
-                            '                                                                    <span class="fa fa-remove" id="remove-rating"\n' +
-                            '                                                                data-course-ID='+ course +
-                            '                                                                data-user-ID='+userID +
-                            '                                                                    ></span>\n' +
-                            '                                                                <span class="fa fa-edit" id="edit-rating"\n' +
-                            '                                                                data-course-ID='+ course +
-                            '                                                                data-user-ID ='+userID +
-                            '                                                                    ></span>\n' +
-                            '                                                                    </div>' +
-                            '                           </div>\n' +
-                            '                                    <div class="rev-text">\n' +
-                            '                                        <p>' + comment + '</p>\n' +
-                            '                                    </div>\n' +
-                            '                                </div>\n' +
-                            '                            </div>'
+
+                            '<div class="col-10">\n' +
+                            '       <div class="rating-info">\n' +
+                            '           <div class="user-info">\n' +
+                            '               <span class="user-name" >\n' +
+                                                     user_name +
+                            '                </span>\n' +
+                            '          <span class="user-rating"  >\n'+
+                                                         stars +
+                            '           </span>\n'+
+                            '          </div>\n' +
+                                '<div class="rating-date">\n'+
+                                   rating_date +
+                                '</div>\n'+
+                               ' <div class="comment">\n' +
+                                    comment +
+                                '</div>\n'+
+                                '       </div>\n' +
+                            '               </div>\n' +
+                            '             </div>'
+
                         );
                     }
 
                 },
                 error: function (xhr, status, error) {
-                    alert(xhr.responseText + "kmbjhj");
+                    alert(xhr.responseText + " ");
                 }
             });
             return (false);
@@ -172,3 +173,14 @@
 </script>
 
 
+<!---->
+<!--'                                            <div class="ratings-setting text-right">\n' +-->
+<!--    '                                                                    <span class="fa fa-remove" id="remove-rating"\n' +-->
+<!--    '                                                                data-course-ID='+ course +-->
+<!--    '                                                                data-user-ID='+userID +-->
+<!--    '                                                                    ></span>\n' +-->
+<!--    '                                                                <span class="fa fa-edit" id="edit-rating"\n' +-->
+<!--    '                                                                data-course-ID='+ course +-->
+<!--    '                                                                data-user-ID ='+userID +-->
+<!--    '                                                                    ></span>\n' +-->
+<!--    '                                                                    </div>' +-->

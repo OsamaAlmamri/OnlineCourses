@@ -319,6 +319,44 @@ class Helper
 
     }
 
+    public static function getNumberStars($numberStarts)
+    {
+        if ($numberStarts >= 0 && $numberStarts <= 1.4) {
+            echo '    <i class="fa fa-star rating-done "></i>
+                        <i class="fa fa-star "></i>
+                        <i class="fa fa-star "></i>
+                        <i class="fa fa-star "></i>
+                        <i  class="fa fa-star"></i>';
+
+        } elseif ($numberStarts >= 1.5 && $numberStarts <= 2.4) {
+            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i  class="fa fa-star "></i>';
+        } elseif ($numberStarts >= 2.5 && $numberStarts <= 3.4) {
+            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i  class="fa fa-star"></i>';
+        } elseif ($numberStarts >= 3.5 && $numberStarts <= 4.4) {
+            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i  class="fa fa-star"></i>';
+
+        } elseif ($numberStarts >= 4.5 && $numberStarts <= 5) {
+            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i  class="fa fa-star rating-done"></i>';
+        }
+
+    }
+
 
 }
 
