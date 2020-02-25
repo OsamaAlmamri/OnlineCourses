@@ -9,7 +9,6 @@ use Helper;
 class RatingsController extends Controller
 {
     public function index(){
-        Helper::viewAdminFile();
         $ratings= $this->model('Rating');
         $this->view('admin' . DIRECTORY_SEPARATOR . 'comments' . DIRECTORY_SEPARATOR . 'index', ['courses' => $ratings->all(), 'deleted' => false]);
         $this->view->pageTitle = 'Ratings';

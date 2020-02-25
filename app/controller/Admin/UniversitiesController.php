@@ -101,7 +101,6 @@ class UniversitiesController extends Controller
     public function fetchParentCategory()
     {
 
-        Helper::viewAdminFile();
 
         $this->model('Category');
         $data = $_REQUEST['filter_name'];

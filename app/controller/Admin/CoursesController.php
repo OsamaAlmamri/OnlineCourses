@@ -71,7 +71,6 @@ class CoursesController extends Controller
     {
         Permissions::getInstaince()->allow('course_create');
 
-        Helper::viewAdminFile();
         $this->model('Role');
         $role_id = $this->model->getRoleByName('teacher');
         $teachers = $this->model('Users');
@@ -89,7 +88,6 @@ class CoursesController extends Controller
     public function fetchParentCategory()
     {
 
-        Helper::viewAdminFile();
 
         $this->model('Category');
         $data = $_REQUEST['filter_name'];

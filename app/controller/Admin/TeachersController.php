@@ -67,7 +67,6 @@ class TeachersController extends Controller
     public function delete($id)
     {
         $permissionObject=Permissions::getInstaince()->allow('teacher_delete');
-        Helper::viewAdminFile();
         $this->model('Category');
         $c = $this->model->delete($id);
 
@@ -91,7 +90,6 @@ class TeachersController extends Controller
     public function fetchParentCategory()
     {
 
-        Helper::viewAdminFile();
 
         $this->model('Category');
         $data = $_REQUEST['filter_name'];

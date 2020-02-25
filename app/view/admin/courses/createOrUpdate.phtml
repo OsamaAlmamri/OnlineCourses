@@ -13,25 +13,31 @@
     ?>
     <div class="row bg-white mb-4 ">
         <div class="text-right  mt-auto col-6">
-            <h3 ><i class="fa  fa-book" style="color:#b23e4a"></i>        إضافة كورس
+            <h3><i class="fa  fa-book" style="color:#b23e4a"></i> إضافة كورس
 
             </h3>
         </div>
     </div>
 
     <form action="/admin/courses/store" method="post" enctype="multipart/form-data">
+        <?php if ($_SESSION['role_name']!='teacher') {
 
-        <div class="form-group">
-            <label for="course_title"> الاستاذ:</label>
-            <select class="form-control"  name="course_owner" id="">
-                <?php if (array_key_exists('teachers', $this->view_data)) {
-                    foreach ($this->view_data['teachers'] as $k => $teacher) { ?>
-                        <option  value="<?php echo $teacher['user_id'] ?>" > <?php echo $teacher['user_full_name'] ?>   </option>
-                    <?php }
-                } ?>
-            </select>
-            <?php echo Message::getInputErrorMessage('course_title') ?>
-        </div>
+            ?>
+            <div class="form-group">
+                <label for="course_title"> الاستاذ:</label>
+                <select class="form-control" name="course_owner" id="">
+                    <?php if (array_key_exists('teachers', $this->view_data)) {
+                        foreach ($this->view_data['teachers'] as $k => $teacher) { ?>
+                            <option value="<?php echo $teacher['user_id'] ?>"> <?php echo $teacher['user_full_name'] ?>   </option>
+                        <?php }
+                    } ?>
+                </select>
+                <?php echo Message::getInputErrorMessage('course_title') ?>
+            </div>
+        <?php } else { ?>
+            <input type="hidden" name="course_owner" value="<?php echo $_SESSION['user']['user_id'] ?>">
+
+        <?php } ?>
 
         <div class="form-group">
             <label for="course_title">عنوان الكورس:</label>
@@ -131,76 +137,75 @@
         </div>
 
 
-        <button type="submit" name="submit" class="btn btn-success btn-block">إضافة </button>
+        <button type="submit" name="submit" class="btn btn-success btn-block">إضافة</button>
     </form>
     <br>
 
 
+    <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
+    <script src="/design/dashboard/lib/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+    <!-- Switchery -->
+    <!-- Select2 -->
+    <script src="/design/dashboard/lib/select2/dist/js/select2.full.min.js"></script>
+    <!-- Parsley -->
+    <script src="/design/dashboard/lib/parsleyjs/dist/parsley.min.js"></script>
+    <script src="/design/dashboard/lib/parsleyjs/dist/i18n/ar.js"></script>
+    <!-- Autosize -->
+    <!-- jQuery autocomplete -->
+    <script src="/design/dashboard/lib/jquery-ui/jquery-ui.js"></script>
 
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
-<script src="/design/dashboard/lib/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-<!-- Switchery -->
-<!-- Select2 -->
-<script src="/design/dashboard/lib/select2/dist/js/select2.full.min.js"></script>
-<!-- Parsley -->
-<script src="/design/dashboard/lib/parsleyjs/dist/parsley.min.js"></script>
-<script src="/design/dashboard/lib/parsleyjs/dist/i18n/ar.js"></script>
-<!-- Autosize -->
-<!-- jQuery autocomplete -->
-<script src="/design/dashboard/lib/jquery-ui/jquery-ui.js"></script>
-
-<script>
+    <script>
 
 
-    $(function () {
-        $('.select2bs4').select2({
-            theme: 'bootstrap4'
+        $(function () {
+            $('.select2bs4').select2({
+                theme: 'bootstrap4'
+            })
+
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Initialize Select2 Elements
+            $('.select2').select2()
         })
+    </script>
+    <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'readImageFile.phtml' ?>
 
-        //Initialize Select2 Elements
-        $('.select2').select2()
-
-        //Initialize Select2 Elements
-        $('.select2').select2()
-    })
-</script>
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'readImageFile.phtml' ?>
-
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'autocomplate.phtml' ?>
+    <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'autocomplate.phtml' ?>
 
 
-<script>
+    <script>
 
-    autoComplate('categories', 'categories_ids[]', 'categories_ids', '/admin/categories/fetchCategory', 'name', true);
-    readFile('#courses_image', '#courses_image_dev');
+        autoComplate('categories', 'categories_ids[]', 'categories_ids', '/admin/categories/fetchCategory', 'name', true);
+        readFile('#courses_image', '#courses_image_dev');
 
-    fetchCategories('#main_category_parents', '#sub_category');
-    fetchCategories('#sub_category', '#sub_sub_category');
+        fetchCategories('#main_category_parents', '#sub_category');
+        fetchCategories('#sub_category', '#sub_sub_category');
 
-    function fetchCategories(input, select) {
+        function fetchCategories(input, select) {
 
-        $(document).on('change', input, function () {
-            var data = 'category_parents=' + encodeURIComponent($(this).val());
-            var url = '/admin/Categories/fetchSubCategories';
-            $.ajax({
-                url: url,//   var url=$('#news').attr('action');
-                method: 'POST',
-                dataType: 'json',// data type that i want to return
-                data: data,// var form=$('#news').serialize();
-                success: function (data) {
-                    $(select).html(data);
+            $(document).on('change', input, function () {
+                var data = 'category_parents=' + encodeURIComponent($(this).val());
+                var url = '/admin/Categories/fetchSubCategories';
+                $.ajax({
+                    url: url,//   var url=$('#news').attr('action');
+                    method: 'POST',
+                    dataType: 'json',// data type that i want to return
+                    data: data,// var form=$('#news').serialize();
+                    success: function (data) {
+                        $(select).html(data);
 
-                }, error:
-                    function (xhr, status, error) {
-                        $(select).html(xhr.responseText);
-                    }
+                    }, error:
+                        function (xhr, status, error) {
+                            $(select).html(xhr.responseText);
+                        }
+                });
+                return (false);
             });
-            return (false);
-        });
-    }
+        }
 
 
-    CKEDITOR.replace('editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
-</script>
-<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
+        CKEDITOR.replace('editor', {filebrowserImageBrowseUrl: '/file-manager/ckeditor'});
+    </script>
+    <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'afterScript.php' ?>
 
