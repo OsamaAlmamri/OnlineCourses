@@ -1522,7 +1522,7 @@ textarea.input100 {
     padding: 0 20px;
     min-width: 160px;
     height: 42px;
-    border-radius:10px;
+    border-radius:18px;
     background: #9933cc;
 
     box-shadow: 0 10px 30px 0px rgba(132, 106, 221, 0.5);
@@ -1672,3 +1672,44 @@ textarea.input100 {
     opacity: 1;
 }
 /*end contact style*/
+/*start about us style*/
+#aboutCard{
+width: 70%;
+    position: absolute;
+    padding: 0;
+    border-radius: 10px;
+    height: 60%;
+    top: 20%;
+
+}
+#about{
+    border-radius: 10px;
+
+}
+
+#aboutTitle {
+    position: absolute;
+    width: 77%;
+    top: 0;
+    right: 0;
+    padding: 0 !important;
+    height: 100% !important;
+border-radius: 18px;
+    background-color:#C74F6C !important;
+
+}
+#aboutTitle img {
+    position: relative;
+    top: 30%;
+    left: 15%;
+}
+#definition{
+    position: absolute;
+    left: 0;
+    font-size: 19px;
+}
+#textContact{
+    font-size: 30px;
+}
+/*end about us style*/
+
