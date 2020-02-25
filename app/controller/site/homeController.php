@@ -52,7 +52,8 @@ class homeController extends Controller
         $RatingModel = $this->model('Rating');
         $AllRatings = $RatingModel->allRatingsOfCourse($id);
         $averageRating = $RatingModel->averageRating($id);
-        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id);
+        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id,$id);
+
 
 
         $this->view('website' . DIRECTORY_SEPARATOR . 'CourseDetails',
@@ -108,7 +109,7 @@ class homeController extends Controller
         $RatingModel = $this->model('Rating');
         $AllRatings = $RatingModel->allRatingsOfCourse($id);
         $averageRating = $RatingModel->averageRating($id);
-        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id);
+        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id,$id);
 
 
         $this->view('website' . DIRECTORY_SEPARATOR . 'CourseReview',
