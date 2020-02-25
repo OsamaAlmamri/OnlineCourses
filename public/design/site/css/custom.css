@@ -1125,3 +1125,54 @@ i.rating-done {
 .average-rating {
     color: #ffb400;
 }
+/*start profile style*/
+#profile{
+    margin-top: 8%;
+    margin-bottom: 6%;
+}
+#profileCard{
+    border-radius: 10px;
+
+}
+#camera_icon{
+    position: absolute;
+    top: 136px;
+    margin-right: -18px;
+    font-size: 26px;
+    color:#816091;
+
+}
+#btnProfile{
+    border-radius: 10px
+;background-color: #9933cc;
+    color:white;
+    padding: 10px !important;
+
+}
+#btnProfile:hover{
+background-color: #9a62cc;
+}
+#profilefprm .form-control  {
+
+    font-size: .95em;
+    text-align: right;
+    color: #9a9a9a;
+
+
+}
+#profilefprm ::placeholder {
+
+    font-size: .95em;
+    text-align: right;
+    color: #9a9a9a;
+
+
+}
+
+/*end profile style*/
+label{
+    float: right !important;
+
+    margin-bottom: 10px;
+}
+

@@ -1,43 +1,30 @@
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'header.phtml' ?>
 
-<div class="container" style="margin-top: 8%;margin-bottom: 6%;">
+<div class="container" id="profile" style="">
     <?php include VIEW . 'messages.phtml' ?>
-<!--    <figure class="intro" style="border-radius: 10px">-->
-<!--        <img src="/images/unnamed (1).jpg" alt="" />-->
-<!--        <figcaption class="caption">-->
-<!--            <h1> My Profile </h1>-->
-<!--        </figcaption>-->
-<!--        <span class="overlay">-->
-<!--        <svg version="1.1" id="circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"-->
-<!--             viewBox="0 0 500 250" enable-background="new 0 0 500 250" xml:space="preserve" PreserveAspectRatio="none">-->
-<!--<path fill="#FFFFFF" d="M250,246.5c-97.85,0-186.344-40.044-250-104.633V250h500V141.867C436.344,206.456,347.85,246.5,250,246.5z"-->
-<!--/>-->
-<!--</svg>-->
-<!--  </span>-->
-<!--    </figure>-->
 
-    <div class="card" style="border-radius: 10px">
+
+    <div class="card" id="profileCard" >
         <?php if (array_key_exists('profile', $this->view_data)) {
         foreach ($this->view_data['profile'] as $course) {
         ?>
 
         <div class="card-body">
-<div class="mt-xl-5">
 
-    <img src="<?php echo $course['user_image']; ?>"  id="img" class=" profile-pic" alt="Cinque Terre" width="150" height="150">
-    <label for="file">
-        <i class="icon-camera imgedit upload-button" id="btn"></i>
+<div class="row justify-content-lg-center">
+<div clas="col-12">
+    <img src="<?php echo $course['user_image']; ?>"  class="img-thumbnail" alt="Cinque Terre" width="150" height="150">
+    <label for="file" >
+        <i class="icon-camera  " id="camera_icon"></i>
         <input type="hidden" value="<?php echo $course['user_image']; ?>" name="old_image">
         <input type="file" id="file" class="file-upload" name="image" accept="image/gif,image/jpeg,image/jpg,image/png" multiple="" data-original-title="upload photos">
     </label>
 </div>
-            <form method="post" action="/profile/EditUser" class="my-login-validation" novalidate=""
-                                       enctype="multipart/form-data" style="    margin-top: 8%;">
 
-
-                    <!--            <i class="icon-edit imgedit" onclick="showimages()" ></i></center>-->
-                    <!--        <input hidden type="file" class="custom-file-input" name="user_image"-->
-                    <!--               id="user_image">-->
+</div>
+            <div class="col-12">
+                <form method="post" action="/profile/EditUser" class="my-login-validation" novalidate="" id="profilefprm"
+                      enctype="multipart/form-data" >
                     <div class="form">
                         <div class="form-group">
                             <label for="user_email">البريد الالكتروني</label>
@@ -116,9 +103,12 @@
                                value="<?php echo $course['user_qualification']; ?>"
                                required>
                     </div>
-                    <button type="submit" class="btn btn-block " style="border-radius: 10px;background-color: #792052;color:white">حفظ التغيرات</button>
-        </div>
-        </form></div>
+                    <button type="submit" class="btn btn-block " id="btnProfile" >حفظ التغيرات</button>
+            </div>
+            </form>
+            </div>
+
+    </div>
 
 <?php
 }
