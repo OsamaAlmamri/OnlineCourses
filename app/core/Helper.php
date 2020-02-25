@@ -139,16 +139,14 @@ class Helper
         $id = Session::get('user')['user_id'];
         $userWishList = [];
         $WishList = DB::init()->query("SELECT `user_wish_list` FROM `users_courses` WHERE user_id=$id");
-        if (isset($WishList['user_wish_list']))
-        {
-            $WishList=$WishList['user_wish_list'] ;
+        if (isset($WishList['user_wish_list'])) {
+            $WishList = $WishList['user_wish_list'];
             $WishList = trim($WishList, ',');
             if (($WishList) != '')
                 $userWishList = (explode(',', $WishList));
             return count($userWishList);
         }
         return 0;
-
 
 
     }
@@ -162,19 +160,25 @@ class Helper
         return;
     }
 
+    public static function SITE_URL()
+    {
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+        return $actual_link;
+    }
+
 
     public static function readPermissionName($name)
     {
-     $names=array(
-         'admin'=>'المسوؤلين',
-         'course'=>'المواد',
-         'category'=>'الاصناف',
-         'lesson'=>'الدروس',
-         'permission'=>'الصلاحيات',
-         'role'=>'الادوار',
-         'teacher'=>'المدرسين',
-         'university'=>'الجامعات',
-     );
+        $names = array(
+            'admin' => 'المسوؤلين',
+            'course' => 'المواد',
+            'category' => 'الاصناف',
+            'lesson' => 'الدروس',
+            'permission' => 'الصلاحيات',
+            'role' => 'الادوار',
+            'teacher' => 'المدرسين',
+            'university' => 'الجامعات',
+        );
         return $names[$name];
     }
 
@@ -311,6 +315,44 @@ class Helper
         $cat_name = DB::init()->query("SELECT *  FROM categories WHERE category_id = $id ");
         if (!empty($cat_name)) {
             return $cat_name['category_name'];
+        }
+
+    }
+
+    public static function getNumberStars($numberStarts)
+    {
+        if ($numberStarts >= 0 && $numberStarts <= 1.4) {
+            echo '    <i class="fa fa-star rating-done "></i>
+                        <i class="fa fa-star "></i>
+                        <i class="fa fa-star "></i>
+                        <i class="fa fa-star "></i>
+                        <i  class="fa fa-star"></i>';
+
+        } elseif ($numberStarts >= 1.5 && $numberStarts <= 2.4) {
+            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i  class="fa fa-star "></i>';
+        } elseif ($numberStarts >= 2.5 && $numberStarts <= 3.4) {
+            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i  class="fa fa-star"></i>';
+        } elseif ($numberStarts >= 3.5 && $numberStarts <= 4.4) {
+            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i  class="fa fa-star"></i>';
+
+        } elseif ($numberStarts >= 4.5 && $numberStarts <= 5) {
+            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i  class="fa fa-star rating-done"></i>';
         }
 
     }

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>كورسات</title>
+
+    <!-- Bootstrap 4.0-->
+    <link rel="stylesheet" href="/design/site/css/bootstrap.css">
+    <link rel="stylesheet" href="/design/site/css/bootstrap-rtl.min.css">
+    <link rel="stylesheet" href="/design/site/fonts/font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="/design/site/css/custom.css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="nav">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="hamburger">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="user-icon"></div>
+            </div>
+            <div class="col-4">
+                <div class="user-icons">
+                    <ul class="user-icons-list">
+                        <?php if (!isset($_SESSION['user'])) { ?>
+                            <li class="icon-login"><i class="fa fa-user"></i>
+                                <form method="POST" class="my-login-validation login-form" action="/home/postLogin"
+                                      id='first_form'>
+                                    <div class="login-heading">تسجيل الدخول</div>
+                                    <div class="input-group user-email">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                        </div>
+                                        <input type="text" value="<?php Helper::old('username'); ?>" id="user_email" name="username" class="form-control"
+                                               placeholder="ادخل بريدك الالكتروني او اسم المستخدم">
+                                    </div>
+
+                                    <div class="input-group user-password">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" placeholder="ادخل كلمة المرور"
+                                               id="password" name="password">
+                                    </div>
+                                    <button id="login-btn">تسجيل الدخول</button>
+                                    <div class="create-new">
+                                        لايوجد لديك حساب ؟ يمكنك التسجيل
+                                        <a href="/home/register/student"> كطالب</a>
+                                        <a href="/home/register/university"> او كجامعة</a>
+                                    </div>
+                                </form>
+                            </li>
+                        <?php } elseif (isset($_SESSION['user'])) { ?>
+                            <li><i class="fa fa-heart"></i><span  id="n_whishList_items"><?php echo Helper::wishListCount() ?></span></li>
+                            <li class="shopping-cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span id="n_cart_items"><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
+                            </li>
+                            <li><i class="fa fa-bell"></i><span>2</span></li>
+                            <li>
+                                <div class="user-name">
+                                    <i class="fa fa-user"></i>
+                                    <span> طاهر السماوي</span>
+                                    <div class="user-settings">
+                                        <ul>
+                                            <li><a href="/profile"><i class="fa fa-user"></i> عرض الملف الشخصي</a></li>
+                                            <li><a href="/admin/logout"><i class="fa fa-sign-out"></i> تسجيل الخروج</a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </li>
+                        <?php } ?>
+                    </ul>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<?php //include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'header.phtml' ?>
+
+
+<!-- Start Content  -->
+<div class="content">
+    <div class="container-fluid">
+        <div class="row ">
+            <!-- Start Sidebar-->
+            <div class="col-2 sidebar">
+                <div class="logo-site">
+                    <img src="/images/logo-color.png">
+                </div>
+                <div class="logo-site-small">
+                    <img src="/images/logo-icon.png">
+                </div>
+                <ul>
+                    <li><a href="#" class="active">
+                            <span class="icon"><i class="fa fa-home"></i></span>
+                            <span class="title">الصفحة الرئيسية</span>
+                        </a>
+                    </li>
+
+                    <li><a href="#">
+                            <span class="icon"><i class="fa fa-star"></i></span>
+                            <span class="title">المفضلة</span>
+                        </a></li>
+
+                    <li><a href="#">
+                            <span class="icon"><i class="fa fa-line-chart"></i></span>
+                            <span class="title">مستوى التقدم</span>
+
+                        </a></li>
+
+                    <li><a href="#">
+                            <span class="icon"><i class="fa fa-cog"></i></span>
+                            <span class="title">الأعدادات</span>
+                        </a>
+                    </li>
+
+
+                    <li><a href="#">
+                            <span class="icon"><i class="fa fa-book"></i></span>
+                            <span class="title">الصفحة الرئيسية</span>
+                        </a></li>
+                    <li><a href="#">
+                            <span class="icon"><i class="fa fa-book"></i></span>
+                            <span class="title">الصفحة الرئيسية</span>
+                        </a></li>
+                    <li><a href="#">
+                            <span class="icon"><i class="fa fa-book"></i></span>
+                            <span class="title">من نحن </span>
+                        </a></li>
+                </ul>
+
+            </div>
+            <!-- End Sidebar-->
+            <?php include VIEW . 'messages.phtml'; ?>
+            <!-- Start main-content-->
+            <div class="col-6">
+                <div class="video-section">
+                    <div class="row row-cols-1">
+                        <div class="col">
+
+
+                            <div class="view-video">
+                                <video controls>
+                                    <source src="<?php echo Helper::SITE_URL() . $lesson['resources_video'] ?>" type="video/webm">
+                                </video>
+                            </div>
+
+                            <div class="video-details">
+                                <div class="course-details">
+                                    <?php $course = $this->view_data['course'][0]; ?>
+                                    <h6 class="video-name">  <?php echo $course['course_title']?></h6>
+                                    <span class="teacher-name">المدرس : مختار غالب</span> |
+                                    <span class="university-name">الجامعة : اكاديمية البرمجة</span>
+                                </div>
+                            </div>
+                            <div class="rating-comments">
+                                <h5 class="my-3">التقييمات و المراجعة</h5>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="rating-course">
+                                        <span class="average-rating">
+                                             <?php
+                                             $numberStarts=isset($this->view_data['averageRating'][0]['average_rating'])?$this->view_data['averageRating'][0]['average_rating']:0;
+                                             echo isset($numberStarts)? $numberStarts:"0";
+                                             ?>
+                                        </span>
+
+                                            <span class="number-stars">
+
+                                        <?php
+                                        if ($numberStarts >=0 && $numberStarts <=1.4) {
+                                            echo '    <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i  class="fa fa-star"></i>';
+
+                                        } elseif ($numberStarts >=1.5 && $numberStarts <=2.4) {
+                                            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i  class="fa fa-star "></i>';
+                                        } elseif ($numberStarts >=2.5 && $numberStarts <=3.4) {
+                                            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i  class="fa fa-star"></i>';
+                                        } elseif ($numberStarts >=3.5 && $numberStarts <=4.4) {
+                                            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i  class="fa fa-star"></i>';
+
+                                        } elseif ($numberStarts >=4.5 && $numberStarts <=5) {
+                                            echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i  class="fa fa-star rating-done"></i>';
+                                        }
+                                        ?>
+                                        </span>
+
+
+                                            <span class="count-rating">
+                                            من اجمالي
+                                            <?php  echo isset($this->view_data['averageRating'][0]['total_rating'])? $this->view_data['averageRating'][0]['total_rating']:"0";   ?>
+                                            تقييم
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <?php
+                                        for($i= 5 ;$i>0;$i--)  {
+                                            $percentageRating=isset($this->view_data['percentageRating'][$i])?$this->view_data['percentageRating'][$i]:0;
+                                            ?>
+                                            <div class="progress-rating row">
+                                                <div class="col-8">
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar"
+                                                             style="width:<?php echo isset($percentageRating)? $percentageRating:"0"; ?>%">
+                                                            <?php echo isset($percentageRating)? $percentageRating."%":"0"   ; ?>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-4">
+                                                    <?php
+
+                                                    if ($i >=0 && $i <=1.4) {
+                                                        echo '    <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i  class="fa fa-star"></i>';
+
+                                                    } elseif ($i >=1.5 && $i <=2.4) {
+                                                        echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i class="fa fa-star  "></i>
+                                                        <i  class="fa fa-star "></i>';
+                                                    } elseif ($i >=2.5 && $i <=3.4) {
+                                                        echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i  class="fa fa-star"></i>';
+                                                    } elseif ($i >=3.5 && $i <=4.4) {
+                                                        echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i  class="fa fa-star"></i>';
+
+                                                    } elseif ($i >=4.5 && $i <=5) {
+                                                        echo '    <i class="fa fa-star rating-done"></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i class="fa fa-star rating-done "></i>
+                                                        <i  class="fa fa-star rating-done"></i>';
+                                                    }
+                                                    ?>
+
+                                                </div>
+
+                                            </div>
+                                        <?php }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="course-details">
+                                <ul class="tabs-list">
+                                    <li class="active" data-content=".course-description">تفاصيل الكورس</li>
+                                </ul>
+                                <div class="course-description">
+                                    <?php echo html_entity_decode($course['course_description']) ?>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End main-content-->
+
+
+            <div class="col-3">
+                <div class="course-review">
+                        <div class="img-course ">
+                            <img id="course_image_<?php echo $course['course_id'] ?>"
+                                 src="<?php echo $course['courses_image'] ?>" >
+                        </div>
+
+                        <div class="course-name">
+                            <h6><?php echo $course['course_title']?></h6>
+                        </div>
+                        <div class="course-price">مجاني</div>
+
+                       <?php if (isset($_SESSION['user'])) { ?>
+                        <button class="add-to-cart "
+                                data-inCart="<?php echo Helper::inCart($course['course_id']); ?>"
+                                onclick="addToCart($(this),'<?php echo $course['course_id'] ?>')">
+                                    <i class="fa fa-shopping-cart"></i>
+                                   <span>
+                                       <?php echo (Helper::inCart($course['course_id']) == 1) ? 'حذف من السلة ' : 'اضافة الى السلة' ?>
+                                    </span>
+                        </button>
+
+                           <?php if (in_array($course['course_id'], $this->view_data['userWishList'])){  ?>
+                                  <button class="add-to-wishList"
+                                         <?php  echo 'data-status="1"  data-id='.$course['course_id'] ;; ?> >
+                                      <i class="fa fa-heart"></i>
+                                      الغاء الكورس من المفضلة
+                                  </button>
+                             <?php } else {?>
+                                   <button class="add-to-wishList"
+                                     <?php  echo 'data-status="0"  data-id='.$course['course_id'] ; ?> >
+                                     <i class="fa fa-heart-o"></i>
+                                       اضافة الى المفضلة
+                                   </button>
+                           <?php }?>
+
+
+                        <?php if($course['course_price'] >0 ){?>
+                            <a href="/home/cart1" class="buy-course"><i class="fa fa-shopping-cart"></i>شراء الان</a>
+                       <?php }
+
+                        else {?>
+                            <a href="/home/course_detail/<?php echo $course['course_id'] ?>" class="buy-course">
+                            الاشتراك الان </a>
+                        <?php }
+
+
+                        } ?>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>
+<!-- End Content  -->
+
+
+<!-- jQuery 3 -->
+<script src="/design/site/js/jquery-3.3.1.min.js"></script>
+<!-- popper -->
+<script src="/design/site/js/popper.min.js"></script>
+<!-- Bootstrap 4.0-->
+<script src="/design/site/js/bootstrap.js"></script>
+
+<script src="/design/site/js/main.js"></script>
+<?php //include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
+
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
+
+<script>
+    btnAddToWish('/courses');
+
+
+    function addToCart(e, id) {
+        var inCart = e.attr('data-inCart');
+
+        if (inCart == 0) {
+            document.cookie = 'cartElements[' + id + ']=' + id + '; path=/';
+            // flyToCart(id);
+            $('#n_cart_items').text(parseInt($('#n_cart_items').text()) + 1);
+            e.attr('data-inCart', 1);
+
+            // e.css({'background': '#9933cc', 'color':'#fff'});
+            e.html(' <i class="fa fa-shopping-cart"></i> حذف من السلة ');
+        } else {
+            var name = 'cartElements[' + id + ']';
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/';
+            e.html(' <i class="fa fa-shopping-cart"></i>  اضافة الى السلة ');
+            e.attr('data-inCart', 0);
+            $('#n_cart_items').text(parseInt($('#n_cart_items').text()) - 1);
+        }
+
+
+    }
+
+    // function flyToCart(id) {
+    //     var cart = $('.shopping-cart');
+    //     var imgtodrag = $('#course_image_' + id);
+    //     if (imgtodrag) {
+    //         var imgclone = imgtodrag.clone()
+    //             .offset({
+    //                 top: imgtodrag.offset().top,
+    //                 left: imgtodrag.offset().left
+    //             })
+    //             .css({
+    //                 'opacity': '0.5',
+    //                 'position': 'absolute',
+    //                 'height': '150px',
+    //                 'width': '150px',
+    //                 'z-index': '100'
+    //             })
+    //             .appendTo($('body'))
+    //             .animate({
+    //                 'top': cart.offset().top + 10,
+    //                 'left': cart.offset().left + 10,
+    //                 'width': 75,
+    //                 'height': 75
+    //             }, 1000, 'easeInOutExpo');
+    //
+    //         setTimeout(function () {
+    //             cart.effect("shake", {
+    //                 times: 2
+    //             }, 200);
+    //         }, 1500);
+    //
+    //         imgclone.animate({
+    //             'width': 0,
+    //             'height': 0
+    //         }, function () {
+    //             $(this).detach()
+    //         });
+    //     }
+    //
+    //
+    // }
+
+</script>
+</body>
+
+</html>

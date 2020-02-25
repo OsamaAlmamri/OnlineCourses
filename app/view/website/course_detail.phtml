@@ -85,7 +85,7 @@
                                                     <?php foreach ($chapter['lessons'] as $lesson) {
                                                         $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1)); ?>
                                                         <li>
-                                                            <a href="http://127.0.0.1:800<?php echo $lesson['resources_video'] ?>"
+                                                            <a href="<?php echo Helper::SITE_URL().$lesson['resources_video'] ?>"
                                                                class="video"><?php echo Helper::getVideoName($lesson['resources_video']) ?>
                                                             </a>
                                                             <span> <?php echo gmdate("H:i:s", $file['playtime_seconds']) ?></span>
@@ -148,8 +148,6 @@
                                           $numberStarts=isset($this->view_data['averageRating'][0]['average_rating'])?$this->view_data['averageRating'][0]['average_rating']:0;
                                           echo isset($numberStarts)? $numberStarts:"0";
                                           ?>
-
-
                                         </strong>
                                         <div class="rating">
                                                 <?php
@@ -340,6 +338,7 @@
                                                     <div class="input-group-append">
                                                         <button class="btn btn-success" id="add_rating"
                                                                 name="add_rating">
+                                                            <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                                                             اضافة تقييم
                                                         </button>
                                                     </div>
@@ -380,6 +379,10 @@
                             </button>
                             <a href="#0" class="btn_1 full-width outline"><i class="icon_heart"></i> Add to wishlist</a>
                         <?php } ?>
+
+
+
+
                         <div id="list_feat">
                             <h3>What's includes</h3>
                             <ul>

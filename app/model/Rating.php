@@ -1,4 +1,4 @@
-00<?php
+<?php
 
 
 class rating
@@ -19,31 +19,31 @@ class rating
 
     public function averageRating($id)
     {
-        return $this->db->query("SELECT 
+        return $this->db->query("SELECT
                                             COUNT(rating_id) AS total_rating,
-                                            FORMAT(SUM(rating_number)/COUNT(rating_number), 1)  AS average_rating 
-                                    FROM 
-                                            ratings 
+                                            FORMAT(SUM(rating_number)/COUNT(rating_number), 1)  AS average_rating
+                                    FROM
+                                            ratings
                                     WHERE
-                                            course_id=$id 
+                                            course_id=$id
                                     GROUP by
                                              course_id
-                                          
+
         ");
     }
 
     public function getTotalForEachRating_For_SpecificCourse($id)
     {
-        return $this->db->query("SELECT 
+        return $this->db->query("SELECT
                                             COUNT(rating_number) AS total_for_each_rating,
                                             rating_number
-                                    FROM 
-                                            ratings 
+                                    FROM
+                                            ratings
                                     WHERE
-                                            course_id=$id 
+                                            course_id=$id
                                     GROUP by
                                              rating_number
-                                          
+
         ");
     }
 
@@ -51,13 +51,13 @@ class rating
     public function allRatingsOfCourse($id)
     {
         return $this->db->query("  SELECT *
-                                    FROM 
+                                    FROM
                                             ratings inner join profiles
                                     on
-                                            ratings.user_id = profiles.user_id 
+                                            ratings.user_id = profiles.user_id
                                     WHERE
-                                             ratings.course_id=$id 
-                                       
+                                             ratings.course_id=$id
+
         ");
     }
 
@@ -74,21 +74,31 @@ class rating
     }
 
 
+
+
     public function checkIfUserHasRated($user_id, $course_id)
     {
         return $this->db->query("select * from ratings where user_id=$user_id and course_id=$course_id");
     }
 
+
+//
+//    public function checkIfUserHasRated($user_id)
+//    {
+//        return 1;
+//        return $this->db->query("select * from ratings where user_id=$user_id and course_id=$course_id");
+//    }
+
     public function addRating(array $Data)
     {
-        $Stmt = $this->db->preparation('INSERT INTO ratings 
-                                            ( comment_text, 
+        $Stmt = $this->db->preparation('INSERT INTO ratings
+                                            ( comment_text,
                                             rating_number,
-                                            rating_date, 
-                                            user_id, 
+                                            rating_date,
+                                            user_id,
                                             rating_status,
                                             course_id)
-                                            VALUES 
+                                            VALUES
                                             (:comment_text,
                                             :rating_number,
                                             :rating_date,

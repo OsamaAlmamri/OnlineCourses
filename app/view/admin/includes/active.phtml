@@ -14,16 +14,54 @@
                 success: function (data) {
                     if (data > 0) {
                         if (_this.attr('data-status') == 1) {
-                            _this.attr('class', 'wish_bt addToWishList');
+                            _this.attr('class', 'fa fa-heart-o addToWishList');
                             _this.attr('data-status', 0);
                             _this.attr('onclick', "confirm('هل تريد اضافة هذا الكورس الى المفضلة ')");
                             $('#n_whishList_items').text(parseInt($('#n_whishList_items').text()) - 1);
                             if (page == 'whishList')
                                 $('#course_' + id).remove();
                         } else {
-                            _this.attr('class', 'wish_bt_active addToWishList');
+                            _this.attr('class', 'fa fa-heart addToWishList');
                             _this.attr('data-status', 1);
                             _this.attr('onclick', "confirm('هل تريد الغاء هذا الكورس من المفضلة ')");
+                            $('#n_whishList_items').text(parseInt($('#n_whishList_items').text()) + 1);
+
+                        }
+
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert(xhr.responseText);
+                }
+            });
+            return (false);
+        });
+    }
+
+    function btnAddToWish(controller, page = 'home') {
+        $(document).on('click', '.add-to-wishList', function () {
+            var id = $(this).attr('data-id');
+            var data = 'status=' + encodeURIComponent($(this).attr('data-status')) + '&id=' + encodeURIComponent(id);
+            var url = controller + '/insertCourseUser';
+            var _this = $(this);
+            $.ajax({
+                url: url,//   var url=$('#news').attr('action');
+                method: 'POST',
+                dataType: 'json',// data type that i want to return
+                data: data,// var form=$('#news').serialize();
+                success: function (data) {
+                    if (data > 0) {
+                        if (_this.attr('data-status') == 1) {
+                            _this.html(' <i class="fa fa-heart-o"></i> اضافة الى المفضلة');
+                            _this.attr('data-status', 0);
+                            // _this.attr('onclick', "confirm('هل تريد اضافة هذا الكورس الى المفضلة ')");
+                            $('#n_whishList_items').text(parseInt($('#n_whishList_items').text()) - 1);
+                            if (page == 'whishList')
+                                $('#course_' + id).remove();
+                        } else {
+                            _this.html(' <i class="fa fa-heart"></i> الغاء من المفضلة');
+                            _this.attr('data-status', 1);
+                            // _this.attr('onclick', "confirm('هل تريد الغاء هذا الكورس من المفضلة ')");
                             $('#n_whishList_items').text(parseInt($('#n_whishList_items').text()) + 1);
 
                         }

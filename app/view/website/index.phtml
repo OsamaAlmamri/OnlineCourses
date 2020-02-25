@@ -43,7 +43,7 @@
                             <li class="icon-login"><i class="fa fa-user"></i>
                                 <form method="POST" class="my-login-validation login-form" action="/home/postLogin"
                                       id='first_form'>
-                                    <div class="login-heading">   تسجيل الدخول</div>
+                                    <div class="login-heading">تسجيل الدخول</div>
                                     <div class="input-group user-email">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-user"></i></span>
@@ -68,11 +68,12 @@
                                 </form>
                             </li>
                         <?php } elseif (isset($_SESSION['user'])) { ?>
-                            <li><i class="fa fa-heart"></i><span><?php echo Helper::wishListCount() ?></span></li>
-                            <li>
-                                <i class="fa fa-shopping-cart"></i><span><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
+                            <li><i class="fa fa-heart"></i><span  id="n_whishList_items"><?php echo Helper::wishListCount() ?></span></li>
+                            <li class="shopping-cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span id="n_cart_items"><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
                             </li>
-                            <li><i class="fa fa-bell"></i><span>0</span></li>
+                            <li><i class="fa fa-bell"></i><span>2</span></li>
                             <li>
                                 <div class="user-name">
                                     <i class="fa fa-user"></i>
@@ -215,6 +216,17 @@
                                                          src="<?php echo $course['courses_image']; ?>">
                                                 </a>
                                             </div>
+
+                                            <?php if (isset($_SESSION['user'])) { ?>
+                                                <a <?php if (in_array($course['course_id'], $this->view_data['userWishList']))
+                                                    echo 'class="fa fa-heart addToWishList" onclick="confirm(\'هل تريد الغاء هذا الكورس من المفضلة \')"  data-status="1"';
+                                                else
+                                                    echo 'class="fa fa-heart-o addToWishList"   onclick="confirm(\'هل تريد اضافة هذا الكورس الى المفضلة \')"  data-status="0"'; ?>
+                                                        data-id="<?php echo $course['course_id'] ?>">
+                                                </a>
+                                            <?php } ?>
+
+
                                             <div class="card-body">
                                                 <a href="/home/course_detail/<?php echo $course['course_id'] ?>">
                                                     <h4 class="course-title">
@@ -567,6 +579,7 @@
                                         <div class="course-img">
                                             <img class="card-img-top" src="/images/courses/photoshop.jpg">
                                         </div>
+
                                         <div class="card-body">
                                             <h4 class="course-title">كورس تعلم الفوتوشوب من الصفر حتى الاحتراف</h4>
 
@@ -678,7 +691,12 @@
 <script src="/design/site/js/bootstrap.js"></script>
 
 <script src="/design/site/js/main.js"></script>
+<?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
 
+<script>
+    AddToWish('/courses');
+</script>
+<?php (Message::getMessage('errors')); ?>
 
 </body>
 

@@ -69,7 +69,9 @@ input[type='text'] ,input[type='password'],input[type='email'],input[type='phone
 
 body {
     direction: rtl;
+
     font-family: 'DIN-REGULAR' !important;
+
     background-color: #f9f9f9;
 }
 .container-fluid{
@@ -683,13 +685,3 @@ label {
     -o-transition: all 0.3s;
     transition: all 0.3s; }
 /*end content page style*/
-
-
-
-
-
-
-
-
-
-
