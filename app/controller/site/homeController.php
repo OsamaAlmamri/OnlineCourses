@@ -15,7 +15,8 @@ use Session;
 
 class homeController extends Controller
 {
-    public function test($id = 5)
+
+    public function course_detail($id)
     {
         //get all details for course
         $course_site = $this->model('Course_site');
@@ -72,7 +73,7 @@ class homeController extends Controller
         $this->view->pageTitle = 'course list';
         $this->view->render();
     }
-    public function te($id = 5)
+    public function course_review($id)
     {
         //get all details for course
         $course_site = $this->model('Course_site');
@@ -232,7 +233,8 @@ class homeController extends Controller
 
         $total_for_each_rating = $RatingModel->getTotalForEachRating_For_SpecificCourse($id);
         foreach ($total_for_each_rating as $Rating) {
-            $percentage[$Rating['rating_number']] = ($Rating['total_for_each_rating'] / $total_rating) * 100;
+           $precentage= explode('.',($Rating['total_for_each_rating'] / $total_rating) * 100);
+            $percentage[$Rating['rating_number']] = $precentage[0];
 
         }
 
@@ -279,62 +281,62 @@ class homeController extends Controller
         return $info;
     }
 
-    public function course_detail($id)
-    {
-        //get all details for course
-        $course_site = $this->model('Course_site');
-        $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
-        $userWishList = $course_site->wishListUser($user_id);
-//        return var_dump($userWishList);
-        if (count($userWishList) > 0) {
-            $userWishList = (explode(',', $userWishList[0]['user_wish_list']));
-
-        } else
-            $userWishList = [];
-
-        $courseModel = $this->model('Course');
-        $course = $courseModel->find($id);
-
-        //access to videos table and get all details
-        $lessons = $this->model('Lesson');
-        $courseDuration = 0;
-        $chaptersLessons = [];
-        $course_count = $lessons->count_lessons($id);
-        $chaptersName = $lessons->chapterNames($id);
-
-        foreach ($chaptersName as $chapter) {
-            $videos = $lessons->chapterLessons($id, $chapter['resources_chapter']);
-            $chapterDuration = $this->countDurationChapter($videos);
-            $courseDuration += $chapterDuration;
-            $chaptersLessons[$chapter['resources_chapter']] = array(
-                'duration' => gmdate("H:i:s", $chapterDuration),
-                'lessons' => $videos,
-            );
-        }
-
-        //get all Ratings of course
-        $RatingModel = $this->model('Rating');
-        $AllRatings = $RatingModel->allRatingsOfCourse($id);
-        $averageRating = $RatingModel->averageRating($id);
-        $checkIfUserHasRated = $RatingModel->checkIfUserHasRated($user_id, $id);
-
-
-        $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail',
-            [
-                'course' => $course,
-                'lessons' => $chaptersLessons,
-                'course_count' => $course_count,
-                'userWishList' => $userWishList,
-                'course_duration' => gmdate("H:i:s", $courseDuration),
-                'AllRatings' => $AllRatings,
-                'averageRating' => $averageRating,
-                'checkIfUserHasRated' => $checkIfUserHasRated,
-                'percentageRating' => $this->getPercentageForEachRating_For_SpecificCourse($id),
-
-            ]);
-        $this->view->pageTitle = 'course list';
-        $this->view->render();
-    }
+//    public function course_detail($id)
+//    {
+//        //get all details for course
+//        $course_site = $this->model('Course_site');
+//        $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
+//        $userWishList = $course_site->wishListUser($user_id);
+////        return var_dump($userWishList);
+//        if (count($userWishList) > 0) {
+//            $userWishList = (explode(',', $userWishList[0]['user_wish_list']));
+//
+//        } else
+//            $userWishList = [];
+//
+//        $courseModel = $this->model('Course');
+//        $course = $courseModel->find($id);
+//
+//        //access to videos table and get all details
+//        $lessons = $this->model('Lesson');
+//        $courseDuration = 0;
+//        $chaptersLessons = [];
+//        $course_count = $lessons->count_lessons($id);
+//        $chaptersName = $lessons->chapterNames($id);
+//
+//        foreach ($chaptersName as $chapter) {
+//            $videos = $lessons->chapterLessons($id, $chapter['resources_chapter']);
+//            $chapterDuration = $this->countDurationChapter($videos);
+//            $courseDuration += $chapterDuration;
+//            $chaptersLessons[$chapter['resources_chapter']] = array(
+//                'duration' => gmdate("H:i:s", $chapterDuration),
+//                'lessons' => $videos,
+//            );
+//        }
+//
+//        //get all Ratings of course
+//        $RatingModel = $this->model('Rating');
+//        $AllRatings = $RatingModel->allRatingsOfCourse($id);
+//        $averageRating = $RatingModel->averageRating($id);
+//        $checkIfUserHasRated = $RatingModel->checkIfUserHasRated($user_id, $id);
+//
+//
+//        $this->view('website' . DIRECTORY_SEPARATOR . 'course_detail',
+//            [
+//                'course' => $course,
+//                'lessons' => $chaptersLessons,
+//                'course_count' => $course_count,
+//                'userWishList' => $userWishList,
+//                'course_duration' => gmdate("H:i:s", $courseDuration),
+//                'AllRatings' => $AllRatings,
+//                'averageRating' => $averageRating,
+//                'checkIfUserHasRated' => $checkIfUserHasRated,
+//                'percentageRating' => $this->getPercentageForEachRating_For_SpecificCourse($id),
+//
+//            ]);
+//        $this->view->pageTitle = 'course list';
+//        $this->view->render();
+//    }
 
     public function courses()
     {
