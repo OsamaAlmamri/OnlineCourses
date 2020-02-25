@@ -224,133 +224,133 @@
 
 <script type="text/javascript">
 
-    function checkForm(form) {
-        if (this.user_email.value == "") {
-            alert("Please enter your Name in the form");
-            this.user_email.focus();
-            return false;
-        }
-        if (this.user_password.value == "" || !this.valid_email.checked) {
-            alert("Please enter a valid Email address");
-            this.user_password.focus();
-            return false;
-        }
-        if (this.password_confirmation.value == "" || !this.valid_age.checked) {
-            alert("Please enter an Password Conformation");
-            this.password_confirmation.focus();
-            return false;
-        }
-        if (this.user_full_name.value == "" || !this.valid_age.checked) {
-            alert("Please enter an User Full Name");
-            this.user_full_name.focus();
-            return false;
-        }
-        if (this.user_name.value == "" || !this.valid_age.checked) {
-            alert("Please enter an User Name");
-            this.user_name.focus();
-            return false;
-        }
-        if (this.user_image.value == "" || !this.valid_age.checked) {
-            alert("Please enter an User Image");
-            this.user_image.focus();
-            return false;
-        }
-        if (this.user_phone.value == "" || !this.valid_age.checked) {
-            alert("Please enter an User Phone");
-            this.user_phone.focus();
-            return false;
-        }
-        if (this.role_name.value == "" || !this.valid_age.checked) {
-            alert("Please enter an Role Name");
-            this.role_name.focus();
-            return false;
-        }
-        if (this.user_gender.value == "" || !this.valid_age.checked) {
-            alert("Please enter an User Gender");
-            this.user_gender.focus();
-            return false;
-        }
-        if (this.user_qualification.value == "" || !this.valid_age.checked) {
-            alert("Please enter an User qualification");
-            this.user_qualification.focus();
-            return false;
-        }
-        if (this.document.value == "" || !this.valid_age.checked) {
-            alert("Please enter an Documenet");
-            this.document.focus();
-            return false;
-        }
-        alert("Success!  The form has been completed, validated and is ready to be submitted...");
-        return false;
-    }
+    // function checkForm(form) {
+    //     if (this.user_email.value == "") {
+    //         alert("Please enter your Name in the form");
+    //         this.user_email.focus();
+    //         return false;
+    //     }
+    //     if (this.user_password.value == "" || !this.valid_email.checked) {
+    //         alert("Please enter a valid Email address");
+    //         this.user_password.focus();
+    //         return false;
+    //     }
+    //     if (this.password_confirmation.value == "" || !this.valid_age.checked) {
+    //         alert("Please enter an Password Conformation");
+    //         this.password_confirmation.focus();
+    //         return false;
+    //     }
+    //     if (this.user_full_name.value == "" || !this.valid_age.checked) {
+    //         alert("Please enter an User Full Name");
+    //         this.user_full_name.focus();
+    //         return false;
+    //     }
+    //     if (this.user_name.value == "" || !this.valid_age.checked) {
+    //         alert("Please enter an User Name");
+    //         this.user_name.focus();
+    //         return false;
+    //     }
+    //     if (this.user_image.value == "" || !this.valid_age.checked) {
+    //         alert("Please enter an User Image");
+    //         this.user_image.focus();
+    //         return false;
+    //     }
+    //     if (this.user_phone.value == "" || !this.valid_age.checked) {
+    //         alert("Please enter an User Phone");
+    //         this.user_phone.focus();
+    //         return false;
+    //     }
+    //     if (this.role_name.value == "" || !this.valid_age.checked) {
+    //         alert("Please enter an Role Name");
+    //         this.role_name.focus();
+    //         return false;
+    //     }
+    //     if (this.user_gender.value == "" || !this.valid_age.checked) {
+    //         alert("Please enter an User Gender");
+    //         this.user_gender.focus();
+    //         return false;
+    //     }
+    //     if (this.user_qualification.value == "" || !this.valid_age.checked) {
+    //         alert("Please enter an User qualification");
+    //         this.user_qualification.focus();
+    //         return false;
+    //     }
+    //     if (this.document.value == "" || !this.valid_age.checked) {
+    //         alert("Please enter an Documenet");
+    //         this.document.focus();
+    //         return false;
+    //     }
+    //     alert("Success!  The form has been completed, validated and is ready to be submitted...");
+    //     return false;
+    // }
 
 </script>
 
 
 <script>
-    $(document).ready(function () {
-
-        $('#first_form').submit(function (e) {
-            //e.preventDefault();
-            var user_email = $('#user_email').val();
-            var user_password = $('#user_password').val();
-            var password_confirmation = $('#password_confirmation').val();
-            var user_full_name = $('#user_full_name').val();
-            var user_name = $('#user_name').val();
-            var user_image = $('#user_image').val();
-            var user_phone = $('#user_phone').val();
-            var role_name = $('#role_name').val();
-            var user_gender = $('#user_gender').val();
-            var user_qualification = $('#user_qualification').val();
-            var document = $('#document').val();
-
-            $(".error").remove();
-
-            if (user_email.length < 1) {
-                $('#user_email').after('<span class="error" style=background-color:red;>يرجى إدراج البريد الالكتروني</span>');
-            }
-            if (user_password.length < 1) {
-                $('#user_password').after('<span class="error" style=background-color:red;>يرجى إدراج كلمة السر</span>');
-            }
-            if (password_confirmation.length < 1) {
-                $('#password_confirmation').after('<span class="error" style=background-color:red;>يرجى تأكيد كلمة السر</span>');
-            }
-            if (user_full_name.length < 1) {
-                $('#user_full_name').after('<span class="error" style=background-color:red;>يرجى إدراج الاسم كاملا</span>');
-            }
-            if (user_name.length < 1) {
-                $('#user_name').after('<span class="error" style=background-color:red;>يرجى إدراج إسم المستحدم</span>');
-            }
-            if (user_image.length < 1) {
-                $('#user_image').after('<span class="error" style=background-color:red;>يرجى إدراج الصورة الشخصية</span>');
-            }
-            if (user_phone.length < 1) {
-                $('#user_phone').after('<span class="error" style=background-color:red;>يرجى إدراج رقم الهاتف</span>');
-            }
-            if (role_name.length < 1) {
-                $('#role_name').after('<span class="error" style=background-color:red;>يرجى ادخال اسم الاشتراك</span>');
-            }
-            if (user_gender.length < 1) {
-                $('#user_gender').after('<span class="error" style=background-color:red;>يرجى إدراج الجنس</span>');
-            }
-            if (user_qualification.length < 1) {
-                $('#user_qualification').after('<span class="error" style=background-color:red;>يرجى إدراج المؤهل العلمي</span>');
-            }
-            if (document.length < 1) {
-                $('#document').after('<span class="error">يرجى إدراج الوثائق المطلوبه</span>' + "<br>");
-            } else {
-                var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
-                var validEmail = regEx.test(email);
-                if (!validEmail) {
-                    $('#email').after('<span class="error">Enter a valid email</span>');
-                }
-            }
-            if (password.length < 8) {
-                $('#password').after('<span class="error">كلمة السر يجب ان تكون اطول من 8 حروف</span>');
-            }
-        });
-
-    });
+    // $(document).ready(function () {
+    //
+    //     $('#first_form').submit(function (e) {
+    //         //e.preventDefault();
+    //         var user_email = $('#user_email').val();
+    //         var user_password = $('#user_password').val();
+    //         var password_confirmation = $('#password_confirmation').val();
+    //         var user_full_name = $('#user_full_name').val();
+    //         var user_name = $('#user_name').val();
+    //         var user_image = $('#user_image').val();
+    //         var user_phone = $('#user_phone').val();
+    //         var role_name = $('#role_name').val();
+    //         var user_gender = $('#user_gender').val();
+    //         var user_qualification = $('#user_qualification').val();
+    //         var document = $('#document').val();
+    //
+    //         $(".error").remove();
+    //
+    //         if (user_email.length < 1) {
+    //             $('#user_email').after('<span class="error" style=background-color:red;>يرجى إدراج البريد الالكتروني</span>');
+    //         }
+    //         if (user_password.length < 1) {
+    //             $('#user_password').after('<span class="error" style=background-color:red;>يرجى إدراج كلمة السر</span>');
+    //         }
+    //         if (password_confirmation.length < 1) {
+    //             $('#password_confirmation').after('<span class="error" style=background-color:red;>يرجى تأكيد كلمة السر</span>');
+    //         }
+    //         if (user_full_name.length < 1) {
+    //             $('#user_full_name').after('<span class="error" style=background-color:red;>يرجى إدراج الاسم كاملا</span>');
+    //         }
+    //         if (user_name.length < 1) {
+    //             $('#user_name').after('<span class="error" style=background-color:red;>يرجى إدراج إسم المستحدم</span>');
+    //         }
+    //         if (user_image.length < 1) {
+    //             $('#user_image').after('<span class="error" style=background-color:red;>يرجى إدراج الصورة الشخصية</span>');
+    //         }
+    //         if (user_phone.length < 1) {
+    //             $('#user_phone').after('<span class="error" style=background-color:red;>يرجى إدراج رقم الهاتف</span>');
+    //         }
+    //         if (role_name.length < 1) {
+    //             $('#role_name').after('<span class="error" style=background-color:red;>يرجى ادخال اسم الاشتراك</span>');
+    //         }
+    //         if (user_gender.length < 1) {
+    //             $('#user_gender').after('<span class="error" style=background-color:red;>يرجى إدراج الجنس</span>');
+    //         }
+    //         if (user_qualification.length < 1) {
+    //             $('#user_qualification').after('<span class="error" style=background-color:red;>يرجى إدراج المؤهل العلمي</span>');
+    //         }
+    //         if (document.length < 1) {
+    //             $('#document').after('<span class="error">يرجى إدراج الوثائق المطلوبه</span>' + "<br>");
+    //         } else {
+    //             var regEx = /^[A-Z0-9][A-Z0-9._%+-]{0,63}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/;
+    //             var validEmail = regEx.test(email);
+    //             if (!validEmail) {
+    //                 $('#email').after('<span class="error">Enter a valid email</span>');
+    //             }
+    //         }
+    //         if (password.length < 8) {
+    //             $('#password').after('<span class="error">كلمة السر يجب ان تكون اطول من 8 حروف</span>');
+    //         }
+    //     });
+    //
+    // });
 </script>
 
                                                                                             
