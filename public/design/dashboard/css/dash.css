@@ -2,13 +2,18 @@
    Start Framework Style
 ----------------------------------------------------- */
 @font-face {
-    font-family: 'DroidKufi-Bold';
-    src: url('../fonts/DroidKufi-Bold.ttf');
+    font-family: 'DIN-REGULAR';
+    src: url('../fonts/DIN REGULAR.otf');
 }
 
 @font-face {
-    font-family: 'DroidKufi-Regular';
-    src: url('../fonts/DroidKufi-Regular.ttf');
+    font-family: 'DIN-MEDIUM';
+    src: url('../../fonts/DIN MEDIUM .otf');
+}
+
+@font-face {
+    font-family: 'DIN-BOLD';
+    src: url('../fonts/DIN BOLD.otf');
 }
 h1,
 h2,
@@ -16,7 +21,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'DroidKufi-Bold', sans-serif;
+    font-family: 'DIN-REGULAR', sans-serif;
     font-weight: 500;
     line-height: 1.4;
 }
@@ -25,7 +30,7 @@ p {
     color: #757575;
     font-size: 14px;
     line-height: 1.4;
-    font-family: 'DroidKufi-Bold';
+    font-family: 'DIN-REGULAR';
 }
 
 a {
@@ -65,7 +70,7 @@ input[type='text'] ,input[type='password'],input[type='email'],input[type='phone
 body {
     direction: rtl;
 
-    font-family: 'DroidKufi-Regular' !important;
+    font-family: 'DIN-REGULAR' !important;
 
     background-color: #f9f9f9;
 }
@@ -255,7 +260,7 @@ li.header, .navbar-nav>.notifications-menu>.dropdown-menu>li.header, .navbar-nav
 }
 .userImage img {
     padding: 20px;
-    width: 50%;
+   border-radius: 100%;
 
 }
 
