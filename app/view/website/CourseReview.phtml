@@ -357,13 +357,15 @@
                                 اضافة الى المفضلة
                             </button>
                         <?php } ?>
-                        <?php if ($course['course_price'] > 0) { ?>
-                            <a href="/courses/subscribe/<?php echo $course['course_id'] ?>" class="buy-course"><i
+                        <?php if ($course['course_price'] <0) { ?>
+                            <a href="#" class="buy-course"><i
                                         class="fa fa-shopping-cart"></i>شراء الان</a>
                             <!--                            <a href="/home/cart1" class="buy-course"><i class="fa fa-shopping-cart"></i>شراء الان</a>-->
                         <?php } else { ?>
                             <a href="/courses/subscribe/<?php echo $course['course_id'] ?>" class="buy-course">
-                                الاشتراك الان </a>
+                                <?php echo ($this->view_data['userSubScribe']==true )?'اكمال الكورس ' : 'الاشتراك الان' ?>
+
+                            </a>
                             <!--                            <a href="/home/course_detail/--><?php //echo $course['course_id'] ?><!--" class="buy-course">-->
                             <!--                                الاشتراك الان </a>-->
                         <?php }

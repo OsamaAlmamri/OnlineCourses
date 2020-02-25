@@ -77,6 +77,8 @@ class coursesController extends \Controller
             $course_site = $this->model;
         else
             $course_site = $this->model('Course_site');
+        $userSubscribe=$this->userSubscribeInCourse($id);
+
         $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
         $userWishList = $course_site->wishListUser($user_id);
 //        return var_dump($userWishList);
@@ -113,10 +115,12 @@ class coursesController extends \Controller
         $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id, $id);
 
 
+//        return var_dump($userSubscribe);
         $this->view('website' . DIRECTORY_SEPARATOR . 'CourseDetails',
             [
                 'course' => $course,
                 'lessons' => $chaptersLessons,
+                'userSubScribe' => $userSubscribe,
                 'course_count' => $course_count,
                 'userWishList' => $userWishList,
                 'course_duration' => gmdate("H:i:s", $courseDuration),
@@ -143,6 +147,67 @@ class coursesController extends \Controller
 
 
     }
+
+    public function course_review($id)
+    {
+        //get all details for course
+        $course_site = $this->model('Course_site');
+        $userSubscribe=$this->userSubscribeInCourse($id);
+        $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
+        $userWishList = $course_site->wishListUser($user_id);
+//        return var_dump($userWishList);
+        if (count($userWishList) > 0) {
+            $userWishList = (explode(',', $userWishList[0]['user_wish_list']));
+
+        } else
+            $userWishList = [];
+
+        $courseModel = $this->model('Course');
+        $course = $courseModel->find($id);
+
+        //access to videos table and get all details
+        $lessons = $this->model('Lesson');
+        $courseDuration = 0;
+        $chaptersLessons = [];
+        $course_count = $lessons->count_lessons($id);
+        $chaptersName = $lessons->chapterNames($id);
+
+        foreach ($chaptersName as $chapter) {
+            $videos = $lessons->chapterLessons($id, $chapter['resources_chapter']);
+            $chapterDuration = $this->countDurationChapter($videos);
+            $courseDuration += $chapterDuration;
+            $chaptersLessons[$chapter['resources_chapter']] = array(
+                'duration' => gmdate("H:i:s", $chapterDuration),
+                'lessons' => $videos,
+            );
+        }
+
+        //get all Ratings of course
+        $RatingModel = $this->model('Rating');
+        $AllRatings = $RatingModel->allRatingsOfCourse($id);
+        $averageRating = $RatingModel->averageRating($id);
+        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id, $id);
+
+        $this->view('website' . DIRECTORY_SEPARATOR . 'CourseReview',
+            [
+                'course' => $course,
+                'lessons' => $chaptersLessons,
+                'userSubScribe' => $userSubscribe,
+
+                'course_count' => $course_count,
+                'userWishList' => $userWishList,
+                'course_duration' => gmdate("H:i:s", $courseDuration),
+                'AllRatings' => $AllRatings,
+                'averageRating' => $averageRating,
+                'checkIfUserHasRated' => $checkIfUserHasRated,
+                'percentageRating' => $this->getPercentageForEachRating_For_SpecificCourse($id),
+
+            ]);
+        $this->view->pageTitle = 'course ';
+        $this->view->render();
+    }
+
+
     public function getPercentageForEachRating_For_SpecificCourse($id)
     {
         //get all Ratings of course
@@ -205,6 +270,46 @@ class coursesController extends \Controller
         else
             return false;
     }
+
+
+    public function course_info($id)
+    {
+//        $lessons = $this->model=null;
+        $lessons = $this->model;
+        $courseDuration = 0;
+        $chaptersLessons = [];
+        $course_count = $lessons->count_lessons($id);
+        $chaptersName = $lessons->chapterNames($id);
+        foreach ($chaptersName as $chapter) {
+            $videos = $lessons->chapterLessons($id, $chapter['resources_chapter']);
+            $chapterDuration = $this->countDurationChapter($videos);
+            $courseDuration += $chapterDuration;
+            $chaptersLessons[$chapter['resources_chapter']] = array(
+                'duration' => gmdate("H:i:s", $chapterDuration),
+                'lessons' => $videos,
+            );
+        }
+        $averageRating = $this->model->averageRating($id);
+        $info = array(
+            'duration' => gmdate("H:i:s", $courseDuration),
+            'course_count' => $course_count,
+            'averageRating' => isset($averageRating[0]['average_rating']) ? $averageRating[0]['average_rating'] : 0,
+            'AllRatings' => isset($averageRating[0]['total_rating']) ? $averageRating[0]['total_rating'] : 0,
+        );
+        return $info;
+    }
+
+    public function course_rating_info($id)
+    {
+        $RatingModel = $this->model('Rating');
+        $averageRating = $RatingModel->averageRating($id);
+        $info = array(
+            'averageRating' => $averageRating[0]['average_rating'],
+            'AllRatings' => $averageRating[0]['total_rating'],
+        );
+        return $info;
+    }
+
 
 //public function addCoursesId(){
 //    Session::set('cousresUserId'=>);
