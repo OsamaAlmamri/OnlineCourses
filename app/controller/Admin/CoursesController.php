@@ -76,7 +76,7 @@ class CoursesController extends Controller
         $role_id = $this->model->getRoleByName('teacher');
         $teachers = $this->model('Users');
         if ($_SESSION['role_name'] == 'university')
-            $Allteachers = $teachers->UniversityTeacher($role_id, Session::logged());
+            $Allteachers = $teachers->UniversityTeacher($role_id,$_SESSION['user']['user_id']);
         else
             $Allteachers = $teachers->all($role_id);
 
