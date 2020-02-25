@@ -821,6 +821,10 @@ padding: 10px;
     margin:15px 3px;
     padding: 15px;
 }
+.video-section  .course-details > div:not(.course-description) {
+    display: none;
+
+}
 
 .rating-comments .rating-course {
     background: #9933cc;

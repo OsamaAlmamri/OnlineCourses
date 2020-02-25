@@ -290,7 +290,7 @@ $(function () {
 	});
 
 
-	$('.course-details .tabs-list li').click(function () {
+	$('.tabs-list li').click(function () {
 
 		$(this).addClass('active').siblings().removeClass('active');
 

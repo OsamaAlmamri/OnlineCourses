@@ -28,6 +28,13 @@ class Course_site
         $insertIntoUserCourses->execute($aData);
         return $this->db->lastInsertId();
     }
+    public function insertInToUsersBuyCourses(array $aData)
+    {
+        $insertIntoUserCourses = $this->db->preparation('INSERT INTO `users_courses`( `user_id`,couces_buy) 
+                                 VALUES (:user_id ,:couces_buy)');
+        $insertIntoUserCourses->execute($aData);
+        return $this->db->lastInsertId();
+    }
     public function wishListElements($wishListElements)
     {
         return $this->db->query("select * from courses where course_id in $wishListElements");
@@ -45,7 +52,6 @@ class Course_site
         if (count($course) < 1)
             $t = false;
         return $t;
-
     }
 
     public function wishListCourseUser($id)
@@ -57,12 +63,21 @@ find_in_set(courses.course_id, replace(users_courses.user_wish_list, ';', ',')) 
     public function wishListUser($id)
     {
 //        return $this->db->query("select * from courses");
-        return $this->db->query("SELECT `user_wish_list` FROM `users_courses` WHERE user_id=$id");
+        return $this->db->query("SELECT `user_wish_list`, `couces_buy` FROM `users_courses` WHERE user_id=$id");
     }
 
     public function updateFromthewishlist($aData)
     {
         $insertIntoUserCourses = $this->db->preparation('UPDATE `users_courses` SET `user_wish_list`=:user_wish_list
+                                                                WHERE user_id=:user_id');
+        $insertIntoUserCourses->execute($aData);
+        return $this->db->lastInsertId();
+
+    }
+
+    public function updateUserCourse($aData)
+    {
+        $insertIntoUserCourses = $this->db->preparation('UPDATE `users_courses` SET `couces_buy`=:couces_buy
                                                                 WHERE user_id=:user_id');
         $insertIntoUserCourses->execute($aData);
         return $this->db->lastInsertId();

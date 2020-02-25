@@ -183,12 +183,12 @@
                                     <li data-content=".rating-comments">التقييمات والمراجعة</li>
                                     <li data-content=".course-resource">الملفات المرفقة</li>
                                 </ul>
+
                                 <div class="course-description">
-                                    <?php echo html_entity_decode($course['course_description']) ?>
+                                    <?php echo html_entity_decode($course['course_description']);?>
                                 </div>
 
                                 <div class="rating-comments">
-
                                     <div class="row mt-5">
                                         <div class="col-4">
                                             <div class="rating-course">
@@ -215,6 +215,7 @@
                                             <?php
                                             for($i= 5 ;$i>0;$i--)  {
                                                 $percentageRating=isset($this->view_data['percentageRating'][$i])?$this->view_data['percentageRating'][$i]:0;
+                                                explode('.',$percentageRating);
                                                 ?>
                                                 <div class="progress-rating row">
                                                     <div class="col-8">
@@ -323,12 +324,6 @@
                                     <?php }}?>
 
                                 </div>
-
-
-
-
-
-
 
                                 <div class="course-resource">
                                     <i class="fa fa-file"></i>
