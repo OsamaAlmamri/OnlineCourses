@@ -19,7 +19,8 @@ class homeController extends Controller
     public function course_detail($id)
     {
         //get all details for course
-        $course_site = $this->model('Course_site');
+
+            $course_site = $this->model('Course_site');
         $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
         $userWishList = $course_site->wishListUser($user_id);
 //        return var_dump($userWishList);
@@ -53,8 +54,7 @@ class homeController extends Controller
         $RatingModel = $this->model('Rating');
         $AllRatings = $RatingModel->allRatingsOfCourse($id);
         $averageRating = $RatingModel->averageRating($id);
-        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id,$id);
-
+        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id, $id);
 
 
         $this->view('website' . DIRECTORY_SEPARATOR . 'CourseDetails',
@@ -73,6 +73,7 @@ class homeController extends Controller
         $this->view->pageTitle = 'course list';
         $this->view->render();
     }
+
     public function course_review($id)
     {
         //get all details for course
@@ -110,7 +111,7 @@ class homeController extends Controller
         $RatingModel = $this->model('Rating');
         $AllRatings = $RatingModel->allRatingsOfCourse($id);
         $averageRating = $RatingModel->averageRating($id);
-        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id,$id);
+        $checkIfUserHasRated = $RatingModel->checkIfUserHasrated($user_id, $id);
 
 
         $this->view('website' . DIRECTORY_SEPARATOR . 'CourseReview',
@@ -129,7 +130,6 @@ class homeController extends Controller
         $this->view->pageTitle = 'course ';
         $this->view->render();
     }
-
 
 
     public function index($id = '', $name = '')
@@ -233,7 +233,7 @@ class homeController extends Controller
 
         $total_for_each_rating = $RatingModel->getTotalForEachRating_For_SpecificCourse($id);
         foreach ($total_for_each_rating as $Rating) {
-           $precentage= explode('.',($Rating['total_for_each_rating'] / $total_rating) * 100);
+            $precentage = explode('.', ($Rating['total_for_each_rating'] / $total_rating) * 100);
             $percentage[$Rating['rating_number']] = $precentage[0];
 
         }
@@ -264,8 +264,8 @@ class homeController extends Controller
         $info = array(
             'duration' => gmdate("H:i:s", $courseDuration),
             'course_count' => $course_count,
-            'averageRating' => isset($averageRating[0]['average_rating'])?$averageRating[0]['average_rating']:0,
-            'AllRatings' =>isset($averageRating[0]['total_rating'])? $averageRating[0]['total_rating']:0,
+            'averageRating' => isset($averageRating[0]['average_rating']) ? $averageRating[0]['average_rating'] : 0,
+            'AllRatings' => isset($averageRating[0]['total_rating']) ? $averageRating[0]['total_rating'] : 0,
         );
         return $info;
     }
