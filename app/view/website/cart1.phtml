@@ -6,27 +6,25 @@
         <div class="wrapper">
             <div class="container">
                 <div class="bs-wizard clearfix">
+
+
+
+
+                    <div class="bs-wizard-step disabled">
+                        <div class="text-center bs-wizard-stepnum">الانتهاء</div>
+
+                        <a href="#0" class="bs-wizard-dot"></a>
+                    </div>
+                    <div class="bs-wizard-step disabled">
+                        <div class="text-center bs-wizard-stepnum">الدفع</div>
+                        <div class="progress">
+                            <div class="progress-bar"></div>
+                        </div>
+                        <a href="#0" class="bs-wizard-dot"></a>
+                    </div>
                     <div class="bs-wizard-step active">
-                        <div class="text-center bs-wizard-stepnum">Your cart</div>
-                        <div class="progress">
-                            <div class="progress-bar"></div>
-                        </div>
-                        <a href="#0" class="bs-wizard-dot"></a>
-                    </div>
+                        <div class="text-center bs-wizard-stepnum">سلتك</div>
 
-                    <div class="bs-wizard-step disabled">
-                        <div class="text-center bs-wizard-stepnum">Payment</div>
-                        <div class="progress">
-                            <div class="progress-bar"></div>
-                        </div>
-                        <a href="#0" class="bs-wizard-dot"></a>
-                    </div>
-
-                    <div class="bs-wizard-step disabled">
-                        <div class="text-center bs-wizard-stepnum">Finish!</div>
-                        <div class="progress">
-                            <div class="progress-bar"></div>
-                        </div>
                         <a href="#0" class="bs-wizard-dot"></a>
                     </div>
                 </div>
@@ -45,16 +43,16 @@
                             <thead>
                             <tr>
                                 <th>
-                                    Item
+                                   الكورسات
                                 </th>
                                 <th>
-                                    Discount
+                                    التخفيض
                                 </th>
                                 <th>
-                                    Price
+                                    السعر
                                 </th>
                                 <th>
-                                    Actions
+                                   العمل
                                 </th>
                             </tr>
                             </thead>
@@ -89,16 +87,16 @@
                             <div class="float-left">
                                 <div class="apply-coupon">
                                     <div class="form-group">
-                                        <input type="text" name="coupon-code" value="" placeholder="Your Coupon Code"
+                                        <input type="text" name="coupon-code" value="" placeholder="كود الكوبون"
                                                class="form-control">
                                     </div>
                                     <div class="form-group">
-                                        <button type="button" class="btn_1 outline">Apply Coupon</button>
+                                        <button type="button" class="btn_1 outline">تطبيق الكوبون</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="float-right fix_mobile">
-                                <button type="button" class="btn_1 outline">Update Cart</button>
+                                <button type="button" class="btn_1 outline">تحديث السلة</button>
                             </div>
                         </div>
                         <!-- /cart-options -->
@@ -109,7 +107,7 @@
                 <aside class="col-lg-4" id="sidebar">
                     <div class="box_detail">
                         <div id="total_cart">
-                            Total <span
+                            المجموع <span
                                     class="float-right"><span
                                         id="total_price"> <?php echo($this->view_data['total']); ?> </span> $</span>
                         </div>
@@ -117,9 +115,9 @@
                             Ex eius soleat sanctus pro, enim conceptam in quo, <a href="#0">brute convenire</a>
                             appellantur an mei.
                         </div>
-                        <a href="/home/cart2" class="btn_1 full-width">Checkout</a>
+                        <a href="/home/cart2" class="btn_1 full-width">الدفع</a>
                         <a href="/home/courses_grid_sidebar" class="btn_1 full-width outline"><i class="icon-right"></i>
-                            Continue Shopping</a>
+                           متابعة السوق</a>
                     </div>
                 </aside>
             </div>

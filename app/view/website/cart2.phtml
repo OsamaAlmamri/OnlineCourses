@@ -6,28 +6,26 @@
         <div class="wrapper">
             <div class="container">
                 <div class="bs-wizard clearfix">
-                    <div class="bs-wizard-step">
-                        <div class="text-center bs-wizard-stepnum">Your cart</div>
-                        <div class="progress">
-                            <div class="progress-bar"></div>
-                        </div>
-                        <a href="/home/cart1" class="bs-wizard-dot"></a>
-                    </div>
 
-                    <div class="bs-wizard-step active">
-                        <div class="text-center bs-wizard-stepnum">Payment</div>
-                        <div class="progress">
-                            <div class="progress-bar"></div>
-                        </div>
-                        <a href="#0" class="bs-wizard-dot"></a>
-                    </div>
+
+
 
                     <div class="bs-wizard-step disabled">
-                        <div class="text-center bs-wizard-stepnum">Finish!</div>
+                        <div class="text-center bs-wizard-stepnum">الانتهاء</div>
+
+                        <a href="#0" class="bs-wizard-dot"></a>
+                    </div>
+                    <div class="bs-wizard-step active">
+                        <div class="text-center bs-wizard-stepnum">الدفع</div>
                         <div class="progress">
                             <div class="progress-bar"></div>
                         </div>
                         <a href="#0" class="bs-wizard-dot"></a>
+                    </div>
+                    <div class="bs-wizard-step">
+                        <div class="text-center bs-wizard-stepnum">سلتك</div>
+
+                        <a href="/home/cart1" class="bs-wizard-dot"></a>
                     </div>
                 </div>
                 <!-- End bs-wizard -->
@@ -39,16 +37,18 @@
     <div class="bg_color_1">
         <div class="container margin_61_35">
             <div class="row">
+
+                <!-- /col -->
+
+
                 <div class="col-lg-8">
                     <div class="box_cart">
                         <div class="message">
-                            <p>Exisitng Customer? <a href="#0">Click here to login</a></p>
+                            <p>المستخدم؟ <a href="#0">اضغط هنا لتسجيل الدخول</a></p>
                         </div>
                         <div class="form_title">
-                            <h3><strong>1</strong>Your Details</h3>
-                            <p>
-                                Mussum ipsum cacilds, vidis litro abertis.
-                            </p>
+                            <h3><strong>1</strong>تفاصيل المستخدم</h3>
+
                         </div>
                         <div class="step">
                             <div class="row">
@@ -56,7 +56,7 @@
 									<span class="input">
 										<input class="input_field" type="text">
 										<label class="input_label">
-											<span class="input__label-content">First name</span>
+											<span class="input__label-content">الاسم الاول</span>
 										</label>
 									</span>
                                 </div>
@@ -64,7 +64,7 @@
 									<span class="input">
 										<input class="input_field" type="text">
 										<label class="input_label">
-											<span class="input__label-content">Last name</span>
+											<span class="input__label-content">الاسم الاخير</span>
 										</label>
 									</span>
                                 </div>
@@ -74,7 +74,7 @@
 									<span class="input">
 										<input class="input_field" type="email">
 										<label class="input_label">
-											<span class="input__label-content">Email</span>
+											<span class="input__label-content">الاميل</span>
 										</label>
 									</span>
                                 </div>
@@ -82,7 +82,7 @@
 									<span class="input">
 										<input class="input_field" type="email">
 										<label class="input_label">
-											<span class="input__label-content">Confirm email</span>
+											<span class="input__label-content">تأكيد الايميل</span>
 										</label>
 									</span>
                                 </div>
@@ -92,7 +92,7 @@
 									<span class="input">
 										<input class="input_field" type="text">
 										<label class="input_label">
-											<span class="input__label-content">Telephone</span>
+											<span class="input__label-content">الهاتف</span>
 										</label>
 									</span>
                                 </div>
@@ -102,16 +102,14 @@
                         <!--End step -->
 
                         <div class="form_title">
-                            <h3><strong>2</strong>Payment Information</h3>
-                            <p>
-                                Mussum ipsum cacilds, vidis litro abertis.
-                            </p>
+                            <h3><strong>2</strong>بيانات الدفع</h3>
+
                         </div>
                         <div class="step">
 							<span class="input">
 								<input class="input_field" type="text">
 								<label class="input_label">
-								  <span class="input__label-content">Name on card</span>
+								  <span class="input__label-content">اسم البطاقة</span>
 								</label>
 							</span>
                             <div class="row">
@@ -119,7 +117,7 @@
 									<span class="input">
 										<input class="input_field" type="text">
 										<label class="input_label">
-										  <span class="input__label-content">Card number</span>
+										  <span class="input__label-content">رقم البطاقة</span>
 										</label>
 									</span>
                                 </div>
@@ -129,13 +127,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 add_top_30">
-                                    <label>Expiration date</label>
+                                    <label>تاريخ الانتهاء</label>
                                     <div class="row">
                                         <div class="col-md-6">
 											<span class="input">
 												<input class="input_field" type="text">
 												<label class="input_label">
-												  <span class="input__label-content">MM</span>
+												  <span class="input__label-content">شهر</span>
 												</label>
 											</span>
                                         </div>
@@ -143,7 +141,7 @@
 											<span class="input">
 												<input class="input_field" type="text">
 												<label class="input_label">
-												  <span class="input__label-content">Year</span>
+												  <span class="input__label-content">سنه</span>
 												</label>
 											</span>
                                         </div>
@@ -151,13 +149,13 @@
                                 </div>
                                 <div class="col-md-6 add_top_30">
                                     <div class="form-group">
-                                        <label>Security code</label>
+                                        <label>رمز الامان الخاص بالبطاقة</label>
                                         <div class="row">
                                             <div class="col-md-4">
 												<span class="input">
 													<input class="input_field" type="text">
 													<label class="input_label">
-													  <span class="input__label-content">CCV</span>
+													  <span class="input__label-content"></span>
 													</label>
 												</span>
                                             </div>
@@ -167,22 +165,13 @@
                             </div>
                             <!--End row -->
 
-                            <h5>Or checkout with Paypal</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet, vim id accusata sensibus, id ridens quaeque qui. Ne qui vocent ornatus molestie, reque fierent dissentiunt mel ea.
-                            </p>
-                            <p>
-                                <img src="/img/paypal_bt.png" alt="Image">
-                            </p>
-                        </div>
+
                         <hr>
                         <!--End step -->
 
                         <div class="form_title">
-                            <h3><strong>3</strong>Billing Address</h3>
-                            <p>
-                                Mussum ipsum cacilds, vidis litro abertis.
-                            </p>
+                            <h3><strong>3</strong>عنوان الحساب</h3>
+
                         </div>
                         <div class="step">
                             <div class="row">
@@ -190,7 +179,7 @@
 									<span class="input">
 										<input class="input_field" type="text">
 										<label class="input_label">
-											<span class="input__label-content">Country</span>
+											<span class="input__label-content">المدينة</span>
 										</label>
 									</span>
                                 </div>
@@ -200,7 +189,7 @@
 									<span class="input">
 										<input class="input_field" type="text">
 										<label class="input_label">
-											<span class="input__label-content">Street line 1</span>
+											<span class="input__label-content">اسم الشارع الاول</span>
 										</label>
 									</span>
                                 </div>
@@ -208,7 +197,7 @@
 									<span class="input">
 										<input class="input_field" type="text">
 										<label class="input_label">
-											<span class="input__label-content">Street line 2</span>
+											<span class="input__label-content">اسم الشارع الثاني</span>
 										</label>
 									</span>
                                 </div>
@@ -218,7 +207,7 @@
 									<span class="input">
 										<input class="input_field" type="text">
 										<label class="input_label">
-											<span class="input__label-content">City</span>
+											<span class="input__label-content">المدينة</span>
 										</label>
 									</span>
                                 </div>
@@ -226,7 +215,7 @@
 									<span class="input">
 										<input class="input_field" type="text">
 										<label class="input_label">
-											<span class="input__label-content">State</span>
+											<span class="input__label-content">الحالة</span>
 										</label>
 									</span>
                                 </div>
@@ -234,7 +223,7 @@
 									<span class="input">
 										<input class="input_field" type="text">
 										<label class="input_label">
-											<span class="input__label-content">Postal code</span>
+											<span class="input__label-content">كود البوست </span>
 										</label>
 									</span>
                                 </div>
@@ -243,25 +232,20 @@
                         </div>
                         <hr>
                         <!--End step -->
-                        <div id="policy">
-                            <h5>Cancellation policy</h5>
-                            <p class="nomargin">Lorem ipsum dolor sit amet, vix <a href="#0">cu justo blandit deleniti</a>, discere omittantur consectetuer per eu. Percipit repudiare similique ad sed, vix ad decore nullam ornatus.</p>
-                        </div>
+
                     </div>
                 </div>
-                <!-- /col -->
-
+            </div>
                 <aside class="col-lg-4" id="sidebar">
                     <div class="box_detail">
                         <div id="total_cart">
                             Total <span class="float-right">69.00$</span>
                         </div>
                         <div class="add_bottom_30">Lorem ipsum dolor sit amet, sed vide <strong>moderatius</strong> ad. Ex eius soleat sanctus pro, enim conceptam in quo, <a href="#0">brute convenire</a> appellantur an mei.</div>
-                        <a href="/home/cart3" class="btn_1 full-width">Checkout</a>
-                        <a href="/home/courses_grid_sidebar" class="btn_1 full-width outline"><i class="icon-right"></i> Continue Shopping</a>
+                        <a href="/home/cart3" class="btn_1 full-width">الدفع</a>
+                        <a href="/home/courses_grid_sidebar" class="btn_1 full-width outline"><i class="icon-right"></i>متابعة التسوق</a>
                     </div>
                 </aside>
-            </div>
             <!-- /row -->
         </div>
         <!-- /container -->

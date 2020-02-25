@@ -1705,11 +1705,35 @@ border-radius: 18px;
 }
 #definition{
     position: absolute;
-    left: 0;
-    font-size: 19px;
+    left: -0.5%;
+    top: 20%;
+    justify-content: center;
+
+    font-size: 16px;
 }
 #textContact{
     font-size: 30px;
+    position: relative;
+       left: -50%;
+    bottom: 0;
+
+
+
 }
+#textContact > span {
+    border-bottom: 2px solid #C74F6C;
+
+    position: relative;
+    display: block;
+    float: right;
+
+    width: 11%;
+    right: 0;
+
+    font-size: 30px;
+    padding: 3px;
+
+}
+
 /*end about us style*/
 
