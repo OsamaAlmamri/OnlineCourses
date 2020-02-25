@@ -151,14 +151,20 @@ class homeController extends Controller
             'userWishList' => $userWishList,
 
         ]);
-        $this->view->pageTitle = 'home';
+        $this->view->pageTitle = 'الصفحة الرئيسية';
         $this->view->render();
     }
 
     public function contact()
     {
         $this->view('website' . DIRECTORY_SEPARATOR . 'contact', ['news' => [], 'category' => []]);
-        $this->view->pageTitle = 'contact';
+        $this->view->pageTitle = 'تواصل معنا';
+        $this->view->render();
+    }
+ public function aboutUs()
+    {
+        $this->view('website' . DIRECTORY_SEPARATOR . 'aboutUs');
+        $this->view->pageTitle = 'من نحن';
         $this->view->render();
     }
 
