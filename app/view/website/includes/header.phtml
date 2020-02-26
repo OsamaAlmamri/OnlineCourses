@@ -33,11 +33,18 @@
 <div class="nav">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-4">
+            <div class="col-2">
+                <div class="logo-site">
+                    <img src="/images/logo.png">
+                </div>
+            </div>
+
+            <div class="col-2">
                 <div class="hamburger">
                     <i class="fa fa-bars"></i>
                 </div>
             </div>
+
             <div class="col-8">
                 <div class="user-icons">
                     <ul class="user-icons-list">
@@ -114,12 +121,12 @@
         <div class="row ">
             <!-- Start Sidebar-->
             <div class="col-2 sidebar">
-                <div class="logo-site">
-                    <img src="/images/logo.png">
-                </div>
-                <div class="logo-site-small">
-                    <img src="/images/logo-icon.png">
-                </div>
+<!--                <div class="logo-site">-->
+<!--                    <img src="/images/logo.png">-->
+<!--                </div>-->
+<!--                <div class="logo-site-small">-->
+<!--                    <img src="/images/logo-icon.png">-->
+<!--                </div>-->
                 <ul>
                     <li><a href="/home" class="active" data-toggle="tooltip" title="الصفحة الرئيسية">
                             <span class="icon"><i class="fa fa-home"></i></span>
@@ -159,30 +166,30 @@
                 <?php include VIEW . 'messages.phtml'; ?>
                 <!--start list-cat -->
 
-                <div class="category-site">
-                    <div class="row row-cols-1">
-                        <ul class="main-category">
-                            <?php foreach (Helper::getMainMenu() as $main) { ?>
-                                <li class="list-main-category">
-                                    <a><?php echo($main['category_name']) ?></a>
-                                    <ul class="sub-category">
-                                        <?php foreach (Helper::getMainMenu($main['category_id']) as $main_level2) { ?>
-                                            <li class="list-sub-category">
-                                                <a href="#"><?php echo($main_level2['category_name']) ?></a>
-                                                <ul class="sub-sub-category">
-                                                    <?php foreach (Helper::getMainMenu('level3_'.$main_level2['category_id']) as $main_level3) { ?>
-
-                                                        <li class="list-sub-sub-category">
-                                                            <a href="/courses/getcourse/<?php echo ($main_level3['category_id']) ?>"><?php echo($main_level3['category_name']) ?></a></li>
-                                                    <?php }?>
-                                                </ul>
-                                            </li>
-                                        <?php }?>
-                                    </ul>
-                                </li>
-                            <?php }?>
-                        </ul>
-                    </div>
-                </div>
+<!--                <div class="category-site">-->
+<!--                    <div class="row row-cols-1">-->
+<!--                        <ul class="main-category">-->
+<!--                            --><?php //foreach (Helper::getMainMenu() as $main) { ?>
+<!--                                <li class="list-main-category">-->
+<!--                                    <a>--><?php //echo($main['category_name']) ?><!--</a>-->
+<!--                                    <ul class="sub-category">-->
+<!--                                        --><?php //foreach (Helper::getMainMenu($main['category_id']) as $main_level2) { ?>
+<!--                                            <li class="list-sub-category">-->
+<!--                                                <a href="#">--><?php //echo($main_level2['category_name']) ?><!--</a>-->
+<!--                                                <ul class="sub-sub-category">-->
+<!--                                                    --><?php //foreach (Helper::getMainMenu('level3_'.$main_level2['category_id']) as $main_level3) { ?>
+<!---->
+<!--                                                        <li class="list-sub-sub-category">-->
+<!--                                                            <a href="/courses/getcourse/--><?php //echo ($main_level3['category_id']) ?><!--">--><?php //echo($main_level3['category_name']) ?><!--</a></li>-->
+<!--                                                    --><?php //}?>
+<!--                                                </ul>-->
+<!--                                            </li>-->
+<!--                                        --><?php //}?>
+<!--                                    </ul>-->
+<!--                                </li>-->
+<!--                            --><?php //}?>
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <!--end list-cat -->
