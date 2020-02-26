@@ -131,7 +131,7 @@ width: 100%;
     position: relative;
 }
 
-.nav .user-icons .user-icons-list li > i {
+.nav .user-icons .user-icons-list li > i ,.nav .user-icons .user-icons-list li a i{
     background-color: rgba(197, 202, 208, 0.5);
     width: 35px;
     height: 35px;
@@ -259,7 +259,7 @@ width: 100%;
 
 .nav .login-form .input-group span.input-group-text {
     border-radius: 0 8px 8px 0;
-    text-align: right;
+
     background-color: #fff;
     width: 100%;
     color: #792052;
@@ -273,7 +273,7 @@ width: 100%;
     border-right: 0;
     padding: 25px 10px;
     transition: all .3s ease-in-out;
-
+    text-align: right !important;
 
 }
 
@@ -727,7 +727,10 @@ width: 100%;
     /*padding: 30px;*/
     /*border-radius: 19px;*/
 }
+.fa-heart {
+    color: red !important;
 
+}
 .top-courses .fa-chevron-right,
 .top-courses .fa-chevron-left {
     background: #616263;
@@ -1617,7 +1620,6 @@ figure {
     /* margin-left: -38%; */
     margin-right: 5%;
 }
->>>>>>> 60d30cc8dc4c69b45559d4b90f984135c6f3b229
 /*end profile style*/
 
 label{

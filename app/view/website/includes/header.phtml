@@ -82,10 +82,12 @@
                                 </form>
                             </li>
                         <?php } elseif (isset($_SESSION['user'])) { ?>
-                            <li><i class="fa fa-heart"></i><span
+                            <li><a href="/wishList"><i class="fa fa-heart">
+
+                                </i></a><span
                                         id="n_whishList_items"><?php echo Helper::wishListCount() ?></span></li>
                             <li class="shopping-cart">
-                                <i class="fa fa-shopping-cart"></i>
+                                <a href="/home/cart1"><i class="fa fa-shopping-cart"></i></a>
                                 <span id="n_cart_items"><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
                             </li>
                             <li><i class="fa fa-bell"></i><span>2</span></li>

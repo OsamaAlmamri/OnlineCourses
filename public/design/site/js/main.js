@@ -302,7 +302,9 @@ $(function () {
 
 
     $('.sidebar ul li a').click(function () {
-        $('.sidebar ul li  ').addClass('active').sibling().removeClass('active');
+
+        $('.sidebar ul li a ').removeClass('active');
+        $(this).addClass('active');
     });
 
     $('.hamburger').click(function () {
