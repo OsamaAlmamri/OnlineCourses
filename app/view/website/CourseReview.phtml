@@ -6,7 +6,7 @@
 <!-- Start Content  -->
 
         <div class="row ">
-            <?php $first_lession = isset($this->view_data['lessons'][array_keys($this->view_data['lessons'])[0]]['lessons'][0]) ? $this->view_data['lessons'][array_keys($this->view_data['lessons'])[0]]['lessons'][0] : 0;
+            <?php @$first_lession = isset($this->view_data['lessons'][array_keys($this->view_data['lessons'])[0]]['lessons'][0]) ? $this->view_data['lessons'][array_keys($this->view_data['lessons'])[0]]['lessons'][0] : 0;
 
             ?>
 
