@@ -1,9 +1,11 @@
 <div class="wrapper d-flex align-items-stretch">
     <nav id="sidebar" >
         <div class="sidebar-header">
-            <img src="/images/logo.png" class="col-md-12">
+            <img src="/images/logo.png" id="user_img" class="col-md-12">
 
+            <img src="/images/logo-white.png" id="img" style="display:none;" class="col-md-12 " >
         </div>
+
         <div class="userImage text-center" style="border-radius: 100%" >
             <img id="userImage" src="<?php
 
