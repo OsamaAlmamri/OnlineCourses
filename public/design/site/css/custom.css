@@ -370,7 +370,7 @@ body {
 
 }
 .content .sidebar {
-    background: #ec5525;
+    background: #fa6131;
     border-radius: 10px 0 0 10px;
     color: #fff;
     padding: 0;
@@ -1955,67 +1955,39 @@ textarea.input100 {
 }
 /*end contact style*/
 /*start about us style*/
-#aboutCard{
-width: 70%;
-    position: absolute;
-    padding: 0;
-    border-radius: 10px;
-    height: 60%;
-    top: 20%;
+
+.about-us {
+    background: #fff;
+    padding: 25px;
+    border-radius: 23px;
+    margin-top: 69px;
 
 }
-#about{
-    border-radius: 10px;
-
-}
-
-#aboutTitle {
-    position: absolute;
-    width: 77%;
-    top: 0;
-    right: 0;
-    padding: 0 !important;
-    height: 100% !important;
-border-radius: 18px;
-    background-color:#C74F6C !important;
-
-}
-#aboutTitle img {
-    position: relative;
-    top: 30%;
-    left: 15%;
-}
-#definition{
-    position: absolute;
-    left: -0.5%;
-    top: 20%;
-    justify-content: center;
-
-    font-size: 16px;
-}
-#textContact{
-    font-size: 30px;
-    position: relative;
-       left: -50%;
-    bottom: 0;
-
+.about-us .img-logo {
+background: #9933cc;
+    padding: 150px;
+    width: 100%;
+    margin: auto;
 
 
 }
-#textContact > span {
-    border-bottom: 2px solid #C74F6C;
 
-    position: relative;
+.about-us .img-logo img{
+}
+
+.about-us .aboutUS-text {
+
+}
+.about-us .aboutUS-text span:first-child {
+    font-size: 2em;
     display: block;
-    float: right;
-
-    width: 11%;
-    right: 0;
-
-    font-size: 30px;
-    padding: 3px;
-
+    margin-bottom: 15px;
+    color: #fa6131;
 }
 
+.about-us .aboutUS-text span:last-child {
+   font-size: 1.1em;
+    line-height: 2;
+}
 /*end about us style*/
 
