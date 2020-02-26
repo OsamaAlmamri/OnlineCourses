@@ -320,16 +320,63 @@ body {
 /*============================================================================================*/
 /* Start Sidebar Style */
 /*============================================================================================*/
+.category-site {
+    width: 100%;
+    background-color: #fff;
+    padding: 15px 10px;
+    margin-top: 0;
+    margin-bottom: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .1);
+    border-radius: 10px;
+}
+.main-category{
+    width: 100%;
+    margin: auto;
+    z-index: 999;
 
+}
+.list-main-category {
+    display: inline-block;
+    background-color: #9933cc;
+    border-radius: 15px;
+    padding: 10px 50px;
+    color: #fff;
+    position: relative;
+    cursor: pointer;
+    z-index: 9999;
 
+}
+.sub-category{
+    position: absolute;
+    z-index: 9999;
+    background-color: #fff;
+    color: #9933cc;
+    padding: 10px 30px;
+    border-radius: 15px;
+    display: none;
+
+}
+
+.list-sub-category{
+
+}
+
+.sub-sub-category{
+    position: absolute;
+
+}
+
+.list-sub-sub-category{
+
+}
 .content .sidebar {
     background: #ec5525;
     border-radius: 10px 0 0 10px;
     color: #fff;
     padding: 0;
-    position: sticky;
-    right: 0;
-    z-index: 9999;
+    /*position: sticky;*/
+    /*right: 0;*/
+    /*z-index: 9999;*/
     transition: all .5s ease-in-out;
 
 }

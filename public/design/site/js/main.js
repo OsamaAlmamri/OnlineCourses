@@ -259,6 +259,7 @@
 
 
 $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
 
     $('.content').addClass('collapse-content');
 
@@ -269,8 +270,12 @@ $(function () {
     });
 
     //show user-settings
-    $('.icon-login').click(function () {
-        $('.login-form').show(300);
+    $('.icon-login i').click(function () {
+        $('.login-form').toggle(300);
+    });
+
+    $('.list-main-category ').click(function () {
+        $('.sub-category').toggle(300);
     });
 
 
@@ -296,8 +301,8 @@ $(function () {
     });
 
 
-    $('.sidebar ul li').click(function () {
-        $('.sidebar ul li ').addClass('active').sibling().removeClass('active');
+    $('.sidebar ul li a').click(function () {
+        $('.sidebar ul li  ').addClass('active').sibling().removeClass('active');
     });
 
     $('.hamburger').click(function () {
