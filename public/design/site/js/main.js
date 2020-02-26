@@ -300,9 +300,9 @@ $(function () {
         $('.sidebar ul li ').addClass('active').sibling().removeClass('active');
     });
 
-    // $('.hamburger').click(function () {
-    // 	$('.content').toggleClass('collapse-content');
-    // });
+    $('.hamburger').click(function () {
+    	$('.content').toggleClass('collapse-content');
+    });
 
 
     // $('.sidebar').hover(function () {

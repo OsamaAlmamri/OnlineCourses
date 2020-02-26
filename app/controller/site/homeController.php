@@ -389,6 +389,8 @@ class homeController extends Controller
         $this->view->render();
     }
 
+
+
     public function login()
     {
         $auth = new Login;

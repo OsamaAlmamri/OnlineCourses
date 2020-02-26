@@ -3,79 +3,6 @@
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'header.phtml' ?>
 
 
-<div class="nav">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-4">
-                <div class="hamburger">
-                    <i class="fa fa-bars"></i>
-                </div>
-            </div>
-            <div class="col-8">
-                <div class="user-icons">
-                    <ul class="user-icons-list">
-                        <?php if (!isset($_SESSION['user'])) { ?>
-                            <li class="icon-login"><i class="fa fa-user"></i>
-                                <form method="POST" class="my-login-validation login-form" action="/home/postLogin"
-                                      id='first_form'>
-                                    <div class="login-heading">تسجيل الدخول</div>
-                                    <div class="input-group user-email">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                        </div>
-                                        <input type="text" value="<?php Helper::old('username'); ?>" id="user_email"
-                                               name="username" class="form-control"
-                                               placeholder="ادخل بريدك الالكتروني او اسم المستخدم">
-                                    </div>
-
-                                    <div class="input-group user-password">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-key"></i></span>
-                                        </div>
-                                        <input type="password" class="form-control" placeholder="ادخل كلمة المرور"
-                                               id="password" name="password">
-                                    </div>
-                                    <button id="login-btn">تسجيل الدخول</button>
-                                    <div class="create-new">
-                                        لايوجد لديك حساب ؟ يمكنك التسجيل
-                                        <a href="/home/register/student"> كطالب</a>
-                                        <a href="/home/register/university"> او كجامعة</a>
-                                    </div>
-                                </form>
-                            </li>
-                        <?php } elseif (isset($_SESSION['user'])) { ?>
-                            <li><i class="fa fa-heart"></i><span
-                                        id="n_whishList_items"><?php echo Helper::wishListCount() ?></span></li>
-                            <li class="shopping-cart">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span id="n_cart_items"><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
-                            </li>
-                            <li><i class="fa fa-bell"></i><span>2</span></li>
-                            <li>
-                                <div class="user-name">
-                                    <i class="fa fa-user"></i>
-                                    <span> طاهر السماوي</span>
-                                    <div class="user-settings">
-                                        <ul>
-                                            <li><a href="/profile"><i class="fa fa-user"></i> عرض الملف الشخصي</a></li>
-                                            <li><a href="/admin/logout"><i class="fa fa-sign-out"></i> تسجيل الخروج</a>
-                                            </li>
-                                        </ul>
-
-                                    </div>
-                                </div>
-                            </li>
-                        <?php } ?>
-                    </ul>
-
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
 <!-- Start Content  -->
 <div class="content collapse-content">
     <div class="container-fluid">
@@ -83,19 +10,19 @@
             <!-- Start Sidebar-->
             <div class="col-2 sidebar">
                 <div class="logo-site">
-                    <img src="/images/logo-color.png">
+                    <img src="/images/logo.png">
                 </div>
                 <div class="logo-site-small">
                     <img src="/images/logo-icon.png">
                 </div>
                 <ul>
-                    <li><a href="#" class="active">
+                    <li><a href="/home" class="active">
                             <span class="icon"><i class="fa fa-home"></i></span>
                             <span class="title">الصفحة الرئيسية</span>
                         </a>
                     </li>
 
-                    <li><a href="#">
+                    <li><a href="/home/wish_list">
                             <span class="icon"><i class="fa fa-star"></i></span>
                             <span class="title">المفضلة</span>
                         </a></li>
@@ -106,22 +33,13 @@
 
                         </a></li>
 
-                    <li><a href="#">
+                    <li><a href="/home/profile">
                             <span class="icon"><i class="fa fa-cog"></i></span>
                             <span class="title">الأعدادات</span>
                         </a>
                     </li>
-
-
-                    <li><a href="#">
-                            <span class="icon"><i class="fa fa-book"></i></span>
-                            <span class="title">الصفحة الرئيسية</span>
-                        </a></li>
-                    <li><a href="#">
-                            <span class="icon"><i class="fa fa-book"></i></span>
-                            <span class="title">الصفحة الرئيسية</span>
-                        </a></li>
-                    <li><a href="#">
+                    
+                    <li><a href="/home/aboutUs">
                             <span class="icon"><i class="fa fa-book"></i></span>
                             <span class="title">من نحن </span>
                         </a></li>
@@ -136,7 +54,7 @@
 
 
                 <div class="general-courses">
-                    <div class="row row-cols-lg-3 row-cols-1">
+                    <div class="row row-cols-lg-3 row-col-md-2 row-cols-1">
                         <?php
                         foreach ($this->view_data['courses'] as $k => $course) { ?>
                         <?php if ($course['averageRating']>=1.5) {?>

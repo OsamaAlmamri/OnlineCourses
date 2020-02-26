@@ -96,20 +96,23 @@ body {
     background: #9933cc;
     padding: 20px 8px;
     margin-bottom: 25px;
-    position: relative;
+    position: sticky;
+    top: 0;
     color: #fff;
+    z-index: 9999;
 
 }
 
 .nav .user-icons {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 
 }
 
 .nav .user-icons ul {
     margin: 0;
     display: flex;
+    align-items: baseline;
 }
 
 .nav .user-icons .user-icons-list li {
@@ -321,29 +324,40 @@ body {
 
 .content .sidebar {
     background: #ec5525;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     color: #fff;
     padding: 0;
+    position: sticky;
+    right: 0;
+    z-index: 9999;
+    transition: all .5s ease-in-out;
 
 }
-
+ .sidebar ul li a .fa-star {
+     color: inherit;
+ }
 .content .sidebar .logo-site-small,
 .content .sidebar .logo-site {
     max-width: 80%;
     overflow: hidden;
     margin: auto;
+    transition: all 0.5s ease-in-out;
 
 }
 
 .content .sidebar .logo-site-small {
 
     display: none;
+    text-align: center;
 }
 
 .content .sidebar .logo-site-small img,
 .content .sidebar .logo-site img {
     margin: 20px auto;
+    transition: all 0.5s ease-in-out;
+
     max-width: 100%;
+
 }
 
 .content .sidebar ul {
@@ -352,13 +366,13 @@ body {
 
 .content .sidebar ul li a {
     display: block;
-    padding: 15px;
+    padding: 18px 15px;
     font-size: 1em;
     margin-bottom: 6px;
     position: relative;
     white-space: nowrap;
     font-family: 'DIN-BOLD';
-    transition: all 0.2s ease-in-out;
+    transition: all 0.5s ease-in-out;
 
 }
 
@@ -370,14 +384,14 @@ body {
     right: 0;
     height: 100%;
     width: 3px;
-    background-color: #babcbd;
+    background-color: #fff;
     border-radius: 10px;
     display: none;
 }
 
 .content .sidebar ul li a:hover,
 .content .sidebar ul li a.active {
-    background-color: rgba(197, 202, 208, 0.2);
+    background-color: rgb(206, 83, 70);
     /*border-radius: 10px 0 0 10px;*/
     color: #fff;
 
@@ -393,6 +407,71 @@ body {
     display: inline-block;
 }
 
+.content.collapse-content .sidebar {
+    background: transparent;
+    border-radius: 10px 0 0 10px;
+    color: #fff;
+    padding: 0;
+    /*position: fixed;*/
+    /*right: 0;*/
+    /*z-index: 9999;*/
+
+}
+
+
+.content.collapse-content .sidebar ul li a  {
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    margin:20px 20px ;
+    transition: all .5s ease-in-out;
+}
+.content.collapse-content .sidebar  {
+}
+.content.collapse-content .sidebar ul li a span.icon {
+    margin-left: 0 !important;
+    display: inline-block;
+    font-size: 1.1em;
+    color: #948989;
+
+}
+
+
+.content.collapse-content .sidebar ul li a span.title {
+    display: none;
+}
+
+
+
+.content.collapse-content  .sidebar ul li a:before {
+    content: "";
+    top: 20%;
+    right: 4px;
+    height: 62%;
+    width: 4px;
+    background-color: #fdfeff;
+    border-radius: 10px;
+    display: none;
+}
+
+.content.collapse-content  .sidebar ul li a:hover,
+.content.collapse-content  .sidebar ul li a.active {
+    background-color: rgb(255, 45, 3);
+    border-radius: 10px;
+   color: #fff !important;
+
+}.content.collapse-content  .sidebar ul li a:hover span.icon,
+.content.collapse-content  .sidebar ul li a.active span.icon {
+    border-radius: 10px;
+   color: #fff !important;
+
+}
+
+.content.collapse-content  .sidebar ul li a:hover:before,
+.content.collapse-content  .sidebar ul li a.active:before {
+    display: block;
+}
+
 
 .content.collapse-content .sidebar .logo-site-small {
     display: block;
@@ -403,34 +482,30 @@ body {
 }
 
 .content.collapse-content .sidebar {
-    flex: 0 0 15%;
-    width: 15%;
-    transition: all 0.2s ease-in-out;
+    flex: 0 0 10%;
+    width: 10%;
 }
 
-.content.collapse-content .sidebar ul li a {
-    text-align: center;
-}
-
-.content.collapse-sidebar ul li a span.icon {
-    margin: 0;
-
-}
-
-.content.collapse-content .sidebar ul li a span.title {
-    display: none;
-}
 
 .content.collapse-content .main-content {
-    flex: 0 0 85%;
-    transition: all 0.2s ease-in-out;
+    flex: 0 0 90%;
+    width: 90%;
+
 
 }
 
-@media screen(max-width) {
+@media (max-width: 768px){
+    .content.collapse-content .sidebar {
+        flex: 0 0 15%;
+        width: 15%;
+        transition: all 0.2s ease-in-out;
+    }
+    .content.collapse-content .main-content {
+        flex: 0 0 85%;
+        transition: all 0.2s ease-in-out;
 
+    }
 }
-
 /*============================================================================================*/
 
 /* End Sidebar Style */
