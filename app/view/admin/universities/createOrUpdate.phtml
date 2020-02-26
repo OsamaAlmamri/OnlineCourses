@@ -43,11 +43,25 @@
                     </div>
                     <label for="user_phone">رقم الهاتف:</label>
                     <input type="phone" class="form-control" placeholder="رقم الهاتف" id="user_phone" name="user_phone">
-                    <label for="user_gender">الجنس:</label>
-                    <input type="text" class="form-control" placeholder="الجنس" id="user_gender" name="user_gender">
-                    <label for="user_qualification">مؤهل المستخدم:</label>
-                    <input type="phone" class="form-control" placeholder="مؤهل السمتخدم" id="user_qualification" name="user_qualification">
+              <input type="hidden" name="role_name" value="university">
+                                            <label for="user_image">وثيقة دليل الجامعة</label>
 
+                                            <div class="custom-file ">
+
+                                                <input type="file" class="custom-file-input" name="document"
+                                                       id="document" required>
+                                                <label class="custom-file-label" for="user_image">Choose
+                                                    file</label>
+                                                <?php echo Message::getInputErrorMessage('document') ?>
+
+                                                <div id="university_document_dev">
+                                                    <?php if (array_key_exists('user', $this->view_data)) { ?>
+                                                        <img src="<?php echo($this->view_data['user']['document']); ?>"
+                                                             width="100px">
+
+                                                    <?php
+                                                    } ?>
+                                                </div>
                 </div>
                 <br>
                 <div class="col-md-12">

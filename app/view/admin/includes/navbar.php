@@ -100,12 +100,7 @@
                                 <a href="/admin/permision/index"><i class="fa fa-cogs "></i>    <label class="text">   الصلاحيات</label></a>
                             </li>
                         <?php } ?>
-                        <?php if (Permissions::getInstaince()->hasPermision('teacher_index') == true) { ?>
-                            <li>
-                                <a href="/admin/teachers/index"><i class="fa fa-chalkboard-teacher "></i>    <label class="text">   المدرسين</label>
-                                </a>
-                            </li>
-                        <?php } ?>
+                     
                     </ul>
                 </li>
             <?php } ?>
