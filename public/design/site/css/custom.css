@@ -362,7 +362,7 @@ body {
 }
 
 .sub-sub-category{
-    position: absolute;
+
 
 }
 
@@ -1300,7 +1300,7 @@ i.rating-done {
 /*start profile style*/
 
 #profile{
-    margin-top: 8%;
+
     margin-bottom: 6%;
 }
 #profileCard{
@@ -1323,7 +1323,7 @@ i.rating-done {
 
 }
 #btnProfile:hover{
-background-color: #9a62cc;
+    background-color: #9a62cc;
 }
 #profilefprm .form-control  {
 
@@ -1341,120 +1341,25 @@ background-color: #9a62cc;
 
 
 }
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,300);
-*, *:before, *:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-html, body {
-    width: 100%;
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-    background: #eee;
-}
-
-.intro {
-    position: relative;
-    height: 65%;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    background-image: linear-gradient(35deg, #4f656f, #807f7e);
-}
-.intro img {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: auto;
-    z-index: 1;
-    mix-blend-mode: multiply;
-}
-
-.intro .caption {
+#camera_icon{
     position: absolute;
-    bottom: 25%;
-    top: 30%;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    z-index: 3;
-    color: white;
-}
-.intro .caption h1 {
-    display: inline-block;
-    width: 70%;
-    font-size: 3vw;
-    font-weight: 100;
-    color: white;
-    font-weight: bolder;
-}
+    top: 114px;
 
-.intro .overlay {
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-}
-.intro .overlay svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.copy {
-    width: 100%;
-    max-width: 60rem;
-    height: 200%;
-    margin: 0 auto;
-    padding: 10vw 5vw 0 5vw;
-    color: #476d80;
-    font-weight: 300;
-}
-.copy p {
-    margin-bottom: 1.5rem;
-}
-
-.copy .teaser {
-    font-size: 1.6rem;
-    text-align: center;
-}
-figure {
-    margin: 0 0 0rem !important;
-
-}
-.probtn{
-    margin-bottom: 5%;
-}
-.btn-warning{
-    background: white;
-    border-color: black;
-}
-.imgedit {
-    position: absolute;
-    margin-top: -6%;
-    margin-left: -45%;
-    font-size: 215%;
-    color: #585757;
-}
-.file-upload{
-    display: none;
-}
+    margin-right: -8px;
+    font-size: 26px;
+    color:#816091;
 
 
-#img{
-    position: absolute;
-    top: -94px;
-    align-items: center;
-    right: 43%;
-    border: 4px solid #FFFFFF;
 }
+#image_user{
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
 
+}
 
 .intro {
     position: relative;
@@ -1545,31 +1450,14 @@ figure {
 }
 .imgedit {
     position: absolute;
-    margin-top: 10%;
+    margin-top: 5%;
     /* margin-left: 67%; */
     font-size: 215%;
     color: #585757;
     margin-right: -14%;
 }
-#iconCamera {
-    position: absolute;
-    margin-top: 10%;
-    /* margin-left: 67%; */
-    font-size: 185%;
-    color: #585757;
-    /* margin-right: -14%; */
-}
 .file-upload{
     display: none;
-}
-
-#image_user{
-    padding: .25rem;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: .25rem;
-    max-width: 100%;
-    height: 150px;
 }
 
 .form-profile{

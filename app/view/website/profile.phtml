@@ -17,9 +17,9 @@
                       enctype="multipart/form-data" >
                     <div class="row justify-content-lg-center">
                         <div clas="col-12">
-                            <img src="<?php echo $course['user_image']; ?>"  id="img" class="rounded-circle mt-2 profile-pic" alt="Cinque Terre" width="150" height="150">
+                            <img src="<?php echo $course['user_image']; ?>"  id="image_user" class=" mt-2 profile-pic" alt="Cinque Terre" width="150" height="150">
                             <label for="file">
-                                <i class="fa fa-camera  upload-button" id="iconCamera"></i>
+                                <i class="fa fa-camera  upload-button" id="camera_icon"></i>
                                 <input type="hidden" value="<?php echo $course['user_image']; ?>" name="old_image">
                                 <input type="file" id="file" class="file-upload" name="image" accept="image/gif,image/jpeg,image/jpg,image/png" multiple="" data-original-title="upload photos">
                             </label>
