@@ -63,7 +63,7 @@ class ProfileController  extends \Controller
             // return var_dump($profileInfo);
 
             if ($profileInfo) {
-                Helper::back('/profile/', 'Update data successfully', 'success');
+                Helper::back('/profile/', 'تم تحديث البيانات ', 'بنجاح  ');
                 return;
 
             } else {

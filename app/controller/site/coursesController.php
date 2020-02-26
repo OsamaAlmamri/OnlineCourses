@@ -70,6 +70,7 @@ class coursesController extends \Controller
 
 
     }
+
     public function course_detail($id, $from = '')
     {
         //get all details for course
@@ -77,7 +78,7 @@ class coursesController extends \Controller
             $course_site = $this->model;
         else
             $course_site = $this->model('Course_site');
-        $userSubscribe=$this->userSubscribeInCourse($id);
+        $userSubscribe = $this->userSubscribeInCourse($id);
 
         $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
         $userWishList = $course_site->wishListUser($user_id);
@@ -133,6 +134,7 @@ class coursesController extends \Controller
         $this->view->pageTitle = 'course list';
         $this->view->render();
     }
+
     public function countDurationChapter($data)
     {
         $sum = 0;
@@ -152,7 +154,7 @@ class coursesController extends \Controller
     {
         //get all details for course
         $course_site = $this->model('Course_site');
-        $userSubscribe=$this->userSubscribeInCourse($id);
+        $userSubscribe = $this->userSubscribeInCourse($id);
         $user_id = (isset($_SESSION['user'])) ? Session::get('user')['user_id'] : 0;
         $userWishList = $course_site->wishListUser($user_id);
 //        return var_dump($userWishList);
@@ -193,7 +195,6 @@ class coursesController extends \Controller
                 'course' => $course,
                 'lessons' => $chaptersLessons,
                 'userSubScribe' => $userSubscribe,
-
                 'course_count' => $course_count,
                 'userWishList' => $userWishList,
                 'course_duration' => gmdate("H:i:s", $courseDuration),
@@ -225,6 +226,7 @@ class coursesController extends \Controller
         return $percentage;
 
     }
+
     public function subscribe($id)
     {
 //        return var_dump($id);
@@ -250,7 +252,7 @@ class coursesController extends \Controller
             ));
 
         }
-        $this->course_detail($id,'fromSubscribe');
+        $this->course_detail($id, 'fromSubscribe');
 
 
 //        return var_dump($id);
@@ -262,7 +264,11 @@ class coursesController extends \Controller
     public function userSubscribeInCourse($id)
     {
         $userCourse = $this->model;
-        $user_id = Session::get('user')['user_id'];
+        if (isset($_SESSION['user']['user_id']))
+            $user_id = $_SESSION['user']['user_id'];
+        else
+        return false;
+
         $userWishList = $userCourse->wishListUser($user_id);
         $userWishList = explode(',', $userWishList[0]['couces_buy']);
         if (($key = array_search($id, $userWishList)) !== false)

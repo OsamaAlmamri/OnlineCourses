@@ -1,133 +1,144 @@
-
-
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'header.phtml' ?>
 
 
-            <!-- End Sidebar-->
-            <?php include VIEW . 'messages.phtml'; ?>
+<!-- End Sidebar-->
+<?php include VIEW . 'messages.phtml'; ?>
 
-        <div class="row">
-            <!-- Start main-content-->
-            <div class="col-7">
-                <div class="video-section">
-                    <div class="row row-cols-1">
-                        <div class="col">
-                            <div class="view-video" id="video_countainer">
-                                <video controls  controlsList="nofullscreen nodownload">
-                                    <source src="/videos/1580903859______What Is Version Control- - YouTube.webm" id="video_source" type="video/webm">
-                                </video>
-                            </div>
+<div class="row">
 
-                            <div class="video-details">
-                                <div class="course-details">
-                                    <?php $course = $this->view_data['course'][0]; ?>
-                                    <h6 class="video-name">  <?php echo $course['course_title']?></h6>
-                                    <span class="teacher-name"> مختار غالب</span> |
-                                    <span class="university-name"> اكاديمية البرمجة</span>
-                                </div>
-                            </div>
 
-                            <div class="course-details">
-                                <ul class="tabs-list">
-                                    <li class="active" data-content=".course-description">محتويات الكورس</li>
-                                    <li data-content=".rating-comments">التقييمات والمراجعة</li>
-                                    <li data-content=".course-resource">الملفات المرفقة</li>
-                                </ul>
+    <?php $first_lession = isset($this->view_data['lessons'][array_keys($this->view_data['lessons'])[0]]['lessons'][0]) ? $this->view_data['lessons'][array_keys($this->view_data['lessons'])[0]]['lessons'][0] : 0; ?>
+    <!-- Start main-content-->
+    <div class="col-7">
+        <div class="video-section">
+            <div class="row row-cols-1">
+                <div class="col">
+                    <div class="view-video" id="video_countainer">
+                        <video controls controlsList="nofullscreen nodownload">
+                            <?php if ($first_lession != 0) { ?>
+                                <source src="<?php echo $first_lession['resources_video'] ?>"
+                                        id="video_source" type="video/webm">
+                            <?php } ?>
+                        </video>
 
-                                <div class="course-description">
-                                    <?php echo html_entity_decode($course['course_description']);?>
-                                </div>
+                        <!--                        <a href="#" data-video="-->
+                        <?php //echo $lesson['resources_video'] ?><!--"-->
+                        <!--                        >--><?php //echo Helper::getVideoName($first_lession['resources_video']) ?>
+                    </div>
 
-                                <div class="rating-comments">
-                                    <div class="row mt-5">
-                                        <div class="col-4">
-                                            <div class="rating-course">
+                    <div class="video-details">
+                        <div class="course-details">
+                            <?php $course = $this->view_data['course'][0]; ?>
+                            <?php if ($first_lession != 0) { ?>
+                                <h6 class="video-name" id="view_video_name">  <?php echo Helper::getVideoName($first_lession['resources_video']) ?></h6>
+                            <?php } ?>
+                            <span class="teacher-name"> مختار غالب</span> |
+                            <span class="university-name"> اكاديمية البرمجة</span>
+                        </div>
+                    </div>
+
+                    <div class="course-details">
+                        <ul class="tabs-list">
+                            <li class="active" data-content=".course-description">محتويات الكورس</li>
+                            <li data-content=".rating-comments">التقييمات والمراجعة</li>
+                            <li data-content=".course-resource">الملفات المرفقة</li>
+                        </ul>
+
+                        <div class="course-description">
+                            <?php echo html_entity_decode($course['course_description']); ?>
+                        </div>
+
+                        <div class="rating-comments">
+                            <div class="row mt-5">
+                                <div class="col-4">
+                                    <div class="rating-course">
                                                 <span class="average-rating">
                                                      <?php
-                                                     $numberStarts=isset($this->view_data['averageRating'][0]['average_rating'])?$this->view_data['averageRating'][0]['average_rating']:0;
-                                                     echo isset($numberStarts)? $numberStarts:"0";
+                                                     $numberStarts = isset($this->view_data['averageRating'][0]['average_rating']) ? $this->view_data['averageRating'][0]['average_rating'] : 0;
+                                                     echo isset($numberStarts) ? $numberStarts : "0";
                                                      ?>
                                                 </span>
 
-                                                <span class="number-stars">
+                                        <span class="number-stars">
                                                     <?php Helper::getNumberStars($numberStarts); ?>
                                                 </span>
 
 
-                                                <span class="count-rating">
+                                        <span class="count-rating">
                                                      من اجمالي
-                                            <?php  echo isset($this->view_data['averageRating'][0]['total_rating'])? $this->view_data['averageRating'][0]['total_rating']:"0";   ?>
+                                            <?php echo isset($this->view_data['averageRating'][0]['total_rating']) ? $this->view_data['averageRating'][0]['total_rating'] : "0"; ?>
                                             تقييم
                                         </span>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <?php
+                                    for ($i = 5; $i > 0; $i--) {
+                                        $percentageRating = isset($this->view_data['percentageRating'][$i]) ? $this->view_data['percentageRating'][$i] : 0;
+                                        explode('.', $percentageRating);
+                                        ?>
+                                        <div class="progress-rating row">
+                                            <div class="col-8">
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar"
+                                                         style="width:<?php echo isset($percentageRating) ? $percentageRating : "0"; ?>%">
+                                                        <?php echo isset($percentageRating) ? $percentageRating . "%" : "0"; ?>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-4">
+                                                <?php Helper::getNumberStars($i); ?>
+                                            </div>
+
+                                        </div>
+                                    <?php }
+                                    ?>
+                                </div>
+                            </div>
+
+                            <hr class="my-5">
+
+                            <div class="list_rating">
+                                <?php
+                                foreach ($this->view_data['AllRatings'] as $rating) { ?>
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div class="user-img">
+                                                <img src="<?php echo $rating['user_image']; ?> " alt="">
                                             </div>
                                         </div>
-                                        <div class="col-8">
-                                            <?php
-                                            for($i= 5 ;$i>0;$i--)  {
-                                                $percentageRating=isset($this->view_data['percentageRating'][$i])?$this->view_data['percentageRating'][$i]:0;
-                                                explode('.',$percentageRating);
-                                                ?>
-                                                <div class="progress-rating row">
-                                                    <div class="col-8">
-                                                        <div class="progress">
-                                                            <div class="progress-bar" role="progressbar"
-                                                                 style="width:<?php echo isset($percentageRating)? $percentageRating:"0"; ?>%">
-                                                                <?php echo isset($percentageRating)? $percentageRating."%":"0"   ; ?>
-                                                            </div>
-                                                        </div>
 
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <?php Helper::getNumberStars($i); ?>
-                                                    </div>
-
+                                        <div class="col-10">
+                                            <div class="rating-info">
+                                                <div class="user-info">
+                                                    <span class="user-name"><?php echo $rating['user_full_name']; ?></span>
+                                                    <span class="user-rating"><?php Helper::getNumberStars($rating['rating_number']); ?></span>
                                                 </div>
-                                            <?php }
-                                            ?>
-                                        </div>
-                                    </div>
-
-                                    <hr class="my-5">
-
-                                    <div class="list_rating">
-                                        <?php
-                                        foreach ($this->view_data['AllRatings'] as $rating) { ?>
-                                            <div class="row">
-                                                <div class="col-2">
-                                                    <div class="user-img">
-                                                        <img src="<?php echo $rating['user_image']; ?> " alt="">
-                                                    </div>
+                                                <div class="rating-date">
+                                                    <?php echo $rating['rating_date']; ?>
                                                 </div>
-
-                                                <div class="col-10">
-                                                    <div class="rating-info">
-                                                        <div class="user-info">
-                                                            <span class="user-name" ><?php echo $rating['user_full_name']; ?></span>
-                                                            <span class="user-rating"  ><?php Helper::getNumberStars($rating['rating_number']);?></span>
-                                                        </div>
-                                                        <div class="rating-date">
-                                                            <?php echo  $rating['rating_date']; ?>
-                                                        </div>
-                                                        <div class="comment">
-                                                            <?php echo $rating['comment_text']; ?>
-                                                        </div>
-                                                    </div>
+                                                <div class="comment">
+                                                    <?php echo $rating['comment_text']; ?>
                                                 </div>
                                             </div>
-                                        <?php }?>
+                                        </div>
                                     </div>
+                                <?php } ?>
+                            </div>
 
-                                    <?php if (isset($_SESSION['user'])) {// if user log in .. show input form
+                            <?php if (isset($_SESSION['user'])) {// if user log in .. show input form
 
-                                    // if user has not rating .. show input form
-                                    $ID_UserHasRated = isset($this->view_data['checkIfUserHasRated'][0]['user_id']);
-                                    if(!($ID_UserHasRated == Session::get('userID')) ){
+                                // if user has not rating .. show input form
+                                $ID_UserHasRated = isset($this->view_data['checkIfUserHasRated'][0]['user_id']);
+                                if (!($ID_UserHasRated == Session::get('userID'))) {
                                     ?>
                                     <div class="rating-input-container">
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="user-img">
-                                                    <img src="<?php echo Session::get('user')['user_image']; ?> " alt="">
+                                                    <img src="<?php echo Session::get('user')['user_image']; ?> "
+                                                         alt="">
                                                 </div>
                                             </div>
 
@@ -138,108 +149,115 @@
                                                     </div>
                                                     <div class="rate">
                                                         <ul>
-                                                            <i data-number-rating="1" class="btn-1 rate-btn fa fa-star"></i>
-                                                            <i data-number-rating="2" class="btn-2 rate-btn fa fa-star"></i>
-                                                            <i data-number-rating="3" class="btn-3 rate-btn fa fa-star"></i>
-                                                            <i data-number-rating="4" class="btn-4 rate-btn fa fa-star "></i>
-                                                            <i data-number-rating="5" class="btn-5 rate-btn fa fa-star "></i>
+                                                            <i data-number-rating="1"
+                                                               class="btn-1 rate-btn fa fa-star"></i>
+                                                            <i data-number-rating="2"
+                                                               class="btn-2 rate-btn fa fa-star"></i>
+                                                            <i data-number-rating="3"
+                                                               class="btn-3 rate-btn fa fa-star"></i>
+                                                            <i data-number-rating="4"
+                                                               class="btn-4 rate-btn fa fa-star "></i>
+                                                            <i data-number-rating="5"
+                                                               class="btn-5 rate-btn fa fa-star "></i>
                                                         </ul>
                                                     </div>
 
                                                     <div class="input-group mb-3">
-                                                        <textarea type="text" placeholder="اضف تقييمك حول الكورس(اختياري)"
-                                                               class="form-control comment_input" name="comment_text"
-                                                               rows="4"
-                                                               data-course="<?php echo $course['course_id']; ?>"
-                                                               data-rating-number="5>"
-                                                               data-image-user="<?php echo(Session::get('user')['user_image']) ?>"
-                                                               data-user-name="<?php echo(Session::get('user')['user_full_name']) ?>"
-                                                               data-rating-date="<?php echo date("Y-m-d h:i:sa") ?>" data-user-ID="<?php echo(Session::get('userID')) ?>">
+                                                        <textarea type="text"
+                                                                  placeholder="اضف تقييمك حول الكورس(اختياري)"
+                                                                  class="form-control comment_input" name="comment_text"
+                                                                  rows="4"
+                                                                  data-course="<?php echo $course['course_id']; ?>"
+                                                                  data-rating-number="5>"
+                                                                  data-image-user="<?php echo(Session::get('user')['user_image']) ?>"
+                                                                  data-user-name="<?php echo(Session::get('user')['user_full_name']) ?>"
+                                                                  data-rating-date="<?php echo date("Y-m-d h:i:sa") ?>"
+                                                                  data-user-ID="<?php echo(Session::get('userID')) ?>">
                                                         </textarea>
                                                     </div>
 
-                                                    <button  id="add_rating"
+                                                    <button id="add_rating"
                                                             name="add_rating">
                                                         <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                                                         اضافة تقييم
                                                     </button>
 
 
-
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <?php }}?>
-
-                                </div>
-
-                                <div class="course-resource">
-                                    <i class="fa fa-file"></i>
-                                </div>
-                            </div>
+                                <?php }
+                            } ?>
 
                         </div>
+
+                        <div class="course-resource">
+                            <i class="fa fa-file"></i>
+                        </div>
                     </div>
+
                 </div>
-
             </div>
-            <!-- End main-content-->
-            <div class="col-5">
-                <div class="course-chapters">
-                    <div class="course-name">
-                        <h6><?php echo $course['course_title']?></h6>
-                    </div>
-                    <div class="chapter-head">
-                        <span>تفاصيل الدورة</span>
-                        <span><i class="fa fa-play-circle-o"></i><?php echo $this->view_data['course_count'] ?> -
-                     <i class="fa fa-clock-o"></i> <?php echo $this->view_data['course_duration'] ?></span>
-                    </div>
-                    <hr>
-
-                    <ul class="list-chapters">
-                        <?php $num=1;
-                        foreach ($this->view_data['lessons'] as $k => $chapter) { ?>
-
-                        <li class="chapter-detail">
-                            <span class="num"><?php echo $num?></span>
-                                <span class="chapter_name"><?php echo $k ?></span>
-                                <span class="chapter_number_lessons"><i class="fa fa-play-circle-o"></i> <?php echo count($chapter['lessons']) ?> </span>
-                                <span class="chapter_duration"><?php echo $chapter['duration'] ?> </span>
-                            <span class="show-video"><i class="fa fa-plus"></i></span>
-                        </li>
-                        <ul class="list-lessons">
-                            <?php foreach ($chapter['lessons'] as $lesson) {
-                                $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1)); ?>
-                                <li>
-                                <span class="video-name"><i class="fa fa-play-circle-o"></i>
-                                    <a href="#" data-video="<?php echo  $lesson['resources_video'] ?>"
-                                    ><?php echo Helper::getVideoName($lesson['resources_video']) ?>
-                                </a></span>
-
-                                    <span class="video-duration"> <?php echo gmdate("H:i:s", $file['playtime_seconds']) ?></span>
-                                </li>
-
-                            <?php } ?>
-
-
-                        </ul>
-                        <?php $num++; }?>
-
-
-                    </ul>
-                </div>
-
-            </div>
-
         </div>
 
     </div>
+    <!-- End main-content-->
+    <div class="col-5">
+        <div class="course-chapters">
+            <div class="course-name">
+                <h6><?php echo $course['course_title'] ?></h6>
+            </div>
+            <div class="chapter-head">
+                <span>تفاصيل الدورة</span>
+                <span><i class="fa fa-play-circle-o"></i><?php echo $this->view_data['course_count'] ?> -
+                     <i class="fa fa-clock-o"></i> <?php echo $this->view_data['course_duration'] ?></span>
+            </div>
+            <hr>
+
+            <ul class="list-chapters">
+                <?php $num = 1;
+                foreach ($this->view_data['lessons'] as $k => $chapter) { ?>
+
+                    <li class="chapter-detail">
+                        <span class="num"><?php echo $num ?></span>
+                        <span class="chapter_name"><?php echo $k ?></span>
+                        <span class="chapter_number_lessons"><i
+                                    class="fa fa-play-circle-o"></i> <?php echo count($chapter['lessons']) ?> </span>
+                        <span class="chapter_duration"><?php echo $chapter['duration'] ?> </span>
+                        <span class="show-video"><i class="fa fa-plus"></i></span>
+                    </li>
+                    <ul class="list-lessons">
+                        <?php foreach ($chapter['lessons'] as $lesson) {
+                            $file = Helper::getVideoDeatils(substr($lesson['resources_video'], 1)); ?>
+                            <li>
+                                <span class="video-name"><i class="fa fa-play-circle-o"></i>
+                                    <a href="#" data-video="<?php echo $lesson['resources_video'] ?>"
+                                    ><?php echo Helper::getVideoName($lesson['resources_video']) ?>
+                                </a></span>
+
+                                <span class="video-duration"> <?php echo gmdate("H:i:s", $file['playtime_seconds']) ?></span>
+                            </li>
+
+                        <?php } ?>
+
+
+                    </ul>
+                    <?php $num++;
+                } ?>
+
+
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+</div>
 </div>
 </div>
 <!-- End Content  -->
-
 
 
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
