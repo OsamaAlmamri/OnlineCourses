@@ -1,21 +1,99 @@
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'header.phtml' ?>
 
-<main>
-    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
-    <div class="container margin_60_35">
-        <?php include VIEW . 'messages.phtml' ?>
-        <div class="container">
-            <div class="row">
-                <div class=" card col-lg-12 col-md-12 col-ms-12" style="border-bottom: red">
-                    <h2>Your wishList Courses</h2>
-                </div>
+<div class="top-courses">
+
+    <div class="courses-list">
+        <div class="most-viewed-courses">
+            <div class="row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 flex-row-reverse">
+                <?php
+                foreach ($this->view_data['courses'] as $k => $course) { ?>
+                    <!-- Start Grid Column -->
+                    <div class="col">
+                        <div class="card" id="course_<?php echo $course['course_id'] ?>">
+                            <div class="course-img">
+                                <a href="/courses/course_review/<?php echo $course['course_id'] ?>">
+                                    <img class="card-img-top"
+                                         src="<?php echo $course['courses_image']; ?>">
+                                </a>
+                            </div>
+
+                            <div class="icon-wishlist">
+                                <?php if (isset($_SESSION['user'])) { ?>
+                                    <a <?php if (in_array($course['course_id'], $this->view_data['userWishList']))
+                                        echo 'class="fa fa-heart addToWishList"  data-status="1"';
+                                    else
+                                        echo 'class="fa fa-heart-o addToWishList"  data-status="0"'; ?>
+                                            data-id="<?php echo $course['course_id'] ?>">
+                                    </a>
+                                <?php } ?>
+                            </div>
+
+
+
+                            <div class="card-body">
+                                <a href="/courses/course_review/<?php echo $course['course_id'] ?>">
+                                    <h4 class="course-title">
+                                        <?php echo $course['course_title'] ?>
+                                    </h4>
+                                </a>
+
+
+                                <h6 class="course-category">التصنيف :
+                                    <span> <?php echo Helper::Names($course['categories_ids'], 'Category') ?> </span>
+                                </h6>
+                                <div class="course-details">
+                                                <span class="course-lectures">
+                                               <i class="fa fa-play-circle-o"></i>
+                                                       <?php echo $course['course_count'];  ?>
+                                                    فيديو
+                                                </span>
+                                    <span class="course-time">
+                                                <i class="fa fa-clock-o"></i>
+
+                                                  <?php echo $course['duration'];  ?>
+                                                </span>
+                                </div>
+
+                                <div class="cart-rating">
+                                    <ul class="stars-rating">
+                                        <?php Helper::getNumberStars($course['averageRating']);  ?>
+                                    </ul>
+                                    <span class="average-rating "><?php echo $course['averageRating'];  ?></span>
+                                    <span class="total-rating">(من اصل <?php echo $course['AllRatings'];  ?> تقييم )</span>
+
+                                </div>
+                            </div>
+                            <div class="course-footer">
+                                                   <span class="show-course">
+                                                  السعر :
+                                                </span>
+                                <span class="course-price">
+
+
+                                          <?php  if($course['course_price']>0){
+                                              echo '$' . $course['course_price'];
+                                          }else
+                                              echo  "مجاني";
+                                          ?>
+                                            </span>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- End Grid Column -->
+
+                <?php } ?>
+
             </div>
-            <div class="col-lg-12 col-md-12 col-ms-12">
-                <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'coursesView.phtml' ?>
-            </div>
+
         </div>
-</main>
+
+    </div>
+</div>
+
+
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'active.phtml' ?>
 

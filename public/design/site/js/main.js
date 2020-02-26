@@ -270,7 +270,7 @@ $(function () {
     });
 
     //show user-settings
-    $('.icon-login i').click(function () {
+    $('.btn-login').click(function () {
         $('.login-form').toggle(300);
     });
 
