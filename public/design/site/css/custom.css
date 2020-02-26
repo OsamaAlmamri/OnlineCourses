@@ -79,7 +79,7 @@ body {
     color: #999;
     background-color: #F4F7F6;
 
-    font-family: 'DIN-MEDIUM', sans-serif;
+    font-family: 'DIN-MEDIUM' !important;
 }
 
 /*============================================================================================*/
@@ -96,20 +96,23 @@ body {
     background: #9933cc;
     padding: 20px 8px;
     margin-bottom: 25px;
-    position: relative;
+    position: sticky;
+    top: 0;
     color: #fff;
+    z-index: 9999;
 
 }
 
 .nav .user-icons {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 
 }
 
 .nav .user-icons ul {
     margin: 0;
     display: flex;
+    align-items: baseline;
 }
 
 .nav .user-icons .user-icons-list li {
@@ -321,29 +324,40 @@ body {
 
 .content .sidebar {
     background: #ec5525;
-    border-radius: 10px;
+    border-radius: 10px 0 0 10px;
     color: #fff;
     padding: 0;
+    position: sticky;
+    right: 0;
+    z-index: 9999;
+    transition: all .5s ease-in-out;
 
 }
-
+ .sidebar ul li a .fa-star {
+     color: inherit;
+ }
 .content .sidebar .logo-site-small,
 .content .sidebar .logo-site {
     max-width: 80%;
     overflow: hidden;
     margin: auto;
+    transition: all 0.5s ease-in-out;
 
 }
 
 .content .sidebar .logo-site-small {
 
     display: none;
+    text-align: center;
 }
 
 .content .sidebar .logo-site-small img,
 .content .sidebar .logo-site img {
     margin: 20px auto;
+    transition: all 0.5s ease-in-out;
+
     max-width: 100%;
+
 }
 
 .content .sidebar ul {
@@ -352,13 +366,13 @@ body {
 
 .content .sidebar ul li a {
     display: block;
-    padding: 15px;
+    padding: 18px 15px;
     font-size: 1em;
     margin-bottom: 6px;
     position: relative;
     white-space: nowrap;
     font-family: 'DIN-BOLD';
-    transition: all 0.2s ease-in-out;
+    transition: all 0.5s ease-in-out;
 
 }
 
@@ -370,14 +384,14 @@ body {
     right: 0;
     height: 100%;
     width: 3px;
-    background-color: #babcbd;
+    background-color: #fff;
     border-radius: 10px;
     display: none;
 }
 
 .content .sidebar ul li a:hover,
 .content .sidebar ul li a.active {
-    background-color: rgba(197, 202, 208, 0.2);
+    background-color: rgb(206, 83, 70);
     /*border-radius: 10px 0 0 10px;*/
     color: #fff;
 
@@ -393,6 +407,71 @@ body {
     display: inline-block;
 }
 
+.content.collapse-content .sidebar {
+    background: transparent;
+    border-radius: 10px 0 0 10px;
+    color: #fff;
+    padding: 0;
+    /*position: fixed;*/
+    /*right: 0;*/
+    /*z-index: 9999;*/
+
+}
+
+
+.content.collapse-content .sidebar ul li a  {
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    margin:20px 20px ;
+    transition: all .5s ease-in-out;
+}
+.content.collapse-content .sidebar  {
+}
+.content.collapse-content .sidebar ul li a span.icon {
+    margin-left: 0 !important;
+    display: inline-block;
+    font-size: 1.1em;
+    color: #948989;
+
+}
+
+
+.content.collapse-content .sidebar ul li a span.title {
+    display: none;
+}
+
+
+
+.content.collapse-content  .sidebar ul li a:before {
+    content: "";
+    top: 20%;
+    right: 4px;
+    height: 62%;
+    width: 4px;
+    background-color: #fdfeff;
+    border-radius: 10px;
+    display: none;
+}
+
+.content.collapse-content  .sidebar ul li a:hover,
+.content.collapse-content  .sidebar ul li a.active {
+    background-color: rgb(255, 45, 3);
+    border-radius: 10px;
+   color: #fff !important;
+
+}.content.collapse-content  .sidebar ul li a:hover span.icon,
+.content.collapse-content  .sidebar ul li a.active span.icon {
+    border-radius: 10px;
+   color: #fff !important;
+
+}
+
+.content.collapse-content  .sidebar ul li a:hover:before,
+.content.collapse-content  .sidebar ul li a.active:before {
+    display: block;
+}
+
 
 .content.collapse-content .sidebar .logo-site-small {
     display: block;
@@ -403,32 +482,30 @@ body {
 }
 
 .content.collapse-content .sidebar {
-    flex: 0 0 5%;
-    width: 5%;
-    transition: all 0.2s ease-in-out;
+    flex: 0 0 10%;
+    width: 10%;
 }
 
-.content.collapse-content .sidebar ul li a {
-    text-align: center;
-}
-
-.content.collapse-sidebar ul li a span.icon {
-    margin: 0;
-
-}
-
-.content.collapse-content .sidebar ul li a span.title {
-    display: none;
-}
 
 .content.collapse-content .main-content {
-    flex: 0 0 95%;
-    max-width: 95%;
-    transition: all 0.2s ease-in-out;
+    flex: 0 0 90%;
+    width: 90%;
+
 
 }
 
+@media (max-width: 768px){
+    .content.collapse-content .sidebar {
+        flex: 0 0 15%;
+        width: 15%;
+        transition: all 0.2s ease-in-out;
+    }
+    .content.collapse-content .main-content {
+        flex: 0 0 85%;
+        transition: all 0.2s ease-in-out;
 
+    }
+}
 /*============================================================================================*/
 
 /* End Sidebar Style */
@@ -442,14 +519,17 @@ body {
 
 .tabs-list {
     display: inline-block;
+    margin-bottom: 25px;
 }
 
 .tabs-list li {
     margin-left: 25px;
     display: inline-block;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-family: DIN-BOLD;
     cursor: pointer;
     position: relative;
+    color: #666;
 }
 
 .tabs-list li:after {
@@ -473,7 +553,8 @@ body {
     padding-bottom: 10px;
     border-bottom: 3px solid;
     color: #E65053;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-family: DIN-BOLD;
 }
 
 .main-content {
@@ -483,16 +564,17 @@ body {
 
 
 .general-courses {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .general-courses .general-courses-content {
     position: relative;
-    border-radius: 10px;
+    border-radius: 40px;
     overflow: hidden;
     padding: 0;
     margin: auto;
-
+    width: 100%;
+    height: 100%;
 }
 
 .general-courses .general-courses-content:after {
@@ -503,7 +585,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: 0;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4166841736694677) 150%);
+    background: rgba(0,0,0,.3)
 
 }
 
@@ -513,12 +595,16 @@ body {
 
 .general-courses .general-courses-content span.icon-play-video {
     position: absolute;
-    bottom: 38%;
-    left: 34%;
+    bottom: 40%;
+    left: 43%;
     color: #fff;
-    background: rgba(169, 161, 161, 0.5);
-    padding: 7px 57px;
-    border-radius: 30px;
+    background: #9933cc;
+    /* padding: 15px; */
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 16px;
     transition: all .3s ease-in-out;
     cursor: pointer;
     z-index: 5;
@@ -527,32 +613,54 @@ body {
 
 .general-courses .general-courses-content span.icon-play-video:hover {
 
-    background: rgba(103, 96, 96, 0.5);
+    background: #9933cc;
 
 }
 
 .general-courses .general-courses-content span.course-title {
     position: absolute;
-    bottom: 16px;
-    right: 26px;
+    bottom: 18px;
+    right: 12%;
+    padding: 41px;
+    left: 49px;
     color: #fff;
+    z-index: 5;
+    background: rgba(31, 29, 29, 0.42);
+    width: 78%;
+    border-radius: 34px;
+    padding: 11px 24px;
+    text-align: center;
+
+}
+.general-courses .general-courses-content span.course-rating {
+    position: absolute;
+    top: 17px;
+    right: 39px;
+    font-family: DIN-BOLD;
+    /* background: rgba(255, 255, 255, 0.96); */
+    padding: 5px 17px;
+    border-radius: 10px;
     z-index: 5;
 
 }
 
 .general-courses .general-courses-content span.course-duration {
     position: absolute;
-    top: 4px;
-    left: 3px;
-    background: rgba(103, 96, 96, 0.5);
-    padding: 5px 15px;
+    top: 17px;
+    left: 39px;
+    font-family: DIN-BOLD;
+    background: #FC6131;
+    padding: 5px 17px;
     border-radius: 10px;
     z-index: 5;
-
+    color: #fff;
 }
 
 .top-courses {
     position: relative;
+    /*background: #fff;*/
+    /*padding: 30px;*/
+    /*border-radius: 19px;*/
 }
 
 .top-courses .fa-chevron-right,
@@ -566,6 +674,7 @@ body {
     border-radius: 50%;
     cursor: pointer;
     z-index: 5;
+    display: none;
 }
 
 .top-courses .fa-chevron-right {
@@ -595,6 +704,9 @@ body {
     padding: 1rem;
 }
 
+.top-courses .card {
+    position: relative;
+}
 .top-courses .card .course-img {
     overflow: hidden;
     position: relative;
@@ -608,29 +720,38 @@ body {
     width: 100%;
 }
 
-.top-courses .card .course-img:after {
-    content: '';
+/*.top-courses .card .course-img:after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    opacity: 0;*/
+/*    background: radial-gradient(circle, rgba(9, 9, 121, 0) 0%, rgba(0, 0, 0, 0.17690826330532217) 100%);*/
+/*    transition: all 1s;*/
+/*    -webkit-transition: all 1s;*/
+/*}*/
+
+/*.top-courses .card .course-img:hover:after {*/
+/*    opacity: 1;*/
+/*    background: radial-gradient(circle farthest-corner at 2.4% 35.1%, rgba(129, 211, 225, .4) 0%, rgba(239, 145, 236, .4) 90%);*/
+/*}*/
+.top-courses .card .icon-wishlist {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 1;
-    background: radial-gradient(circle, rgba(9, 9, 121, 0) 0%, rgba(0, 0, 0, 0.17690826330532217) 100%);
-    transition: all 1s;
-    -webkit-transition: all 1s;
-}
+    top: 11px;
+    right: 7%;
+    color: #fff;
+    z-index: 5;
+    font-size: 1.4em;
+    text-align: center;
 
-.top-courses .card .course-img:hover:after {
-    opacity: 1;
-    background: radial-gradient(circle farthest-corner at 2.4% 35.1%, rgba(129, 211, 225, .4) 0%, rgba(239, 145, 236, .4) 90%);
 }
-
 .top-courses .card .course-title {
-    font-size: 1em;
+    font-size: 1.1em;
     line-height: 1.4;
-    color: #792052;
-    font-family: 'DIN-MEDIUM';
+    color: #9933cc;
+    font-family: 'DIN-BOLD';
 }
 
 .top-courses .card .course-category {
@@ -677,6 +798,8 @@ body {
 
 .top-courses .card .cart-rating .average-rating {
     margin-left: 4px;
+    font-family: DIN-BOLD;
+    font-weight: 700;
 }
 
 .top-courses .card .cart-rating .total-rating {
@@ -686,8 +809,7 @@ body {
 }
 
 .top-courses .card .course-footer {
-    background-image: radial-gradient(circle 981px at 14.6% 17.7%, rgba(255, 101, 91, 0.85) 2.7%, rgba(121, 32, 82, 0.78) 97.2%);
-    color: #fff;
+    color: #FC6131;
     padding: 0.65rem 1.0rem;
     border-top: 1px solid rgba(0, 0, 0, .125);
     display: flex;
@@ -697,7 +819,6 @@ body {
 
 .top-courses .card .course-footer .course-price {
     display: inline-block;
-    text-align: right;
 }
 
 .top-courses .card .course-footer .show-course {
@@ -1173,6 +1294,119 @@ background-color: #9a62cc;
 
 
 }
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,300);
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background: #eee;
+}
+
+.intro {
+    position: relative;
+    height: 65%;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    background-image: linear-gradient(35deg, #4f656f, #807f7e);
+}
+.intro img {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    mix-blend-mode: multiply;
+}
+
+.intro .caption {
+    position: absolute;
+    bottom: 25%;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 3;
+    color: white;
+}
+.intro .caption h1 {
+    display: inline-block;
+    width: 70%;
+    font-size: 3vw;
+    font-weight: 100;
+    color: white;
+    font-weight: bolder;
+}
+
+.intro .overlay {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+.intro .overlay svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.copy {
+    width: 100%;
+    max-width: 60rem;
+    height: 200%;
+    margin: 0 auto;
+    padding: 10vw 5vw 0 5vw;
+    color: #476d80;
+    font-weight: 300;
+}
+.copy p {
+    margin-bottom: 1.5rem;
+}
+
+.copy .teaser {
+    font-size: 1.6rem;
+    text-align: center;
+}
+figure {
+    margin: 0 0 0rem !important;
+
+}
+.probtn{
+    margin-bottom: 5%;
+}
+.btn-warning{
+    background: white;
+    border-color: black;
+}
+.imgedit {
+    position: absolute;
+    margin-top: -6%;
+    margin-left: -45%;
+    font-size: 215%;
+    color: #585757;
+}
+.file-upload{
+    display: none;
+}
+
+
+#img{
+    position: absolute;
+    top: -94px;
+    align-items: center;
+    right: 43%;
+    border: 4px solid #FFFFFF;
+}
 
 
 .intro {
@@ -1299,6 +1533,7 @@ figure {
     margin-right: 5%;
 }
 /*end profile style*/
+
 label{
     float: right !important;
 

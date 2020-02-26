@@ -87,9 +87,6 @@ class LessonsController extends Controller
 
     public function fetchChapter()
     {
-
-        Helper::viewAdminFile();
-
         $this->model('Lesson');
         $data = $_REQUEST['filter_name'];
 
