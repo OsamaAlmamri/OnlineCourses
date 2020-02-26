@@ -147,7 +147,6 @@ class homeController extends Controller
             $lastCourses[] = array_merge($course, $this->course_info($course['course_id']));
         }
         $this->view('website' . DIRECTORY_SEPARATOR . 'index', [
-            'news' => [],
             'courses' => $lastCourses,
             'userWishList' => $userWishList,
 

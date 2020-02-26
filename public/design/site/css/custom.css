@@ -403,8 +403,8 @@ body {
 }
 
 .content.collapse-content .sidebar {
-    flex: 0 0 5%;
-    width: 5%;
+    flex: 0 0 15%;
+    width: 15%;
     transition: all 0.2s ease-in-out;
 }
 
@@ -422,12 +422,14 @@ body {
 }
 
 .content.collapse-content .main-content {
-    flex: 0 0 95%;
-    max-width: 95%;
+    flex: 0 0 85%;
     transition: all 0.2s ease-in-out;
 
 }
 
+@media screen(max-width) {
+
+}
 
 /*============================================================================================*/
 
@@ -442,14 +444,17 @@ body {
 
 .tabs-list {
     display: inline-block;
+    margin-bottom: 25px;
 }
 
 .tabs-list li {
     margin-left: 25px;
     display: inline-block;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-family: DIN-BOLD;
     cursor: pointer;
     position: relative;
+    color: #666;
 }
 
 .tabs-list li:after {
@@ -473,7 +478,8 @@ body {
     padding-bottom: 10px;
     border-bottom: 3px solid;
     color: #E65053;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-family: DIN-BOLD;
 }
 
 .main-content {
@@ -483,16 +489,17 @@ body {
 
 
 .general-courses {
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .general-courses .general-courses-content {
     position: relative;
-    border-radius: 10px;
+    border-radius: 40px;
     overflow: hidden;
     padding: 0;
     margin: auto;
-
+    width: 100%;
+    height: 100%;
 }
 
 .general-courses .general-courses-content:after {
@@ -503,7 +510,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: 0;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.4166841736694677) 150%);
+    background: rgba(0,0,0,.3)
 
 }
 
@@ -513,12 +520,16 @@ body {
 
 .general-courses .general-courses-content span.icon-play-video {
     position: absolute;
-    bottom: 38%;
-    left: 34%;
+    bottom: 40%;
+    left: 43%;
     color: #fff;
-    background: rgba(169, 161, 161, 0.5);
-    padding: 7px 57px;
-    border-radius: 30px;
+    background: #9933cc;
+    /* padding: 15px; */
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 16px;
     transition: all .3s ease-in-out;
     cursor: pointer;
     z-index: 5;
@@ -527,32 +538,54 @@ body {
 
 .general-courses .general-courses-content span.icon-play-video:hover {
 
-    background: rgba(103, 96, 96, 0.5);
+    background: #9933cc;
 
 }
 
 .general-courses .general-courses-content span.course-title {
     position: absolute;
-    bottom: 16px;
-    right: 26px;
+    bottom: 18px;
+    right: 12%;
+    padding: 41px;
+    left: 49px;
     color: #fff;
+    z-index: 5;
+    background: rgba(31, 29, 29, 0.42);
+    width: 78%;
+    border-radius: 34px;
+    padding: 11px 24px;
+    text-align: center;
+
+}
+.general-courses .general-courses-content span.course-rating {
+    position: absolute;
+    top: 17px;
+    right: 39px;
+    font-family: DIN-BOLD;
+    /* background: rgba(255, 255, 255, 0.96); */
+    padding: 5px 17px;
+    border-radius: 10px;
     z-index: 5;
 
 }
 
 .general-courses .general-courses-content span.course-duration {
     position: absolute;
-    top: 4px;
-    left: 3px;
-    background: rgba(103, 96, 96, 0.5);
-    padding: 5px 15px;
+    top: 17px;
+    left: 39px;
+    font-family: DIN-BOLD;
+    background: #FC6131;
+    padding: 5px 17px;
     border-radius: 10px;
     z-index: 5;
-
+    color: #fff;
 }
 
 .top-courses {
     position: relative;
+    /*background: #fff;*/
+    /*padding: 30px;*/
+    /*border-radius: 19px;*/
 }
 
 .top-courses .fa-chevron-right,
@@ -566,6 +599,7 @@ body {
     border-radius: 50%;
     cursor: pointer;
     z-index: 5;
+    display: none;
 }
 
 .top-courses .fa-chevron-right {
@@ -595,6 +629,9 @@ body {
     padding: 1rem;
 }
 
+.top-courses .card {
+    position: relative;
+}
 .top-courses .card .course-img {
     overflow: hidden;
     position: relative;
@@ -608,29 +645,38 @@ body {
     width: 100%;
 }
 
-.top-courses .card .course-img:after {
-    content: '';
+/*.top-courses .card .course-img:after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    opacity: 0;*/
+/*    background: radial-gradient(circle, rgba(9, 9, 121, 0) 0%, rgba(0, 0, 0, 0.17690826330532217) 100%);*/
+/*    transition: all 1s;*/
+/*    -webkit-transition: all 1s;*/
+/*}*/
+
+/*.top-courses .card .course-img:hover:after {*/
+/*    opacity: 1;*/
+/*    background: radial-gradient(circle farthest-corner at 2.4% 35.1%, rgba(129, 211, 225, .4) 0%, rgba(239, 145, 236, .4) 90%);*/
+/*}*/
+.top-courses .card .icon-wishlist {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 1;
-    background: radial-gradient(circle, rgba(9, 9, 121, 0) 0%, rgba(0, 0, 0, 0.17690826330532217) 100%);
-    transition: all 1s;
-    -webkit-transition: all 1s;
-}
+    top: 11px;
+    right: 7%;
+    color: #fff;
+    z-index: 5;
+    font-size: 1.4em;
+    text-align: center;
 
-.top-courses .card .course-img:hover:after {
-    opacity: 1;
-    background: radial-gradient(circle farthest-corner at 2.4% 35.1%, rgba(129, 211, 225, .4) 0%, rgba(239, 145, 236, .4) 90%);
 }
-
 .top-courses .card .course-title {
-    font-size: 1em;
+    font-size: 1.1em;
     line-height: 1.4;
-    color: #792052;
-    font-family: 'DIN-MEDIUM';
+    color: #9933cc;
+    font-family: 'DIN-BOLD';
 }
 
 .top-courses .card .course-category {
@@ -677,6 +723,8 @@ body {
 
 .top-courses .card .cart-rating .average-rating {
     margin-left: 4px;
+    font-family: DIN-BOLD;
+    font-weight: 700;
 }
 
 .top-courses .card .cart-rating .total-rating {
@@ -686,8 +734,7 @@ body {
 }
 
 .top-courses .card .course-footer {
-    background-image: radial-gradient(circle 981px at 14.6% 17.7%, rgba(255, 101, 91, 0.85) 2.7%, rgba(121, 32, 82, 0.78) 97.2%);
-    color: #fff;
+    color: #FC6131;
     padding: 0.65rem 1.0rem;
     border-top: 1px solid rgba(0, 0, 0, .125);
     display: flex;
@@ -697,7 +744,6 @@ body {
 
 .top-courses .card .course-footer .course-price {
     display: inline-block;
-    text-align: right;
 }
 
 .top-courses .card .course-footer .show-course {

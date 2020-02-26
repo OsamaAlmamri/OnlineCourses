@@ -3,6 +3,79 @@
 <?php include VIEW . 'website' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'header.phtml' ?>
 
 
+<div class="nav">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="hamburger">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="user-icons">
+                    <ul class="user-icons-list">
+                        <?php if (!isset($_SESSION['user'])) { ?>
+                            <li class="icon-login"><i class="fa fa-user"></i>
+                                <form method="POST" class="my-login-validation login-form" action="/home/postLogin"
+                                      id='first_form'>
+                                    <div class="login-heading">تسجيل الدخول</div>
+                                    <div class="input-group user-email">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                        </div>
+                                        <input type="text" value="<?php Helper::old('username'); ?>" id="user_email"
+                                               name="username" class="form-control"
+                                               placeholder="ادخل بريدك الالكتروني او اسم المستخدم">
+                                    </div>
+
+                                    <div class="input-group user-password">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                        </div>
+                                        <input type="password" class="form-control" placeholder="ادخل كلمة المرور"
+                                               id="password" name="password">
+                                    </div>
+                                    <button id="login-btn">تسجيل الدخول</button>
+                                    <div class="create-new">
+                                        لايوجد لديك حساب ؟ يمكنك التسجيل
+                                        <a href="/home/register/student"> كطالب</a>
+                                        <a href="/home/register/university"> او كجامعة</a>
+                                    </div>
+                                </form>
+                            </li>
+                        <?php } elseif (isset($_SESSION['user'])) { ?>
+                            <li><i class="fa fa-heart"></i><span
+                                        id="n_whishList_items"><?php echo Helper::wishListCount() ?></span></li>
+                            <li class="shopping-cart">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span id="n_cart_items"><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
+                            </li>
+                            <li><i class="fa fa-bell"></i><span>2</span></li>
+                            <li>
+                                <div class="user-name">
+                                    <i class="fa fa-user"></i>
+                                    <span> طاهر السماوي</span>
+                                    <div class="user-settings">
+                                        <ul>
+                                            <li><a href="/profile"><i class="fa fa-user"></i> عرض الملف الشخصي</a></li>
+                                            <li><a href="/admin/logout"><i class="fa fa-sign-out"></i> تسجيل الخروج</a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </li>
+                        <?php } ?>
+                    </ul>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <!-- Start Content  -->
 <div class="content collapse-content">
     <div class="container-fluid">
@@ -61,54 +134,29 @@
             <div class="col-10 main-content ">
                 <?php include VIEW . 'messages.phtml'; ?>
 
+
                 <div class="general-courses">
-                    <div class="row row-cols-3">
+                    <div class="row row-cols-lg-3 row-cols-1">
+                        <?php
+                        foreach ($this->view_data['courses'] as $k => $course) { ?>
+                        <?php if ($course['averageRating']>=1.5) {?>
                         <div class="col ">
                             <div class="general-courses-content">
-                                <img class="" src="/images/courses/photoshop.jpg">
-                                <span class="icon-play-video"><i class="fa fa-play"></i></span>
-                                <span class="course-title">كورس تعلم البرمجة</span>
-                                <span class="course-duration">60:00 AM</span>
+                                <img class="" src="<?php echo  $course['courses_image'];?>">
+                                <a href="/courses/course_review/<?php echo $course['course_id'] ?>"><span class="icon-play-video"><i class="fa fa-play"></i></span></a>
+                                <span class="course-title"><?php echo  $course['course_title'] ?></span>
+                                <span class="course-rating"><?php Helper::getNumberStars($course['averageRating']);  ?></span>
+                                <span class="course-duration"><?php echo  $course['duration'] ?></span>
                             </div>
                         </div>
-                        <div class="col ">
-                            <div class="general-courses-content">
-                                <img class="" src="/images/courses/photoshop.jpg">
-                                <span class="icon-play-video"><i class="fa fa-play"></i></span>
-                                <span class="course-title">كورس تعلم البرمجة</span>
-                                <span class="course-duration">60:00 AM</span>
-                            </div>
-                        </div>
-                        <div class="col ">
-                            <div class="general-courses-content">
-                                <img class="" src="/images/courses/photoshop.jpg">
-                                <span class="icon-play-video"><i class="fa fa-play"></i></span>
-                                <span class="course-title">كورس تعلم البرمجة</span>
-                                <span class="course-duration">60:00 AM</span>
-                            </div>
-                        </div>
-                        <div class="col ">
-                            <div class="general-courses-content">
-                                <img class="" src="/images/courses/photoshop.jpg">
-                                <span class="icon-play-video"><i class="fa fa-play"></i></span>
-                                <span class="course-title">كورس تعلم البرمجة</span>
-                                <span class="course-duration">60:00 AM</span>
-                            </div>
-                        </div>
-                        <div class="col ">
-                            <div class="general-courses-content">
-                                <img class="" src="/images/courses/photoshop.jpg">
-                                <span class="icon-play-video"><i class="fa fa-play"></i></span>
-                                <span class="course-title">كورس تعلم البرمجة</span>
-                                <span class="course-duration">60:00 AM</span>
-                            </div>
-                        </div>
+                        <?php }}?>
+
                     </div>
                 </div>
                 <div class="top-courses">
                     <ul class="tabs-list">
                         <li class="active" data-content=".latest-courses">اخر الكورسات</li>
-                        <li data-content=".most-popular-course">الاكثر شهرة</li>
+<!--                        <li data-content=".most-popular-course">الاكثر شهرة</li>-->
                         <li data-content=".most-viewed-courses">الاكثر مشاهدة</li>
                     </ul>
 
@@ -116,7 +164,7 @@
                     <i class="fa fa-chevron-left"></i>
                     <div class="courses-list">
                         <div class="latest-courses">
-                            <div class="row row-cols-xl-4 row-cols-md-3 row-cols-xm-2">
+                            <div class="row row-cols-xl-4 row-cols-md-3 row-cols-sm-2">
                                 <?php
                                 foreach ($this->view_data['courses'] as $k => $course) { ?>
                                     <!-- Start Grid Column -->
@@ -129,14 +177,17 @@
                                                 </a>
                                             </div>
 
-                                            <?php if (isset($_SESSION['user'])) { ?>
-                                                <a <?php if (in_array($course['course_id'], $this->view_data['userWishList']))
-                                                    echo 'class="fa fa-heart addToWishList"  data-status="1"';
-                                                else
-                                                    echo 'class="fa fa-heart-o addToWishList"  data-status="0"'; ?>
-                                                        data-id="<?php echo $course['course_id'] ?>">
-                                                </a>
-                                            <?php } ?>
+                                            <div class="icon-wishlist">
+                                                <?php if (isset($_SESSION['user'])) { ?>
+                                                    <a <?php if (in_array($course['course_id'], $this->view_data['userWishList']))
+                                                        echo 'class="fa fa-heart addToWishList"  data-status="1"';
+                                                    else
+                                                        echo 'class="fa fa-heart-o addToWishList"  data-status="0"'; ?>
+                                                            data-id="<?php echo $course['course_id'] ?>">
+                                                    </a>
+                                                <?php } ?>
+                                            </div>
+
 
 
                                             <div class="card-body">
@@ -153,37 +204,39 @@
                                                 <div class="course-details">
                                                 <span class="course-lectures">
                                                <i class="fa fa-play-circle-o"></i>
-                                                محاضرة
+                                                       <?php echo $course['course_count'];  ?>
+                                                    فيديو
                                                 </span>
                                                     <span class="course-time">
                                                 <i class="fa fa-clock-o"></i>
-                                                    12 ساعة
+
+                                                  <?php echo $course['duration'];  ?>
                                                 </span>
                                                 </div>
 
                                                 <div class="cart-rating">
                                                     <ul class="stars-rating">
-                                                        <li><i class="fa fa-star rating-done"></i></li>
-                                                        <li><i class="fa fa-star rating-done"></i></li>
-                                                        <li><i class="fa fa-star rating-done"></i></li>
-                                                        <li><i class="fa fa-star rating-done"></i></li>
-                                                        <li><i class="fa fa-star "></i></li>
+                                                        <?php Helper::getNumberStars($course['averageRating']);  ?>
                                                     </ul>
-                                                    <span class="average-rating ">4.5</span>
-                                                    <span class="total-rating">(  50354 تقييم )</span>
+                                                    <span class="average-rating "><?php echo $course['averageRating'];  ?></span>
+                                                    <span class="total-rating">(من اصل <?php echo $course['AllRatings'];  ?> تقييم )</span>
 
                                                 </div>
                                             </div>
                                             <div class="course-footer">
+                                                   <span class="show-course">
+                                                  السعر :
+                                                </span>
                                             <span class="course-price">
-                                         $ <?php echo $course['course_price'] ?>
-                                            </span>
-                                                <span class="show-course">
-                                                    <a href="/home/course_detail/<?php echo $course['course_id'] ?>">
-                                                     <i class="fa fa-eye"></i>
-                                                     </a>
 
+
+                                          <?php  if($course['course_price']>0){
+                                           echo '$' . $course['course_price'];
+                                             }else
+                                                 echo  "مجاني";
+                                                 ?>
                                             </span>
+
                                             </div>
                                         </div>
 
@@ -197,386 +250,171 @@
                         </div>
                         <div class="most-popular-course">
                             <div class="row row-cols-xl-4 row-cols-md-3 row-cols-xm-2">
-                                <!-- Start Grid Column -->
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="course-img">
-                                            <img class="card-img-top" src="/images/courses/photoshop.jpg">
-                                        </div>
-                                        <div class="card-body">
-                                            <h4 class="course-title">كورس تعلم الفوتوشوب من الصفر حتى الاحتراف</h4>
+                                <?php
+                                foreach ($this->view_data['courses'] as $k => $course) { ?>
+                                    <!-- Start Grid Column -->
+                                    <div class="col">
+                                        <div class="card" id="course_<?php echo $course['course_id'] ?>">
+                                            <div class="course-img">
+                                                <a href="/courses/course_review/<?php echo $course['course_id'] ?>">
+                                                    <img class="card-img-top"
+                                                         src="<?php echo $course['courses_image']; ?>">
+                                                </a>
+                                            </div>
 
-                                            <h6 class="course-category">التصنيف :<span>تصميم </span></h6>
-                                            <div class="course-details">
+                                            <div class="icon-wishlist">
+                                                <?php if (isset($_SESSION['user'])) { ?>
+                                                    <a <?php if (in_array($course['course_id'], $this->view_data['userWishList']))
+                                                        echo 'class="fa fa-heart addToWishList"  data-status="1"';
+                                                    else
+                                                        echo 'class="fa fa-heart-o addToWishList"  data-status="0"'; ?>
+                                                            data-id="<?php echo $course['course_id'] ?>">
+                                                    </a>
+                                                <?php } ?>
+                                            </div>
+
+
+
+                                            <div class="card-body">
+                                                <a href="/courses/course_review/<?php echo $course['course_id'] ?>">
+                                                    <h4 class="course-title">
+                                                        <?php echo $course['course_title'] ?>
+                                                    </h4>
+                                                </a>
+
+
+                                                <h6 class="course-category">التصنيف :
+                                                    <span> <?php echo Helper::Names($course['categories_ids'], 'Category') ?> </span>
+                                                </h6>
+                                                <div class="course-details">
                                                 <span class="course-lectures">
                                                <i class="fa fa-play-circle-o"></i>
-                                                    15 محاضرة
+                                                       <?php echo $course['course_count'];  ?>
+                                                    فيديو
                                                 </span>
-                                                <span class="course-time">
+                                                    <span class="course-time">
                                                 <i class="fa fa-clock-o"></i>
-                                                    12 ساعة
+
+                                                  <?php echo $course['duration'];  ?>
                                                 </span>
-                                            </div>
+                                                </div>
 
-                                            <div class="cart-rating">
-                                                <ul class="stars-rating">
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star "></i></li>
-                                                </ul>
-                                                <span class="average-rating ">4.5</span>
-                                                <span class="total-rating">(  50354 تقييم )</span>
+                                                <div class="cart-rating">
+                                                    <ul class="stars-rating">
+                                                        <?php Helper::getNumberStars($course['averageRating']);  ?>
+                                                    </ul>
+                                                    <span class="average-rating "><?php echo $course['averageRating'];  ?></span>
+                                                    <span class="total-rating">(من اصل <?php echo $course['AllRatings'];  ?> تقييم )</span>
+
+                                                </div>
+                                            </div>
+                                            <div class="course-footer">
+                                                   <span class="show-course">
+                                                  السعر :
+                                                </span>
+                                                <span class="course-price">
+
+
+                                          <?php  if($course['course_price']>0){
+                                              echo '$' . $course['course_price'];
+                                          }else
+                                              echo  "مجاني";
+                                          ?>
+                                            </span>
 
                                             </div>
                                         </div>
-                                        <div class="course-footer">
-                                            <span class="course-price">
-                                              مجاني
-                                            </span>
-                                            <span class="show-course">
-                                                <i class="fa fa-eye"></i>
-                                            </span>
-                                        </div>
+
                                     </div>
+                                    <!-- End Grid Column -->
 
-                                </div>
-                                <!-- End Grid Column -->
+                                <?php } ?>
 
-                                <!-- Start Grid Column -->
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="course-img">
-                                            <img class="card-img-top" src="/images/courses/photoshop.jpg">
-                                        </div>
-                                        <div class="card-body">
-                                            <h4 class="course-title">كورس تعلم الفوتوشوب من الصفر حتى الاحتراف</h4>
 
-                                            <h6 class="course-category">التصنيف :<span>تصميم </span></h6>
-                                            <div class="course-details">
-                                                <span class="course-lectures">
-                                               <i class="fa fa-play-circle-o"></i>
-                                                    15 محاضرة
-                                                </span>
-                                                <span class="course-time">
-                                                <i class="fa fa-clock-o"></i>
-                                                    12 ساعة
-                                                </span>
-                                            </div>
-
-                                            <div class="cart-rating">
-                                                <ul class="stars-rating">
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star "></i></li>
-                                                </ul>
-                                                <span class="average-rating ">4.5</span>
-                                                <span class="total-rating">(  50354 تقييم )</span>
-
-                                            </div>
-                                        </div>
-                                        <div class="course-footer">
-                                            <span class="course-price">
-                                              مجاني
-                                            </span>
-                                            <span class="show-course">
-                                                <i class="fa fa-eye"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- End Grid Column -->
-
-                                <!-- Start Grid Column -->
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="course-img">
-                                            <img class="card-img-top" src="/images/courses/photoshop.jpg">
-                                        </div>
-                                        <div class="card-body">
-                                            <h4 class="course-title">كورس تعلم الفوتوشوب من الصفر حتى الاحتراف</h4>
-
-                                            <h6 class="course-category">التصنيف :<span>تصميم </span></h6>
-                                            <div class="course-details">
-                                                <span class="course-lectures">
-                                               <i class="fa fa-play-circle-o"></i>
-                                                    15 محاضرة
-                                                </span>
-                                                <span class="course-time">
-                                                <i class="fa fa-clock-o"></i>
-                                                    12 ساعة
-                                                </span>
-                                            </div>
-
-                                            <div class="cart-rating">
-                                                <ul class="stars-rating">
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star "></i></li>
-                                                </ul>
-                                                <span class="average-rating ">4.5</span>
-                                                <span class="total-rating">(  50354 تقييم )</span>
-
-                                            </div>
-                                        </div>
-                                        <div class="course-footer">
-                                            <span class="course-price">
-                                              مجاني
-                                            </span>
-                                            <span class="show-course">
-                                                <i class="fa fa-eye"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- End Grid Column -->
-
-                                <!-- Start Grid Column -->
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="course-img">
-                                            <img class="card-img-top" src="/images/courses/photoshop.jpg">
-                                        </div>
-                                        <div class="card-body">
-                                            <h4 class="course-title">كورس تعلم الفوتوشوب من الصفر حتى الاحتراف</h4>
-
-                                            <h6 class="course-category">التصنيف :<span>تصميم </span></h6>
-                                            <div class="course-details">
-                                                <span class="course-lectures">
-                                               <i class="fa fa-play-circle-o"></i>
-                                                    15 محاضرة
-                                                </span>
-                                                <span class="course-time">
-                                                <i class="fa fa-clock-o"></i>
-                                                    12 ساعة
-                                                </span>
-                                            </div>
-
-                                            <div class="cart-rating">
-                                                <ul class="stars-rating">
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star "></i></li>
-                                                </ul>
-                                                <span class="average-rating ">4.5</span>
-                                                <span class="total-rating">(  50354 تقييم )</span>
-
-                                            </div>
-                                        </div>
-                                        <div class="course-footer">
-                                            <span class="course-price">
-                                              مجاني
-                                            </span>
-                                            <span class="show-course">
-                                                <i class="fa fa-eye"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- End Grid Column -->
                             </div>
                         </div>
                         <div class="most-viewed-courses">
-                            <div class="row row-cols-xl-4 row-cols-md-3 row-cols-xm-2">
+                            <div class="row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 flex-row-reverse">
+                                <?php
+                                foreach ($this->view_data['courses'] as $k => $course) { ?>
+                                    <!-- Start Grid Column -->
+                                    <div class="col">
+                                        <div class="card" id="course_<?php echo $course['course_id'] ?>">
+                                            <div class="course-img">
+                                                <a href="/courses/course_review/<?php echo $course['course_id'] ?>">
+                                                    <img class="card-img-top"
+                                                         src="<?php echo $course['courses_image']; ?>">
+                                                </a>
+                                            </div>
+
+                                            <div class="icon-wishlist">
+                                                <?php if (isset($_SESSION['user'])) { ?>
+                                                    <a <?php if (in_array($course['course_id'], $this->view_data['userWishList']))
+                                                        echo 'class="fa fa-heart addToWishList"  data-status="1"';
+                                                    else
+                                                        echo 'class="fa fa-heart-o addToWishList"  data-status="0"'; ?>
+                                                            data-id="<?php echo $course['course_id'] ?>">
+                                                    </a>
+                                                <?php } ?>
+                                            </div>
 
 
-                                <!-- Start Grid Column -->
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="course-img">
-                                            <img class="card-img-top" src="/images/courses/1.png">
-                                        </div>
-                                        <div class="card-body">
-                                            <h4 class="course-title">كورس تعلم الفوتوشوب من الصفر حتى الاحتراف</h4
-                                            <h6 class="course-category">التصنيف :<span>تصميم </span></h6>
-                                            <div class="course-details">
+
+                                            <div class="card-body">
+                                                <a href="/courses/course_review/<?php echo $course['course_id'] ?>">
+                                                    <h4 class="course-title">
+                                                        <?php echo $course['course_title'] ?>
+                                                    </h4>
+                                                </a>
+
+
+                                                <h6 class="course-category">التصنيف :
+                                                    <span> <?php echo Helper::Names($course['categories_ids'], 'Category') ?> </span>
+                                                </h6>
+                                                <div class="course-details">
                                                 <span class="course-lectures">
                                                <i class="fa fa-play-circle-o"></i>
-                                                    15 محاضرة
+                                                       <?php echo $course['course_count'];  ?>
+                                                    فيديو
                                                 </span>
-                                                <span class="course-time">
+                                                    <span class="course-time">
                                                 <i class="fa fa-clock-o"></i>
-                                                    12 ساعة
+
+                                                  <?php echo $course['duration'];  ?>
                                                 </span>
-                                            </div>
+                                                </div>
 
-                                            <div class="cart-rating">
-                                                <ul class="stars-rating">
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star "></i></li>
-                                                </ul>
-                                                <span class="average-rating ">4.5</span>
-                                                <span class="total-rating">(  50354 تقييم )</span>
+                                                <div class="cart-rating">
+                                                    <ul class="stars-rating">
+                                                        <?php Helper::getNumberStars($course['averageRating']);  ?>
+                                                    </ul>
+                                                    <span class="average-rating "><?php echo $course['averageRating'];  ?></span>
+                                                    <span class="total-rating">(من اصل <?php echo $course['AllRatings'];  ?> تقييم )</span>
+
+                                                </div>
+                                            </div>
+                                            <div class="course-footer">
+                                                   <span class="show-course">
+                                                  السعر :
+                                                </span>
+                                                <span class="course-price">
+
+
+                                          <?php  if($course['course_price']>0){
+                                              echo '$' . $course['course_price'];
+                                          }else
+                                              echo  "مجاني";
+                                          ?>
+                                            </span>
 
                                             </div>
                                         </div>
-                                        <div class="course-footer">
-                                            <span class="course-price">
-                                              مجاني
-                                            </span>
-                                            <span class="show-course">
-                                                <i class="fa fa-eye"></i>
-                                            </span>
-                                        </div>
+
                                     </div>
+                                    <!-- End Grid Column -->
 
-                                </div>
-                                <!-- End Grid Column -->
+                                <?php } ?>
 
-                                <!-- Start Grid Column -->
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="course-img">
-                                            <img class="card-img-top" src="/images/courses/photoshop.jpg">
-                                        </div>
-                                        <div class="card-body">
-                                            <h4 class="course-title">كورس تعلم الفوتوشوب من الصفر حتى الاحتراف</h4>
-
-                                            <h6 class="course-category">التصنيف :<span>تصميم </span></h6>
-                                            <div class="course-details">
-                                                <span class="course-lectures">
-                                               <i class="fa fa-play-circle-o"></i>
-                                                    15 محاضرة
-                                                </span>
-                                                <span class="course-time">
-                                                <i class="fa fa-clock-o"></i>
-                                                    12 ساعة
-                                                </span>
-                                            </div>
-
-                                            <div class="cart-rating">
-                                                <ul class="stars-rating">
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star "></i></li>
-                                                </ul>
-                                                <span class="average-rating ">4.5</span>
-                                                <span class="total-rating">(  50354 تقييم )</span>
-
-                                            </div>
-                                        </div>
-                                        <div class="course-footer">
-                                            <span class="course-price">
-                                              مجاني
-                                            </span>
-                                            <span class="show-course">
-                                                <i class="fa fa-eye"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- End Grid Column -->
-
-                                <!-- Start Grid Column -->
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="course-img">
-                                            <img class="card-img-top" src="/images/courses/photoshop.jpg">
-                                        </div>
-
-                                        <div class="card-body">
-                                            <h4 class="course-title">كورس تعلم الفوتوشوب من الصفر حتى الاحتراف</h4>
-
-                                            <h6 class="course-category">التصنيف :<span>تصميم </span></h6>
-                                            <div class="course-details">
-                                                <span class="course-lectures">
-                                               <i class="fa fa-play-circle-o"></i>
-                                                    15 محاضرة
-                                                </span>
-                                                <span class="course-time">
-                                                <i class="fa fa-clock-o"></i>
-                                                    12 ساعة
-                                                </span>
-                                            </div>
-
-                                            <div class="cart-rating">
-                                                <ul class="stars-rating">
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star "></i></li>
-                                                </ul>
-                                                <span class="average-rating ">4.5</span>
-                                                <span class="total-rating">(  50354 تقييم )</span>
-
-                                            </div>
-                                        </div>
-                                        <div class="course-footer">
-                                            <span class="course-price">
-                                              مجاني
-                                            </span>
-                                            <span class="show-course">
-                                                <i class="fa fa-eye"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- End Grid Column -->
-
-                                <!-- Start Grid Column -->
-                                <div class="col">
-                                    <div class="card">
-                                        <div class="course-img">
-                                            <img class="card-img-top" src="/images/courses/photoshop.jpg">
-                                        </div>
-                                        <div class="card-body">
-                                            <h4 class="course-title">كورس تعلم الفوتوشوب من الصفر حتى الاحتراف</h4>
-
-                                            <h6 class="course-category">التصنيف :<span>تصميم </span></h6>
-                                            <div class="course-details">
-                                                <span class="course-lectures">
-                                               <i class="fa fa-play-circle-o"></i>
-                                                    15 محاضرة
-                                                </span>
-                                                <span class="course-time">
-                                                <i class="fa fa-clock-o"></i>
-                                                    12 ساعة
-                                                </span>
-                                            </div>
-
-                                            <div class="cart-rating">
-                                                <ul class="stars-rating">
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star rating-done"></i></li>
-                                                    <li><i class="fa fa-star "></i></li>
-                                                </ul>
-                                                <span class="average-rating ">4.5</span>
-                                                <span class="total-rating">(  50354 تقييم )</span>
-
-                                            </div>
-                                        </div>
-                                        <div class="course-footer">
-                                            <span class="course-price">
-                                              مجاني
-                                            </span>
-                                            <span class="show-course">
-                                                <i class="fa fa-eye"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <!-- End Grid Column -->
                             </div>
 
                         </div>
@@ -600,44 +438,6 @@
     AddToWish('/courses');
 
 
-    $(document).ready(function(){
-        $('.general-courses .row').slick({
-            dots: true,
-            infinite: false,
-            speed: 300,
-            slidesToShow: 5,
-            slidesToScroll: 5,
-            responsive: [
-                {
-                    breakpoint: 1024,
-                    settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 3,
-                        infinite: true,
-                        dots: true
-                    }
-                },
-                {
-                    breakpoint: 600,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-                // You can unslick at a given breakpoint now by adding:
-                // settings: "unslick"
-                // instead of a settings object
-            ]
-        });
-
-    });
 
 
 </script>
