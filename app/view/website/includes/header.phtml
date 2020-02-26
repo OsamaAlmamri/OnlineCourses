@@ -17,6 +17,7 @@
 
 
     <link rel="stylesheet" href="/design/site/css/styleprofile.css">
+    <link rel="stylesheet" href="/design/site/css/style.css">
     <link rel="stylesheet" href="/design/site/css/custom.css">
 
 
@@ -74,7 +75,7 @@
                             <li><i class="fa fa-heart"></i><span
                                         id="n_whishList_items"><?php echo Helper::wishListCount() ?></span></li>
                             <li class="shopping-cart">
-                                <i class="fa fa-shopping-cart"></i>
+                                <a href="/home/cart1"> <i class="fa fa-shopping-cart"></a></i>
                                 <span id="n_cart_items"><?php echo isset($_COOKIE['cartElements']) ? count($_COOKIE['cartElements']) : 0 ?></span>
                             </li>
                             <li><i class="fa fa-bell"></i><span>2</span></li>
