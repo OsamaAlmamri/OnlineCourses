@@ -306,7 +306,7 @@ $(function () {
     });
 
     $('.hamburger').click(function () {
-    	$('.content').toggleClass('collapse-content');
+        $('.content').toggleClass('collapse-content');
     });
 
 
@@ -327,12 +327,11 @@ $(function () {
         // alert("Value: " + $(this).val());
         var sourse = $(".view-video video source");
         // var video = $(".view-video video")[0].load();
-		sourse.attr("src", $(this).attr("data-video"));
-		$("#video_countainer video")[0].load();
-		$("#video_countainer video")[0].play();
-
-        // $(".course-details span.video-name").val("$(this).val()");
-
+        sourse.attr("src", $(this).attr("data-video"));
+        $("#video_countainer video")[0].load();
+        $("#video_countainer video")[0].play();
+        $("#view_video_name").text($(this).text());
+        
     })
 
 

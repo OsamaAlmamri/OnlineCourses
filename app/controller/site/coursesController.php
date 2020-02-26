@@ -269,7 +269,7 @@ class coursesController extends \Controller
             $user_id = $_SESSION['user']['user_id'];
         else
         return false;
-        
+
         $userWishList = $userCourse->wishListUser($user_id);
         $userWishList = explode(',', $userWishList[0]['couces_buy']);
         if (($key = array_search($id, $userWishList)) !== false)
