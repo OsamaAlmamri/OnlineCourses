@@ -178,6 +178,8 @@ class Helper
             'role' => 'الادوار',
             'teacher' => 'المدرسين',
             'university' => 'الجامعات',
+            'create'=>'صلاحيات حذف الكورس',
+            'cat'=>'صلاحيات الاقسام'
         );
         return $names[$name];
     }

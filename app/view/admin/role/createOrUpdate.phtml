@@ -39,7 +39,9 @@
                     <?php if (array_key_exists('role', $this->view_data)) echo($this->view_data['role'][0]['role_description']); else   echo ''; ?>
                     </textarea>
                 <div class="accordion" id="accordionExample">
-                    <input type="checkbox" id="select_all"/> اختيار الكل
+
+                    <label> <input type="checkbox" id="select_all"/> اختيار الكل
+                    </label>
                     <?php if (array_key_exists('permissions', $this->view_data)) {
 
 
@@ -51,8 +53,12 @@
                             <h2 class="mb-0">
                                 <a  data-toggle="collapse" data-target="#<?php echo $k ?>" aria-expanded="true" aria-controls="collapseOne">
                                     <label class="col-md-3 col-sm-3 col-xs-12 control-label"
-                                    <label>
-                                        صلاحيــــــــــــات   <?php echo Helper::readPermissionName($k ) ?>
+
+                                    <label><input type="checkbox" class="selectGroup"
+                                                  data-id="<?php echo $k ?>"
+                                                  onclick="selectSub($(this),'<?php echo $k ?>')"
+                                                  data-selected="0"/> اختيار كافة الصلاحيات الخاصة بـــ <?php echo Helper::readPermissionName($k ) ?></label>
+                                    <br>
                                     </label>
                                 </a>
                             </h2>
@@ -63,10 +69,7 @@
 
 
                                         <label class="col-md-3 col-sm-3 col-xs-12 control-label"
-                                        <label><input type="checkbox" class="selectGroup"
-                                                      data-id="<?php echo $k ?>"
-                                                      onclick="selectSub($(this),'<?php echo $k ?>')"
-                                                      data-selected="0"/> اختيار كافة الصلاحيات الخاصة بـــ <?php echo Helper::readPermissionName($k ) ?></label>
+
                                         <br>
                                         </label>
 
@@ -111,7 +114,7 @@
 
 
             <div class="col-md-12">
-                <br>
+
                 <button type="submit" class="btn btn-success btn-block" name="submit">
                     <?php if (array_key_exists('role', $this->view_data)) echo 'تعديل'; else   echo 'اضافة'; ?>
                 </button>
@@ -121,7 +124,7 @@
 </div>
 
     </form>
-
+<br>
 
 <?php include VIEW . 'admin' . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'footer.phtml' ?>
 <script src="/design/dashboard/lib/jquery.tagsinput/src/jquery.tagsinput.js"></script>

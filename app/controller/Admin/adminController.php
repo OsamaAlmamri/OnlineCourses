@@ -37,6 +37,7 @@ class adminController extends Controller
             $auth->login('admin');
         } else {
 //            header("Location: " . $_SERVER["HTTP_REFERER"]);
+            
             Helper::back('/home', '', '');
         }
 
