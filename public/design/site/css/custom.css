@@ -100,7 +100,18 @@ body {
     top: 0;
     color: #fff;
     z-index: 9999;
+    display: flex;
+    
 
+}
+.nav .logo-site {
+    width: 160px;
+    overflow: hidden;
+}
+
+.nav .logo-site img
+{
+width: 100%;
 }
 
 .nav .user-icons {
@@ -413,6 +424,7 @@ body {
 }
 
 .content .sidebar ul {
+    padding-top: 30px;
 
 }
 
