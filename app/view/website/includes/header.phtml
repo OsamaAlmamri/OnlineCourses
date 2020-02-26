@@ -39,7 +39,11 @@
                 <div class="user-icons">
                     <ul class="user-icons-list">
                         <?php if (!isset($_SESSION['user'])) { ?>
-                            <li class="icon-login"><i class="fa fa-user"></i>
+                            <li class="icon-login">
+                                <div class="btn-login">
+                                    <i class="fa fa-user"></i>
+                                    تسجيل الدخول
+                                </div>
                                 <form method="POST" class="my-login-validation login-form" action="/home/postLogin"
                                       id='first_form'>
                                     <div class="login-heading">تسجيل الدخول</div>
@@ -78,7 +82,7 @@
                             <li>
                                 <div class="user-name">
                                     <i class="fa fa-user"></i>
-                                    <span> طاهر السماوي</span>
+                                    <span> <?php echo Session::get('user')['user_full_name']?> </span>
                                     <div class="user-settings">
                                         <ul>
                                             <li><a href="/profile"><i class="fa fa-user"></i> عرض الملف الشخصي</a></li>
@@ -120,7 +124,7 @@
                         </a>
                     </li>
 
-                    <li><a href="/home/wish_list" data-toggle="tooltip" title="المفضلة">
+                    <li><a href="/wishList" data-toggle="tooltip" title="المفضلة">
                             <span class="icon"><i class="fa fa-heart"></i></span>
                             <span class="title">المفضلة</span>
                         </a></li>

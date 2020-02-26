@@ -196,15 +196,20 @@ body {
 }
 
 .nav .user-icons .user-name .user-settings li:hover {
-
     background-color: #dddddd;
     border-radius: 8px;
-
 }
 
 
 .nav .icon-login {
     position: relative;
+}
+.nav .btn-login {
+
+    background-color: rgba(197, 202, 208, 0.5);
+ padding: 7px 19px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .nav .icon-login .login-form {
@@ -1298,8 +1303,9 @@ i.rating-done {
     color: #ffb400;
 }
 /*start profile style*/
+
 #profile{
-    margin-top: 8%;
+
     margin-bottom: 6%;
 }
 #profileCard{
@@ -1309,7 +1315,7 @@ i.rating-done {
 #camera_icon{
     position: absolute;
     top: 136px;
-    margin-right: -18px;
+    margin-right: -8px;
     font-size: 26px;
     color:#816091;
 
@@ -1322,7 +1328,7 @@ i.rating-done {
 
 }
 #btnProfile:hover{
-background-color: #9a62cc;
+    background-color: #9a62cc;
 }
 #profilefprm .form-control  {
 
@@ -1340,18 +1346,24 @@ background-color: #9a62cc;
 
 
 }
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,300);
-*, *:before, *:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-html, body {
-    width: 100%;
-    height: 100%;
-    font-family: 'Roboto', sans-serif;
-    background: #eee;
+#camera_icon{
+    position: absolute;
+    top: 114px;
+
+    margin-right: -8px;
+    font-size: 26px;
+    color:#816091;
+
+
+}
+#image_user{
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+
 }
 
 .intro {
@@ -1429,17 +1441,25 @@ figure {
 }
 .probtn{
     margin-bottom: 5%;
+    font-size: 14px;
+    padding: 8px 10px;
 }
 .btn-warning{
     background: white;
     border-color: black;
 }
+.btn-warning:hover {
+    color: #212529;
+    background-color: #e9ecef !important;
+    border-color: #151617!important;
+}
 .imgedit {
     position: absolute;
-    margin-top: -6%;
-    margin-left: -45%;
+    margin-top: 5%;
+    /* margin-left: 67%; */
     font-size: 215%;
     color: #585757;
+    margin-right: -14%;
 }
 .file-upload{
     display: none;
@@ -1447,13 +1467,19 @@ figure {
 
 
 #img{
-    position: absolute;
-    top: -94px;
-    align-items: center;
-    right: 43%;
-    border: 4px solid #FFFFFF;
+    /*position: absolute;*/
+    /*top: -94px;*/
+    /*align-items: center;*/
+    /*right: 43%;*/
+    /*border: 4px solid #FFFFFF;*/
 }
-
+.form-profile{
+    background: white;
+    width: 90%;
+    /* margin-left: -49%; */
+    /* margin-left: -38%; */
+    margin-right: 5%;
+}
 /*end profile style*/
 
 label{
@@ -1961,16 +1987,33 @@ textarea.input100 {
     padding: 25px;
     border-radius: 23px;
     margin-top: 69px;
+    min-height: 500px;
+
+
 
 }
-.about-us .img-logo {
-background: #9933cc;
-    padding: 150px;
-    width: 100%;
+.about-us div{
     margin: auto;
+}
+.about-us .about-img {
+
+background: #9933cc;
+    width: 100%;
+    overflow: hidden;
+    height: 300px;
+    margin: auto;
+    border-radius: 20px;
+
+}
+
+.about-us .about-img .logo {
+
+    text-align: center;
+    margin-top: 80px;
 
 
 }
+
 
 .about-us .img-logo img{
 }
@@ -1987,6 +2030,7 @@ background: #9933cc;
 
 .about-us .aboutUS-text span:last-child {
    font-size: 1.1em;
+    text-align: justify;
     line-height: 2;
 }
 /*end about us style*/
