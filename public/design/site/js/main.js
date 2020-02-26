@@ -331,7 +331,7 @@ $(function () {
         $("#video_countainer video")[0].load();
         $("#video_countainer video")[0].play();
         $("#view_video_name").text($(this).text());
-        
+
     })
 
 

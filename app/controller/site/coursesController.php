@@ -195,7 +195,6 @@ class coursesController extends \Controller
                 'course' => $course,
                 'lessons' => $chaptersLessons,
                 'userSubScribe' => $userSubscribe,
-
                 'course_count' => $course_count,
                 'userWishList' => $userWishList,
                 'course_duration' => gmdate("H:i:s", $courseDuration),

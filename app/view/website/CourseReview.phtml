@@ -6,6 +6,9 @@
 <!-- Start Content  -->
 
         <div class="row ">
+            <?php $first_lession = isset($this->view_data['lessons'][array_keys($this->view_data['lessons'])[0]]['lessons'][0]) ? $this->view_data['lessons'][array_keys($this->view_data['lessons'])[0]]['lessons'][0] : 0;
+
+            ?>
 
             <?php include VIEW . 'messages.phtml'; ?>
             <!-- Start main-content-->
@@ -13,12 +16,10 @@
                 <div class="video-section">
                     <div class="row row-cols-1">
                         <div class="col">
-
-
                             <div class="view-video">
                                 <video controls>
-                                    <source src="<?php echo Helper::SITE_URL() . $lesson['resources_video'] ?>"
-                                            type="video/webm">
+                                    <source src="<?php echo $first_lession['resources_video'] ?>"
+                                            >
                                 </video>
                             </div>
 
