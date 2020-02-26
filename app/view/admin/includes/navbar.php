@@ -185,7 +185,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/admin/logout"><i class="ion-log-out"></i> تسجيل الخروج</a>
                 <div class="dropdown-divider"></div>
-                <div class="p-10"><a href="javascript:void(0)" class="btn btn-sm btn-rounded btn-success">View Profile</a></div>
+
             </li>
         </ul>
     </li>

@@ -323,14 +323,22 @@ class Helper
 
     public static function getNumberStars($numberStarts)
     {
-        if ($numberStarts >= 0 && $numberStarts <= 1.4) {
-            echo '    <i class="fa fa-star rating-done "></i>
+        if ($numberStarts >= 0 && $numberStarts <= 0.4) {
+            echo '    <i class="fa fa-star  "></i>
                         <i class="fa fa-star "></i>
                         <i class="fa fa-star "></i>
                         <i class="fa fa-star "></i>
                         <i  class="fa fa-star"></i>';
 
-        } elseif ($numberStarts >= 1.5 && $numberStarts <= 2.4) {
+        } elseif ($numberStarts >= 0.5 && $numberStarts <= 1.4) {
+        echo '    <i class="fa fa-star rating-done "></i>
+                        <i class="fa fa-star "></i>
+                        <i class="fa fa-star "></i>
+                        <i class="fa fa-star "></i>
+                        <i  class="fa fa-star"></i>';
+
+    }
+    elseif ($numberStarts >= 1.5 && $numberStarts <= 2.4) {
             echo '    <i class="fa fa-star rating-done"></i>
                                                         <i class="fa fa-star rating-done "></i>
                                                         <i class="fa fa-star  "></i>

@@ -5,7 +5,11 @@
 
     <div class="courses-list">
         <div class="most-viewed-courses">
+            <ul class="tabs-list">
+                <li class="active" data-content=".course-description">قائمة المفضلة </li>
+            </ul>
             <div class="row row-cols-xl-4 row-cols-md-3 row-cols-sm-2 ">
+
                 <?php
                 foreach ($this->view_data['courses'] as $k => $course) { ?>
                     <!-- Start Grid Column -->

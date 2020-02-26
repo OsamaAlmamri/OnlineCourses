@@ -46,39 +46,7 @@
                                             <span class="number-stars">
 
                                         <?php
-                                        if ($numberStarts >= 0 && $numberStarts <= 1.4) {
-                                            echo '    <i class="fa fa-star rating-done "></i>
-                                                        <i class="fa fa-star "></i>
-                                                        <i class="fa fa-star "></i>
-                                                        <i class="fa fa-star "></i>
-                                                        <i  class="fa fa-star"></i>';
-
-                                        } elseif ($numberStarts >= 1.5 && $numberStarts <= 2.4) {
-                                            echo '    <i class="fa fa-star rating-done"></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i class="fa fa-star  "></i>
-                                                        <i class="fa fa-star  "></i>
-                                                        <i  class="fa fa-star "></i>';
-                                        } elseif ($numberStarts >= 2.5 && $numberStarts <= 3.4) {
-                                            echo '    <i class="fa fa-star rating-done"></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i class="fa fa-star "></i>
-                                                        <i  class="fa fa-star"></i>';
-                                        } elseif ($numberStarts >= 3.5 && $numberStarts <= 4.4) {
-                                            echo '    <i class="fa fa-star rating-done"></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i  class="fa fa-star"></i>';
-
-                                        } elseif ($numberStarts >= 4.5 && $numberStarts <= 5) {
-                                            echo '    <i class="fa fa-star rating-done"></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i class="fa fa-star rating-done "></i>
-                                                        <i  class="fa fa-star rating-done"></i>';
-                                        }
+                                        Helper::getNumberStars($numberStarts);
                                         ?>
                                         </span>
 
@@ -155,9 +123,46 @@
                             <div class="course-details">
                                 <ul class="tabs-list">
                                     <li class="active" data-content=".course-description">تفاصيل الكورس</li>
+                                    <li data-content=".rating-comments">التعليقات </li>
                                 </ul>
                                 <div class="course-description">
                                     <?php echo html_entity_decode($course['course_description']) ?>
+                                </div>
+                                <div class="rating-comments"
+                                >
+
+
+                                    <hr class="my-5">
+
+                                    <div class="list_rating">
+                                        <?php
+                                        foreach ($this->view_data['AllRatings'] as $rating) { ?>
+                                            <div class="row">
+                                                <div class="col-2">
+                                                    <div class="user-img">
+                                                        <img src="<?php echo $rating['user_image']; ?> " alt="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-10">
+                                                    <div class="rating-info">
+                                                        <div class="user-info">
+                                                            <span class="user-name"><?php echo $rating['user_full_name']; ?></span>
+                                                            <span class="user-rating"><?php Helper::getNumberStars($rating['rating_number']); ?></span>
+                                                        </div>
+                                                        <div class="rating-date">
+                                                            <?php echo $rating['rating_date']; ?>
+                                                        </div>
+                                                        <div class="comment">
+                                                            <?php echo $rating['comment_text']; ?>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+
+
                                 </div>
 
                             </div>
@@ -180,7 +185,7 @@
                     <div class="course-name">
                         <h6><?php echo $course['course_title'] ?></h6>
                     </div>
-                    <div class="course-price">مجاني</div>
+                    <div class="course-price text-center">مجاني</div>
 
                     <?php if (isset($_SESSION['user'])) { ?>
                         <button class="add-to-cart "
