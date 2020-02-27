@@ -14,7 +14,7 @@ online courses website by pure php with mvc design pattern
   - ------------------------------------
   - superAdmin   osama      123
   - admin   ali  123 
-  -university sanaa    123123
+  - university sanaa    123123
   - teacher  hitam    123
   - student tahar  123  
   
