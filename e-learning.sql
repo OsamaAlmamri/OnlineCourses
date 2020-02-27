@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25 فبراير 2020 الساعة 18:48
--- إصدار الخادم: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Generation Time: 27 فبراير 2020 الساعة 14:25
+-- إصدار الخادم: 10.4.11-MariaDB
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,11 +32,11 @@ CREATE TABLE `categories` (
   `category_id` int(11) NOT NULL,
   `category_name` varchar(255) NOT NULL,
   `category_description` text NOT NULL,
-  `category_parents` text,
+  `category_parents` text DEFAULT NULL,
   `category_status` int(10) NOT NULL,
   `category_visibility` int(10) NOT NULL,
   `category_date` datetime NOT NULL,
-  `category_updates` text
+  `category_updates` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -44,9 +44,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`, `category_description`, `category_parents`, `category_status`, `category_visibility`, `category_date`, `category_updates`) VALUES
-(1, 'IT', 'it', '0', 1, 0, '2020-01-28 00:00:00', '2'),
-(2, 'Helath', 'Helath', '0', 1, 0, '0000-00-00 00:00:00', NULL),
-(3, 'web', '', '1', 0, 1, '0000-00-00 00:00:00', NULL),
+(1, 'IT', 'it', '0', 1, 1, '2020-01-28 00:00:00', '2'),
+(2, 'Helath', 'Helath', '0', 0, 0, '0000-00-00 00:00:00', NULL),
+(3, 'web', '', '1', 0, 0, '0000-00-00 00:00:00', NULL),
 (4, 'Android', '', '1', 0, 0, '0000-00-00 00:00:00', NULL),
 (5, 'DataMining', '', '1', 1, 1, '0000-00-00 00:00:00', NULL),
 (7, 'php', '', 'level3_3', 1, 0, '0000-00-00 00:00:00', NULL),
@@ -58,7 +58,14 @@ INSERT INTO `categories` (`category_id`, `category_name`, `category_description`
 (50, 'js', '                ', 'level3_3', 0, 0, '0000-00-00 00:00:00', NULL),
 (51, 'enginnering', '                ', '0', 0, 0, '0000-00-00 00:00:00', NULL),
 (52, 'electrestic', '                ', '51', 0, 0, '0000-00-00 00:00:00', NULL),
-(54, 'kotlin', 'kotlin', 'level3_4', 0, 0, '0000-00-00 00:00:00', NULL);
+(54, 'kotlin', 'kotlin', 'level3_4', 0, 0, '0000-00-00 00:00:00', NULL),
+(56, 'node Js', '&lt;p&gt;&amp;nbsp;..&lt;/p&gt;', 'level3_3', 0, 0, '0000-00-00 00:00:00', NULL),
+(57, 'wordpress', '&lt;p&gt;&amp;nbsp;k&lt;/p&gt;', 'level3_3', 0, 0, '0000-00-00 00:00:00', NULL),
+(58, 'multiMedia', '&lt;p&gt;&amp;nbsp;.&lt;/p&gt;', '0', 0, 0, '0000-00-00 00:00:00', NULL),
+(59, 'graphics', '&lt;p&gt;.&lt;/p&gt;', '58', 0, 0, '0000-00-00 00:00:00', NULL),
+(60, 'Adobe Xd', '&lt;p&gt;.&lt;/p&gt;', 'level3_59', 0, 0, '0000-00-00 00:00:00', NULL),
+(61, 'photoshop', '&lt;p&gt;.&lt;/p&gt;', 'level3_59', 1, 0, '0000-00-00 00:00:00', NULL),
+(62, 'c#', '&lt;p&gt;.&lt;/p&gt;', 'level3_3', 0, 0, '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -98,9 +105,9 @@ CREATE TABLE `courses` (
   `course_goals` text NOT NULL,
   `categories_ids` text NOT NULL,
   `course_date` int(11) NOT NULL,
-  `course_status` int(10) DEFAULT '1',
-  `course_updates` text,
-  `course_visibility` int(11) DEFAULT '1'
+  `course_status` int(10) DEFAULT 1,
+  `course_updates` text DEFAULT NULL,
+  `course_visibility` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -108,9 +115,15 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`course_id`, `course_owner`, `course_title`, `course_description`, `courses_image`, `course_price`, `course_price_afterDiscount`, `course_requirements`, `course_students_target`, `course_goals`, `categories_ids`, `course_date`, `course_status`, `course_updates`, `course_visibility`) VALUES
-(5, 36, 'كورس تعلم البرمجة من الصفر وحتى الاحتراف', '&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;strong dir=&quot;rtl&quot;&gt;2. محول WebM إلى MP4 على شبكة الانترنت&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;هناك بعض المواقع الإلكترونية التي يمكنك زيارتها حيث تحصل على محول على شبكة الانترنت يسمح لك بتحويل WebM إلى MP4. يمكنك كذلك الاستفادة من العديد من الخيارات عندما يتعلق الأمر باستخدام محول WebM إلى MP4 من على شبكة الانترنت:&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.zamzar.com/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;Zamzar&lt;/a&gt;&amp;nbsp;هو محول مجاني على شبكة الانترنت يسمح لك بتحويل الملفات إلى تنسيق mp4 عبر الانترنت مجانا. كل ما عليك فعله هو الحصول على اتصال جيد بشبكة الانترنت لتحويل الملفات بنجاح. يمكن استخدام Zamzar لتحويل ملفات WebM إلى مختلف التنسيقات مثل 3gp, 3g2, aac, ac3, avi, flv, flac, gif, mp3, mp4, mpg, ogg, wav و wmv. لاستخدامه، عليك زيارة الموقع الرسمي Zamzar والاتصال بالانترنت لبدء تحويل الملفات. واحد من أفضل الأمور التي عليك معرفتها حول هذا المحول هو أنه يمكنه تحويل الملفات بسرعة كبيرة للغاية. هو برنامج مجاني وسهل الاستخدام. المشكلة الوحيدة هو أنه لا يمكنك استخدامه قط إن لم تكن متصلا بالانترنت.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.apowersoft.com/free-online-video-converter&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;أبوويرسوفت&lt;/a&gt;&amp;nbsp;هو خيار آخر رائع لتحويل الملفات عبر شبكة الانترنت. هو محول قوي من تنسيق webm إلى MP4 يمكن استخدامه لتحويل الملفات عبر الانترنت مجانا. هذه الأداة عبر الانترنت لن تحتاج إلى تنزيل برنامج لها لاستخدامها. يوفر لك تحويل سريع للملفات بسرعة كبيرة للغاية. يدعم نطاق واسع من تنسيقات الفيديو والصوت مثل VCD, DVD, PSP, آي باد وآي فون. الخصائص الأخرى التي يقدمها هي التحويل السريع والجودة العالية التي تتراوح بين 144p حتى 1080p وتنسيقات المخرج الكثيرة وكذلك الإعدادات وسهولة الاستخدام. مثل تطبيق Zamzar، العيب الوحيد بهذا المحول هو أنه عليك الاتصال بالانترنت لاستخدامه.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;strong dir=&quot;rtl&quot;&gt;3. محول WebM إلى MP4 المجاني&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;ماذا عن تحويل الملفات دون الاتصال بالانترنت؟ هذا ممكن بالتأكيد! يمكنك القيام بذلك عبر تحميل محول يمكنه تحويل الملفات دون الاتصال بالإنترنت. الانترنت يوفر لك العديد من الخيارات للاختيار من بينها بما فيها:&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.apowersoft.com/video-converter-studio.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;محول فيديو ستوديو&lt;/a&gt;&amp;nbsp;هو محول عالي الكفاءة الذي صمم خصيصا لتحويل كافة تنسيقات الفيديو والصوت. يقدم لك المحول خصائص متقدمة وكذلك مميزات مثل تحرير الفيديو التي تشمل قص مقاطع الفيديو وضبط تأثيرات الفيديو وقص حجم الفيديو واستيراد الترجمة الخارجية ودمج عدة مقاطع من الفيديو وكذلك تحويل الفيديو إلى تنسيقات متوافقة مع الأجهزة المحمولة مثل أندرويد. من السهل استخدامه كما ترغب ولا تحتاج إلى الاتصال بالانترنت حتى تبدأ تحويل الملفات. المشكلة التي ربما تواجهك هي سرعة التحويل حيث يستغرق وقتا أطول بالمقارنة مع التطبيقات عبر الانترنت.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;يمكنك كذلك استخدام&amp;nbsp;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.any-video-converter.com/products/for_video_free/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;إني فيديو كوفيرتر&lt;/a&gt;&amp;nbsp;لتحويل الملفات إلى mp4 اليوم. تماما مثلما ذكرنا، هذا المحول يوفر لك سهولة الاستخدام ودعم نطاق واسع من تنسيقات الملفات عند التحويل. يمكنك استخدام محول الفيديو أني لتحويل ملفات webm إلى كافة التنسيقات المتوافرة تقريبا. المشكلة الوحيد هو أنه يستغرق أكثر من ساعة لتحويل الملف. تحويل الملفات سوف يتسبب بالتأكيد في استغراق مزيدا من الوقت.&lt;/p&gt;', '/images/site/1.jpg', 0, 20, '', '&lt;p&gt;[l[l&lt;/p&gt;', '&lt;p&gt;[l[l&lt;/p&gt;', '[\"8\"]', 0, 1, NULL, 1),
+(5, 36, 'github', '&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;strong dir=&quot;rtl&quot;&gt;2. محول WebM إلى MP4 على شبكة الانترنت&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;هناك بعض المواقع الإلكترونية التي يمكنك زيارتها حيث تحصل على محول على شبكة الانترنت يسمح لك بتحويل WebM إلى MP4. يمكنك كذلك الاستفادة من العديد من الخيارات عندما يتعلق الأمر باستخدام محول WebM إلى MP4 من على شبكة الانترنت:&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.zamzar.com/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;Zamzar&lt;/a&gt;&amp;nbsp;هو محول مجاني على شبكة الانترنت يسمح لك بتحويل الملفات إلى تنسيق mp4 عبر الانترنت مجانا. كل ما عليك فعله هو الحصول على اتصال جيد بشبكة الانترنت لتحويل الملفات بنجاح. يمكن استخدام Zamzar لتحويل ملفات WebM إلى مختلف التنسيقات مثل 3gp, 3g2, aac, ac3, avi, flv, flac, gif, mp3, mp4, mpg, ogg, wav و wmv. لاستخدامه، عليك زيارة الموقع الرسمي Zamzar والاتصال بالانترنت لبدء تحويل الملفات. واحد من أفضل الأمور التي عليك معرفتها حول هذا المحول هو أنه يمكنه تحويل الملفات بسرعة كبيرة للغاية. هو برنامج مجاني وسهل الاستخدام. المشكلة الوحيدة هو أنه لا يمكنك استخدامه قط إن لم تكن متصلا بالانترنت.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.apowersoft.com/free-online-video-converter&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;أبوويرسوفت&lt;/a&gt;&amp;nbsp;هو خيار آخر رائع لتحويل الملفات عبر شبكة الانترنت. هو محول قوي من تنسيق webm إلى MP4 يمكن استخدامه لتحويل الملفات عبر الانترنت مجانا. هذه الأداة عبر الانترنت لن تحتاج إلى تنزيل برنامج لها لاستخدامها. يوفر لك تحويل سريع للملفات بسرعة كبيرة للغاية. يدعم نطاق واسع من تنسيقات الفيديو والصوت مثل VCD, DVD, PSP, آي باد وآي فون. الخصائص الأخرى التي يقدمها هي التحويل السريع والجودة العالية التي تتراوح بين 144p حتى 1080p وتنسيقات المخرج الكثيرة وكذلك الإعدادات وسهولة الاستخدام. مثل تطبيق Zamzar، العيب الوحيد بهذا المحول هو أنه عليك الاتصال بالانترنت لاستخدامه.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;strong dir=&quot;rtl&quot;&gt;3. محول WebM إلى MP4 المجاني&lt;/strong&gt;&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;ماذا عن تحويل الملفات دون الاتصال بالانترنت؟ هذا ممكن بالتأكيد! يمكنك القيام بذلك عبر تحميل محول يمكنه تحويل الملفات دون الاتصال بالإنترنت. الانترنت يوفر لك العديد من الخيارات للاختيار من بينها بما فيها:&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.apowersoft.com/video-converter-studio.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;محول فيديو ستوديو&lt;/a&gt;&amp;nbsp;هو محول عالي الكفاءة الذي صمم خصيصا لتحويل كافة تنسيقات الفيديو والصوت. يقدم لك المحول خصائص متقدمة وكذلك مميزات مثل تحرير الفيديو التي تشمل قص مقاطع الفيديو وضبط تأثيرات الفيديو وقص حجم الفيديو واستيراد الترجمة الخارجية ودمج عدة مقاطع من الفيديو وكذلك تحويل الفيديو إلى تنسيقات متوافقة مع الأجهزة المحمولة مثل أندرويد. من السهل استخدامه كما ترغب ولا تحتاج إلى الاتصال بالانترنت حتى تبدأ تحويل الملفات. المشكلة التي ربما تواجهك هي سرعة التحويل حيث يستغرق وقتا أطول بالمقارنة مع التطبيقات عبر الانترنت.&lt;/p&gt;\r\n&lt;p dir=&quot;rtl&quot; style=&quot;margin: 0px; padding: 0px; text-size-adjust: none; font-size: 16px; line-height: 1.6em; color: #413e3f; font-family: ProximaNova-Regular, sans-serif, Arial, Helvetica;&quot;&gt;يمكنك كذلك استخدام&amp;nbsp;&lt;a style=&quot;outline: none; text-decoration-line: none; color: #67419e; transition: all 0.3s ease 0s;&quot; href=&quot;http://www.any-video-converter.com/products/for_video_free/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener&quot;&gt;إني فيديو كوفيرتر&lt;/a&gt;&amp;nbsp;لتحويل الملفات إلى mp4 اليوم. تماما مثلما ذكرنا، هذا المحول يوفر لك سهولة الاستخدام ودعم نطاق واسع من تنسيقات الملفات عند التحويل. يمكنك استخدام محول الفيديو أني لتحويل ملفات webm إلى كافة التنسيقات المتوافرة تقريبا. المشكلة الوحيد هو أنه يستغرق أكثر من ساعة لتحويل الملف. تحويل الملفات سوف يتسبب بالتأكيد في استغراق مزيدا من الوقت.&lt;/p&gt;', '/images/site/1.jpg', 55, 20, '', '&lt;p&gt;[l[l&lt;/p&gt;', '&lt;p&gt;[l[l&lt;/p&gt;', '[\"8\"]', 0, 1, NULL, 1),
 (7, 43, 'اندرويد', '&lt;h1 id=&quot;firstHeading&quot; class=&quot;firstHeading&quot; style=&quot;margin: 60px 0px 10px; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 300; line-height: 30px; color: #6c336d; text-rendering: optimizelegibility; font-size: 30px; background-color: #ffffff;&quot;&gt;View source for TinyMCE editor&lt;/h1&gt;\r\n&lt;div id=&quot;bodyContent&quot; style=&quot;color: #212121; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; background-color: #ffffff;&quot;&gt;\r\n&lt;div id=&quot;contentSub&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&amp;larr;&amp;nbsp;&lt;a style=&quot;color: #005685; text-decoration-line: none;&quot; title=&quot;TinyMCE editor&quot; href=&quot;https://docs.moodle.org/38/en/TinyMCE_editor&quot;&gt;TinyMCE editor&lt;/a&gt;&lt;/div&gt;\r\n&lt;div id=&quot;jump-to-nav&quot; style=&quot;overflow: hidden; height: 0px; zoom: 1; user-select: none;&quot;&gt;&amp;nbsp;&lt;/div&gt;\r\n&lt;div id=&quot;mw-content-text&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You do not have permission to edit this page, for the following reason:&lt;/p&gt;\r\n&lt;div class=&quot;permissions-errors&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;The action you have requested is limited to users in the group:&amp;nbsp;&lt;a class=&quot;new&quot; style=&quot;color: #ba0000; text-decoration-line: none;&quot; title=&quot;MoodleDocs:Users (page does not exist)&quot; href=&quot;https://docs.moodle.org/38/en/index.php?title=MoodleDocs:Users&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;Users&lt;/a&gt;.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;hr style=&quot;margin: 20px 0px; border-bottom-width: 1px; border-right-style: initial; border-left-style: initial; border-image: initial; border-color: #eeeeee initial #ffffff initial;&quot; /&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You can view and copy the source of this page.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;/div&gt;', '/images/courses/1.png', 150, 100, '', '&lt;h1 id=&quot;firstHeading&quot; class=&quot;firstHeading&quot; style=&quot;margin: 60px 0px 10px; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 300; line-height: 30px; color: #6c336d; text-rendering: optimizelegibility; font-size: 30px; background-color: #ffffff;&quot;&gt;View source for TinyMCE editor&lt;/h1&gt;\r\n&lt;div id=&quot;bodyContent&quot; style=&quot;color: #212121; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; background-color: #ffffff;&quot;&gt;\r\n&lt;div id=&quot;contentSub&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&amp;larr;&amp;nbsp;&lt;a style=&quot;color: #005685; text-decoration-line: none;&quot; title=&quot;TinyMCE editor&quot; href=&quot;https://docs.moodle.org/38/en/TinyMCE_editor&quot;&gt;TinyMCE editor&lt;/a&gt;&lt;/div&gt;\r\n&lt;div id=&quot;jump-to-nav&quot; style=&quot;overflow: hidden; height: 0px; zoom: 1; user-select: none;&quot;&gt;&amp;nbsp;&lt;/div&gt;\r\n&lt;div id=&quot;mw-content-text&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You do not have permission to edit this page, for the following reason:&lt;/p&gt;\r\n&lt;div class=&quot;permissions-errors&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;The action you have requested is limited to users in the group:&amp;nbsp;&lt;a class=&quot;new&quot; style=&quot;color: #ba0000; text-decoration-line: none;&quot; title=&quot;MoodleDocs:Users (page does not exist)&quot; href=&quot;https://docs.moodle.org/38/en/index.php?title=MoodleDocs:Users&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;Users&lt;/a&gt;.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;hr style=&quot;margin: 20px 0px; border-bottom-width: 1px; border-right-style: initial; border-left-style: initial; border-image: initial; border-color: #eeeeee initial #ffffff initial;&quot; /&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You can view and copy the source of this page.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;/div&gt;', '&lt;h1 id=&quot;firstHeading&quot; class=&quot;firstHeading&quot; style=&quot;margin: 60px 0px 10px; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 300; line-height: 30px; color: #6c336d; text-rendering: optimizelegibility; font-size: 30px; background-color: #ffffff;&quot;&gt;View source for TinyMCE editor&lt;/h1&gt;\r\n&lt;div id=&quot;bodyContent&quot; style=&quot;color: #212121; font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-size: 14px; background-color: #ffffff;&quot;&gt;\r\n&lt;div id=&quot;contentSub&quot; style=&quot;margin-bottom: 20px;&quot;&gt;&amp;larr;&amp;nbsp;&lt;a style=&quot;color: #005685; text-decoration-line: none;&quot; title=&quot;TinyMCE editor&quot; href=&quot;https://docs.moodle.org/38/en/TinyMCE_editor&quot;&gt;TinyMCE editor&lt;/a&gt;&lt;/div&gt;\r\n&lt;div id=&quot;jump-to-nav&quot; style=&quot;overflow: hidden; height: 0px; zoom: 1; user-select: none;&quot;&gt;&amp;nbsp;&lt;/div&gt;\r\n&lt;div id=&quot;mw-content-text&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You do not have permission to edit this page, for the following reason:&lt;/p&gt;\r\n&lt;div class=&quot;permissions-errors&quot;&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;The action you have requested is limited to users in the group:&amp;nbsp;&lt;a class=&quot;new&quot; style=&quot;color: #ba0000; text-decoration-line: none;&quot; title=&quot;MoodleDocs:Users (page does not exist)&quot; href=&quot;https://docs.moodle.org/38/en/index.php?title=MoodleDocs:Users&amp;amp;action=edit&amp;amp;redlink=1&quot;&gt;Users&lt;/a&gt;.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;hr style=&quot;margin: 20px 0px; border-bottom-width: 1px; border-right-style: initial; border-left-style: initial; border-image: initial; border-color: #eeeeee initial #ffffff initial;&quot; /&gt;\r\n&lt;p style=&quot;margin: 10px 0px;&quot;&gt;You can view and copy the source of this page.&lt;/p&gt;\r\n&lt;/div&gt;\r\n&lt;/div&gt;', '[\"10\"]', 0, 1, NULL, 1),
-(8, 39, 'دورة ذكاء اصطناعي', '&lt;p&gt;دورة ذكاء اصطناعي&lt;/p&gt;', '/images/courses/1581356840straw_hat_pirates_jolly_roger (1).jpg', 100, 50, '', '&lt;p&gt;.&lt;/p&gt;', '&lt;p&gt;.&lt;/p&gt;', '[\"8\"]', 0, 1, NULL, 1);
+(8, 39, 'دورة الهاكر الاخلاقي ', '&lt;p&gt;دورة ذكاء اصطناعي&lt;/p&gt;', '/images/courses/1581356840straw_hat_pirates_jolly_roger (1).jpg', 100, 50, '', '&lt;p&gt;.&lt;/p&gt;', '&lt;p&gt;.&lt;/p&gt;', '[\"8\"]', 0, 1, NULL, 1),
+(9, 36, 'OOP', '&lt;p&gt;vrfdsv&lt;/p&gt;', '/images/courses/1582635022Short-Term-Courses-after-10th.png', 100, 50, '', '&lt;p&gt;j&lt;/p&gt;', '&lt;p&gt;i&lt;/p&gt;', '[\"8\",\"7\"]', 0, 1, NULL, 1),
+(10, 36, 'nodeJs', '&lt;p&gt;&lt;span style=&quot;color: #222222; font-family: \'Noto Naskh Arabic UI\', arial, sans-serif; font-size: large; text-align: right; background-color: #ffffff;&quot;&gt;Node.js هو نظام برامج مصمم لكتابة تطبيقات إنترنت قابلة للتوسع كخوادم الويب. تم اختياره بواسطة InfoWorld لجائزة تقنية العام في 2012. أنشئت Node.js على يد ريان دال ابتداءً في عام 2009، وقامت برعاية نموها Joyent، مشغله. يتألف Node.js من في 8 التابع لجوجل مع العديد من المكتبات المدمجة. وأخذت بعض مواصفات مشروع&lt;/span&gt;&lt;/p&gt;', '/images/courses/1582661021download.png', 100, 50, '', '&lt;p&gt;&lt;span style=&quot;color: #222222; font-family: \'Noto Naskh Arabic UI\', arial, sans-serif; font-size: large; text-align: right; background-color: #ffffff;&quot;&gt;Node.js هو نظام برامج مصمم لكتابة تطبيقات إنترنت قابلة للتوسع كخوادم الويب. تم اختياره بواسطة InfoWorld لجائزة تقنية العام في 2012. أنشئت Node.js على يد ريان دال ابتداءً في عام 2009، وقامت برعاية نموها Joyent، مشغله. يتألف Node.js من في 8 التابع لجوجل مع العديد من المكتبات المدمجة. وأخذت بعض مواصفات مشروع&lt;/span&gt;&lt;/p&gt;', '&lt;p&gt;&lt;span style=&quot;color: #222222; font-family: \'Noto Naskh Arabic UI\', arial, sans-serif; font-size: large; text-align: right; background-color: #ffffff;&quot;&gt;Node.js هو نظام برامج مصمم لكتابة تطبيقات إنترنت قابلة للتوسع كخوادم الويب. تم اختياره بواسطة InfoWorld لجائزة تقنية العام في 2012. أنشئت Node.js على يد ريان دال ابتداءً في عام 2009، وقامت برعاية نموها Joyent، مشغله. يتألف Node.js من في 8 التابع لجوجل مع العديد من المكتبات المدمجة. وأخذت بعض مواصفات مشروع&lt;/span&gt;&lt;/p&gt;', '[\"56\"]', 0, 1, NULL, 1),
+(11, 39, 'wordpress', '&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;ما هو ووردبريس wordpress الذي اصبح يسيطر على عالم مواقع الإنترنت و لماذا صُنف&amp;nbsp;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;الووردبريس&lt;/strong&gt;&amp;nbsp;واحد من أهم منصات إدارة المحتوي الرقمي CMS الاكثر استخداماً فى العالم.&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;تحدثنا من قبل عن أهم 10 اسباب تجعلك تستخدم ووردبريس فى موقعك وكانت المقالة&amp;nbsp;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/wordpress-site-10-reason-touse/&quot;&gt;مقارنة بين&amp;nbsp;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;ووردبريس&lt;/strong&gt;&amp;nbsp;و بلوجر&lt;/a&gt;، كما و أشرنا فى مقالة أخري عن&amp;nbsp;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/wrodpress-hosting/&quot;&gt;طريقة اختيار استضافة ووردبريس سريعة&lt;/a&gt;&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;فى مقالة اليوم سنعمل على شرح&amp;nbsp;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;ماهو الوورد بريس&lt;/strong&gt;&amp;nbsp;لكل من يبحث عن انشاء مدونة ووردبريس بالطريقة الصحيحة او يعرف عنه أكثر فأكثر.&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;أهم نقاط المقالة:&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul style=&quot;padding: 0px; margin: 0px 15px 20px 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#whatis-wordpress&quot; data-wpel-link=&quot;internal&quot;&gt;ماهو&amp;nbsp;wordpress&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpress-bestcms&quot; data-wpel-link=&quot;internal&quot;&gt;ووردبريس أفضل CMS&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpress-featuers&quot; data-wpel-link=&quot;internal&quot;&gt;مميزات الووردبريس&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpresssitecoast&quot; data-wpel-link=&quot;internal&quot;&gt;تكلفة إنشاء موقع ووردبريس&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpresssummary&quot; data-wpel-link=&quot;internal&quot;&gt;خلاصة تعريف الووردبريس&lt;/a&gt;&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h2 id=&quot;whatis-wordpress&quot; style=&quot;padding: 0px; margin: 25px 0px 10px; outline: none; list-style: none; border: 0px; box-sizing: border-box; font-weight: 400; line-height: 1em; font-family: Helvetica; font-size: 30px; color: #333333; background-color: #ffffff;&quot; data-wpel-link=&quot;internal&quot;&gt;&lt;span style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #a81900;&quot;&gt;ما هو wordpress&lt;/span&gt;&lt;/h2&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;برنامج&amp;nbsp;&lt;/strong&gt;WordPress احد افضل و اشهر برامج ادارة المحتوي (CMS) فى العالم و المنصة الاولي فى عالم التدوين بلا منازع.&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;الووردبريس منصة تستطيع من خلالها إدارة موقع الكتروني بإحترافية و بدون الحاجة إلى خبرات سابقة فى إدارة مواقع الانترنت مع إمكانية تركيب العديد من الإضافات (Plugins) المجانية و المدفوعة مثلها مثل القوالب (Templates) التى اصبحت متوفرة لجميع انواع المواقع (الشخصية &amp;ndash; التجارية &amp;ndash; العقارية &amp;ndash; المبوبات الإعلانية &amp;ndash;&amp;nbsp; إلخ).&lt;/p&gt;', '/images/courses/1582662549wordpress.png', 70, 30, '', '&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;ما هو ووردبريس wordpress الذي اصبح يسيطر على عالم مواقع الإنترنت و لماذا صُنف&amp;nbsp;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;الووردبريس&lt;/strong&gt;&amp;nbsp;واحد من أهم منصات إدارة المحتوي الرقمي CMS الاكثر استخداماً فى العالم.&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;تحدثنا من قبل عن أهم 10 اسباب تجعلك تستخدم ووردبريس فى موقعك وكانت المقالة&amp;nbsp;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/wordpress-site-10-reason-touse/&quot;&gt;مقارنة بين&amp;nbsp;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;ووردبريس&lt;/strong&gt;&amp;nbsp;و بلوجر&lt;/a&gt;، كما و أشرنا فى مقالة أخري عن&amp;nbsp;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/wrodpress-hosting/&quot;&gt;طريقة اختيار استضافة ووردبريس سريعة&lt;/a&gt;&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;فى مقالة اليوم سنعمل على شرح&amp;nbsp;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;ماهو الوورد بريس&lt;/strong&gt;&amp;nbsp;لكل من يبحث عن انشاء مدونة ووردبريس بالطريقة الصحيحة او يعرف عنه أكثر فأكثر.&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;أهم نقاط المقالة:&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul style=&quot;padding: 0px; margin: 0px 15px 20px 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#whatis-wordpress&quot; data-wpel-link=&quot;internal&quot;&gt;ماهو&amp;nbsp;wordpress&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpress-bestcms&quot; data-wpel-link=&quot;internal&quot;&gt;ووردبريس أفضل CMS&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpress-featuers&quot; data-wpel-link=&quot;internal&quot;&gt;مميزات الووردبريس&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpresssitecoast&quot; data-wpel-link=&quot;internal&quot;&gt;تكلفة إنشاء موقع ووردبريس&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpresssummary&quot; data-wpel-link=&quot;internal&quot;&gt;خلاصة تعريف الووردبريس&lt;/a&gt;&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h2 id=&quot;whatis-wordpress&quot; style=&quot;padding: 0px; margin: 25px 0px 10px; outline: none; list-style: none; border: 0px; box-sizing: border-box; font-weight: 400; line-height: 1em; font-family: Helvetica; font-size: 30px; color: #333333; background-color: #ffffff;&quot; data-wpel-link=&quot;internal&quot;&gt;&lt;span style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #a81900;&quot;&gt;ما هو wordpress&lt;/span&gt;&lt;/h2&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;برنامج&amp;nbsp;&lt;/strong&gt;WordPress احد افضل و اشهر برامج ادارة المحتوي (CMS) فى العالم و المنصة الاولي فى عالم التدوين بلا منازع.&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;الووردبريس منصة تستطيع من خلالها إدارة موقع الكتروني بإحترافية و بدون الحاجة إلى خبرات سابقة فى إدارة مواقع الانترنت مع إمكانية تركيب العديد من الإضافات (Plugins) المجانية و المدفوعة مثلها مثل القوالب (Templates) التى اصبحت متوفرة لجميع انواع المواقع (الشخصية &amp;ndash; التجارية &amp;ndash; العقارية &amp;ndash; المبوبات الإعلانية &amp;ndash;&amp;nbsp; إلخ).&lt;/p&gt;', '&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;ما هو ووردبريس wordpress الذي اصبح يسيطر على عالم مواقع الإنترنت و لماذا صُنف&amp;nbsp;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;الووردبريس&lt;/strong&gt;&amp;nbsp;واحد من أهم منصات إدارة المحتوي الرقمي CMS الاكثر استخداماً فى العالم.&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;تحدثنا من قبل عن أهم 10 اسباب تجعلك تستخدم ووردبريس فى موقعك وكانت المقالة&amp;nbsp;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/wordpress-site-10-reason-touse/&quot;&gt;مقارنة بين&amp;nbsp;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;ووردبريس&lt;/strong&gt;&amp;nbsp;و بلوجر&lt;/a&gt;، كما و أشرنا فى مقالة أخري عن&amp;nbsp;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/wrodpress-hosting/&quot;&gt;طريقة اختيار استضافة ووردبريس سريعة&lt;/a&gt;&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;فى مقالة اليوم سنعمل على شرح&amp;nbsp;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;ماهو الوورد بريس&lt;/strong&gt;&amp;nbsp;لكل من يبحث عن انشاء مدونة ووردبريس بالطريقة الصحيحة او يعرف عنه أكثر فأكثر.&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;أهم نقاط المقالة:&lt;/strong&gt;&lt;/p&gt;\r\n&lt;ul style=&quot;padding: 0px; margin: 0px 15px 20px 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#whatis-wordpress&quot; data-wpel-link=&quot;internal&quot;&gt;ماهو&amp;nbsp;wordpress&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpress-bestcms&quot; data-wpel-link=&quot;internal&quot;&gt;ووردبريس أفضل CMS&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpress-featuers&quot; data-wpel-link=&quot;internal&quot;&gt;مميزات الووردبريس&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpresssitecoast&quot; data-wpel-link=&quot;internal&quot;&gt;تكلفة إنشاء موقع ووردبريس&lt;/a&gt;&lt;/li&gt;\r\n&lt;li style=&quot;padding: 0px; margin: 0px 0px 5px; outline: none; list-style: outside none disc; border: 0px; box-sizing: border-box;&quot;&gt;&lt;a style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #1b13f5; text-decoration-line: none; transition: all 0.2s ease-in-out 0s;&quot; href=&quot;https://hostingwdomain.com/what-is-wordpress/#wordpresssummary&quot; data-wpel-link=&quot;internal&quot;&gt;خلاصة تعريف الووردبريس&lt;/a&gt;&lt;/li&gt;\r\n&lt;/ul&gt;\r\n&lt;h2 id=&quot;whatis-wordpress&quot; style=&quot;padding: 0px; margin: 25px 0px 10px; outline: none; list-style: none; border: 0px; box-sizing: border-box; font-weight: 400; line-height: 1em; font-family: Helvetica; font-size: 30px; color: #333333; background-color: #ffffff;&quot; data-wpel-link=&quot;internal&quot;&gt;&lt;span style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #a81900;&quot;&gt;ما هو wordpress&lt;/span&gt;&lt;/h2&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;&lt;strong style=&quot;padding: 0px; margin: 0px; outline: none; list-style: none; border: 0px; box-sizing: border-box;&quot;&gt;برنامج&amp;nbsp;&lt;/strong&gt;WordPress احد افضل و اشهر برامج ادارة المحتوي (CMS) فى العالم و المنصة الاولي فى عالم التدوين بلا منازع.&lt;/p&gt;\r\n&lt;p style=&quot;padding: 0px; margin: 0px 0px 20px; outline: none; list-style: none; border: 0px; box-sizing: border-box; color: #333333; font-family: Tahoma, arial; font-size: 19px; background-color: #ffffff;&quot;&gt;الووردبريس منصة تستطيع من خلالها إدارة موقع الكتروني بإحترافية و بدون الحاجة إلى خبرات سابقة فى إدارة مواقع الانترنت مع إمكانية تركيب العديد من الإضافات (Plugins) المجانية و المدفوعة مثلها مثل القوالب (Templates) التى اصبحت متوفرة لجميع انواع المواقع (الشخصية &amp;ndash; التجارية &amp;ndash; العقارية &amp;ndash; المبوبات الإعلانية &amp;ndash;&amp;nbsp; إلخ).&lt;/p&gt;', '[\"57\"]', 0, 1, NULL, 1),
+(12, 36, 'شرح ميزة Auto-Animate في برنامج Adobe XD', '&lt;p&gt;&lt;span style=&quot;color: #222222; font-family: Consolas, \'Lucida Console\', \'Courier New\', monospace; font-size: 12px; white-space: pre-wrap; background-color: #ffffff;&quot;&gt;شرح ميزة Auto-Animate في برنامج Adobe XD&lt;/span&gt;&lt;/p&gt;\r\n&lt;h3 style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 20px 0px 10px; line-height: 1.1; color: #625ff2; font-size: 24px; background-color: #ffffff;&quot;&gt;ما هو برنامج Adobe XD ?&lt;/h3&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;&amp;nbsp;&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;برنامج أدوبي اكس دي هو من البرامج المميزة لتصميم واجهات الاستخدام بأنواعها المتعددة , ظهرت النسخة الأولية من أدوبي اكس دي في عام 2015 (قبل 3 سنوات) وكان الهدف الأساسي من البرنامج هو تدعيم مصممي واجهة الاستخدام ببرنامج يلبي احتياجاتهم ويسهل عليهم العمل , تطرق المصممين لوجود برامج منافسة كثيرة ك Sketch و inVision وغيرها وأن أدوبي قامت بخطوة متأخرة , حيث أن برنامج Sketch في الاساس قد استحوذ على نسبة كبيرة من السوق ولا يمكن لمنافس جديد أن يأخذ مكانه بسهولة وقد أتفق كثير من المصممين على هذا الرأي وكنت أنا بنفسي من بينهم , حتى جاء العام 2017 ...&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;&amp;nbsp;&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;أولاً لنفهم الفائدة الأساسية من Adobe XD علينا أن نفهم ما هو معنى UI/UX Designer بشكل صحيح , فمصمم واجهة الاستخدام UI/UX Designer فعلياً لا يقوم بكتابة الأكواد ولكن كتابة الأكواد هي عمل UI/UX Developer , فالمصمم هو من يقوم بعمل مخطط للتصميم ثم يقوم المختص بتحويلها الى كود فعلي , في بدايات ظهور هذا المجال كان النصيب الأكبر للورقة والقلم في التصميم , اعتمد المصممين لاحقاً على برامج مثل فوتوشوب و اليستراتور في تصميم واجهات الاستخدام , لكن مشكلة ثقل البرامج مثل فوتوشوب على بعض الأجهزة كانت عقبة كبرى , كذلك حاجة المصممين لانشاء كثير من الأمور يدوياً كانت بذرة مشروع Adobe XD و Sketch وغيرها , عند حضور Adobe XD الى الساحة كبرنامج مخصص لهؤلاء الأشخاص وجود المصممين سهولة ومرونة في التعامل مقارنة ب فوتوشوب واليستراتور , والأهم من ذلك انه مجاني !&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;&amp;nbsp;&lt;/p&gt;\r\n&lt;h3 style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 20px 0px 10px; line-height: 1.1; color: #625ff2; font-size: 24px; background-color: #ffffff;&quot;&gt;مميزات برنامج Adobe XD&lt;/h3&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;&amp;nbsp;&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;تختصر عبارة XD في اسم البرنامج جملة Experince Design و من مميزات البرنامج الرائعة هو التركيز على واجهات الاستخدام و التخصص في تصميمها , فليس سهلاً او مرجحاً تعديل صورة أو انشاء أيقونة نهائية باستخدام Adobe XD - على الرغم من توفر أدوات كافية .&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;&amp;nbsp;&lt;/p&gt;\r\n&lt;h4 style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 10px 0px; line-height: 1.1; color: #625ff2; font-size: 18px; background-color: #ffffff;&quot;&gt;ومن أهم مميزات برنامج Adobe XD&lt;/h4&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;&amp;nbsp;&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;مجاني ! يمكنك تحميله من &lt;a style=&quot;box-sizing: border-box; padding: 3px; margin: 0px; background-color: transparent; color: #625ff2; text-decoration-line: none; transition: all 0.3s ease 0s; font-weight: bold; overflow-wrap: break-word; word-break: normal;&quot; title=&quot;https://creative.adobe.com/products/download/xd&quot; href=&quot;https://creative.adobe.com/products/download/xd&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;هنا&amp;nbsp;&lt;/a&gt;&amp;nbsp;عبر Creative Cloud&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;واجهة مبسطة وفعالة&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;اختبار تجاوبية التصميم&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;ربط العناصر ببعضها واختبار المنتج&amp;nbsp;&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;تحديد أماكن العناصر بدقة (Fixed&amp;nbsp; , absolute)&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;تحديد قيمة لتأثيرات الانتقال&amp;nbsp;&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;ومن هذا الرابط&amp;nbsp;&lt;a style=&quot;box-sizing: border-box; padding: 3px; margin: 0px; background-color: transparent; color: #625ff2; text-decoration-line: none; transition: all 0.3s ease 0s; font-weight: bold; overflow-wrap: break-word; word-break: normal;&quot; href=&quot;https://www.adobe.com/products/xd/features.html&quot;&gt;https://www.adobe.com/products/xd/features.html&lt;/a&gt;&amp;nbsp;يمكنك تصفح الميزات الكاملة لبرنامج Adobe XD وتطوراتها منذ وصول البرنامج حتى اليوم&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;&amp;nbsp;&lt;/p&gt;\r\n&lt;h3 style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 20px 0px 10px; line-height: 1.1; color: #625ff2; font-size: 24px; background-color: #ffffff;&quot;&gt;ما الممكن تحقيقه مع Adobe XD ?&amp;nbsp;&lt;/h3&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;&amp;nbsp;&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;الكثير فعلاً , تحدت شركة أدوبي نفسها و خرجت بمنتج خيالي استطاع احتلال مكانة كبيرة بين المصممين بسهولة , ولن أطيل في الكلام عن ما يمكنك تحقيقه , مجرد فيديو قصير مدته 3 دقائق مقدم من قناة Dansky المهتمة بالتصميم ستشرح لك شيئ من ما يستطيع عمله هذا البرنامج&lt;/p&gt;\r\n&lt;p style=&quot;box-sizing: border-box; font-family: tajawal, tahoma, sans-serif; padding: 0px; margin: 0px 0px 10px; line-height: 2; font-size: 15px; overflow-wrap: break-word; white-space: pre-line; color: #333333; background-color: #ffffff;&quot;&gt;&amp;nbsp;&lt;/p&gt;', '/images/courses/1582705923651-366 (1).jpeg', 0, 0, '', '&lt;p&gt;&lt;span style=&quot;color: #222222; font-family: Consolas, \'Lucida Console\', \'Courier New\', monospace; font-size: 12px; white-space: pre-wrap; background-color: #ffffff;&quot;&gt;شرح ميزة Auto-Animate في برنامج Adobe XD&lt;/span&gt;&lt;/p&gt;', '&lt;p&gt;&lt;span style=&quot;color: #222222; font-family: Consolas, \'Lucida Console\', \'Courier New\', monospace; font-size: 12px; white-space: pre-wrap; background-color: #ffffff;&quot;&gt;شرح ميزة Auto-Animate في برنامج Adobe XD&lt;/span&gt;&lt;/p&gt;', '[\"60\"]', 0, 1, NULL, 1),
+(13, 43, 'تعلم دورة photoshop', '&lt;p&gt;&lt;a style=&quot;box-sizing: border-box; color: #00537e; text-decoration-line: none; transition: color 0.15s ease 0s; font-family: ABeeZee; font-size: 25px; text-align: justify; background-color: #ffffff;&quot; href=&quot;https://www.edlibre.com/tag/%D8%AF%D9%88%D8%B1%D8%A7%D8%AA-%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A%D8%A9-%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9-%D9%88-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9&quot;&gt;دورة تعليمية كاملة&lt;/a&gt;&lt;span style=&quot;color: #333333; font-family: ABeeZee; font-size: 25px; text-align: justify; background-color: #ffffff;&quot;&gt;&amp;nbsp;لتعلم PhotoShop CC بالعربية ، برنامج الفوتوشوب ، هو البرنامج الاول عالميا من ادوبي للتعامل مع الصور و التعديل عليها ، و الفوتوشوب ليس فقط برنامج للصور &amp;hellip; بل أيضا للتصميم المواقع اللوجو و كثير من الأشياء ، و من يقول أن الفوتوشوب ستتعلمه في دقائق فتاكدوا أنكم على خطأ ، فالفوتوشوب عالم كبير به الكثير من الخصائص و المميزات لا يمكن أن تعرف إستخدامها إلا عن طريق تعلمها من خبراء في هذا المجال و لذلك خصصت دورة هذا اليوم مع خبير عربي في الفوتوشوب ليعلكم كيف و ما هو و كيف يعمل و اساسيات الفوتوشوب ، و بالظبط ستتعلمون مع النسخة الاخيرة من برنامج الفوتوشوب و هي النسخة المطورة حديثا Adobe PhotoShop CC .&lt;/span&gt;&lt;/p&gt;', '/images/courses/1582706583photoshop.jpg', 0, 0, '', '&lt;p&gt;&lt;a style=&quot;box-sizing: border-box; color: #00537e; text-decoration-line: none; transition: color 0.15s ease 0s; font-family: ABeeZee; font-size: 25px; text-align: justify; background-color: #ffffff;&quot; href=&quot;https://www.edlibre.com/tag/%D8%AF%D9%88%D8%B1%D8%A7%D8%AA-%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A%D8%A9-%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9-%D9%88-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9&quot;&gt;دورة تعليمية كاملة&lt;/a&gt;&lt;span style=&quot;color: #333333; font-family: ABeeZee; font-size: 25px; text-align: justify; background-color: #ffffff;&quot;&gt;&amp;nbsp;لتعلم PhotoShop CC بالعربية ، برنامج الفوتوشوب ، هو البرنامج الاول عالميا من ادوبي للتعامل مع الصور و التعديل عليها ، و الفوتوشوب ليس فقط برنامج للصور &amp;hellip; بل أيضا للتصميم المواقع اللوجو و كثير من الأشياء ، و من يقول أن الفوتوشوب ستتعلمه في دقائق فتاكدوا أنكم على خطأ ، فالفوتوشوب عالم كبير به الكثير من الخصائص و المميزات لا يمكن أن تعرف إستخدامها إلا عن طريق تعلمها من خبراء في هذا المجال و لذلك خصصت دورة هذا اليوم مع خبير عربي في الفوتوشوب ليعلكم كيف و ما هو و كيف يعمل و اساسيات الفوتوشوب ، و بالظبط ستتعلمون مع النسخة الاخيرة من برنامج الفوتوشوب و هي النسخة المطورة حديثا Adobe PhotoShop CC .&lt;/span&gt;&lt;/p&gt;', '&lt;p&gt;&lt;a style=&quot;box-sizing: border-box; color: #00537e; text-decoration-line: none; transition: color 0.15s ease 0s; font-family: ABeeZee; font-size: 25px; text-align: justify; background-color: #ffffff;&quot; href=&quot;https://www.edlibre.com/tag/%D8%AF%D9%88%D8%B1%D8%A7%D8%AA-%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A%D8%A9-%D9%85%D8%AC%D8%A7%D9%86%D9%8A%D8%A9-%D9%88-%D9%85%D8%AF%D9%81%D9%88%D8%B9%D8%A9&quot;&gt;دورة تعليمية كاملة&lt;/a&gt;&lt;span style=&quot;color: #333333; font-family: ABeeZee; font-size: 25px; text-align: justify; background-color: #ffffff;&quot;&gt;&amp;nbsp;لتعلم PhotoShop CC بالعربية ، برنامج الفوتوشوب ، هو البرنامج الاول عالميا من ادوبي للتعامل مع الصور و التعديل عليها ، و الفوتوشوب ليس فقط برنامج للصور &amp;hellip; بل أيضا للتصميم المواقع اللوجو و كثير من الأشياء ، و من يقول أن الفوتوشوب ستتعلمه في دقائق فتاكدوا أنكم على خطأ ، فالفوتوشوب عالم كبير به الكثير من الخصائص و المميزات لا يمكن أن تعرف إستخدامها إلا عن طريق تعلمها من خبراء في هذا المجال و لذلك خصصت دورة هذا اليوم مع خبير عربي في الفوتوشوب ليعلكم كيف و ما هو و كيف يعمل و اساسيات الفوتوشوب ، و بالظبط ستتعلمون مع النسخة الاخيرة من برنامج الفوتوشوب و هي النسخة المطورة حديثا Adobe PhotoShop CC .&lt;/span&gt;&lt;/p&gt;', '[\"61\"]', 0, 1, NULL, 1),
+(14, 36, 'C#', '&lt;p&gt;.&lt;/p&gt;', '/images/courses/15827291131581319958download.png', 100, 0, '', '&lt;p&gt;.&lt;/p&gt;', '&lt;p&gt;.&lt;/p&gt;', '[\"54\",\"7\",\"8\"]', 0, 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -134,18 +147,27 @@ CREATE TABLE `course_resources` (
 --
 
 INSERT INTO `course_resources` (`resources_id`, `resources_video`, `resources_file`, `resources_chapter`, `course_id`, `resources_date`, `resources_status`, `resources_updates`) VALUES
-(16, '/videos/1580884294______What is GitHub.webm', '', 'chapter3', 5, '0000-00-00 00:00:00', 0, ''),
-(17, '/videos/1580885180______What Is Version Control- - YouTube.webm', '', 'chapter3', 5, '0000-00-00 00:00:00', 0, ''),
-(18, '/videos/1580885377______What is GitHub.webm', '', 'chapter4', 5, '0000-00-00 00:00:00', 0, ''),
-(19, '/videos/1580884294______What is GitHub.webm', '', 'chapter4', 5, '0000-00-00 00:00:00', 0, ''),
-(20, '/videos/1580903859______What Is Version Control- - YouTube.webm', '', 'chapter5', 5, '0000-00-00 00:00:00', 0, ''),
-(21, '/videos/1580932663______What is GitHub.mp4.webm', '', 'chapter3', 5, '0000-00-00 00:00:00', 0, ''),
-(22, '/videos/1580932891______اصابك عشق نجوى فاروق_زهرات♡حديقتي   (اغار عليها من.mp4.webm', '', 'chapter1', 5, '0000-00-00 00:00:00', 0, ''),
-(23, '/videos/1580993588______موشح أندلسي _ يامليح اللمى.mp4.webm', '', 'مرحلة التقسيم ', 5, '0000-00-00 00:00:00', 0, ''),
-(24, '/videos/1580994042______يا من هواه - عبدالرحمن محمد وغسان ابو حلتم.mp4.webm', '', 'مقدمة', 7, '0000-00-00 00:00:00', 0, ''),
-(25, '/videos/1580994191______يا من هواه - عبدالرحمن محمد وغسان ابو حلتم.mp4.webm', '', 'الفصل الاول', 7, '0000-00-00 00:00:00', 0, ''),
-(27, '/videos/1581360721______1__Git__version_control_system.mp4.webm', '', 'الفصل الثاني', 8, '0000-00-00 00:00:00', 0, ''),
-(28, '/videos/1581855753______1  Laravel API with  JWT and CRUD_HD.mp4.webm', '', 'مقدمة الى الدورة', 8, '0000-00-00 00:00:00', 0, '');
+(30, '/videos/1582659035______1__GitHub_development_platform.mp4.webm', '', 'مقدمة الى الكورس', 5, '0000-00-00 00:00:00', 0, ''),
+(31, '/videos/1582659084______2__GitHub_development_platform.mp4.webm', '', 'مقدمة الى الكورس', 5, '0000-00-00 00:00:00', 0, ''),
+(32, '/videos/1582659494______3__GitHub_development_platform.mp4.webm', '', 'مقدمة الى الكورس', 5, '0000-00-00 00:00:00', 0, ''),
+(33, '/videos/1582659530______4__GitHub_development_platform.mp4.webm', '', 'مقدمة الى الكورس', 5, '0000-00-00 00:00:00', 0, ''),
+(34, '/videos/1582659646______5__Slack_Project_Management.mp4.webm', '', 'تطبيق على المشاريع', 5, '0000-00-00 00:00:00', 0, ''),
+(35, '/videos/1582659692______7__Slack_Project_Management.mp4.webm', '', 'تطبيق على المشاريع', 5, '0000-00-00 00:00:00', 0, ''),
+(36, '/videos/1582659757______Github_(8_videos).mp4.webm', '', 'شرح موقع github', 5, '0000-00-00 00:00:00', 0, ''),
+(37, '/videos/1582659822______Slack_لادارة_الفرق_(4_videos).mp4.webm', '', 'شرح موقع github', 5, '0000-00-00 00:00:00', 0, ''),
+(38, '/videos/1582659877______Slack_لادارة_الفرق_(4_videos).mp4.webm', '', 'نهاية الكورس', 5, '0000-00-00 00:00:00', 0, ''),
+(39, '/videos/1582661101______[Arabic] Node JS _0- Course Intro _ Overview(720P_HD).mp4.webm', '', 'مقدمة الى الكورس', 10, '0000-00-00 00:00:00', 0, ''),
+(40, '/videos/1582661137______[Arabic] Node JS _1- Start with Node JS(720P_HD).mp4.webm', '', 'البداية معا nodeJs', 10, '0000-00-00 00:00:00', 0, ''),
+(41, '/videos/1582661229______[Arabic] Node JS _2- Node Modules(720P_HD).mp4.webm', '', 'Modules ', 10, '0000-00-00 00:00:00', 0, ''),
+(44, '/videos/1582662057______PHP OOP MVC - setup and controller - 01.mp4.webm', '', 'مقدمة الى الكورس', 8, '0000-00-00 00:00:00', 0, ''),
+(45, '/videos/1582662623______Mastering WordPress in Arabic _01 - Intro _ What Is WordPress_.mp4.webm', '', 'مقدمة الى الكورس', 11, '0000-00-00 00:00:00', 0, ''),
+(46, '/videos/1582706103______1. اعلان الدورة.mp4.webm', '', 'تعريف بالدورة', 12, '0000-00-00 00:00:00', 0, ''),
+(47, '/videos/1582706208______2. 2- ماهي الملفات التفاعلية.mp4.webm', '', 'تعريف بالدورة', 12, '0000-00-00 00:00:00', 0, ''),
+(48, '/videos/1582706304______1. إنشاء مساحة عمل خاصة.mp4.webm', '', 'أساسيات الملفات التفاعلية', 12, '0000-00-00 00:00:00', 0, ''),
+(49, '/videos/1582706804______134@ فكرة دروس تعلم الفوتوشوب فى 30 ثانية_HD.mp4.webm', '', 'مقدمة الى الكورس', 13, '0000-00-00 00:00:00', 0, ''),
+(50, '/videos/1582706830______135@ تنصيب وتثبيت برنامج Adobe Photoshop cc2014_HD.mp4.webm', '', 'تنصيب البرنامج', 13, '0000-00-00 00:00:00', 0, ''),
+(51, '/videos/1582708097______PHP OOP MVC - setup and controller - 01.mp4.webm', '', 'مقدمة الى الكورس', 9, '0000-00-00 00:00:00', 0, ''),
+(52, '/videos/1582729154______1582706804______134@ فكرة دروس تعلم الفوتوشوب فى 30 ثانية_HD.mp4.webm.webm', '', 'مقدمة الى الكورس', 14, '0000-00-00 00:00:00', 0, '');
 
 -- --------------------------------------------------------
 
@@ -365,49 +387,6 @@ INSERT INTO `permission_role` (`permission_role_id`, `role_id`, `permission_id`)
 (2001, 1, 59),
 (2002, 1, 60),
 (2003, 1, 61),
-(2004, 2, 1),
-(2005, 2, 2),
-(2006, 2, 3),
-(2007, 2, 4),
-(2008, 2, 5),
-(2009, 2, 6),
-(2010, 2, 7),
-(2011, 2, 8),
-(2012, 2, 9),
-(2013, 2, 11),
-(2014, 2, 12),
-(2015, 2, 13),
-(2016, 2, 14),
-(2017, 2, 15),
-(2018, 2, 16),
-(2019, 2, 17),
-(2020, 2, 18),
-(2021, 2, 19),
-(2022, 2, 20),
-(2023, 2, 21),
-(2024, 2, 22),
-(2025, 2, 23),
-(2026, 2, 24),
-(2027, 2, 25),
-(2028, 2, 26),
-(2029, 2, 27),
-(2030, 2, 45),
-(2031, 2, 46),
-(2032, 2, 47),
-(2033, 2, 48),
-(2034, 2, 49),
-(2035, 2, 50),
-(2036, 2, 51),
-(2037, 2, 52),
-(2038, 2, 53),
-(2039, 2, 54),
-(2040, 2, 55),
-(2041, 2, 56),
-(2042, 2, 57),
-(2043, 2, 58),
-(2044, 2, 59),
-(2045, 2, 60),
-(2046, 2, 61),
 (2047, 4, 1),
 (2048, 4, 2),
 (2049, 4, 3),
@@ -432,7 +411,30 @@ INSERT INTO `permission_role` (`permission_role_id`, `role_id`, `permission_id`)
 (2068, 4, 49),
 (2069, 4, 50),
 (2070, 4, 51),
-(2071, 4, 52);
+(2071, 4, 52),
+(2181, 2, 1),
+(2182, 2, 2),
+(2183, 2, 3),
+(2184, 2, 4),
+(2185, 2, 5),
+(2186, 2, 6),
+(2187, 2, 7),
+(2188, 2, 8),
+(2189, 2, 9),
+(2190, 2, 11),
+(2191, 2, 12),
+(2192, 2, 13),
+(2193, 2, 19),
+(2194, 2, 20),
+(2195, 2, 21),
+(2196, 2, 22),
+(2197, 2, 23),
+(2198, 2, 24),
+(2199, 2, 25),
+(2200, 2, 26),
+(2201, 2, 27),
+(2202, 2, 53),
+(2203, 2, 61);
 
 -- --------------------------------------------------------
 
@@ -450,7 +452,7 @@ CREATE TABLE `profiles` (
   `user_gender` varchar(255) DEFAULT NULL,
   `user_qualification` varchar(255) DEFAULT NULL,
   `user_register_date` datetime NOT NULL,
-  `user_updates` text
+  `user_updates` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -458,8 +460,8 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`profile_id`, `user_id`, `user_full_name`, `user_image`, `document`, `user_phone`, `user_gender`, `user_qualification`, `user_register_date`, `user_updates`) VALUES
-(5, 29, 'TaHer Al-SamAwi', '', '/images/universities/document/default.png', '6619188912', '', '1', '0000-00-00 00:00:00', NULL),
-(6, 30, '147147 oih dd ', '/images/users/profiles/1579783172echarts (25).png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
+(5, 29, 'TaHer Al-SamAwi', '/images/users/profiles/taher.jpg', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
+(6, 30, 'طاهر السماوي', '/images/users/profiles/1582727581taher.jpg', '/images/universities/document/default.png', '6619188912', '', 'حامعي', '0000-00-00 00:00:00', NULL),
 (7, 31, '147147 oih dd ', '/images/users/profiles/default.png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (8, 32, 'iy kbjkj vdshl', '/images/users/profiles/1579783653echarts (25).png', '/images/universities/document/default.png', '6619188912', 'male', '1', '0000-00-00 00:00:00', NULL),
 (9, 1, 'osama mohammed', '/images/users/profiles/default.png', '', '773569041', 'male', '', '2020-01-20 00:00:00', NULL),
@@ -481,7 +483,9 @@ INSERT INTO `profiles` (`profile_id`, `user_id`, `user_full_name`, `user_image`,
 (25, 48, 'جامعة الاندلس', '/images/users/profiles/default.png', 'صورة1.jpg', '789789752', '', '', '0000-00-00 00:00:00', NULL),
 (26, 773569041, 'osama mohammed ', '/images/users/profiles/default.png', NULL, '773569041', 'male', NULL, '0000-00-00 00:00:00', NULL),
 (27, 773569042, ' ali sasd ', '/images/users/profiles/default.png', '‏‏لقطة الشاشة (30).png', '66191889712', '', '', '0000-00-00 00:00:00', NULL),
-(28, 773569043, 'عبي محمد سعد', '/images/users/profiles/default.png', '', '11111111', 'male', '1', '0000-00-00 00:00:00', NULL);
+(28, 773569043, 'عبي محمد سعد', '/images/users/profiles/default.png', '', '11111111', 'male', '1', '0000-00-00 00:00:00', NULL),
+(29, 773569044, 'محمد علي ', '/images/users/profiles/default.png', '', '777110022', 'male', '1', '0000-00-00 00:00:00', NULL),
+(30, 773569045, 'طاهر السماوي', '/images/users/profiles/default.png', '', '7333564564', 'male', '1', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -512,18 +516,15 @@ INSERT INTO `ratings` (`rating_id`, `comment_text`, `rating_number`, `rating_dat
 (8, '', 0, '2020-02-12 02:55:15', 29, 1, 7),
 (9, 'jnkjn', 3, '2020-02-12 07:18:12', 29, 1, 7),
 (10, 'khkl', 0, '2020-02-12 07:22:09', 29, 1, 7),
+(12, 'jlhl', 5, '2020-02-16 12:50:54', 29, 1, 5),
 (14, 'نتنت', 5, '2020-02-16 01:06:31', 47, 1, 7),
 (16, 'nice', 5, '2020-02-16 01:18:40', 47, 1, 5),
-(19, 'dd', 5, '2020-02-24 02:14:48', 29, 1, 8),
-(20, '54', 4, '2020-02-24 02:18:50', 29, 1, 8),
-(23, 'هههههههههههههههه', 0, '2020-02-25 05:17:21', 29, 1, 5),
-(24, '', 5, '2020-02-25 05:17:29', 29, 1, 5),
-(25, 'd\n                                                        ', 2, '2020-02-25 05:35:41', 29, 1, 5),
-(26, '\n             kjbdfsjkb                                            ', 5, '2020-02-25 05:37:23', 29, 1, 5),
-(27, '55\n\n                                                        ', 1, '2020-02-25 05:37:32', 29, 1, 5),
-(28, '                                                        ', 2, '2020-02-25 06:06:29', 29, 1, 5),
-(29, '                                                        jbmj', 0, '2020-02-25 07:38:24', 29, 1, 5),
-(30, '                      .,m d,                                  ', 2, '2020-02-25 08:02:34', 29, 1, 5);
+(19, 'قوة                         ', 4, '2020-02-25 06:33:53', 773569041, 1, 9),
+(20, 'احسن واحد                                ', 5, '2020-02-26 08:55:08', 38, 1, 5),
+(21, 'ممتاز جدا                                          ', 4, '2020-02-26 09:18:54', 38, 1, 8),
+(22, 'بورك فيك           ', 5, '2020-02-26 09:48:25', 773569041, 1, 13),
+(23, 'حالي', 4, '2020-02-26 10:15:16', 773569041, 1, 11),
+(24, '                       ممتاز                                 ', 3, '2020-02-26 03:53:11', 30, 1, 13);
 
 -- --------------------------------------------------------
 
@@ -557,7 +558,7 @@ INSERT INTO `roles` (`role_id`, `role_name`, `role_description`, `role_status`) 
 
 CREATE TABLE `users` (
   `user_id` int(255) NOT NULL,
-  `university_id` int(11) DEFAULT '0',
+  `university_id` int(11) DEFAULT 0,
   `user_email` varchar(255) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `user_password` text NOT NULL,
@@ -572,10 +573,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `university_id`, `user_email`, `user_name`, `user_password`, `user_activation_key`, `user_status`) VALUES
 (1, 0, 'thamar@gmail.com', 'thamar', '28707e14e88523777d295deaad67407b', '123', 1),
 (29, 0, 'mmmkkkmm@f.ff', 'ali', '28707e14e88523777d295deaad67407b', '6025', 1),
-(30, 0, 'll@e.s', 'njkj njikn hjbkj', 'e8836edf9ff4213a9f3c4588a116db21', '3496', 0),
+(30, 0, 'tahersam@gmail.com', 'taher', '28707e14e88523777d295deaad67407b', '3496', 1),
 (31, 0, 'll@e.sll', 'njkj njikn hjbkj jhiiu', 'e8836edf9ff4213a9f3c4588a116db21', '2375', 1),
 (32, 0, 'kkll@e.sll', 'njkj njikn hjmmmm', 'e8836edf9ff4213a9f3c4588a116db21', '4702', 0),
-(33, 1, 'straw4ha2t@gmail.com', 'osama5', '4855d34ff1b1fb69203b7de9e33de8a1', '2438', 0),
+(33, 1, 'straw4ha2t@gmail.com', 'osama5', '4855d34ff1b1fb69203b7de9e33de8a1', '2438', 1),
 (34, 1, 'straw44xhat@gmail.com', 't1', 'e8836edf9ff4213a9f3c4588a116db21', '6488', 0),
 (35, 1, '1@1.d', 't2', 'e8836edf9ff4213a9f3c4588a116db21', '1449', 0),
 (36, 48, 'straw4hnjhlat@gmail.com', 't4', 'e8836edf9ff4213a9f3c4588a116db21', '3264', 0),
@@ -593,7 +594,9 @@ INSERT INTO `users` (`user_id`, `university_id`, `user_email`, `user_name`, `use
 (48, NULL, 'u3@gmail.com', 'u3', 'e8836edf9ff4213a9f3c4588a116db21', '7913', 1),
 (773569041, 0, 'osama1234@gmail.com', 'osama', '28707e14e88523777d295deaad67407b', '', 1),
 (773569042, NULL, 'w4hkkkalt@gmail.com', 'alisaad', 'e8836edf9ff4213a9f3c4588a116db21', '2277', 0),
-(773569043, 42, 'p@d.d', 'ali9', 'e8836edf9ff4213a9f3c4588a116db21', '9364', 0);
+(773569043, 42, 'p@d.d', 'ali9', 'e8836edf9ff4213a9f3c4588a116db21', '9364', 0),
+(773569044, 38, 'Mohammed@d.xd', 'mohammed ali', 'e8836edf9ff4213a9f3c4588a116db21', '6190', 1),
+(773569045, NULL, 'taher@sam.com', '@tahersamawi', '1e70e1b0f4c35bcd7f8310f2d6122720', '1537', 0);
 
 -- --------------------------------------------------------
 
@@ -614,9 +617,12 @@ CREATE TABLE `users_courses` (
 
 INSERT INTO `users_courses` (`users_courses_id`, `user_id`, `couces_buy`, `user_wish_list`) VALUES
 (14, 1, '', '5,7'),
-(29, 29, ',8,5', '5\r\n,5  >\n                               <i class=,5'),
+(29, 29, ',5,8,7,11', ',8,5'),
 (32, 47, '', ',5'),
-(33, 48, '', ',8');
+(33, 48, ',9', ',8'),
+(34, 773569041, ',5,9,7,12,13,11', ',9,8,12,11'),
+(35, 38, ',8,11,5,10', ''),
+(36, 30, ',8,5,13,11,14', ',7,5');
 
 -- --------------------------------------------------------
 
@@ -656,7 +662,9 @@ INSERT INTO `user_role` (`user_role_id`, `user_id`, `role_id`, `extra_permission
 (23, 48, 2, ''),
 (24, 773569041, 6, ''),
 (25, 773569042, 2, ''),
-(26, 773569043, 4, '');
+(26, 773569043, 4, ''),
+(27, 773569044, 4, ''),
+(28, 773569045, 3, '');
 
 --
 -- Indexes for dumped tables
@@ -763,7 +771,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `coupons`
@@ -775,13 +783,13 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `course_resources`
 --
 ALTER TABLE `course_resources`
-  MODIFY `resources_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `resources_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -793,19 +801,19 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `permission_role`
 --
 ALTER TABLE `permission_role`
-  MODIFY `permission_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2072;
+  MODIFY `permission_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2204;
 
 --
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `profile_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `ratings`
 --
 ALTER TABLE `ratings`
-  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `rating_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -817,19 +825,19 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=773569044;
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=773569046;
 
 --
 -- AUTO_INCREMENT for table `users_courses`
 --
 ALTER TABLE `users_courses`
-  MODIFY `users_courses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `users_courses_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
-  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `user_role_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- قيود الجداول المحفوظة
