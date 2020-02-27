@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 فبراير 2020 الساعة 14:25
+-- Generation Time: 27 فبراير 2020 الساعة 14:44
 -- إصدار الخادم: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -586,7 +586,7 @@ INSERT INTO `users` (`user_id`, `university_id`, `user_email`, `user_name`, `use
 (40, NULL, 'straw4hat@gmail.com', 'njkj njikn hjbkllll', 'e8836edf9ff4213a9f3c4588a116db21', '8882', 0),
 (41, NULL, 's@s.com', 's1', 'e8836edf9ff4213a9f3c4588a116db21', '2470', 0),
 (42, NULL, 'u11@u.d', 'saba', 'e8836edf9ff4213a9f3c4588a116db21', '7442', 1),
-(43, 42, 'straw4kpokhat@gmail.com', 'hitam ', 'e8836edf9ff4213a9f3c4588a116db21', '1959', 0),
+(43, 42, 'straw4kpokhat@gmail.com', 'hitam ', '28707e14e88523777d295deaad67407b', '1959', 1),
 (44, NULL, 'straw4hat@gmail.coml', '', 'ca47cc4e62f7cb066889b386402a5d9a', '2548', 0),
 (45, NULL, 'straw4h5at@gmail.com', 'tahar', 'e8836edf9ff4213a9f3c4588a116db21', '1422', 0),
 (46, NULL, 'straw4h00at@gmail.com', 'asanaa', 'e8836edf9ff4213a9f3c4588a116db21', '5776', 0),
